@@ -76,12 +76,13 @@ if (fbid) {
         }
 
         // 跳转到随机选择的链接
+        window.location.href = randomLink;
       fbq('track', 'Contact');
       fbq('track', 'AddToCart');
       fbq('track', 'Purchase');
       fbq('track', 'Lead');
       fbq('track', 'CompleteRegistration');
-      window.location.href = randomLink;
+    
     }
 </script>
 
