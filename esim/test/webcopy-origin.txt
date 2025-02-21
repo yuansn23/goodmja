@@ -1,0 +1,116 @@
+Uri: https://msdd2.my.canva.site/the-alon
+File Name: C:\DownR\msdd2.my.canva.site\the-alon.html
+Content Type: text/html
+
+Uri: https://msdd2.my.canva.site/the-alon/26387fa4f5b1e3f7b6217b27d79bf264.png
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\26387fa4f5b1e3f7b6217b27d79bf264.png
+Content Type: image/png
+
+Uri: https://msdd2.my.canva.site/the-alon/2d0b56e7e51cf11036ad8734bdb67e2d.png
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\2d0b56e7e51cf11036ad8734bdb67e2d.png
+Content Type: image/png
+
+Uri: https://msdd2.my.canva.site/the-alon/725b756a69a7d4c235070e51acd85560.png
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\725b756a69a7d4c235070e51acd85560.png
+Content Type: image/png
+
+Uri: https://msdd2.my.canva.site/the-alon/fonts/152a3ae5f6bf5c788bdc8f49d3c83b29.woff2
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\fonts\152a3ae5f6bf5c788bdc8f49d3c83b29.woff2
+Content Type: application/octet-stream
+
+Uri: https://msdd2.my.canva.site/the-alon/fonts/27524953761f959d1670691927bf3928.woff
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\fonts\27524953761f959d1670691927bf3928.woff
+Content Type: application/octet-stream
+
+Uri: https://msdd2.my.canva.site/the-alon/fonts/38a77e39fc7e5e4f276f57754a409c0e.woff
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\fonts\38a77e39fc7e5e4f276f57754a409c0e.woff
+Content Type: application/octet-stream
+
+Uri: https://msdd2.my.canva.site/the-alon/fonts/69bcfb585149daba79afc8a939e4f7b5.woff
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\fonts\69bcfb585149daba79afc8a939e4f7b5.woff
+Content Type: application/octet-stream
+
+Uri: https://msdd2.my.canva.site/the-alon/fonts/b8f48bbf958c09ce7ad6108d65bf00eb.woff2
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\fonts\b8f48bbf958c09ce7ad6108d65bf00eb.woff2
+Content Type: application/octet-stream
+
+Uri: https://msdd2.my.canva.site/the-alon/fonts/df9ba4fdb36a5cb9c9df07c8f980875b.woff2
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\fonts\df9ba4fdb36a5cb9c9df07c8f980875b.woff2
+Content Type: application/octet-stream
+
+Uri: https://msdd2.my.canva.site/the-alon/fonts/df9bd43fe4bfd8ca300dcacde4a0c17b.woff2
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\fonts\df9bd43fe4bfd8ca300dcacde4a0c17b.woff2
+Content Type: application/octet-stream
+
+Uri: https://msdd2.my.canva.site/the-alon/images/0b37898452c087f0eb5da97a7a2bc6a5.svg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\0b37898452c087f0eb5da97a7a2bc6a5.svg
+Content Type: image/svg+xml
+
+Uri: https://msdd2.my.canva.site/the-alon/images/2985d475b8adf4f8a75e5b53b69a2ecc.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\2985d475b8adf4f8a75e5b53b69a2ecc.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/52d7972a8aacee7c076b1c8edfa46295.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\52d7972a8aacee7c076b1c8edfa46295.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/6dc6384ad9fc5d2c660b27290dad3c5e.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\6dc6384ad9fc5d2c660b27290dad3c5e.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/72e7d7bf91473c454ce83c2a42f0d195.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\72e7d7bf91473c454ce83c2a42f0d195.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/736d0e1afd7811918f08d872c371b97f.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\736d0e1afd7811918f08d872c371b97f.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/845efd9baddfd93b7bb4a8a4f2ace255.svg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\845efd9baddfd93b7bb4a8a4f2ace255.svg
+Content Type: image/svg+xml
+
+Uri: https://msdd2.my.canva.site/the-alon/images/94e7385744f8923a547ec1e2038be1f6.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\94e7385744f8923a547ec1e2038be1f6.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/a1624436b54b062a0e3689d2aea23ec5.svg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\a1624436b54b062a0e3689d2aea23ec5.svg
+Content Type: image/svg+xml
+
+Uri: https://msdd2.my.canva.site/the-alon/images/a4000eb4cf80865003b6fec2c47c6906.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\a4000eb4cf80865003b6fec2c47c6906.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/c23ffc77b256203d9e38ea2ed11080e5.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\c23ffc77b256203d9e38ea2ed11080e5.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/ca846142bb8c56a9763289a45c591e48.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\ca846142bb8c56a9763289a45c591e48.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/images/ccce94597a941702e7e9c42e44a40dd0.png
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\ccce94597a941702e7e9c42e44a40dd0.png
+Content Type: image/png
+
+Uri: https://msdd2.my.canva.site/the-alon/images/e2908b2b45953580a365229396b989d7.jpg
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\images\e2908b2b45953580a365229396b989d7.jpg
+Content Type: image/jpeg
+
+Uri: https://msdd2.my.canva.site/the-alon/js/388fb330498371d4935abbff11d34d4c30842ca3c4a128cdd290d29db98acb41.js
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\js\388fb330498371d4935abbff11d34d4c30842ca3c4a128cdd290d29db98acb41.js
+Content Type: application/javascript
+
+Uri: https://msdd2.my.canva.site/the-alon/js/939898b427480d700449229ff00dbb8a6f9f77442b532f697866e6914ab8843a.js
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\js\939898b427480d700449229ff00dbb8a6f9f77442b532f697866e6914ab8843a.js
+Content Type: application/javascript
+
+Uri: https://msdd2.my.canva.site/the-alon/js/a7bdac05b24347a77bc2ba39247eaaf9c12b11b8b5b7c8ffcd473c8cd1f4ef7d.js
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\js\a7bdac05b24347a77bc2ba39247eaaf9c12b11b8b5b7c8ffcd473c8cd1f4ef7d.js
+Content Type: application/javascript
+
+Uri: https://msdd2.my.canva.site/the-alon/videos/c70d2db90d6088362bf482917a6ce9f7.mp4
+File Name: C:\DownR\msdd2.my.canva.site\the-alon\videos\c70d2db90d6088362bf482917a6ce9f7.mp4
+Content Type: video/mp4
+
