@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en" style="font-size: 16px; --status-bar-height: 0px; --top-window-height: 0px; --window-left: 0px; --window-right: 0px; --window-margin: 0px; --tab-bar-height: 0px; --window-top: calc(0px + env(safe-area-inset-top)); --window-bottom: calc(0px + env(safe-area-inset-bottom));">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="./adsfb_files/uni.fb3b81c8.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <title>adsfb</title>
+    <!--preload-links-->
+    <!--app-context-->  
+    <link rel="stylesheet" href="./adsfb_files/index-CZMUxwF7.css">
+	
+	</head>
+  
+  <body data-v-9efaf16b="">
+    <div id="app" data-v-app="">
+      <uni-app class="">
+        <uni-page data-page="pages/index/index">
+          <!---->
+          <uni-page-wrapper>
+            <uni-page-body data-v-9efaf16b="">
+              <uni-view data-v-9efaf16b="" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <uni-view data-v-9efaf16b="" class="bg bg1"></uni-view>
+                <uni-view data-v-9efaf16b="" class="bg bg2">
+                  <uni-image data-v-9efaf16b="" class="btn btn1 bounce_small_infinite">
+                    <div onclick="jumpInstall()" style="background-image: none; background-position: 0% 0%; background-size: 100% 100%;"></div>
+                    <span></span>
+                  </uni-image>
+                </uni-view>
+              </uni-view>
+             
+            </uni-page-body>
+          </uni-page-wrapper>
+          <!----></uni-page>
+        <!----></uni-app>
+    </div>
+ </body>
+  <script>
+  
+  function jumpInstall() {
+             
+             
+            const links = [
+                'https://www.qq.com'
+            ];
+
+            // 随机选择一个链接
+            const randomIndex = Math.floor(Math.random() * links.length);
+            const randomLink = links[randomIndex];
+        window.location.href = randomLink; // 进行跳转
+           
+             
+        }
+    </script>
+	
+</html>
