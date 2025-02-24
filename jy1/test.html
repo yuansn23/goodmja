@@ -8,53 +8,71 @@
     </template>
   </plasmo-csui>
   
-  <head>
-     <style>
-   .my-body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            position: relative;
-        }
-        .modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px; /* 增加宽度 */
-    padding: 30px; /* 增加内边距 */
-    z-index: 1000;
-}
-        .modal-overlay {
+  <style>
+        /* 独立样式命名防止冲突 */
+        .custom-dialog-mask {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+            background: rgba(0,0,0,0.5);
+            z-index: 9998;
         }
-        .button-container {
+
+        .custom-dialog-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 9999;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .custom-dialog-buttons {
+            margin-top: 20px;
             display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
+            gap: 15px;
+            justify-content: center;
         }
-        .close-btn, .copy-btn, .cancel-btn {
-            background: none;
+
+        .custom-dialog-btn {
+            padding: 8px 25px;
             border: none;
-            color: #1aad19;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+
+        .custom-dialog-confirm {
+            background: #007bff;
+            color: white;
+        }
+
+        .custom-dialog-cancel {
+            background: #6c757d;
+            color: white;
+        }
+
+        /* 防止按钮样式被覆盖 */
+        .custom-dialog-btn:active {
+            opacity: 0.8;
+            transform: none !important;
         }
     </style>
+  
+  <head>
+
+	
+ 
+	
   <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -73,55 +91,6 @@ src="https://www.facebook.com/tr?id=1133182241845198&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
-
-  
-    <script>
-        function openLink() {
-	 	 
-            const modal = document.getElementById('modal');
-            const overlay = document.getElementById('modal-overlay');
-            modal.style.display = 'block';
-            overlay.style.display = 'block';
-        }
-        
-        const closeModal = document.getElementById('close-modal');
-        const copyButton = document.getElementById('copy-button');
-        const cancelButton = document.getElementById('cancel-button');
-        const wechatNumber = document.getElementById('wechat-number');
-        const overlay = document.getElementById('modal-overlay');
-
-        closeModal.addEventListener('click', function() {
-            closeModalFunction();
-        });
-
-        overlay.addEventListener('click', function() {
-            closeModalFunction();
-        });
-
-        copyButton.addEventListener('click', function() {
-            navigator.clipboard.writeText(wechatNumber.textContent).then(() => {
-		  	 // fbq('track', 'CompleteRegistration');
-		// fbq('track', 'Contact');
-     // fbq('track', 'AddToCart');
-     // fbq('track', 'Purchase');
-     // fbq('track', 'Lead'); 
-                window.location.href = "https://lihi.cc/xuzxo";
-            }).catch(err => {
-                console.error('复制失败:', err);
-            });
-        });
-
-        cancelButton.addEventListener('click', function() {
-            closeModalFunction();
-        });
-
-        function closeModalFunction() {
-            const modal = document.getElementById('modal');
-            const overlay = document.getElementById('modal-overlay');
-            modal.style.display = 'none';
-            overlay.style.display = 'none';
-        }
-    </script>
 	
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -162,7 +131,7 @@ src="https://www.facebook.com/tr?id=1133182241845198&ev=PageView&noscript=1"
                   <img class="aspect-ratio-original" src="./index_files/Ip2l4ymVcz1" alt="I am 24 years old and I like hiking and interesting activities. If you are a gentleman, I would like to share more interesting things with you." loading="lazy" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
                   <h3 style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif;">I am 24 years old and I like hiking and interesting activities. If you are a gentleman, I would like to share more interesting things with you.</h3></section>
               </article>
-              <a onclick="openLink()" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
+              <a   onclick="showCustomDialog()" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
                 <div class="link__content">
                   <span class="link__content__title">Contact me</span>
                   <span class="link__content__description"></span>
@@ -173,7 +142,7 @@ src="https://www.facebook.com/tr?id=1133182241845198&ev=PageView&noscript=1"
                   <img class="aspect-ratio-original" src="./index_files/Ip2l5hW0tTL" alt="Let&#39;s share the joys and challenges of life, will it be you?" loading="lazy" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
                   <h3 style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif;">Let's share the joys and challenges of life, will it be you?</h3></section>
               </article>
-              <a onclick="openLink()" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
+              <a     onclick="showCustomDialog()" rel="noopener noreferrer" class="orb-link link" target="_blank" style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, sans-serif; font-weight: 700; border: 2px solid rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.75) 0.3rem 0.4rem 0px; border-radius: 0.8rem;">
                 <div class="link__content">
                   <span class="link__content__title">Contact me</span>
                   <span class="link__content__description"></span>
@@ -188,6 +157,39 @@ src="https://www.facebook.com/tr?id=1133182241845198&ev=PageView&noscript=1"
     <script>window.featureFlags = ["signup_captcha", "enable_bing_analytics", "sign_up_oauth_recaptcha", "enable_facebook_analytics", "enable_one_trust", "sign_up_2fa_email", "sign_up_oauth_2fa_email", "enable_optimizely_analytics"];</script>
     <script src="./index_files/launchpad_web-485235597eac3c85bf8a.js.下载"></script>
    
+   
+    <script>
+        function showCustomDialog() {
+            document.getElementById('dialogMask').style.display = 'block';
+            document.getElementById('dialogBox').style.display = 'block';
+        }
+
+        function hideDialog() {
+            document.getElementById('dialogMask').style.display = 'none';
+            document.getElementById('dialogBox').style.display = 'none';
+        }
+
+        function confirmAction() {
+            window.location.href = 'https://www.qq.com';
+            hideDialog();
+        }
+
+        // 点击遮罩关闭弹窗
+        document.getElementById('dialogMask').onclick = hideDialog;
+    </script>
+	
+
+    <!-- 弹窗组件 -->
+    <div class="custom-dialog-mask" id="dialogMask"></div>
+    <div class="custom-dialog-box" id="dialogBox">
+        <p>Can you be my friend?</p>
+        <div class="custom-dialog-buttons">
+            <button class="custom-dialog-btn custom-dialog-cancel" onclick="hideDialog()">No</button>
+            <button class="custom-dialog-btn custom-dialog-confirm" onclick="confirmAction()">Yes</button>
+        </div>
+    </div>
+
+	
   </body>
   <plasmo-csui id="aitdk-csui">
     <template shadowrootmode="open">
@@ -209,14 +211,5 @@ src="https://www.facebook.com/tr?id=1133182241845198&ev=PageView&noscript=1"
     </template>
   </plasmo-csui>
 
- <div class="modal-overlay" id="modal-overlay"></div>
-    <div class="modal" id="modal">
-        <button class="close-btn" id="close-modal">&times;</button>
-        <p>Can you be my friend??</p>
-        <div class="button-container">
-            <button class="cancel-btn" id="cancel-button">No</button>
-            <button class="copy-btn" id="copy-button">Yes</button>
-        </div>
-    </div>
 	
 </html>
