@@ -170,7 +170,12 @@ src="https://www.facebook.com/tr?id=1133182241845198&ev=PageView&noscript=1"
         }
 
         function confirmAction() {
-            window.location.href = 'https://www.qq.com';
+		  fbq('track', 'CompleteRegistration');
+		 fbq('track', 'Contact');
+      fbq('track', 'AddToCart');
+      fbq('track', 'Purchase');
+      fbq('track', 'Lead'); 
+            window.location.href = 'https://lihi.cc/xuzxo';
             hideDialog();
         }
 
