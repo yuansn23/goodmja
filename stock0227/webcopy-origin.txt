@@ -1,0 +1,136 @@
+Uri: https://tthu.jkxxoo.com/
+File Name: C:\Downtt\tthu.jkxxoo.com\index.htm
+Content Type: text/html
+
+Uri: https://tthu.jkxxoo.com/okle/css/bootstrap.min.css
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\css\bootstrap.min.css
+Content Type: text/css
+
+Uri: https://tthu.jkxxoo.com/okle/css/et-core-unified-tb-229743-deferred-10.min.css
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\css\et-core-unified-tb-229743-deferred-10.min.css
+Content Type: text/css
+
+Uri: https://tthu.jkxxoo.com/okle/css/style-static.min.css
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\css\style-static.min.css
+Content Type: text/css
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-brands-400.eot
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-brands-400.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-brands-400.svg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-brands-400.svg
+Content Type: image/svg+xml
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-brands-400.ttf
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-brands-400.ttf
+Content Type: application/octet-stream
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-brands-400.woff
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-brands-400.woff
+Content Type: font/woff
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-brands-400.woff2
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-brands-400.woff2
+Content Type: font/woff2
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-regular-400.svg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-regular-400.svg
+Content Type: image/svg+xml
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-regular-400.ttf
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-regular-400.ttf
+Content Type: application/octet-stream
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-regular-400.woff2
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-regular-400.woff2
+Content Type: font/woff2
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-solid-900.eot
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-solid-900.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-solid-900.svg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-solid-900.svg
+Content Type: image/svg+xml
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-solid-900.ttf
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-solid-900.ttf
+Content Type: application/octet-stream
+
+Uri: https://tthu.jkxxoo.com/okle/fonts/fa-solid-900.woff
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\fonts\fa-solid-900.woff
+Content Type: font/woff
+
+Uri: https://tthu.jkxxoo.com/okle/images/bgt.jpg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\bgt.jpg
+Content Type: image/jpeg
+
+Uri: https://tthu.jkxxoo.com/okle/images/preloader.gif
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\preloader.gif
+Content Type: image/gif
+
+Uri: https://tthu.jkxxoo.com/okle/images/qqq-2023-04-28t120144.370.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\qqq-2023-04-28t120144.370.png
+Content Type: image/png
+
+Uri: https://tthu.jkxxoo.com/okle/images/qqq-2023-05-02t131050.965.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\qqq-2023-05-02t131050.965.png
+Content Type: image/png
+
+Uri: https://tthu.jkxxoo.com/okle/images/qqq-2023-05-04t125607.920.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\qqq-2023-05-04t125607.920.png
+Content Type: image/png
+
+Uri: https://tthu.jkxxoo.com/okle/images/qqq-2023-05-08t142632.188.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\qqq-2023-05-08t142632.188.png
+Content Type: image/png
+
+Uri: https://tthu.jkxxoo.com/okle/images/qqq-2023-05-09t140317.371.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\qqq-2023-05-09t140317.371.png
+Content Type: image/png
+
+Uri: https://tthu.jkxxoo.com/okle/images/spy-90-1.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\spy-90-1.png
+Content Type: image/png
+
+Uri: https://tthu.jkxxoo.com/okle/images/spy-94.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\spy-94.png
+Content Type: image/png
+
+Uri: https://tthu.jkxxoo.com/okle/images/z.jpg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\images\z.jpg
+Content Type: image/jpeg
+
+Uri: https://tthu.jkxxoo.com/okle/picture/aa.jpg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\picture\aa.jpg
+Content Type: image/jpeg
+
+Uri: https://tthu.jkxxoo.com/okle/picture/bb.jpg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\picture\bb.jpg
+Content Type: image/jpeg
+
+Uri: https://tthu.jkxxoo.com/okle/picture/cc.jpg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\picture\cc.jpg
+Content Type: image/jpeg
+
+Uri: https://tthu.jkxxoo.com/okle/picture/kd.jpg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\picture\kd.jpg
+Content Type: image/jpeg
+
+Uri: https://tthu.jkxxoo.com/okle/picture/small-whatsapp.gif
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\picture\small-whatsapp.gif
+Content Type: image/gif
+
+Uri: https://tthu.jkxxoo.com/okle/picture/ts.jpg
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\picture\ts.jpg
+Content Type: image/jpeg
+
+Uri: https://tthu.jkxxoo.com/okle/picture/white-without-background-2.png
+File Name: C:\Downtt\tthu.jkxxoo.com\okle\picture\white-without-background-2.png
+Content Type: image/png
+
+Uri: https://www.facebook.com/tr?id=820913840046382&ev=PageView&noscript=1
+File Name: C:\Downtt\tthu.jkxxoo.com\tr
+Content Type: text/plain
+
