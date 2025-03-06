@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Market Strategies | Professional Stock Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        accent: '#00BFFF',
+                        success: '#4CAF50',
+                        danger: '#F44336',
+                        dark: '#181818',
+                        'dark-blue': '#0D1B2A',
+                        'dark-card': '#1E293B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1E293B 100%);
+        }
+
+        .cta-gradient {
+            background: linear-gradient(90deg, #5D5CDE 0%, #00BFFF 100%);
+        }
+        
+        .banner-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .chart-bg {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1' d='M0,100 Q100,28 200,100 T400,100'/%3E%3Cpath fill='none' stroke='rgba(93,92,222,0.5)' stroke-width='2' d='M0,150 Q66,30 133,120 T266,70 T400,120'/%3E%3Ccircle cx='133' cy='120' r='3' fill='%235D5CDE'/%3E%3Ccircle cx='266' cy='70' r='3' fill='%235D5CDE'/%3E%3C/svg%3E") no-repeat center center;
+            background-size: contain;
+        }
+        
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            height: 40px;
+            background-color: rgba(14, 21, 35, 0.7);
+            padding-left: 100%;
+            box-sizing: content-box;
+        }
+        
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            box-sizing: content-box;
+            animation: ticker 60s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        
+        .ticker__item {
+            display: inline-block;
+            padding: 0 20px;
+        }
+
+        .badge-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .scroll-down {
+            animation: scrollDown 2s infinite;
+        }
+        
+        @keyframes scrollDown {
+            0% { transform: translateY(0); opacity: 0.8; }
+            50% { transform: translateY(10px); opacity: 0.5; }
+            100% { transform: translateY(0); opacity: 0.8; }
+        }
+        
+        /* Delay animations for staggered effect */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+    </style>
+</head>
+<body class="dark bg-dark-blue text-white">
+    <!-- Theme detection -->
+    <script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+
+    <!-- Stock Ticker -->
+    <div class="ticker-wrap shadow-md">
+        <div class="ticker">
+            <div class="ticker__item"><span class="text-primary font-semibold">AAPL</span> $149.32 <span class="text-green-500">↑1.24%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">MSFT</span> $298.76 <span class="text-green-500">↑0.89%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">GOOGL</span> $134.62 <span class="text-red-500">↓0.34%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">AMZN</span> $135.36 <span class="text-green-500">↑1.53%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">META</span> $318.45 <span class="text-green-500">↑2.12%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">TSLA</span> $242.68 <span class="text-red-500">↓0.76%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">NVDA</span> $431.13 <span class="text-green-500">↑3.25%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">JPM</span> $179.86 <span class="text-green-500">↑0.53%</span></div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="relative overflow-hidden gradient-bg banner-pattern min-h-screen flex items-center">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute inset-0 chart-bg opacity-30"></div>
+        </div>
+        
+        <!-- Logo -->
+        <div class="absolute top-4 left-4 md:top-8 md:left-8 z-20">
+            <div class="flex items-center">
+                <i class="fas fa-chart-line text-primary text-2xl mr-2"></i>
+                <span class="font-bold text-xl">Elite Market Strategies</span>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <!-- Badge - Scarcity -->
+                <div class="inline-block bg-primary bg-opacity-20 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6 badge-pulse">
+                    <i class="fas fa-clock mr-2"></i> Limited Time Offer: Only 5 Strategy Consultations Available Today
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 fade-in">Gain The <span class="text-primary">Strategic Edge</span> In Today's Market</h1>
+                
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 fade-in delay-1">Access our proprietary stock analysis system that predicted market movements with 87% accuracy during recent volatility.</p>
+                
+                <!-- Authority Indicators -->
+                <div class="flex flex-wrap items-center gap-4 mb-8 fade-in delay-2">
+                    <div class="flex items-center bg-dark-card bg-opacity-50 px-4 py-2 rounded-lg">
+                        <i class="fas fa-award text-yellow-500 mr-2"></i>
+                        <span>Featured on <span class="font-semibold">CNBC</span></span>
+                    </div>
+                    <div class="flex items-center bg-dark-card bg-opacity-50 px-4 py-2 rounded-lg">
+                        <i class="fas fa-certificate text-blue-500 mr-2"></i>
+                        <span>20+ Years Experience</span>
+                    </div>
+                    <div class="flex items-center bg-dark-card bg-opacity-50 px-4 py-2 rounded-lg">
+                        <i class="fas fa-users text-green-500 mr-2"></i>
+                        <span>12,000+ Active Members</span>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="fade-in delay-3">
+                    <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white text-xl font-bold px-8 py-4 rounded-lg inline-flex items-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                        <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                        Get Your Personalized Strategy
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                </div>
+                
+                <!-- Social Proof -->
+                <div class="mt-12 text-center fade-in delay-4">
+                    <p class="text-gray-400 mb-2">Join thousands of smart investors</p>
+                    <div class="flex items-center justify-center space-x-1 mb-2">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <span class="ml-2 font-semibold">4.9/5</span>
+                        <span class="ml-1 text-gray-400">(352 reviews)</span>
+                    </div>
+                </div>
+                
+                <!-- Scroll indicator -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+                    <div class="scroll-down text-gray-400">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Why Choose Us Section -->
+        <section class="py-16 md:py-24 bg-dark-blue">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Why Top Investors <span class="text-primary">Choose Us</span></h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Card 1 - Authority -->
+                        <div class="bg-dark-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+                            <div class="w-14 h-14 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mb-4">
+                                <i class="fas fa-brain text-primary text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Expert Analysis</h3>
+                            <p class="text-gray-400">Our team includes former Wall Street analysts with 20+ years experience at top firms like Goldman Sachs and Morgan Stanley.</p>
+                        </div>
+                        
+                        <!-- Card 2 - Scarcity -->
+                        <div class="bg-dark-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+                            <div class="w-14 h-14 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mb-4">
+                                <i class="fas fa-lock text-primary text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Exclusive Strategies</h3>
+                            <p class="text-gray-400">Access proprietary trading strategies not available to the public, developed through years of market research.</p>
+                        </div>
+                        
+                        <!-- Card 3 - Social Proof -->
+                        <div class="bg-dark-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+                            <div class="w-14 h-14 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-line text-primary text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Proven Results</h3>
+                            <p class="text-gray-400">Our members reported an average of 23.4% better performance compared to major indices during market downturns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials - Social Proof -->
+        <section class="py-16 bg-gradient-to-b from-dark-blue to-dark-card">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">What Our <span class="text-primary">Members Say</span></h2>
+                    <p class="text-xl text-gray-400 text-center mb-12">Join thousands of investors who've transformed their approach to the market</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Testimonial 1 -->
+                        <div class="bg-dark-blue bg-opacity-50 p-6 rounded-xl border border-gray-800">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4 text-white font-bold">
+                                    MJ
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Michael Johnson</h4>
+                                    <p class="text-gray-400 text-sm">Retail Investor, Chicago</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">"Their market insights helped me navigate the recent tech sector volatility. The personalized guidance was invaluable - my portfolio is up 31% since I started using their strategies."</p>
+                            <div class="flex text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 -->
+                        <div class="bg-dark-blue bg-opacity-50 p-6 rounded-xl border border-gray-800">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center mr-4 text-white font-bold">
+                                    SR
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Sarah Rodriguez</h4>
+                                    <p class="text-gray-400 text-sm">Investment Advisor, New York</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">"As a professional advisor, I'm extremely selective about my information sources. Their analysis consistently identifies opportunities weeks before they become mainstream news."</p>
+                            <div class="flex text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Limited Time Offer - Scarcity -->
+        <section class="py-16 md:py-24 bg-dark-card relative overflow-hidden">
+            <div class="absolute inset-0 chart-bg opacity-10"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-4xl mx-auto bg-dark-blue bg-opacity-70 p-8 md:p-12 rounded-2xl border border-primary border-opacity-20 shadow-xl">
+                    <div class="text-center mb-8">
+                        <div class="inline-block bg-primary bg-opacity-20 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            <i class="fas fa-fire mr-2"></i> Limited Time Opportunity
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get Your <span class="text-primary">Custom Market Strategy</span></h2>
+                        <p class="text-xl text-gray-300">Connect with our experts today for personalized guidance</p>
+                    </div>
+                    
+                    <div class="bg-dark-blue bg-opacity-50 p-6 rounded-xl mb-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span><span class="font-semibold">Personalized Portfolio Analysis</span> - Discover hidden weaknesses and untapped opportunities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span><span class="font-semibold">Market Trend Briefing</span> - Get insights on emerging sectors positioned for growth</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span><span class="font-semibold">Risk Mitigation Strategy</span> - Custom protection plan for your specific investment goals</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Scarcity Indicators -->
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 p-4 bg-red-900 bg-opacity-20 border border-red-800 rounded-lg">
+                        <div class="flex items-center mb-4 md:mb-0">
+                            <i class="fas fa-exclamation-circle text-red-500 text-xl mr-3"></i>
+                            <span class="font-medium">Only <span class="font-bold">5 spots</span> remaining today</span>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-400">Offer expires in:</div>
+                            <div class="font-mono text-lg font-bold">11:43:22</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main CTA -->
+                    <div class="text-center">
+                        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white text-xl font-bold px-8 py-4 rounded-lg inline-flex items-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 bounce">
+                            <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                            Connect with an Expert Now
+                        </a>
+                        <p class="text-gray-400 mt-4 text-sm">No commitment required. 100% confidential.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- As Seen On - Authority -->
+        <section class="py-12 bg-dark-blue">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-center text-gray-500 mb-8">AS FEATURED IN</p>
+                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                        <div class="text-gray-400 font-bold text-xl">BLOOMBERG</div>
+                        <div class="text-gray-400 font-bold text-xl">FORBES</div>
+                        <div class="text-gray-400 font-bold text-xl">CNBC</div>
+                        <div class="text-gray-400 font-bold text-xl">WALL STREET JOURNAL</div>
+                        <div class="text-gray-400 font-bold text-xl">YAHOO FINANCE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Disclosure -->
+        <section class="py-8 bg-dark-blue border-t border-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <p class="text-xs text-gray-500 leading-relaxed">
+                        RISK DISCLOSURE: All investing involves risk, including the possible loss of principal. The information provided is for educational and informational purposes only and does not constitute investment advice. Past performance is not indicative of future results. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed. Trading stocks, options, and other securities involves the risk of loss. You should consult with a qualified financial advisor, tax professional, or other professional to determine what may be best for your individual needs.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Bottom CTA on Mobile -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-dark-blue bg-opacity-95 p-4 shadow-lg z-50 border-t border-gray-800">
+        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center shadow-lg">
+            <i class="fab fa-whatsapp text-xl mr-2"></i>
+            Get Expert Advice Now
+        </a>
+    </div>
+
+    <!-- Float CTA for Desktop -->
+    <div class="hidden md:block fixed bottom-8 right-8 z-50">
+        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white font-bold py-3 px-6 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <i class="fab fa-whatsapp text-xl mr-2"></i>
+            Connect with an Expert
+        </a>
+    </div>
+
+    <script>
+        // Simple animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.bg-dark-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                
+                // If element is in viewport
+                if(position.top < window.innerHeight && position.bottom >= 0) {
+                    element.classList.add('animate-pulse-slow');
+                } else {
+                    element.classList.remove('animate-pulse-slow');
+                }
+            });
+        }
+        
+        // Debounce function for scroll event
+        function debounce(func, wait = 10, immediate = true) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                const later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+        
+        window.addEventListener('scroll', debounce(animateOnScroll));
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+    </script>
+</body>
+</html>
