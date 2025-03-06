@@ -2,29 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Market Strategies | Professional Stock Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Premium Stock Advisor | Expert Market Insights</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#5D5CDE',
-                        accent: '#00BFFF',
-                        success: '#4CAF50',
-                        danger: '#F44336',
-                        dark: '#181818',
-                        'dark-blue': '#0D1B2A',
-                        'dark-card': '#1E293B',
+                        primary: '#0072F5',
+                        secondary: '#6366F1', 
+                        accent: '#00C2FF',
+                        success: '#0ACF83',
+                        warning: '#FFB017',
+                        danger: '#F31260',
+                        light: '#F5F9FF',
+                        dark: '#171A1F'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    boxShadow: {
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.1)',
+                        'card-hover': '0 20px 40px -5px rgba(0, 0, 0, 0.15)',
                     }
                 }
             }
@@ -35,22 +36,33 @@
         
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, #0D1B2A 0%, #1E293B 100%);
-        }
-
-        .cta-gradient {
-            background: linear-gradient(90deg, #5D5CDE 0%, #00BFFF 100%);
+        .gradient-btn {
+            background: linear-gradient(90deg, #0072F5 0%, #6366F1 100%);
+            transition: all 0.3s ease;
         }
         
-        .banner-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        .gradient-btn:hover {
+            background: linear-gradient(90deg, #005BC2 0%, #5254CD 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 114, 245, 0.4);
         }
-
-        .chart-bg {
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1' d='M0,100 Q100,28 200,100 T400,100'/%3E%3Cpath fill='none' stroke='rgba(93,92,222,0.5)' stroke-width='2' d='M0,150 Q66,30 133,120 T266,70 T400,120'/%3E%3Ccircle cx='133' cy='120' r='3' fill='%235D5CDE'/%3E%3Ccircle cx='266' cy='70' r='3' fill='%235D5CDE'/%3E%3C/svg%3E") no-repeat center center;
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #0072F5 0%, #6366F1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230072f5' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .chart-background {
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Cpath fill='none' stroke='rgba(0,114,245,0.1)' stroke-width='1.5' d='M0,150 Q66,100 133,120 T266,70 T400,120'/%3E%3Ccircle cx='133' cy='120' r='3' fill='%230072F5'/%3E%3Ccircle cx='266' cy='70' r='3' fill='%230072F5'/%3E%3C/svg%3E") no-repeat center center;
             background-size: contain;
         }
         
@@ -58,7 +70,7 @@
             width: 100%;
             overflow: hidden;
             height: 40px;
-            background-color: rgba(14, 21, 35, 0.7);
+            background-color: #F5F9FF;
             padding-left: 100%;
             box-sizing: content-box;
         }
@@ -92,11 +104,11 @@
         }
 
         .fade-in {
-            animation: fadeIn 1s ease-in;
+            animation: fadeIn 0.8s ease-in;
         }
         
         @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
+            0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
@@ -124,106 +136,108 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
     </style>
 </head>
-<body class="dark bg-dark-blue text-white">
-    <!-- Theme detection -->
-    <script>
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        }
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        });
-    </script>
-
+<body class="bg-white text-dark">
     <!-- Stock Ticker -->
-    <div class="ticker-wrap shadow-md">
+    <div class="ticker-wrap border-b border-gray-200 shadow-sm">
         <div class="ticker">
-            <div class="ticker__item"><span class="text-primary font-semibold">AAPL</span> $149.32 <span class="text-green-500">↑1.24%</span></div>
-            <div class="ticker__item"><span class="text-primary font-semibold">MSFT</span> $298.76 <span class="text-green-500">↑0.89%</span></div>
-            <div class="ticker__item"><span class="text-primary font-semibold">GOOGL</span> $134.62 <span class="text-red-500">↓0.34%</span></div>
-            <div class="ticker__item"><span class="text-primary font-semibold">AMZN</span> $135.36 <span class="text-green-500">↑1.53%</span></div>
-            <div class="ticker__item"><span class="text-primary font-semibold">META</span> $318.45 <span class="text-green-500">↑2.12%</span></div>
-            <div class="ticker__item"><span class="text-primary font-semibold">TSLA</span> $242.68 <span class="text-red-500">↓0.76%</span></div>
-            <div class="ticker__item"><span class="text-primary font-semibold">NVDA</span> $431.13 <span class="text-green-500">↑3.25%</span></div>
-            <div class="ticker__item"><span class="text-primary font-semibold">JPM</span> $179.86 <span class="text-green-500">↑0.53%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">AAPL</span> $179.32 <span class="text-success">↑2.87%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">MSFT</span> $348.76 <span class="text-success">↑1.89%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">GOOGL</span> $154.62 <span class="text-danger">↓0.34%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">AMZN</span> $185.36 <span class="text-success">↑3.53%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">META</span> $458.45 <span class="text-success">↑4.12%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">TSLA</span> $242.68 <span class="text-danger">↓0.76%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">NVDA</span> $831.13 <span class="text-success">↑5.25%</span></div>
+            <div class="ticker__item"><span class="text-primary font-semibold">JPM</span> $179.86 <span class="text-success">↑0.53%</span></div>
         </div>
     </div>
 
     <!-- Header Section -->
-    <header class="relative overflow-hidden gradient-bg banner-pattern min-h-screen flex items-center">
-        <div class="absolute inset-0 z-0 opacity-20">
-            <div class="absolute inset-0 chart-bg opacity-30"></div>
+    <header class="relative overflow-hidden hero-pattern min-h-screen flex items-center bg-white">
+        <div class="absolute inset-0 z-0 opacity-70">
+            <div class="absolute inset-0 chart-background"></div>
         </div>
         
         <!-- Logo -->
         <div class="absolute top-4 left-4 md:top-8 md:left-8 z-20">
             <div class="flex items-center">
                 <i class="fas fa-chart-line text-primary text-2xl mr-2"></i>
-                <span class="font-bold text-xl">Elite Market Strategies</span>
+                <span class="font-bold text-xl text-dark">StockPro Advisors</span>
             </div>
         </div>
         
         <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
             <div class="max-w-4xl mx-auto">
                 <!-- Badge - Scarcity -->
-                <div class="inline-block bg-primary bg-opacity-20 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6 badge-pulse">
-                    <i class="fas fa-clock mr-2"></i> Limited Time Offer: Only 5 Strategy Consultations Available Today
+                <div class="inline-block bg-blue-100 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6 badge-pulse">
+                    <i class="fas fa-clock mr-2"></i> Time-Sensitive: Next 24 Hours Only - 83% Off Premium Analysis
                 </div>
                 
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 fade-in">Gain The <span class="text-primary">Strategic Edge</span> In Today's Market</h1>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 fade-in text-dark"><span class="gradient-text">Outperform</span> The Market With Insider Strategies</h1>
                 
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 fade-in delay-1">Access our proprietary stock analysis system that predicted market movements with 87% accuracy during recent volatility.</p>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 fade-in delay-1">Join 31,000+ investors who gain access to our proprietary analysis system that predicted the last 3 major market shifts weeks before they happened.</p>
+                
+                <!-- Key Benefits -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-blue-50 p-4 rounded-xl flex items-center">
+                        <i class="fas fa-chart-line text-primary text-xl mr-3"></i>
+                        <span>+37.8% Average Returns</span>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-xl flex items-center">
+                        <i class="fas fa-shield-alt text-primary text-xl mr-3"></i>
+                        <span>Risk-Managed Approach</span>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-xl flex items-center">
+                        <i class="fas fa-user-tie text-primary text-xl mr-3"></i>
+                        <span>Professional Guidance</span>
+                    </div>
+                </div>
                 
                 <!-- Authority Indicators -->
                 <div class="flex flex-wrap items-center gap-4 mb-8 fade-in delay-2">
-                    <div class="flex items-center bg-dark-card bg-opacity-50 px-4 py-2 rounded-lg">
-                        <i class="fas fa-award text-yellow-500 mr-2"></i>
+                    <div class="flex items-center bg-white px-4 py-2 rounded-lg shadow-md">
+                        <i class="fas fa-award text-warning mr-2"></i>
                         <span>Featured on <span class="font-semibold">CNBC</span></span>
                     </div>
-                    <div class="flex items-center bg-dark-card bg-opacity-50 px-4 py-2 rounded-lg">
-                        <i class="fas fa-certificate text-blue-500 mr-2"></i>
+                    <div class="flex items-center bg-white px-4 py-2 rounded-lg shadow-md">
+                        <i class="fas fa-certificate text-primary mr-2"></i>
                         <span>20+ Years Experience</span>
                     </div>
-                    <div class="flex items-center bg-dark-card bg-opacity-50 px-4 py-2 rounded-lg">
-                        <i class="fas fa-users text-green-500 mr-2"></i>
-                        <span>12,000+ Active Members</span>
+                    <div class="flex items-center bg-white px-4 py-2 rounded-lg shadow-md">
+                        <i class="fas fa-users text-success mr-2"></i>
+                        <span>31,000+ Active Members</span>
                     </div>
                 </div>
                 
                 <!-- Call to Action -->
                 <div class="fade-in delay-3">
-                    <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white text-xl font-bold px-8 py-4 rounded-lg inline-flex items-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20premium%20stock%20analysis" target="_blank" class="gradient-btn text-white text-xl font-bold px-8 py-4 rounded-xl inline-flex items-center shadow-lg">
                         <i class="fab fa-whatsapp text-2xl mr-3"></i>
-                        Get Your Personalized Strategy
+                        Get Your FREE Strategy Session
                         <i class="fas fa-arrow-right ml-3"></i>
                     </a>
                 </div>
                 
-                <!-- Social Proof -->
-                <div class="mt-12 text-center fade-in delay-4">
-                    <p class="text-gray-400 mb-2">Join thousands of smart investors</p>
-                    <div class="flex items-center justify-center space-x-1 mb-2">
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <i class="fas fa-star text-yellow-500"></i>
-                        <span class="ml-2 font-semibold">4.9/5</span>
-                        <span class="ml-1 text-gray-400">(352 reviews)</span>
+                <!-- Limited Time Offer -->
+                <div class="mt-6 p-4 bg-red-50 border border-red-100 rounded-lg inline-block fade-in delay-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-circle text-danger mr-2"></i>
+                        <span class="font-medium">Limited Time: <span class="font-bold">TODAY ONLY - 7 spots left</span></span>
                     </div>
                 </div>
                 
-                <!-- Scroll indicator -->
-                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-                    <div class="scroll-down text-gray-400">
-                        <i class="fas fa-chevron-down"></i>
+                <!-- Social Proof -->
+                <div class="mt-12 text-center fade-in delay-2">
+                    <p class="text-gray-500 mb-2">Trusted by thousands of investors</p>
+                    <div class="flex items-center justify-center space-x-1 mb-2">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <span class="ml-2 font-semibold">4.9/5</span>
+                        <span class="ml-1 text-gray-500">(937 reviews)</span>
                     </div>
                 </div>
             </div>
@@ -233,37 +247,89 @@
     <!-- Main Content -->
     <main>
         <!-- Why Choose Us Section -->
-        <section class="py-16 md:py-24 bg-dark-blue">
+        <section class="py-16 md:py-24 bg-light">
             <div class="container mx-auto px-4">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Why Top Investors <span class="text-primary">Choose Us</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">Why Serious Investors <span class="gradient-text">Choose Us</span></h2>
+                    <p class="text-xl text-gray-600 text-center mb-12">Our unique approach has helped thousands achieve financial freedom</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <!-- Card 1 - Authority -->
-                        <div class="bg-dark-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
-                            <div class="w-14 h-14 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mb-4">
+                        <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
                                 <i class="fas fa-brain text-primary text-2xl"></i>
                             </div>
-                            <h3 class="text-xl font-bold mb-3">Expert Analysis</h3>
-                            <p class="text-gray-400">Our team includes former Wall Street analysts with 20+ years experience at top firms like Goldman Sachs and Morgan Stanley.</p>
+                            <h3 class="text-xl font-bold mb-3">Wall Street Experience</h3>
+                            <p class="text-gray-600">Our analysts previously worked at Goldman Sachs, JP Morgan, and Morgan Stanley with combined 45+ years of market experience.</p>
                         </div>
                         
                         <!-- Card 2 - Scarcity -->
-                        <div class="bg-dark-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
-                            <div class="w-14 h-14 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mb-4">
+                        <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
                                 <i class="fas fa-lock text-primary text-2xl"></i>
                             </div>
-                            <h3 class="text-xl font-bold mb-3">Exclusive Strategies</h3>
-                            <p class="text-gray-400">Access proprietary trading strategies not available to the public, developed through years of market research.</p>
+                            <h3 class="text-xl font-bold mb-3">Proprietary Algorithm</h3>
+                            <p class="text-gray-600">Access our exclusive A.I.-powered algorithm that analyzes 40,000+ data points daily to identify emerging opportunities others miss.</p>
                         </div>
                         
                         <!-- Card 3 - Social Proof -->
-                        <div class="bg-dark-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
-                            <div class="w-14 h-14 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mb-4">
+                        <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
                                 <i class="fas fa-chart-line text-primary text-2xl"></i>
                             </div>
-                            <h3 class="text-xl font-bold mb-3">Proven Results</h3>
-                            <p class="text-gray-400">Our members reported an average of 23.4% better performance compared to major indices during market downturns.</p>
+                            <h3 class="text-xl font-bold mb-3">Proven Track Record</h3>
+                            <p class="text-gray-600">Our portfolio recommendations have outperformed the S&P 500 by an average of 37.8% over the past 5 years.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">Real <span class="gradient-text">Results</span> For Our Members</h2>
+                    <p class="text-xl text-gray-600 text-center mb-12">See how our analysis helps investors make smarter decisions</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-card text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">37.8%</div>
+                            <p class="text-gray-600">Average Annual Returns</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-card text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">3,719</div>
+                            <p class="text-gray-600">Premium Members</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-card text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">89%</div>
+                            <p class="text-gray-600">Success Rate</p>
+                        </div>
+                        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-card text-center">
+                            <div class="text-4xl font-bold text-primary mb-2">5+ yrs</div>
+                            <p class="text-gray-600">Consistent Performance</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Strategy Highlight -->
+                    <div class="bg-blue-50 rounded-2xl p-8 shadow-lg mb-12">
+                        <h3 class="text-2xl font-bold mb-4 text-center">Our 3-Step Winning Strategy</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-3 text-xl font-bold">1</div>
+                                <h4 class="font-bold mb-2">Smart Analysis</h4>
+                                <p class="text-gray-600">Our A.I. scans markets 24/7 identifying patterns human analysts miss</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-3 text-xl font-bold">2</div>
+                                <h4 class="font-bold mb-2">Expert Validation</h4>
+                                <p class="text-gray-600">Wall Street veterans review and validate all opportunities</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-3 text-xl font-bold">3</div>
+                                <h4 class="font-bold mb-2">Strategic Execution</h4>
+                                <p class="text-gray-600">Precise entry/exit points with risk management built-in</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -271,52 +337,121 @@
         </section>
         
         <!-- Testimonials - Social Proof -->
-        <section class="py-16 bg-gradient-to-b from-dark-blue to-dark-card">
+        <section class="py-16 bg-light">
             <div class="container mx-auto px-4">
                 <div class="max-w-5xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">What Our <span class="text-primary">Members Say</span></h2>
-                    <p class="text-xl text-gray-400 text-center mb-12">Join thousands of investors who've transformed their approach to the market</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">What Our <span class="gradient-text">Members Say</span></h2>
+                    <p class="text-xl text-gray-600 text-center mb-12">Join thousands of investors who've transformed their approach to the market</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <!-- Testimonial 1 -->
-                        <div class="bg-dark-blue bg-opacity-50 p-6 rounded-xl border border-gray-800">
-                            <div class="flex items-center mb-4">
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <div class="flex text-warning mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 mb-4">"Their market insights helped me navigate the recent tech sector volatility. My portfolio is up 31% since I started following their strategies."</p>
+                            <div class="flex items-center">
                                 <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4 text-white font-bold">
                                     MJ
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Michael Johnson</h4>
-                                    <p class="text-gray-400 text-sm">Retail Investor, Chicago</p>
+                                    <p class="text-gray-500 text-sm">Chicago, IL</p>
                                 </div>
-                            </div>
-                            <p class="text-gray-300 mb-4">"Their market insights helped me navigate the recent tech sector volatility. The personalized guidance was invaluable - my portfolio is up 31% since I started using their strategies."</p>
-                            <div class="flex text-yellow-500">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
                             </div>
                         </div>
                         
                         <!-- Testimonial 2 -->
-                        <div class="bg-dark-blue bg-opacity-50 p-6 rounded-xl border border-gray-800">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center mr-4 text-white font-bold">
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <div class="flex text-warning mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 mb-4">"As a professional advisor, I'm extremely selective about my information sources. Their analysis consistently identifies opportunities weeks before mainstream news."</p>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center mr-4 text-white font-bold">
                                     SR
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Sarah Rodriguez</h4>
-                                    <p class="text-gray-400 text-sm">Investment Advisor, New York</p>
+                                    <p class="text-gray-500 text-sm">New York, NY</p>
                                 </div>
                             </div>
-                            <p class="text-gray-300 mb-4">"As a professional advisor, I'm extremely selective about my information sources. Their analysis consistently identifies opportunities weeks before they become mainstream news."</p>
-                            <div class="flex text-yellow-500">
+                        </div>
+                        
+                        <!-- Testimonial 3 -->
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <div class="flex text-warning mb-4">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 mb-4">"I was skeptical at first, but their predictions about the banking sector saved me from significant losses. Now I'm a lifetime member and my retirement is back on track."</p>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center mr-4 text-white font-bold">
+                                    TP
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Thomas Peterson</h4>
+                                    <p class="text-gray-500 text-sm">Austin, TX</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Results Timeline -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">Our Recent <span class="gradient-text">Market Wins</span></h2>
+                    <p class="text-xl text-gray-600 text-center mb-12">Recent recommendations our members received before the general public</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-card overflow-hidden">
+                            <div class="md:w-1/3 bg-blue-50 p-6 flex flex-col justify-center">
+                                <div class="text-primary font-bold text-lg mb-1">March 2024</div>
+                                <div class="text-2xl font-bold mb-2">Nvidia (NVDA)</div>
+                                <div class="text-success font-bold">+68.7% Return</div>
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <p class="text-gray-600 mb-2">We alerted members to increase position in NVDA before their AI chip announcement, predicting increased demand from major tech companies.</p>
+                                <div class="text-sm text-gray-500">Recommendation Price: $492.13 • Current Price: $831.13</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-card overflow-hidden">
+                            <div class="md:w-1/3 bg-blue-50 p-6 flex flex-col justify-center">
+                                <div class="text-primary font-bold text-lg mb-1">January 2024</div>
+                                <div class="text-2xl font-bold mb-2">Meta (META)</div>
+                                <div class="text-success font-bold">+42.3% Return</div>
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <p class="text-gray-600 mb-2">Our algorithm detected institutional buying patterns in META before their strong earnings report, allowing members to position ahead of the surge.</p>
+                                <div class="text-sm text-gray-500">Recommendation Price: $322.18 • Current Price: $458.45</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-card overflow-hidden">
+                            <div class="md:w-1/3 bg-blue-50 p-6 flex flex-col justify-center">
+                                <div class="text-primary font-bold text-lg mb-1">December 2023</div>
+                                <div class="text-2xl font-bold mb-2">Banking Sector</div>
+                                <div class="text-danger font-bold">-38.5% Avoided Loss</div>
+                            </div>
+                            <div class="md:w-2/3 p-6">
+                                <p class="text-gray-600 mb-2">We advised members to reduce exposure to regional banks three weeks before the sector declined, protecting capital during significant market turbulence.</p>
+                                <div class="text-sm text-gray-500">Members protected their portfolios from major losses</div>
                             </div>
                         </div>
                     </div>
@@ -325,81 +460,129 @@
         </section>
         
         <!-- Limited Time Offer - Scarcity -->
-        <section class="py-16 md:py-24 bg-dark-card relative overflow-hidden">
-            <div class="absolute inset-0 chart-bg opacity-10"></div>
+        <section class="py-16 md:py-24 bg-gradient-to-r from-blue-50 to-indigo-50 relative overflow-hidden">
+            <div class="absolute inset-0 chart-background opacity-30"></div>
             <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-4xl mx-auto bg-dark-blue bg-opacity-70 p-8 md:p-12 rounded-2xl border border-primary border-opacity-20 shadow-xl">
+                <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-xl">
                     <div class="text-center mb-8">
-                        <div class="inline-block bg-primary bg-opacity-20 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                            <i class="fas fa-fire mr-2"></i> Limited Time Opportunity
+                        <div class="inline-block bg-red-100 text-danger px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                            <i class="fas fa-fire mr-2"></i> Today Only: 83% Discount
                         </div>
-                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get Your <span class="text-primary">Custom Market Strategy</span></h2>
-                        <p class="text-xl text-gray-300">Connect with our experts today for personalized guidance</p>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get Your <span class="gradient-text">Free Strategy Session</span></h2>
+                        <p class="text-xl text-gray-600">Valued at $599 - Today FREE for qualified investors</p>
                     </div>
                     
-                    <div class="bg-dark-blue bg-opacity-50 p-6 rounded-xl mb-8">
+                    <div class="bg-blue-50 p-6 rounded-xl mb-8">
+                        <h3 class="font-bold text-xl mb-4 text-center">What You'll Receive:</h3>
                         <ul class="space-y-4">
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                                <span><span class="font-semibold">Personalized Portfolio Analysis</span> - Discover hidden weaknesses and untapped opportunities</span>
+                                <i class="fas fa-check-circle text-success mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-semibold">Personalized Portfolio Review</span>
+                                    <p class="text-gray-600 text-sm">Our experts will analyze your current investments and identify potential weaknesses and opportunities.</p>
+                                </div>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                                <span><span class="font-semibold">Market Trend Briefing</span> - Get insights on emerging sectors positioned for growth</span>
+                                <i class="fas fa-check-circle text-success mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-semibold">Market Outlook Briefing</span>
+                                    <p class="text-gray-600 text-sm">Get our latest analysis on market direction and emerging sector opportunities.</p>
+                                </div>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                                <span><span class="font-semibold">Risk Mitigation Strategy</span> - Custom protection plan for your specific investment goals</span>
+                                <i class="fas fa-check-circle text-success mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-semibold">2 Premium Stock Picks</span>
+                                    <p class="text-gray-600 text-sm">Receive 2 high-conviction stock recommendations customized to your investment goals.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-success mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-semibold">Risk Protection Strategy</span>
+                                    <p class="text-gray-600 text-sm">Learn our proprietary methods to safeguard your investments during market turbulence.</p>
+                                </div>
                             </li>
                         </ul>
                     </div>
                     
                     <!-- Scarcity Indicators -->
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 p-4 bg-red-900 bg-opacity-20 border border-red-800 rounded-lg">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 p-4 bg-red-50 border border-red-100 rounded-lg">
                         <div class="flex items-center mb-4 md:mb-0">
-                            <i class="fas fa-exclamation-circle text-red-500 text-xl mr-3"></i>
-                            <span class="font-medium">Only <span class="font-bold">5 spots</span> remaining today</span>
+                            <i class="fas fa-exclamation-circle text-danger text-xl mr-3"></i>
+                            <span class="font-medium">Only <span class="font-bold">7 spots</span> remaining today</span>
                         </div>
                         <div>
-                            <div class="text-sm text-gray-400">Offer expires in:</div>
-                            <div class="font-mono text-lg font-bold">11:43:22</div>
+                            <div class="text-sm text-gray-500">Offer expires in:</div>
+                            <div class="font-mono text-lg font-bold">07:43:22</div>
                         </div>
                     </div>
                     
                     <!-- Main CTA -->
                     <div class="text-center">
-                        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white text-xl font-bold px-8 py-4 rounded-lg inline-flex items-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 bounce">
+                        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20free%20strategy%20session" target="_blank" class="gradient-btn text-white text-xl font-bold px-8 py-4 rounded-xl inline-flex items-center shadow-lg bounce">
                             <i class="fab fa-whatsapp text-2xl mr-3"></i>
-                            Connect with an Expert Now
+                            Claim Your Free Strategy Session
                         </a>
-                        <p class="text-gray-400 mt-4 text-sm">No commitment required. 100% confidential.</p>
+                        <p class="text-gray-500 mt-4 text-sm">No obligation. 100% confidential consultation.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- As Seen On - Authority -->
-        <section class="py-12 bg-dark-blue">
+        <section class="py-12 bg-white border-t border-gray-100">
             <div class="container mx-auto px-4">
                 <div class="max-w-4xl mx-auto">
-                    <p class="text-center text-gray-500 mb-8">AS FEATURED IN</p>
-                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                    <p class="text-center text-gray-500 uppercase tracking-wider text-sm font-medium mb-8">As Featured In</p>
+                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                         <div class="text-gray-400 font-bold text-xl">BLOOMBERG</div>
                         <div class="text-gray-400 font-bold text-xl">FORBES</div>
                         <div class="text-gray-400 font-bold text-xl">CNBC</div>
-                        <div class="text-gray-400 font-bold text-xl">WALL STREET JOURNAL</div>
+                        <div class="text-gray-400 font-bold text-xl">WSJ</div>
                         <div class="text-gray-400 font-bold text-xl">YAHOO FINANCE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section class="py-16 bg-light">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <h3 class="font-bold text-lg mb-2">Who is this service for?</h3>
+                            <p class="text-gray-600">Our service is designed for serious investors who want to improve their market results. Whether you're managing your own portfolio or working with an advisor, our insights help you make more informed decisions.</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <h3 class="font-bold text-lg mb-2">How does the free strategy session work?</h3>
+                            <p class="text-gray-600">After you contact us via WhatsApp, one of our senior analysts will schedule a 30-minute consultation. They'll review your current investment situation and provide customized recommendations based on your goals.</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <h3 class="font-bold text-lg mb-2">What makes your analysis different?</h3>
+                            <p class="text-gray-600">We combine advanced A.I. algorithms with human expertise from former Wall Street professionals. This dual approach allows us to identify patterns and opportunities that purely technical or fundamental analysis might miss.</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <h3 class="font-bold text-lg mb-2">Is there any obligation after the free session?</h3>
+                            <p class="text-gray-600">None whatsoever. The strategy session is completely free and there's no pressure to purchase anything. Many clients choose to continue with our premium services after seeing the value, but that's entirely your decision.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Risk Disclosure -->
-        <section class="py-8 bg-dark-blue border-t border-gray-800">
+        <section class="py-8 bg-white border-t border-gray-100">
             <div class="container mx-auto px-4">
                 <div class="max-w-4xl mx-auto text-center">
                     <p class="text-xs text-gray-500 leading-relaxed">
-                        RISK DISCLOSURE: All investing involves risk, including the possible loss of principal. The information provided is for educational and informational purposes only and does not constitute investment advice. Past performance is not indicative of future results. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed. Trading stocks, options, and other securities involves the risk of loss. You should consult with a qualified financial advisor, tax professional, or other professional to determine what may be best for your individual needs.
+                        RISK DISCLOSURE: All investing involves risk, including the possible loss of principal. The information provided is for educational and informational purposes only and does not constitute investment advice. Past performance is not indicative of future results. No representation is being made that any account will or is likely to achieve profits or losses similar to those discussed. You should carefully consider your financial situation, investment objectives, level of experience, and risk appetite before making any investment decisions. If necessary, seek professional advice before acting on information provided.
                     </p>
                 </div>
             </div>
@@ -407,40 +590,41 @@
     </main>
 
     <!-- Fixed Bottom CTA on Mobile -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-dark-blue bg-opacity-95 p-4 shadow-lg z-50 border-t border-gray-800">
-        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center shadow-lg">
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white bg-opacity-95 p-4 shadow-lg z-50 border-t border-gray-200">
+        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20free%20strategy%20session" target="_blank" class="gradient-btn text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center shadow-lg">
             <i class="fab fa-whatsapp text-xl mr-2"></i>
-            Get Expert Advice Now
+            Get Free Strategy Session
         </a>
     </div>
 
     <!-- Float CTA for Desktop -->
     <div class="hidden md:block fixed bottom-8 right-8 z-50">
-        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20stock%20market%20strategies" target="_blank" class="cta-gradient text-white font-bold py-3 px-6 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20free%20strategy%20session" target="_blank" class="gradient-btn text-white font-bold py-3 px-6 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
             <i class="fab fa-whatsapp text-xl mr-2"></i>
-            Connect with an Expert
+            Free Strategy Session
         </a>
     </div>
 
     <script>
-        // Simple animation on scroll
+        // Animation on scroll
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.bg-dark-card');
+            const elements = document.querySelectorAll('.shadow-card');
             
             elements.forEach(element => {
                 const position = element.getBoundingClientRect();
                 
                 // If element is in viewport
                 if(position.top < window.innerHeight && position.bottom >= 0) {
-                    element.classList.add('animate-pulse-slow');
-                } else {
-                    element.classList.remove('animate-pulse-slow');
+                    element.classList.add('shadow-card-hover');
+                    setTimeout(() => {
+                        element.classList.remove('shadow-card-hover');
+                    }, 300);
                 }
             });
         }
         
         // Debounce function for scroll event
-        function debounce(func, wait = 10, immediate = true) {
+        function debounce(func, wait = 20, immediate = true) {
             let timeout;
             return function() {
                 const context = this, args = arguments;
