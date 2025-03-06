@@ -136,6 +136,47 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            animation: pulse-whatsapp 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Button hover effect */
+        .hover-up {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-up:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(0, 114, 245, 0.3);
+        }
     </style>
 </head>
 <body class="bg-white text-dark">
@@ -152,6 +193,11 @@
             <div class="ticker__item"><span class="text-primary font-semibold">JPM</span> $179.86 <span class="text-success">↑0.53%</span></div>
         </div>
     </div>
+
+    <!-- Floating WhatsApp Button (Right Center) -->
+    <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20free%20strategy%20session" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
 
     <!-- Header Section -->
     <header class="relative overflow-hidden hero-pattern min-h-screen flex items-center bg-white">
@@ -253,14 +299,18 @@
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">Why Serious Investors <span class="gradient-text">Choose Us</span></h2>
                     <p class="text-xl text-gray-600 text-center mb-12">Our unique approach has helped thousands achieve financial freedom</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                         <!-- Card 1 - Authority -->
                         <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-card-hover transition-all">
                             <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
                                 <i class="fas fa-brain text-primary text-2xl"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-3">Wall Street Experience</h3>
-                            <p class="text-gray-600">Our analysts previously worked at Goldman Sachs, JP Morgan, and Morgan Stanley with combined 45+ years of market experience.</p>
+                            <p class="text-gray-600 mb-4">Our analysts previously worked at Goldman Sachs, JP Morgan, and Morgan Stanley with combined 45+ years of market experience.</p>
+                            <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20learn%20more%20about%20your%20team's%20experience" target="_blank" class="text-primary font-medium hover:underline flex items-center">
+                                <span>Talk to an expert</span>
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
                         </div>
                         
                         <!-- Card 2 - Scarcity -->
@@ -269,7 +319,11 @@
                                 <i class="fas fa-lock text-primary text-2xl"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-3">Proprietary Algorithm</h3>
-                            <p class="text-gray-600">Access our exclusive A.I.-powered algorithm that analyzes 40,000+ data points daily to identify emerging opportunities others miss.</p>
+                            <p class="text-gray-600 mb-4">Access our exclusive A.I.-powered algorithm that analyzes 40,000+ data points daily to identify emerging opportunities others miss.</p>
+                            <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20learn%20more%20about%20your%20proprietary%20algorithm" target="_blank" class="text-primary font-medium hover:underline flex items-center">
+                                <span>Discover how it works</span>
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
                         </div>
                         
                         <!-- Card 3 - Social Proof -->
@@ -278,8 +332,20 @@
                                 <i class="fas fa-chart-line text-primary text-2xl"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-3">Proven Track Record</h3>
-                            <p class="text-gray-600">Our portfolio recommendations have outperformed the S&P 500 by an average of 37.8% over the past 5 years.</p>
+                            <p class="text-gray-600 mb-4">Our portfolio recommendations have outperformed the S&P 500 by an average of 37.8% over the past 5 years.</p>
+                            <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20see%20your%20track%20record%20in%20detail" target="_blank" class="text-primary font-medium hover:underline flex items-center">
+                                <span>View our results</span>
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
                         </div>
+                    </div>
+                    
+                    <!-- Additional CTA Button -->
+                    <div class="text-center">
+                        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20approach%20to%20stock%20analysis" target="_blank" class="gradient-btn text-white px-8 py-3 rounded-xl inline-flex items-center shadow-lg hover-up">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i>
+                            Connect With Our Team
+                        </a>
                     </div>
                 </div>
             </div>
@@ -312,7 +378,7 @@
                     </div>
                     
                     <!-- Strategy Highlight -->
-                    <div class="bg-blue-50 rounded-2xl p-8 shadow-lg mb-12">
+                    <div class="bg-blue-50 rounded-2xl p-8 shadow-lg mb-10">
                         <h3 class="text-2xl font-bold mb-4 text-center">Our 3-Step Winning Strategy</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div class="text-center">
@@ -332,6 +398,14 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Additional CTA Button -->
+                    <div class="text-center">
+                        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20investment%20results" target="_blank" class="gradient-btn text-white px-8 py-3 rounded-xl inline-flex items-center shadow-lg hover-up">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i>
+                            Get Your Personalized Strategy
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -343,7 +417,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">What Our <span class="gradient-text">Members Say</span></h2>
                     <p class="text-xl text-gray-600 text-center mb-12">Join thousands of investors who've transformed their approach to the market</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
                         <!-- Testimonial 1 -->
                         <div class="bg-white p-6 rounded-xl shadow-card">
                             <div class="flex text-warning mb-4">
@@ -354,7 +428,7 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <p class="text-gray-600 mb-4">"Their market insights helped me navigate the recent tech sector volatility. My portfolio is up 31% since I started following their strategies."</p>
-                            <div class="flex items-center">
+                            <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center mr-4 text-white font-bold">
                                     MJ
                                 </div>
@@ -363,6 +437,10 @@
                                     <p class="text-gray-500 text-sm">Chicago, IL</p>
                                 </div>
                             </div>
+                            <a href="https://wa.me/+1234567890?text=I'd%20like%20results%20like%20Michael%20Johnson" target="_blank" class="text-primary font-medium hover:underline flex items-center justify-center mt-2">
+                                <span>Get similar results</span>
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
                         </div>
                         
                         <!-- Testimonial 2 -->
@@ -375,7 +453,7 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <p class="text-gray-600 mb-4">"As a professional advisor, I'm extremely selective about my information sources. Their analysis consistently identifies opportunities weeks before mainstream news."</p>
-                            <div class="flex items-center">
+                            <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center mr-4 text-white font-bold">
                                     SR
                                 </div>
@@ -384,6 +462,10 @@
                                     <p class="text-gray-500 text-sm">New York, NY</p>
                                 </div>
                             </div>
+                            <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20find%20opportunities%20like%20Sarah%20Rodriguez" target="_blank" class="text-primary font-medium hover:underline flex items-center justify-center mt-2">
+                                <span>Get early insights</span>
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
                         </div>
                         
                         <!-- Testimonial 3 -->
@@ -396,7 +478,7 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <p class="text-gray-600 mb-4">"I was skeptical at first, but their predictions about the banking sector saved me from significant losses. Now I'm a lifetime member and my retirement is back on track."</p>
-                            <div class="flex items-center">
+                            <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center mr-4 text-white font-bold">
                                     TP
                                 </div>
@@ -405,7 +487,19 @@
                                     <p class="text-gray-500 text-sm">Austin, TX</p>
                                 </div>
                             </div>
+                            <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20protect%20my%20investments%20like%20Thomas%20Peterson" target="_blank" class="text-primary font-medium hover:underline flex items-center justify-center mt-2">
+                                <span>Protect your portfolio</span>
+                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </a>
                         </div>
+                    </div>
+                    
+                    <!-- Additional CTA Button -->
+                    <div class="text-center">
+                        <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20hear%20more%20success%20stories" target="_blank" class="gradient-btn text-white px-8 py-3 rounded-xl inline-flex items-center shadow-lg hover-up">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i>
+                            Join Our Success Stories
+                        </a>
                     </div>
                 </div>
             </div>
@@ -418,7 +512,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center">Our Recent <span class="gradient-text">Market Wins</span></h2>
                     <p class="text-xl text-gray-600 text-center mb-12">Recent recommendations our members received before the general public</p>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-6 mb-10">
                         <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-card overflow-hidden">
                             <div class="md:w-1/3 bg-blue-50 p-6 flex flex-col justify-center">
                                 <div class="text-primary font-bold text-lg mb-1">March 2024</div>
@@ -427,7 +521,11 @@
                             </div>
                             <div class="md:w-2/3 p-6">
                                 <p class="text-gray-600 mb-2">We alerted members to increase position in NVDA before their AI chip announcement, predicting increased demand from major tech companies.</p>
-                                <div class="text-sm text-gray-500">Recommendation Price: $492.13 • Current Price: $831.13</div>
+                                <div class="text-sm text-gray-500 mb-4">Recommendation Price: $492.13 • Current Price: $831.13</div>
+                                <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20learn%20about%20your%20NVDA%20recommendation" target="_blank" class="text-primary font-medium hover:underline flex items-center text-sm">
+                                    <span>Get our next AI pick</span>
+                                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                </a>
                             </div>
                         </div>
                         
@@ -439,7 +537,11 @@
                             </div>
                             <div class="md:w-2/3 p-6">
                                 <p class="text-gray-600 mb-2">Our algorithm detected institutional buying patterns in META before their strong earnings report, allowing members to position ahead of the surge.</p>
-                                <div class="text-sm text-gray-500">Recommendation Price: $322.18 • Current Price: $458.45</div>
+                                <div class="text-sm text-gray-500 mb-4">Recommendation Price: $322.18 • Current Price: $458.45</div>
+                                <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20learn%20about%20your%20META%20recommendation" target="_blank" class="text-primary font-medium hover:underline flex items-center text-sm">
+                                    <span>Discover similar opportunities</span>
+                                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                </a>
                             </div>
                         </div>
                         
@@ -451,9 +553,21 @@
                             </div>
                             <div class="md:w-2/3 p-6">
                                 <p class="text-gray-600 mb-2">We advised members to reduce exposure to regional banks three weeks before the sector declined, protecting capital during significant market turbulence.</p>
-                                <div class="text-sm text-gray-500">Members protected their portfolios from major losses</div>
+                                <div class="text-sm text-gray-500 mb-4">Members protected their portfolios from major losses</div>
+                                <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20learn%20about%20your%20banking%20sector%20warnings" target="_blank" class="text-primary font-medium hover:underline flex items-center text-sm">
+                                    <span>Get risk protection strategies</span>
+                                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                                </a>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- Additional CTA Button -->
+                    <div class="text-center">
+                        <a href="https://wa.me/+1234567890?text=I'd%20like%20to%20learn%20about%20your%20recent%20stock%20picks" target="_blank" class="gradient-btn text-white px-8 py-3 rounded-xl inline-flex items-center shadow-lg hover-up">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i>
+                            Get Our Latest Stock Picks
+                        </a>
                     </div>
                 </div>
             </div>
@@ -552,7 +666,7 @@
                 <div class="max-w-4xl mx-auto">
                     <h2 class="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-6 mb-12">
                         <div class="bg-white p-6 rounded-xl shadow-card">
                             <h3 class="font-bold text-lg mb-2">Who is this service for?</h3>
                             <p class="text-gray-600">Our service is designed for serious investors who want to improve their market results. Whether you're managing your own portfolio or working with an advisor, our insights help you make more informed decisions.</p>
@@ -573,6 +687,32 @@
                             <p class="text-gray-600">None whatsoever. The strategy session is completely free and there's no pressure to purchase anything. Many clients choose to continue with our premium services after seeing the value, but that's entirely your decision.</p>
                         </div>
                     </div>
+                    
+                    <!-- Additional CTA Button -->
+                    <div class="text-center">
+                        <a href="https://wa.me/+1234567890?text=I%20have%20questions%20about%20your%20service" target="_blank" class="gradient-btn text-white px-8 py-3 rounded-xl inline-flex items-center shadow-lg hover-up">
+                            <i class="fab fa-whatsapp text-xl mr-2"></i>
+                            Have More Questions? Ask Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="py-16 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to <span class="gradient-text">Transform</span> Your Investment Results?</h2>
+                    <p class="text-xl text-gray-600 mb-8">Join thousands of successful investors who've already taken advantage of our expertise</p>
+                    
+                    <a href="https://wa.me/+1234567890?text=I'm%20ready%20to%20transform%20my%20investment%20results" target="_blank" class="gradient-btn text-white text-xl font-bold px-10 py-5 rounded-xl inline-flex items-center shadow-lg bounce">
+                        <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                        Get Started Now
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                    
+                    <p class="text-gray-500 mt-6">Limited time offer. Contact us today before all spots are filled.</p>
                 </div>
             </div>
         </section>
@@ -594,14 +734,6 @@
         <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20free%20strategy%20session" target="_blank" class="gradient-btn text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center shadow-lg">
             <i class="fab fa-whatsapp text-xl mr-2"></i>
             Get Free Strategy Session
-        </a>
-    </div>
-
-    <!-- Float CTA for Desktop -->
-    <div class="hidden md:block fixed bottom-8 right-8 z-50">
-        <a href="https://wa.me/+1234567890?text=I'm%20interested%20in%20your%20free%20strategy%20session" target="_blank" class="gradient-btn text-white font-bold py-3 px-6 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-            <i class="fab fa-whatsapp text-xl mr-2"></i>
-            Free Strategy Session
         </a>
     </div>
 
