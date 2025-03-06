@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketPulse - Professional Stock Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#2B2D42',
+                        accent: '#00A8E8',
+                        success: '#4CAF50',
+                        danger: '#F44336',
+                        light: '#F8F9FA',
+                        dark: '#181818',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono&display=swap');
+        
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+        
+        .ticker-tape {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .ticker-content {
+            display: inline-block;
+            animation: marquee 60s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .dark .chart-grid {
+            stroke: rgba(255, 255, 255, 0.1);
+        }
+        
+        .light .chart-grid {
+            stroke: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Pulse animation for "Live" indicator */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-secondary dark:text-white bg-gray-50 dark:bg-dark transition-colors duration-200">
+    <!-- Theme detection -->
+    <script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-900 shadow-md">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-chart-line text-primary text-2xl mr-2"></i>
+                        <span class="font-bold text-xl">MarketPulse</span>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                        <a href="#" class="text-primary font-medium px-3 py-2 rounded-md">Markets</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium px-3 py-2 rounded-md">Stocks</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium px-3 py-2 rounded-md">News</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium px-3 py-2 rounded-md">Watchlist</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium px-3 py-2 rounded-md">Portfolio</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <button id="themeToggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary focus:outline-none">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:block"></i>
+                        </button>
+                    </div>
+                    <div class="hidden md:block">
+                        <button class="ml-3 bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-md font-medium transition">
+                            Sign In
+                        </button>
+                    </div>
+                    <div class="-mr-2 flex md:hidden">
+                        <button id="mobileMenuButton" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary focus:outline-none">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-inner">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-primary">Markets</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary">Stocks</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary">News</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary">Watchlist</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary">Portfolio</a>
+                <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <button class="w-full bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-md font-medium transition">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ticker tape -->
+    <div class="ticker-tape py-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="ticker-content">
+            <span class="px-4 font-mono text-sm">
+                <span class="text-primary font-semibold">AAPL</span> $149.32 <span class="text-success">+1.24%</span> •
+                <span class="text-primary font-semibold">MSFT</span> $298.76 <span class="text-success">+0.89%</span> •
+                <span class="text-primary font-semibold">GOOGL</span> $134.62 <span class="text-danger">-0.34%</span> •
+                <span class="text-primary font-semibold">AMZN</span> $135.36 <span class="text-success">+1.53%</span> •
+                <span class="text-primary font-semibold">META</span> $318.45 <span class="text-success">+2.12%</span> •
+                <span class="text-primary font-semibold">TSLA</span> $242.68 <span class="text-danger">-0.76%</span> •
+                <span class="text-primary font-semibold">NVDA</span> $431.13 <span class="text-success">+3.25%</span> •
+                <span class="text-primary font-semibold">JPM</span> $179.86 <span class="text-success">+0.53%</span> •
+                <span class="text-primary font-semibold">V</span> $270.12 <span class="text-success">+0.12%</span> •
+                <span class="text-primary font-semibold">JNJ</span> $157.93 <span class="text-danger">-0.42%</span>
+            </span>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Market Overview Section -->
+        <section class="mb-10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Main Feature -->
+                <div class="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h2 class="text-2xl font-bold">S&P 500</h2>
+                                <div class="flex items-center mt-1">
+                                    <span class="text-3xl font-semibold mr-2">4,892.37</span>
+                                    <span class="text-success text-lg font-medium">+23.14 (+0.48%)</span>
+                                </div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center">
+                                    <span class="pulse inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+                                    Live • May 15, 2024, 4:00 PM ET
+                                </div>
+                            </div>
+                            <div class="hidden sm:flex space-x-2">
+                                <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">1D</button>
+                                <button class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded text-sm font-medium">1W</button>
+                                <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">1M</button>
+                                <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">1Y</button>
+                                <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">5Y</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="mainChart"></canvas>
+                        </div>
+                        <div class="flex sm:hidden space-x-2 mt-4 justify-center">
+                            <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">1D</button>
+                            <button class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded text-sm font-medium">1W</button>
+                            <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">1M</button>
+                            <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">1Y</button>
+                            <button class="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded text-sm font-medium">5Y</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Indices -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Market Indices</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-100 dark:border-gray-800">
+                            <div>
+                                <h3 class="font-semibold">Dow Jones</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">DJIA</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">38,724.38</p>
+                                <p class="text-success text-sm">+0.36%</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-100 dark:border-gray-800">
+                            <div>
+                                <h3 class="font-semibold">Nasdaq</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">COMP</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">15,756.64</p>
+                                <p class="text-success text-sm">+0.90%</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-100 dark:border-gray-800">
+                            <div>
+                                <h3 class="font-semibold">Russell 2000</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">RUT</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">2,042.46</p>
+                                <p class="text-danger text-sm">-0.17%</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-100 dark:border-gray-800">
+                            <div>
+                                <h3 class="font-semibold">10-Year Treasury</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">US10Y</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">4.34%</p>
+                                <p class="text-danger text-sm">+0.03</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold">VIX</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Volatility Index</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium">14.76</p>
+                                <p class="text-danger text-sm">-3.21%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Stocks Section -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">Trending Stocks</h2>
+                <a href="#" class="text-primary font-medium hover:underline">View all</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Stock Card 1 -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-lg">NVDA</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">NVIDIA Corporation</p>
+                        </div>
+                        <div class="bg-success bg-opacity-10 rounded-md px-2 py-1">
+                            <span class="text-success font-medium text-sm">+3.25%</span>
+                        </div>
+                    </div>
+                    <p class="text-2xl font-semibold mb-2">$431.13</p>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-4">+$13.52 today</div>
+                    <div class="h-16">
+                        <canvas class="stock-mini-chart" data-stock="NVDA" height="50"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Stock Card 2 -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-lg">AAPL</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Apple Inc.</p>
+                        </div>
+                        <div class="bg-success bg-opacity-10 rounded-md px-2 py-1">
+                            <span class="text-success font-medium text-sm">+1.24%</span>
+                        </div>
+                    </div>
+                    <p class="text-2xl font-semibold mb-2">$149.32</p>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-4">+$1.83 today</div>
+                    <div class="h-16">
+                        <canvas class="stock-mini-chart" data-stock="AAPL" height="50"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Stock Card 3 -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-lg">META</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Meta Platforms, Inc.</p>
+                        </div>
+                        <div class="bg-success bg-opacity-10 rounded-md px-2 py-1">
+                            <span class="text-success font-medium text-sm">+2.12%</span>
+                        </div>
+                    </div>
+                    <p class="text-2xl font-semibold mb-2">$318.45</p>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-4">+$6.62 today</div>
+                    <div class="h-16">
+                        <canvas class="stock-mini-chart" data-stock="META" height="50"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Stock Card 4 -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-bold text-lg">TSLA</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Tesla, Inc.</p>
+                        </div>
+                        <div class="bg-danger bg-opacity-10 rounded-md px-2 py-1">
+                            <span class="text-danger font-medium text-sm">-0.76%</span>
+                        </div>
+                    </div>
+                    <p class="text-2xl font-semibold mb-2">$242.68</p>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-4">-$1.86 today</div>
+                    <div class="h-16">
+                        <canvas class="stock-mini-chart" data-stock="TSLA" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News & Analysis -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold mb-6">Market News & Analysis</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Main News -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- News Item 1 -->
+                    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/3 h-48 md:h-auto bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                            <i class="fas fa-newspaper text-5xl text-gray-400 dark:text-gray-600"></i>
+                        </div>
+                        <div class="p-6 md:w-2/3">
+                            <div class="text-xs text-primary font-semibold uppercase tracking-wider mb-1">Breaking News</div>
+                            <h3 class="text-xl font-bold mb-2">Fed Signals Potential Rate Cuts as Inflation Shows Signs of Cooling</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">Federal Reserve officials indicated they may be ready to cut interest rates in the coming months, as new data suggests inflation pressures are easing across the economy.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">2 hours ago</span>
+                                <a href="#" class="text-primary font-medium hover:underline">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- News Item 2 -->
+                    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row">
+                        <div class="md:w-1/3 h-48 md:h-auto bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                            <i class="fas fa-chart-pie text-5xl text-gray-400 dark:text-gray-600"></i>
+                        </div>
+                        <div class="p-6 md:w-2/3">
+                            <div class="text-xs text-primary font-semibold uppercase tracking-wider mb-1">Market Analysis</div>
+                            <h3 class="text-xl font-bold mb-2">Tech Stocks Lead Market Rally on Strong Earnings Reports</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">Technology sector stocks pushed major indices to new highs as several large-cap companies exceeded earnings expectations, highlighting resilient consumer and enterprise spending.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">5 hours ago</span>
+                                <a href="#" class="text-primary font-medium hover:underline">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Insights -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6">
+                    <h3 class="font-bold text-xl mb-4">Today's Market Insights</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 bg-success rounded-full mr-2"></div>
+                                <h4 class="font-semibold">Sector Performance</h4>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Technology (+1.8%) and Healthcare (+1.2%) lead today's gains, while Energy (-0.8%) lags following a drop in crude oil prices.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 bg-success rounded-full mr-2"></div>
+                                <h4 class="font-semibold">Economic Data</h4>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Consumer confidence index rose to 108.5 in April, exceeding economists' expectations of 105.2 and marking a six-month high.</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 bg-danger rounded-full mr-2"></div>
+                                <h4 class="font-semibold">Upcoming Events</h4>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Retail sales data to be released tomorrow at 8:30 AM ET; market projects 0.4% month-over-month increase.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <a href="#" class="text-primary font-medium hover:underline">View all market insights →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stock Research Tools -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Research & Analysis Tools</h2>
+                <a href="#" class="text-primary font-medium hover:underline">Explore all tools</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tool Card 1 -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-search text-primary text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Stock Screener</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-5">Find investment opportunities that match your criteria using our advanced screening tools.</p>
+                    <a href="#" class="text-primary font-medium hover:underline">Start screening →</a>
+                </div>
+                
+                <!-- Tool Card 2 -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-primary text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Technical Analysis</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-5">Analyze stock price movements with advanced chart patterns and technical indicators.</p>
+                    <a href="#" class="text-primary font-medium hover:underline">Explore charts →</a>
+                </div>
+                
+                <!-- Tool Card 3 -->
+                <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-calculator text-primary text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Fundamental Analysis</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-5">Evaluate company financials, earnings reports, and key metrics to inform your investment decisions.</p>
+                    <a href="#" class="text-primary font-medium hover:underline">View financials →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Disclosure & Disclaimer -->
+        <section class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 mb-10">
+            <h2 class="text-xl font-bold mb-4">Investment Risk Disclosure</h2>
+            <div class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                <p>All investing involves risk, including the possible loss of principal. Market data and information provided on this site is for informational purposes only and is not intended for trading purposes.</p>
+                <p>Past performance is not indicative of future results. The value of investments and the income from them can go down as well as up and investors may not get back the amounts originally invested.</p>
+                <p>This website does not provide investment advice, tax advice, or financial planning services. The information presented here should not be considered a recommendation to purchase or sell any particular security.</p>
+                <p>Before making any investment decisions, please consult with a qualified financial advisor, tax professional, or your own personal financial situation and investment objectives.</p>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="bg-primary bg-opacity-10 rounded-xl p-8 mb-10 relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl">
+                <h2 class="text-2xl font-bold mb-2">Stay Ahead of the Market</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-6">Get daily market insights, stock picks, and analysis delivered straight to your inbox.</p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Enter your email address" class="text-base px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 flex-grow focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button class="px-6 py-3 bg-primary hover:bg-opacity-90 text-white rounded-lg font-medium transition whitespace-nowrap">
+                        Subscribe Now
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">By subscribing, you agree to our Privacy Policy and Terms of Service.</p>
+            </div>
+            <div class="absolute top-0 right-0 w-64 h-full opacity-10 dark:opacity-5">
+                <i class="fas fa-chart-line text-9xl absolute right-8 top-1/2 -translate-y-1/2"></i>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-10 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-line text-primary text-2xl mr-2"></i>
+                        <span class="font-bold text-xl">MarketPulse</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Your trusted source for market insights, stock analysis, and investment research.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Markets</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Stocks</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">News & Analysis</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Watchlist</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Learning Center</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Investment Glossary</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Market Calendar</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Tools & Calculators</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Help Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Contact</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Careers</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-primary">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800 text-center text-sm text-gray-500 dark:text-gray-400">
+                <p>© 2024 MarketPulse. All rights reserved.</p>
+                <p class="mt-2">Market data provided for educational purposes only. Not intended as investment advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Main chart
+        const mainChartCtx = document.getElementById('mainChart').getContext('2d');
+        const mainChartData = generateChartData(60, 4820, 4900, 20, true);
+        
+        // Create gradient for area chart
+        const mainGradient = mainChartCtx.createLinearGradient(0, 0, 0, 250);
+        mainGradient.addColorStop(0, 'rgba(93, 92, 222, 0.4)');
+        mainGradient.addColorStop(1, 'rgba(93, 92, 222, 0.0)');
+        
+        const mainChart = new Chart(mainChartCtx, {
+            type: 'line',
+            data: {
+                labels: mainChartData.labels,
+                datasets: [{
+                    label: 'S&P 500',
+                    data: mainChartData.values,
+                    borderColor: '#5D5CDE',
+                    backgroundColor: mainGradient,
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    pointHoverRadius: 4,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: document.documentElement.classList.contains('dark') ? '#2B2D42' : 'white',
+                        titleColor: document.documentElement.classList.contains('dark') ? 'white' : '#2B2D42',
+                        bodyColor: document.documentElement.classList.contains('dark') ? 'white' : '#2B2D42',
+                        borderColor: document.documentElement.classList.contains('dark') ? '#4B4E6D' : '#E2E8F0',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return `$${context.raw.toFixed(2)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            maxRotation: 0,
+                            autoSkip: true,
+                            maxTicksLimit: 6
+                        }
+                    },
+                    y: {
+                        display: true,
+                        position: 'right',
+                        grace: '5%',
+                        grid: {
+                            color: function(context) {
+                                return document.documentElement.classList.contains('dark') ? 
+                                    'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                hover: {
+                    mode: 'index',
+                    intersect: false
+                }
+            }
+        });
+
+        // Mini stock charts
+        const stockCharts = document.querySelectorAll('.stock-mini-chart');
+        stockCharts.forEach(stockChart => {
+            const stockName = stockChart.getAttribute('data-stock');
+            let chartData;
+            
+            // Generate different chart data patterns based on stock
+            switch(stockName) {
+                case 'NVDA':
+                    chartData = generateChartData(20, 410, 435, 5, true);
+                    break;
+                case 'AAPL':
+                    chartData = generateChartData(20, 145, 152, 2, true);
+                    break;
+                case 'META':
+                    chartData = generateChartData(20, 310, 322, 3, true);
+                    break;
+                case 'TSLA':
+                    chartData = generateChartData(20, 240, 248, 2, false);
+                    break;
+                default:
+                    chartData = generateChartData(20, 100, 120, 5, true);
+            }
+            
+            const ctx = stockChart.getContext('2d');
+            const isPositive = chartData.values[0] < chartData.values[chartData.values.length - 1];
+            const chartColor = isPositive ? '#4CAF50' : '#F44336';
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        data: chartData.values,
+                        borderColor: chartColor,
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            display: false,
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }
+                }
+            });
+        });
+
+        // Helper function to generate chart data
+        function generateChartData(days, baseValue, maxValue, volatility, trending) {
+            const labels = [];
+            const values = [];
+            let currentValue = baseValue;
+            
+            for (let i = 0; i < days; i++) {
+                // Create date labels (simplified for demo)
+                const date = new Date();
+                date.setDate(date.getDate() - (days - i - 1));
+                const label = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                labels.push(label);
+                
+                // Generate price with some randomness
+                const change = (Math.random() - (trending ? 0.3 : 0.5)) * volatility;
+                currentValue = Math.max(currentValue + change, baseValue * 0.85);
+                currentValue = Math.min(currentValue, maxValue);
+                values.push(currentValue);
+            }
+            
+            return { labels, values };
+        }
+
+        // Theme change listener for chart colors
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            updateChartTheme();
+        });
+
+        // Theme toggle button also needs to update charts
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            updateChartTheme();
+        });
+
+        function updateChartTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            // Update main chart tooltip colors
+            mainChart.options.plugins.tooltip.backgroundColor = isDark ? '#2B2D42' : 'white';
+            mainChart.options.plugins.tooltip.titleColor = isDark ? 'white' : '#2B2D42';
+            mainChart.options.plugins.tooltip.bodyColor = isDark ? 'white' : '#2B2D42';
+            mainChart.options.plugins.tooltip.borderColor = isDark ? '#4B4E6D' : '#E2E8F0';
+            
+            // Update grid colors
+            mainChart.options.scales.y.grid.color = function(context) {
+                return isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+            };
+            
+            mainChart.update();
+        }
+    </script>
+</body>
+</html>
