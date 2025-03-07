@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jeremy Vail | Investment Market Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#003366',
+                        gold: '#D4AF37',
+                        cream: '#F5F3E8',
+                        charcoal: '#333333',
+                        lightgray: '#F8F8F8'
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'serif'],
+                        sans: ['Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+        }
+        
+        .font-serif {
+            font-family: Georgia, serif;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(45deg, #D4AF37 0%, #F2D672 100%);
+        }
+        
+        .navy-gradient {
+            background: linear-gradient(45deg, #002244 0%, #003366 100%);
+        }
+        
+        .contact-btn {
+            background: linear-gradient(45deg, #25D366 0%, #128C7E 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background: linear-gradient(45deg, #20BD5F 0%, #0E7A6C 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.3);
+        }
+        
+        .gold-btn {
+            background: linear-gradient(45deg, #D4AF37 0%, #F2D672 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gold-btn:hover {
+            background: linear-gradient(45deg, #C09F30 0%, #E5C965 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.3);
+        }
+        
+        .section-divide {
+            height: 3px;
+            background: linear-gradient(to right, transparent, #D4AF37, transparent);
+            width: 80%;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-center: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .timer-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        
+        .limited-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #E74C3C;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transform: rotate(15deg);
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body class="bg-white text-charcoal">
+    <!-- Navigation -->
+    <nav class="navy-gradient text-white shadow-md fixed w-full z-30">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <span class="font-serif font-bold text-xl md:text-2xl">Mighty Prosperity Capital</span>
+                </div>
+                <div>
+                    <button onclick="opensite()" class="contact-btn text-white font-bold px-4 py-2 rounded shadow hover:shadow-lg transition-all cursor-pointer flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Contact On WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating WhatsApp Button -->
+    <div onclick="opensite()" class="whatsapp-float cursor-pointer flex items-center justify-center">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="pt-24 pb-16 md:pt-32 md:pb-24 navy-gradient text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <div class="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-bold mb-6 border border-gold/30">
+                        <i class="fas fa-clock text-gold mr-2"></i> LIMITED TIME OPPORTUNITY
+                    </div>
+                    
+                    <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6 fade-in">
+                        Market Analysis & Investment Education
+                    </h1>
+                    <p class="text-lg md:text-xl mb-6 opacity-90 fade-in delay-1">
+                        Gain valuable perspective from Jeremy Vail, a finance professional with over 22 years of industry experience.
+                    </p>
+                    
+                    <!-- Limited Time Offer -->
+                    <div class="bg-white/10 backdrop-blur-sm border border-gold/30 rounded-lg p-4 mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold">Limited Availability:</span>
+                            <div class="flex space-x-2">
+                                <div class="timer-box">48</div>
+                                <div class="timer-box">12</div>
+                                <div class="timer-box">57</div>
+                            </div>
+                        </div>
+                        <p class="text-sm opacity-80">Only <span class="font-bold text-gold">7 spots</span> remaining for this week's market analysis consultation</p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8 fade-in delay-2">
+                        <div class="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                            <i class="fas fa-university text-gold mr-2"></i>
+                            <span>Comprehensive Market Analysis</span>
+                        </div>
+                        <div class="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                            <i class="fas fa-book text-gold mr-2"></i>
+                            <span>Educational Resources</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="opensite()" class="contact-btn text-white font-bold text-lg px-8 py-4 rounded shadow-lg hover:shadow-xl transition-all cursor-pointer fade-in delay-2 flex items-center">
+                        <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                        Request Information via WhatsApp
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </button>
+                    
+                    <div class="mt-4 text-sm opacity-75 fade-in delay-2">
+                        <i class="fas fa-shield-alt mr-2"></i> Your information is secure and confidential
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="limited-badge">
+                        <span class="text-xs">ONLY</span>
+                        <span class="text-xl">7</span>
+                        <span class="text-xs">SPOTS</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gold/20 rounded-lg transform rotate-3"></div>
+                    <img src="https://mighty-prosperity.com/upload/default/20241021/5b33aa5825c07d8b6ac12a5416df5877.png" alt="Jeremy Vail" class="relative z-10 rounded-lg shadow-2xl w-full">
+                    
+                    <div class="absolute bottom-4 left-4 right-4 bg-navy/80 backdrop-blur-sm p-4 rounded-lg border border-gold/20">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-users text-gold mr-2"></i>
+                            <span><span class="font-bold">2,457+</span> clients have received market analysis education</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white" style="clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 100%);"></div>
+    </header>
+
+    <!-- Social Proof Banner -->
+    <div class="bg-navy py-4 border-b border-gold/30">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                <div class="flex items-center">
+                    <div class="flex text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="ml-2 text-white">
+                        <span class="font-bold">4.9/5</span>
+                        <span class="text-sm opacity-80">(392 reviews)</span>
+                    </div>
+                </div>
+                <div class="text-white flex items-center">
+                    <i class="fas fa-user-graduate text-gold mr-2"></i>
+                    <span><span class="font-bold">2,400+</span> educated clients</span>
+                </div>
+                <div class="text-white flex items-center">
+                    <i class="fas fa-certificate text-gold mr-2"></i>
+                    <span><span class="font-bold">22+</span> years of experience</span>
+                </div>
+                <div class="text-white flex items-center">
+                    <i class="fas fa-globe text-gold mr-2"></i>
+                    <span><span class="font-bold">35+</span> countries served</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Jeremy Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h6 class="text-gold font-bold uppercase tracking-wider mb-2">ABOUT</h6>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy mb-4">Jeremy Vail</h2>
+                    <div class="section-divide mb-8"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        An experienced financial professional dedicated to providing market analysis and investment education.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-lightgray p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-briefcase text-navy text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-center mb-4">Professional Background</h3>
+                        <p class="text-gray-600">
+                            With over 22 years in the financial industry, Jeremy has held positions at AllianceBernstein and Morgan Stanley, focusing on market research and portfolio strategy.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-lightgray p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-graduation-cap text-navy text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-center mb-4">Research Expertise</h3>
+                        <p class="text-gray-600">
+                            Jeremy specializes in market analysis across multiple sectors, helping individuals better understand economic trends and market dynamics.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-lightgray p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 rounded-full gold-gradient flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-chalkboard-teacher text-navy text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-center mb-4">Educational Approach</h3>
+                        <p class="text-gray-600">
+                            Jeremy is passionate about financial education, helping clients develop a deeper understanding of markets and investment principles.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="opensite()" class="contact-btn text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center mx-auto">
+                        <i class="fab fa-whatsapp text-xl mr-2"></i>
+                        Message Jeremy Directly
+                    </button>
+                    <p class="text-sm text-gray-500 mt-3">Quick response within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Jeremy -->
+    <section class="py-20 bg-lightgray">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h6 class="text-gold font-bold uppercase tracking-wider mb-2">BENEFITS</h6>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy mb-4">Why Choose Jeremy's Analysis</h2>
+                    <div class="section-divide mb-8"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Join the thousands of individuals who have enhanced their market understanding through Jeremy's educational approach.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white p-6 rounded-lg shadow-md flex">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
+                                <i class="fas fa-chart-bar text-navy"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-navy mb-2">Comprehensive Market Insights</h3>
+                            <p class="text-gray-600">Detailed analysis of market trends, sector rotations, and economic indicators explained in accessible language.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md flex">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
+                                <i class="fas fa-user-tie text-navy"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-navy mb-2">Institutional Experience</h3>
+                            <p class="text-gray-600">Benefit from Jeremy's extensive background at leading financial institutions and his professional approach to market education.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md flex">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-navy"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-navy mb-2">Educational Focus</h3>
+                            <p class="text-gray-600">Learn foundational investment concepts and develop skills to better interpret market news and financial information.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md flex">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-navy"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-navy mb-2">Risk Management Education</h3>
+                            <p class="text-gray-600">Understanding market volatility, diversification principles, and approaches to managing investment uncertainty.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-navy text-white p-8 rounded-lg shadow-lg relative overflow-hidden mb-8">
+                    <div class="absolute top-0 left-0 w-full h-full bg-gold/5 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="flex flex-col md:flex-row justify-between items-center">
+                            <div class="mb-6 md:mb-0">
+                                <h3 class="font-serif text-2xl font-bold mb-2">Limited Weekly Availability</h3>
+                                <p class="opacity-90">Due to high demand, Jeremy can only accommodate <span class="font-bold text-gold">7 new consultations</span> this week</p>
+                            </div>
+                            <div>
+                                <button onclick="opensite()" class="contact-btn text-white font-bold px-8 py-4 rounded shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center">
+                                    <i class="fab fa-whatsapp text-xl mr-2"></i>
+                                    Reserve Your Spot
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-navy font-bold mb-4">Already Trusted By:</p>
+                    <div class="flex flex-wrap justify-center gap-8 opacity-70">
+                        <div class="text-navy font-bold text-xl">Individual Investors</div>
+                        <div class="text-navy font-bold text-xl">Family Offices</div>
+                        <div class="text-navy font-bold text-xl">Educational Institutions</div>
+                        <div class="text-navy font-bold text-xl">Financial Professionals</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="py-20 bg-navy text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h6 class="text-gold font-bold uppercase tracking-wider mb-2">METHODOLOGY</h6>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Market Analysis Approach</h2>
+                    <div class="section-divide mb-8"></div>
+                    <p class="text-lg max-w-3xl mx-auto opacity-90">
+                        A methodical framework for understanding market conditions and investment education.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-gold/20">
+                            <h3 class="font-serif text-2xl font-bold text-gold mb-6">Research & Analysis</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Fundamental Analysis</span>
+                                        <p class="text-sm opacity-80 mt-1">Comprehensive evaluation of economic indicators and market trends.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Sector Performance</span>
+                                        <p class="text-sm opacity-80 mt-1">Tracking industry developments and sector rotation patterns.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Global Perspective</span>
+                                        <p class="text-sm opacity-80 mt-1">Analysis of international markets and their influence on domestic markets.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-white/5 backdrop-blur-sm p-8 rounded-lg border border-gold/20">
+                            <h3 class="font-serif text-2xl font-bold text-gold mb-6">Educational Philosophy</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Risk Management</span>
+                                        <p class="text-sm opacity-80 mt-1">Education on principles of diversification and portfolio balance.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Market Literacy</span>
+                                        <p class="text-sm opacity-80 mt-1">Developing skills to interpret market news and financial information.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Strategy Development</span>
+                                        <p class="text-sm opacity-80 mt-1">Guidance on creating personalized investment education frameworks.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 flex justify-center">
+                    <div class="bg-white/10 backdrop-blur-sm border border-gold/20 rounded-lg p-6 max-w-3xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-serif text-xl font-bold text-gold">Limited-Time Educational Opportunity</h3>
+                            <div class="flex space-x-1">
+                                <div class="timer-box">48</div>
+                                <span>:</span>
+                                <div class="timer-box">12</div>
+                                <span>:</span>
+                                <div class="timer-box">57</div>
+                            </div>
+                        </div>
+                        <p class="mb-6 opacity-90">For a limited time, Jeremy is offering personalized market analysis consultations. Due to high demand, only <span class="font-bold text-gold">7 spots</span> remain available this week.</p>
+                        <div class="flex items-center gap-4">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gold floating">7</div>
+                                <div class="text-xs opacity-80">SPOTS LEFT</div>
+                            </div>
+                            <div class="flex-1">
+                                <button onclick="opensite()" class="contact-btn text-white font-bold w-full py-4 rounded shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center">
+                                    <i class="fab fa-whatsapp text-xl mr-2"></i>
+                                    Message on WhatsApp to Reserve
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h6 class="text-gold font-bold uppercase tracking-wider mb-2">TESTIMONIALS</h6>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy mb-4">Client Experiences</h2>
+                    <div class="section-divide mb-8"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Join over 2,400 clients who have enhanced their market understanding with Jeremy's educational approach.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex text-gold mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 italic mb-6">
+                            "Jeremy's ability to break down complex market concepts into understandable terms has greatly improved my financial literacy. His educational resources provide valuable context for understanding market trends."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full navy-gradient flex items-center justify-center text-white font-bold text-xl mr-4">
+                                MR
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Michael R.</h4>
+                                <p class="text-gray-500 text-sm">Educational Seminar Attendee</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex text-gold mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 italic mb-6">
+                            "I've gained tremendous insight from Jeremy's market analysis reports. His educational approach has helped me develop a more informed perspective on economic trends and market conditions."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full navy-gradient flex items-center justify-center text-white font-bold text-xl mr-4">
+                                SJ
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Sarah J.</h4>
+                                <p class="text-gray-500 text-sm">Market Analysis Client</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex text-gold mb-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 italic mb-6">
+                            "As a financial advisor, Jeremy's market analysis has been invaluable for helping me educate my own clients. His clear explanations of complex economic concepts are exceptional."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full navy-gradient flex items-center justify-center text-white font-bold text-xl mr-4">
+                                DT
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">David T.</h4>
+                                <p class="text-gray-500 text-sm">Financial Professional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <p class="font-serif italic text-lg text-gray-600 mb-4">"Join hundreds of satisfied clients who receive Jeremy's market insights every week"</p>
+                    <button onclick="opensite()" class="contact-btn text-white font-bold px-8 py-4 rounded shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center mx-auto">
+                        <i class="fab fa-whatsapp text-xl mr-2"></i>
+                        Connect on WhatsApp Now
+                    </button>
+                    <p class="text-sm text-gray-500 mt-3">Limited spots available this week</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Topics Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h6 class="text-gold font-bold uppercase tracking-wider mb-2">EXPERTISE</h6>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy mb-4">Areas of Focus</h2>
+                    <div class="section-divide mb-8"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Key topics covered in Jeremy's market analysis and educational content.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <div class="p-6 border border-gray-200 rounded-lg hover:border-gold transition-all">
+                        <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-navy"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-navy mb-2">Market Trends</h3>
+                        <p class="text-gray-600">Analysis of current market conditions and economic indicators.</p>
+                    </div>
+                    
+                    <div class="p-6 border border-gray-200 rounded-lg hover:border-gold transition-all">
+                        <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mb-4">
+                            <i class="fas fa-balance-scale text-navy"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-navy mb-2">Risk Management</h3>
+                        <p class="text-gray-600">Educational resources on diversification principles and volatility considerations.</p>
+                    </div>
+                    
+                    <div class="p-6 border border-gray-200 rounded-lg hover:border-gold transition-all">
+                        <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mb-4">
+                            <i class="fas fa-globe text-navy"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-navy mb-2">Global Economics</h3>
+                        <p class="text-gray-600">Understanding international market dynamics and their domestic impact.</p>
+                    </div>
+                    
+                    <div class="p-6 border border-gray-200 rounded-lg hover:border-gold transition-all">
+                        <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mb-4">
+                            <i class="fas fa-building text-navy"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-navy mb-2">Industry Analysis</h3>
+                        <p class="text-gray-600">Sector-specific insights and industry development trends.</p>
+                    </div>
+                    
+                    <div class="p-6 border border-gray-200 rounded-lg hover:border-gold transition-all">
+                        <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-pie text-navy"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-navy mb-2">Portfolio Education</h3>
+                        <p class="text-gray-600">Educational framework for understanding portfolio construction concepts.</p>
+                    </div>
+                    
+                    <div class="p-6 border border-gray-200 rounded-lg hover:border-gold transition-all">
+                        <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mb-4">
+                            <i class="fas fa-lightbulb text-navy"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-navy mb-2">Market Psychology</h3>
+                        <p class="text-gray-600">Understanding behavioral influences on market movements.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="opensite()" class="contact-btn text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center mx-auto">
+                        <i class="fab fa-whatsapp text-xl mr-2"></i>
+                        Message Jeremy on WhatsApp
+                    </button>
+                    <p class="text-sm text-gray-500 mt-3">Response typically within 24 hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-20 navy-gradient text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-sm border border-gold/30 rounded-lg p-8 relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 text-[200px] opacity-5 z-0">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="text-center mb-8">
+                            <h6 class="text-gold font-bold uppercase tracking-wider mb-2">LIMITED TIME OFFER</h6>
+                            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Connect With Jeremy Vail Today</h2>
+                            <div class="section-divide mb-6"></div>
+                            <p class="text-lg opacity-90 max-w-2xl mx-auto mb-8">
+                                Due to high demand, Jeremy is only accepting <span class="font-bold text-gold">7 new clients</span> this week for his market analysis consultation.
+                            </p>
+                            
+                            <div class="flex justify-center mb-8">
+                                <div class="bg-navy/60 rounded-lg p-4 flex items-center gap-6">
+                                    <div class="text-center">
+                                        <div class="text-lg text-gold">Offer Expires In:</div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <div class="timer-box text-xl px-3 py-2">48</div>
+                                            <div class="timer-box text-xl px-3 py-2">12</div>
+                                            <div class="timer-box text-xl px-3 py-2">57</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-lg text-gold">Spots Remaining:</div>
+                                        <div class="text-4xl font-bold floating">7</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button onclick="opensite()" class="contact-btn text-white font-bold text-xl px-10 py-5 rounded-lg shadow-xl hover:shadow-2xl transition-all cursor-pointer flex items-center justify-center">
+                                    <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                                    Reserve Your Spot Now
+                                </button>
+                            </div>
+                            
+                            <div class="mt-6 flex flex-wrap justify-center gap-6">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>No obligation</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>100% Confidential</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>Educational Focus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Bottom -->
+    <section class="py-10 bg-navy border-b border-t border-gold/30">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto flex flex-wrap justify-center items-center gap-8 text-white text-sm">
+                <div class="flex items-center">
+                    <i class="fas fa-user-check text-gold mr-2"></i>
+                    <span><span class="font-bold">2,457</span> satisfied clients</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-star text-gold mr-2"></i>
+                    <span><span class="font-bold">4.9/5</span> average rating</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-certificate text-gold mr-2"></i>
+                    <span><span class="font-bold">22+</span> years experience</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-users text-gold mr-2"></i>
+                    <span><span class="font-bold">35+</span> countries served</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-university text-gold mr-2"></i>
+                    <span>Wall Street background</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-10">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <div class="flex items-center mb-4">
+                            <span class="font-serif font-bold text-navy text-xl">Mighty Prosperity Capital</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">
+                            Market analysis and investment education resources
+                        </p>
+                    </div>
+                    
+                    <div class="text-center md:text-right">
+                        <button onclick="opensite()" class="contact-btn text-white py-2 px-4 rounded flex items-center cursor-pointer">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            Connect on WhatsApp
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-200 mt-8 pt-8 text-sm text-gray-500">
+                    <p class="mb-4 text-center md:text-left">
+                        DISCLAIMER: The information provided is for educational and informational purposes only and does not constitute investment advice, a recommendation, an offer to sell, or a solicitation of an offer to buy any security. Investing involves risk, including the possible loss of principal. Past performance does not guarantee future results. Jeremy Vail and Mighty Prosperity Capital provide market analysis and educational resources but do not make specific investment recommendations or promise any particular results. Before making any investment decisions, consult with a qualified financial advisor, tax professional, or investment professional to determine what may be best for your individual needs.
+                    </p>
+                    <p class="text-center md:text-left">
+                        &copy; 2024 Mighty Prosperity Capital. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Bottom CTA on Mobile -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg z-50 border-t border-gray-200">
+        <button onclick="opensite()" class="contact-btn text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center shadow-lg w-full cursor-pointer">
+            <i class="fab fa-whatsapp mr-2"></i>
+            WhatsApp Jeremy Now
+        </button>
+    </div>
+
+    <script>
+        // Function to open the site/WhatsApp
+        function opensite() {
+            // You can redirect to any URL here
+            window.location.href = "https://wa.me/+1234567890";
+            
+            // Alternative: you can open in a new tab
+            // window.open("https://wa.me/+1234567890", "_blank");
+        }
+    </script>
+</body>
+</html>
