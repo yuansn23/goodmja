@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jeremy Vail | Mighty Prosperity Capital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0072F5',
+                        secondary: '#6366F1', 
+                        accent: '#00C2FF',
+                        dark: '#171A1F'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .gradient-btn {
+            background: linear-gradient(90deg, #0072F5 0%, #6366F1 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-btn:hover {
+            background: linear-gradient(90deg, #005BC2 0%, #5254CD 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 114, 245, 0.4);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #0072F5 0%, #6366F1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%230072f5' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button hover effect */
+        .hover-up {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-up:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(0, 114, 245, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-white text-dark">
+    <!-- Floating WhatsApp Button (Right Center) -->
+    <div onclick="opensite()" class="whatsapp-float cursor-pointer">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </div>
+
+    <!-- Header Section -->
+    <header class="relative overflow-hidden hero-pattern min-h-screen flex items-center bg-white">
+        <div class="absolute top-4 left-4 md:top-8 md:left-8 z-20">
+            <div class="flex items-center">
+                <i class="fas fa-chart-line text-primary text-2xl mr-2"></i>
+                <span class="font-bold text-xl text-dark">Mighty Prosperity Capital</span>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div class="order-2 md:order-1">
+                        <h1 class="text-3xl md:text-5xl font-bold mb-6 text-dark">Investment Insights from <span class="gradient-text">Jeremy Vail</span></h1>
+                        
+                        <p class="text-lg md:text-xl text-gray-600 mb-8">Gain valuable market perspective from a seasoned financial professional with over 22 years of industry experience.</p>
+                        
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                                <i class="fas fa-briefcase text-primary mr-2"></i>
+                                <span>22+ Years Experience</span>
+                            </div>
+                            <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                                <i class="fas fa-university text-primary mr-2"></i>
+                                <span>Portfolio Strategy Expert</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="opensite()" class="gradient-btn text-white text-lg font-bold px-8 py-4 rounded-xl inline-flex items-center shadow-lg cursor-pointer">
+                            <i class="fas fa-envelope text-xl mr-3"></i>
+                            Connect With Jeremy
+                            <i class="fas fa-arrow-right ml-3"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="order-1 md:order-2 flex justify-center">
+                        <div class="rounded-xl overflow-hidden shadow-xl">
+                            <img src="https://mighty-prosperity.com/upload/default/20241021/5b33aa5825c07d8b6ac12a5416df5877.png" alt="Jeremy Vail" class="w-full max-w-md">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Professional Background -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-10 text-center">Professional <span class="gradient-text">Background</span></h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Card 1 -->
+                        <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-lg transition-all">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-building text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Industry Leadership</h3>
+                            <p class="text-gray-600">Jeremy has held key positions at AllianceBernstein and Morgan Stanley, leading global investment strategy teams and managing diverse portfolios.</p>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-lg transition-all">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-pie text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Strategic Approach</h3>
+                            <p class="text-gray-600">Jeremy advocates for diversified portfolio strategies that can help investors navigate different market conditions through proper risk management.</p>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                        <div class="bg-white rounded-xl p-6 shadow-card hover:shadow-lg transition-all">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fas fa-book-open text-primary text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Market Research</h3>
+                            <p class="text-gray-600">With a focus on thorough market analysis and emerging trends, Jeremy helps investors understand potential opportunities in changing markets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Investment Methodology -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-6">Investment <span class="gradient-text">Methodology</span></h2>
+                            <p class="text-gray-600 mb-6">Jeremy's approach to investment is grounded in thorough research and diversification principles.</p>
+                            
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Multi-Market Analysis</span>
+                                        <p class="text-gray-600 text-sm">Comprehensive understanding of stocks, bonds, and alternative investments to build balanced portfolios.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Innovation Research</span>
+                                        <p class="text-gray-600 text-sm">Focus on market trends and technological developments that impact economic sectors.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-3"></i>
+                                    <div>
+                                        <span class="font-semibold">Risk Management</span>
+                                        <p class="text-gray-600 text-sm">Careful consideration of market volatility and investment diversity to help manage risk.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="mt-8">
+                                <button onclick="opensite()" class="gradient-btn text-white px-6 py-3 rounded-xl inline-flex items-center shadow-lg hover-up cursor-pointer">
+                                    <i class="fas fa-envelope text-xl mr-2"></i>
+                                    Learn More About Jeremy's Approach
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-8 rounded-xl">
+                            <h3 class="text-xl font-bold mb-4">Areas of Expertise</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                        <i class="fas fa-chart-line text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Equity Markets</h4>
+                                        <p class="text-sm text-gray-600">Research-driven analysis of company fundamentals</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                        <i class="fas fa-balance-scale text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Portfolio Diversification</h4>
+                                        <p class="text-sm text-gray-600">Strategies for balanced investment allocation</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                        <i class="fas fa-lightbulb text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Market Trends</h4>
+                                        <p class="text-sm text-gray-600">Identification of economic and sector developments</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                        <i class="fas fa-shield-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Risk Assessment</h4>
+                                        <p class="text-sm text-gray-600">Evaluation of market volatility factors</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonials -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-10 text-center">Client <span class="gradient-text">Testimonials</span></h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Testimonial 1 -->
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <p class="text-gray-600 mb-6">"Jeremy's comprehensive market analysis has provided me with valuable insights for my long-term investment planning. His approach to explaining complex market concepts is clear and educational."</p>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 text-primary font-bold">
+                                    RK
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Robert K.</h4>
+                                    <p class="text-gray-500 text-sm">Financial Planning Client</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 -->
+                        <div class="bg-white p-6 rounded-xl shadow-card">
+                            <p class="text-gray-600 mb-6">"As someone new to investing, I appreciate Jeremy's educational approach to market analysis. His emphasis on risk management principles has been particularly helpful in developing my investment understanding."</p>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 text-primary font-bold">
+                                    JL
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Jennifer L.</h4>
+                                    <p class="text-gray-500 text-sm">Investment Education Client</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-6">Connect With <span class="gradient-text">Jeremy Vail</span></h2>
+                    <p class="text-lg text-gray-600 mb-8">Interested in learning more about market analysis and investment education? Get in touch today.</p>
+                    
+                    <button onclick="opensite()" class="gradient-btn text-white text-xl font-bold px-10 py-5 rounded-xl inline-flex items-center shadow-lg hover-up cursor-pointer">
+                        <i class="fas fa-envelope text-2xl mr-3"></i>
+                        Request Information
+                    </button>
+                    
+                    <p class="text-gray-500 mt-6 text-sm">Educational resources and market insights available upon request.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Disclosure -->
+        <section class="py-8 bg-gray-50 border-t border-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        DISCLAIMER: The information provided is for educational and informational purposes only and does not constitute investment advice, a recommendation, an offer to sell, or a solicitation of an offer to buy any security. Investing involves risk, including the possible loss of principal. Past performance does not guarantee future results. Jeremy Vail and Mighty Prosperity Capital provide market analysis and educational resources but do not make specific investment recommendations or promise any particular results. Before making any investment decisions, consult with a qualified financial advisor, tax professional, or investment professional to determine what may be best for your individual needs.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Bottom CTA on Mobile -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white bg-opacity-95 p-4 shadow-lg z-50 border-t border-gray-200">
+        <button onclick="opensite()" class="gradient-btn text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center shadow-lg w-full cursor-pointer">
+            <i class="fas fa-envelope text-xl mr-2"></i>
+            Connect With Jeremy
+        </button>
+    </div>
+
+    <script>
+        // Function to open the site/WhatsApp
+        function opensite() {
+            // You can redirect to any URL here
+            window.location.href = "https://wa.me/+1234567890";
+            
+            // Alternative: you can open in a new tab
+            // window.open("https://wa.me/+1234567890", "_blank");
+        }
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.shadow-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                
+                // If element is in viewport
+                if(position.top < window.innerHeight && position.bottom >= 0) {
+                    element.classList.add('shadow-lg');
+                    setTimeout(() => {
+                        element.classList.remove('shadow-lg');
+                    }, 300);
+                }
+            });
+        }
+        
+        // Debounce function for scroll event
+        function debounce(func, wait = 20, immediate = true) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                const later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+        
+        window.addEventListener('scroll', debounce(animateOnScroll));
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+    </script>
+</body>
+</html>
