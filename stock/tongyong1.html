@@ -498,13 +498,27 @@
 
     <script>
         // Countdown Timer Logic
+        // Set the target date when the page loads (2 days and 12 hours from now)
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 2);
+        targetDate.setHours(targetDate.getHours() + 12);
+        
         function updateCountdown() {
-            const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 2); // 2 days from now
-            targetDate.setHours(targetDate.getHours() + 12); // Plus 12 hours
-            
             const currentDate = new Date();
             const difference = targetDate - currentDate;
+            
+            if (difference <= 0) {
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                
+                document.getElementById("days2").textContent = "00";
+                document.getElementById("hours2").textContent = "00";
+                document.getElementById("minutes2").textContent = "00";
+                document.getElementById("seconds2").textContent = "00";
+                return;
+            }
             
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -520,23 +534,11 @@
             document.getElementById("hours2").textContent = hours.toString().padStart(2, '0');
             document.getElementById("minutes2").textContent = minutes.toString().padStart(2, '0');
             document.getElementById("seconds2").textContent = seconds.toString().padStart(2, '0');
-            
-            if (difference < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById("days").textContent = "00";
-                document.getElementById("hours").textContent = "00";
-                document.getElementById("minutes").textContent = "00";
-                document.getElementById("seconds").textContent = "00";
-                
-                document.getElementById("days2").textContent = "00";
-                document.getElementById("hours2").textContent = "00";
-                document.getElementById("minutes2").textContent = "00";
-                document.getElementById("seconds2").textContent = "00";
-            }
         }
         
+        // Update immediately and then set interval
         updateCountdown();
-        const countdownInterval = setInterval(updateCountdown, 1000);
+        setInterval(updateCountdown, 1000);
         
         // Badge Animation
         function animateBadge() {
