@@ -202,9 +202,9 @@
                         <div class="flex items-center justify-between mb-2">
                             <span class="font-bold">Limited Availability:</span>
                             <div class="flex space-x-2">
-                                <div class="timer-box">48</div>
-                                <div class="timer-box">12</div>
-                                <div class="timer-box">57</div>
+                                <div class="timer-box countdown-hours">48</div>
+                                <div class="timer-box countdown-minutes">12</div>
+                                <div class="timer-box countdown-seconds">57</div>
                             </div>
                         </div>
                         <p class="text-sm opacity-80">Only <span class="font-bold text-gold">7 spots</span> remaining for this week's market analysis consultation</p>
@@ -513,11 +513,11 @@
                         <div class="flex items-center justify-between mb-4">
                             <h3 class="font-serif text-xl font-bold text-gold">Limited-Time Educational Opportunity</h3>
                             <div class="flex space-x-1">
-                                <div class="timer-box">48</div>
+                                <div class="timer-box countdown-hours-2">48</div>
                                 <span>:</span>
-                                <div class="timer-box">12</div>
+                                <div class="timer-box countdown-minutes-2">12</div>
                                 <span>:</span>
-                                <div class="timer-box">57</div>
+                                <div class="timer-box countdown-seconds-2">57</div>
                             </div>
                         </div>
                         <p class="mb-6 opacity-90">For a limited time, Jeremy is offering personalized market analysis consultations. Due to high demand, only <span class="font-bold text-gold">7 spots</span> remain available this week.</p>
@@ -729,9 +729,9 @@
                                     <div class="text-center">
                                         <div class="text-lg text-gold">Offer Expires In:</div>
                                         <div class="flex space-x-2 mt-2">
-                                            <div class="timer-box text-xl px-3 py-2">48</div>
-                                            <div class="timer-box text-xl px-3 py-2">12</div>
-                                            <div class="timer-box text-xl px-3 py-2">57</div>
+                                            <div class="timer-box text-xl px-3 py-2 countdown-hours-3">48</div>
+                                            <div class="timer-box text-xl px-3 py-2 countdown-minutes-3">12</div>
+                                            <div class="timer-box text-xl px-3 py-2 countdown-seconds-3">57</div>
                                         </div>
                                     </div>
                                     <div class="text-center">
@@ -848,6 +848,56 @@
             // Alternative: you can open in a new tab
             // window.open("https://wa.me/+1234567890", "_blank");
         }
+        
+        // Countdown Timer Implementation
+        function startCountdown() {
+            // Set the countdown for 48 hours from now
+            const now = new Date();
+            const endTime = new Date(now.getTime() + 48 * 60 * 60 * 1000); // 48 hours in milliseconds
+            
+            function updateTimer() {
+                const currentTime = new Date();
+                const timeDifference = endTime - currentTime;
+                
+                if (timeDifference <= 0) {
+                    // Timer has expired
+                    document.querySelectorAll('[class*="countdown-hours"]').forEach(el => el.textContent = "00");
+                    document.querySelectorAll('[class*="countdown-minutes"]').forEach(el => el.textContent = "00");
+                    document.querySelectorAll('[class*="countdown-seconds"]').forEach(el => el.textContent = "00");
+                    return;
+                }
+                
+                // Calculate hours, minutes, seconds
+                const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+                
+                // Format the numbers (add leading zero if needed)
+                const formattedHours = hours < 10 ? "0" + hours : hours;
+                const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+                const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                // Update all countdown hour elements
+                document.querySelectorAll('[class*="countdown-hours"]').forEach(el => el.textContent = formattedHours);
+                
+                // Update all countdown minute elements
+                document.querySelectorAll('[class*="countdown-minutes"]').forEach(el => el.textContent = formattedMinutes);
+                
+                // Update all countdown second elements
+                document.querySelectorAll('[class*="countdown-seconds"]').forEach(el => el.textContent = formattedSeconds);
+            }
+            
+            // Initial update
+            updateTimer();
+            
+            // Update every second
+            return setInterval(updateTimer, 1000);
+        }
+        
+        // Start the countdown timer when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            startCountdown();
+        });
     </script>
 </body>
 </html>
