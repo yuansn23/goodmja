@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global eSIM | Stay Connected Worldwide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066CC',
+                        secondary: '#00B2FF',
+                        accent: '#FF6B00',
+                        dark: {
+                            primary: '#0077E6',
+                            secondary: '#1AC0FF',
+                            bg: '#121212'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                },
+            },
+        }
+
+        // Detect dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        function redirectToSite() {
+            window.open('https://www.qq.com', '_blank');
+        }
+
+        function showPromotion() {
+            alert('Limited time offer: Get an additional 5% cashback when you order today!');
+        }
+
+        // Countdown timer
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                // Set the countdown for 24 hours from now
+                const deadline = new Date();
+                deadline.setHours(deadline.getHours() + 24);
+                
+                // Update the countdown every second
+                const timer = setInterval(function() {
+                    const now = new Date().getTime();
+                    const distance = deadline - now;
+                    
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                    countdownElement.innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    if (distance < 0) {
+                        clearInterval(timer);
+                        countdownElement.innerHTML = "OFFER EXPIRED";
+                    }
+                }, 1000);
+            }
+        });
+    </script>
+    <style>
+        .globe-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 102, 204, 0.1), 0 10px 10px -5px rgba(0, 102, 204, 0.04);
+        }
+        .side-button {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        .custom-shape-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .custom-shape-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+        .custom-shape-divider .shape-fill {
+            fill: #F0F9FF;
+        }
+        .dark .custom-shape-divider .shape-fill {
+            fill: #1E3A8A;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 dark:text-gray-200 dark:bg-dark-bg">
+    <!-- Side Download Button -->
+    <div class="side-button">
+        <button onclick="redirectToSite()" class="bg-primary hover:bg-blue-700 dark:bg-dark-primary dark:hover:bg-blue-600 text-white p-4 rounded-l-lg shadow-lg transition-all duration-300 flex items-center justify-center">
+            <i class="fas fa-download text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen bg-gradient-to-br from-blue-50 to-sky-100 dark:from-blue-900 dark:to-blue-800 flex items-center overflow-hidden">
+        <div class="custom-shape-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10 py-20 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-16 md:mb-0">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary dark:text-white leading-tight mb-6">
+                    Global Connectivity <span class="text-accent">Without Limits</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
+                    Join over <span class="font-bold">300,000 global travelers</span> who save up to 55% on roaming costs with our premium eSIM solution.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="redirectToSite()" class="bg-primary hover:bg-blue-700 dark:bg-dark-primary dark:hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 text-lg flex items-center">
+                        Get Your eSIM Now
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-md flex items-center">
+                        <div class="mr-3">
+                            <span class="text-xs text-gray-500 dark:text-gray-400">Limited Offer Ends In:</span>
+                            <div id="countdown" class="font-mono text-accent dark:text-amber-400 font-bold">23:59:59</div>
+                        </div>
+                        <div class="animate-pulse-slow">
+                            <i class="fas fa-stopwatch text-accent dark:text-amber-400 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-80 h-80">
+                    <div class="absolute inset-0 bg-blue-500 dark:bg-blue-600 rounded-full opacity-10 animate-pulse"></div>
+                    <div class="globe-animation relative w-full h-full flex items-center justify-center">
+                        <i class="fas fa-globe-americas text-primary dark:text-blue-400 text-9xl"></i>
+                        <div class="absolute -top-4 -right-4 bg-accent text-white text-sm font-bold rounded-full px-3 py-1 shadow-lg">
+                            200+ Countries
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-white dark:bg-gray-900 py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white">Why Choose Our eSIM?</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+                    <span class="font-semibold text-primary dark:text-blue-400">89% of tech reviewers recommend</span> our service for international travelers
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-blue-50 dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300">
+                    <div class="bg-primary dark:bg-dark-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-globe text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Global Coverage</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Connect seamlessly in 200+ countries and regions around the world.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-blue-50 dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300">
+                    <div class="bg-primary dark:bg-dark-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-percentage text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">20% Cashback</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Earn up to 20% cashback on your international connectivity purchases.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-blue-50 dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300">
+                    <div class="bg-primary dark:bg-dark-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Multi-Device Support</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Link multiple devices and stay connected across all your gadgets.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-blue-50 dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300">
+                    <div class="bg-primary dark:bg-dark-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-piggy-bank text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Save 55% on Costs</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Cut your communication expenses by up to 55% compared to traditional roaming.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-blue-50 dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300">
+                    <div class="bg-primary dark:bg-dark-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-headset text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">24/7 Support</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Our human customer service team is available around the clock to assist you.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-blue-50 dark:bg-gray-800 rounded-xl p-6 shadow-md transition-all duration-300">
+                    <div class="bg-primary dark:bg-dark-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Privacy Protected</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        No contracts, enhanced privacy protection, and money-back guarantee if not usable.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Download CTA in Features Section -->
+            <div class="mt-12 text-center">
+                <button onclick="redirectToSite()" class="bg-primary hover:bg-blue-700 dark:bg-dark-primary dark:hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 text-lg flex items-center mx-auto">
+                    <i class="fas fa-download mr-2"></i> Download eSIM App
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="bg-blue-50 dark:bg-blue-900 py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white">Join Our Global Community</h2>
+                <p class="text-gray-600 dark:text-gray-300 mt-4">
+                    The most trusted eSIM solution on the market
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-around mb-16">
+                <div class="text-center mb-8 md:mb-0">
+                    <div class="text-4xl font-bold text-primary dark:text-blue-300 mb-2">300,000+</div>
+                    <div class="text-gray-600 dark:text-gray-400">Global Users</div>
+                </div>
+                
+                <div class="text-center mb-8 md:mb-0">
+                    <div class="text-4xl font-bold text-primary dark:text-blue-300 mb-2">89%</div>
+                    <div class="text-gray-600 dark:text-gray-400">KOL Recommendation Rate</div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary dark:text-blue-300 mb-2">55%</div>
+                    <div class="text-gray-600 dark:text-gray-400">Average Savings</div>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg text-center max-w-3xl mx-auto">
+                <div class="flex justify-center mb-4">
+                    <div class="flex">
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl"></i>
+                        <i class="fas fa-star-half-alt text-yellow-400 text-xl"></i>
+                    </div>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 italic text-lg mb-4">
+                    "This eSIM has been a game-changer for my international business trips. The coverage is excellent, and I love saving money while staying connected across multiple devices."
+                </p>
+                <div class="font-semibold text-primary dark:text-blue-300">
+                    Sarah T. — Business Traveler
+                </div>
+                <div class="mt-6">
+                    <button onclick="redirectToSite()" class="bg-accent hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 inline-flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download Now
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Additional Download CTA Button -->
+            <div class="mt-10 text-center">
+                <button onclick="redirectToSite()" class="bg-primary hover:bg-blue-700 dark:bg-dark-primary dark:hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 text-lg flex items-center mx-auto">
+                    <i class="fas fa-download mr-2"></i> Get Your eSIM App
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-primary to-blue-600 dark:from-blue-800 dark:to-indigo-900 py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-8">Limited Time Offer — Act Now!</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                Only <span class="font-bold">50 eSIMs</span> remaining at this special rate. Get yours before they're gone!
+            </p>
+            <button onclick="redirectToSite()" class="bg-accent hover:bg-orange-600 text-white text-xl font-bold py-4 px-10 rounded-full shadow-xl transform transition-all duration-300 hover:scale-105 flex items-center mx-auto">
+                <i class="fas fa-download mr-3"></i> Download eSIM App Now
+            </button>
+            <div class="mt-6 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
+                <p class="text-blue-200">
+                    <i class="fas fa-shield-alt mr-2"></i> Money-back guarantee if not satisfied
+                </p>
+                <button onclick="redirectToSite()" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+                    <i class="fas fa-download mr-2"></i> Get Alternative Version
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="text-2xl font-bold">Global eSIM</div>
+                    <div class="text-gray-400 text-sm">Stay Connected Worldwide</div>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-sm text-gray-400 text-center">
+                <p>Privacy Protected. No Contracts. Money-Back Guarantee.</p>
+                <p class="mt-2">&copy; 2023 Global eSIM. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
