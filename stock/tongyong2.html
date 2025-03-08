@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockPro | Join Our Expert Trading Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1F3A5F',
+                        secondary: '#4E7AC7',
+                        accent: '#28B463',
+                        danger: '#E74C3C',
+                        warning: '#F39C12',
+                        purple: '#8E44AD',
+                        teal: '#16A085',
+                        light: '#F4F7FA',
+                        dark: '#0E1C2F'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+        
+        function opensite() {
+            // Open WhatsApp link
+            window.open('https://wa.me/1234567890', '_blank');
+        }
+        
+        // Countdown Timer Script
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set the date we're counting down to (24 hours from now)
+            const countDownDate = new Date();
+            countDownDate.setHours(countDownDate.getHours() + 24);
+            
+            function updateCountdown() {
+                // Get current date and time
+                const now = new Date().getTime();
+                
+                // Find the distance between now and the countdown date
+                const distance = countDownDate - now;
+                
+                // Time calculations for hours, minutes and seconds
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Display the result
+                const hourElements = document.querySelectorAll('.countdown-hours');
+                const minuteElements = document.querySelectorAll('.countdown-minutes');
+                const secondElements = document.querySelectorAll('.countdown-seconds');
+                
+                hourElements.forEach(el => {
+                    el.innerHTML = hours.toString().padStart(2, '0');
+                });
+                minuteElements.forEach(el => {
+                    el.innerHTML = minutes.toString().padStart(2, '0');
+                });
+                secondElements.forEach(el => {
+                    el.innerHTML = seconds.toString().padStart(2, '0');
+                });
+                
+                // If the countdown is finished, display expired message
+                if (distance < 0) {
+                    clearInterval(x);
+                    hourElements.forEach(el => { el.innerHTML = "00"; });
+                    minuteElements.forEach(el => { el.innerHTML = "00"; });
+                    secondElements.forEach(el => { el.innerHTML = "00"; });
+                }
+            }
+            
+            // Update the countdown every 1 second
+            updateCountdown();
+            const x = setInterval(updateCountdown, 1000);
+        });
+
+        // Show popup after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('popup').classList.remove('hidden');
+            }, 5000);
+        });
+
+        function closePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Notification icon */
+        .notification-icon {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #E74C3C;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Button hover effect */
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Countdown timer styles */
+        .countdown-box {
+            perspective: 400px;
+        }
+        
+        .countdown-unit {
+            background-color: #0E1C2F;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            width: 60px;
+            text-align: center;
+            position: relative;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .countdown-unit::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Testimonial card styling */
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Float animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Pulse animation */
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Popup styling */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .popup-content {
+            background-color: white;
+            border-radius: 12px;
+            max-width: 95%;
+            width: 450px;
+            position: relative;
+            animation: popIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-light text-gray-800">
+    <!-- Notification Icon -->
+    <div class="notification-icon">
+        <button onclick="opensite()" class="relative bg-purple hover:bg-purple-700 text-white p-4 rounded-l-lg shadow-lg transition-all duration-300">
+            <i class="fab fa-whatsapp text-xl"></i>
+            <span class="notification-badge">1</span>
+        </button>
+    </div>
+
+    <!-- Header & Hero Section -->
+    <header class="bg-gradient-to-r from-primary to-purple text-white">
+        <!-- Navigation Bar -->
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-chart-line text-2xl mr-2"></i>
+                <span class="font-bold text-xl">StockPro</span>
+            </div>
+            <button onclick="opensite()" class="bg-accent hover:bg-green-600 px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-300 flex items-center">
+                <i class="fab fa-whatsapp mr-2"></i> Join Community
+            </button>
+        </nav>
+        
+        <!-- Hero Content -->
+        <div class="container mx-auto px-6 py-16 md:py-24">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Join Our Elite Stock Trading Community</h1>
+                    <p class="text-lg mb-8 text-blue-100">Get instant access to professional trading signals, market insights and connect with experienced traders.</p>
+                    
+                    <!-- Authority Badge -->
+                    <div class="bg-dark inline-block px-3 py-1 rounded-full text-sm font-semibold mb-6">
+                        <i class="fas fa-shield-alt mr-1"></i> 
+                        Trusted by <span class="text-accent">20,000+</span> active traders
+                    </div>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="mb-8">
+                        <p class="text-sm text-blue-200 mb-2">Limited spots remaining. Closing in:</p>
+                        <div class="flex space-x-2 countdown-box">
+                            <div class="countdown-unit">
+                                <span class="countdown-hours text-xl font-bold">24</span>
+                            </div>
+                            <span class="text-xl font-bold self-center">:</span>
+                            <div class="countdown-unit">
+                                <span class="countdown-minutes text-xl font-bold">00</span>
+                            </div>
+                            <span class="text-xl font-bold self-center">:</span>
+                            <div class="countdown-unit">
+                                <span class="countdown-seconds text-xl font-bold">00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <button onclick="opensite()" class="cta-button bg-accent hover:bg-green-600 px-8 py-4 rounded-lg text-lg font-semibold shadow-lg flex items-center pulse-animation">
+                        <i class="fab fa-whatsapp mr-2"></i> Join WhatsApp Group Now
+                    </button>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-10">
+                    <div class="relative">
+                        <!-- Stock Chart Image -->
+                        <img src="https://www.goodmja.online/stock/steptodown.com798308.jpg" alt="Stock Analysis on Mobile" class="rounded-lg shadow-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main benefits section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-primary mb-4">Why Join Our Trading Community?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Connect with expert traders and get access to exclusive market insights that can transform your trading results.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-light p-6 rounded-lg shadow-sm border border-gray-200 hover:border-accent transition-all duration-300">
+                    <div class="mb-4 text-teal">
+                        <i class="fas fa-signal text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Real-Time Signals</h3>
+                    <p class="text-gray-600">
+                        Receive instant trading signals and alerts sent directly to your phone via WhatsApp.
+                    </p>
+                    <button onclick="opensite()" class="mt-4 bg-teal hover:bg-teal-600 text-white px-4 py-2 rounded-lg w-full">
+                        Get Signals
+                    </button>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="bg-light p-6 rounded-lg shadow-sm border border-gray-200 hover:border-accent transition-all duration-300">
+                    <div class="mb-4 text-purple">
+                        <i class="fas fa-users text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Expert Community</h3>
+                    <p class="text-gray-600">
+                        Connect with successful traders and learn their strategies through our active WhatsApp group.
+                    </p>
+                    <button onclick="opensite()" class="mt-4 bg-purple hover:bg-purple-700 text-white px-4 py-2 rounded-lg w-full">
+                        Join Community
+                    </button>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="bg-light p-6 rounded-lg shadow-sm border border-gray-200 hover:border-accent transition-all duration-300">
+                    <div class="mb-4 text-warning">
+                        <i class="fas fa-laptop-code text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Market Analysis</h3>
+                    <p class="text-gray-600">
+                        Daily market analysis and insights to help you make informed trading decisions.
+                    </p>
+                    <button onclick="opensite()" class="mt-4 bg-warning hover:bg-yellow-600 text-white px-4 py-2 rounded-lg w-full">
+                        Access Analysis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image showcase section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-primary mb-4">Professional Trading Tools</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">See what our community members have access to</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105">
+                    <img src="https://www.goodmja.online/stock/steptodown.com947431.jpg" alt="Professional Trading Dashboard" class="w-full h-auto">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                        <h3 class="text-white text-xl font-bold mb-2">Advanced Analytics</h3>
+                        <button onclick="opensite()" class="bg-accent hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center w-auto">
+                            <i class="fab fa-whatsapp mr-2"></i> Join to Access
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative overflow-hidden rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105">
+                    <img src="https://www.goodmja.online/stock/steptodown.com993519.jpg" alt="Global Market Analysis" class="w-full h-auto">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                        <h3 class="text-white text-xl font-bold mb-2">Global Markets Data</h3>
+                        <button onclick="opensite()" class="bg-purple hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center w-auto">
+                            <i class="fab fa-whatsapp mr-2"></i> Get Insights
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-primary mb-4">Traders Just Like You Are Succeeding</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Join the community of traders who have improved their trading results.
+                </p>
+            </div>
+            
+            <!-- Stats Row -->
+            <div class="flex flex-wrap justify-center mb-16">
+                <div class="w-full md:w-1/3 px-4 text-center mb-8 md:mb-0">
+                    <div class="text-4xl font-bold text-teal mb-2">94%</div>
+                    <div class="text-gray-600">Community engagement rate</div>
+                </div>
+                
+                <div class="w-full md:w-1/3 px-4 text-center mb-8 md:mb-0">
+                    <div class="text-4xl font-bold text-purple mb-2">20,000+</div>
+                    <div class="text-gray-600">Active community members</div>
+                </div>
+                
+                <div class="w-full md:w-1/3 px-4 text-center">
+                    <div class="text-4xl font-bold text-warning mb-2">3x</div>
+                    <div class="text-gray-600">Average improvement in results</div>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        "The WhatsApp community has been a game-changer. The signals are accurate and the discussions with other traders have helped me improve dramatically."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="ml-3">
+                            <div class="font-semibold">Michael R.</div>
+                            <div class="text-sm text-gray-500">Member for 8 months</div>
+                        </div>
+                    </div>
+                    <button onclick="opensite()" class="mt-4 bg-accent hover:bg-green-600 text-white py-2 rounded-lg w-full flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Join Now
+                    </button>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        "As a beginner, I was overwhelmed by the stock market. This community guided me step by step and now I'm trading with confidence."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="ml-3">
+                            <div class="font-semibold">Sarah J.</div>
+                            <div class="text-sm text-gray-500">Member for 3 months</div>
+                        </div>
+                    </div>
+                    <button onclick="opensite()" class="mt-4 bg-purple hover:bg-purple-700 text-white py-2 rounded-lg w-full flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Join Group
+                    </button>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        "The instant alerts have saved me thousands of dollars. Being connected via WhatsApp means I never miss an important market move."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="ml-3">
+                            <div class="font-semibold">David L.</div>
+                            <div class="text-sm text-gray-500">Member for 1 year</div>
+                        </div>
+                    </div>
+                    <button onclick="opensite()" class="mt-4 bg-teal hover:bg-teal-600 text-white py-2 rounded-lg w-full flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Get Access
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- US Market Focus Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h2 class="text-3xl font-bold text-primary mb-6">US Market Experts at Your Fingertips</h2>
+                    <p class="text-gray-600 mb-6">
+                        Our community specializes in the US stock market, providing you with cutting-edge analysis and insights on major indices, blue-chip stocks, and emerging opportunities.
+                    </p>
+                    
+                    <!-- Authority Badges -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center p-3 bg-light rounded-lg border border-gray-200">
+                            <i class="fas fa-chart-line text-purple text-2xl mr-3"></i>
+                            <div>
+                                <div class="font-semibold">Real-time US Market Updates</div>
+                                <div class="text-sm text-gray-500">Pre-market to after-hours</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-light rounded-lg border border-gray-200">
+                            <i class="fas fa-hand-holding-usd text-teal text-2xl mr-3"></i>
+                            <div>
+                                <div class="font-semibold">Actionable Trade Ideas</div>
+                                <div class="text-sm text-gray-500">Entry and exit points</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-light rounded-lg border border-gray-200">
+                            <i class="fas fa-user-tie text-warning text-2xl mr-3"></i>
+                            <div>
+                                <div class="font-semibold">Wall Street Insights</div>
+                                <div class="text-sm text-gray-500">Institutional perspective</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-light rounded-lg border border-gray-200">
+                            <i class="fas fa-comments-dollar text-accent text-2xl mr-3"></i>
+                            <div>
+                                <div class="font-semibold">24/7 Community Support</div>
+                                <div class="text-sm text-gray-500">Never trade alone</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="opensite()" class="cta-button bg-purple hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-md flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i> Join US Market WhatsApp Group
+                    </button>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-16">
+                    <div class="relative">
+                        <img src="https://www.goodmja.online/stock/steptodown.com889203.jpg" alt="US Dollar Investment Growth" class="rounded-lg shadow-xl float-animation">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-primary to-purple text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Limited Time Opportunity</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                We're only accepting 100 new members this week to ensure quality interaction within our community.
+            </p>
+            
+            <!-- Countdown -->
+            <div class="flex justify-center mb-10">
+                <div class="flex space-x-4">
+                    <div class="bg-dark p-4 rounded-lg text-center min-w-[80px]">
+                        <span class="countdown-hours text-3xl font-bold">24</span>
+                        <div class="text-xs text-blue-200 mt-1">HOURS</div>
+                    </div>
+                    <div class="bg-dark p-4 rounded-lg text-center min-w-[80px]">
+                        <span class="countdown-minutes text-3xl font-bold">00</span>
+                        <div class="text-xs text-blue-200 mt-1">MINUTES</div>
+                    </div>
+                    <div class="bg-dark p-4 rounded-lg text-center min-w-[80px]">
+                        <span class="countdown-seconds text-3xl font-bold">00</span>
+                        <div class="text-xs text-blue-200 mt-1">SECONDS</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="max-w-2xl mx-auto mb-10">
+                <div class="flex justify-between text-sm mb-2">
+                    <span>Spots remaining: <strong>12/100</strong></span>
+                    <span>88% filled</span>
+                </div>
+                <div class="h-3 bg-blue-800 rounded-full overflow-hidden">
+                    <div class="bg-accent h-full" style="width: 88%"></div>
+                </div>
+            </div>
+            
+            <button onclick="opensite()" class="cta-button bg-accent hover:bg-green-600 text-white px-10 py-4 rounded-lg text-xl font-bold shadow-lg pulse-animation flex items-center mx-auto">
+                <i class="fab fa-whatsapp text-2xl mr-3"></i> Join WhatsApp Community Now
+            </button>
+            
+            <p class="mt-6 text-sm text-blue-200">
+                <i class="fas fa-lock-open mr-1"></i> No obligation. You can leave the group anytime.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="font-bold text-xl mb-4 flex items-center">
+                        <i class="fas fa-chart-line mr-2"></i> StockPro
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Join our exclusive trading community for market insights, real-time signals, and expert guidance.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fab fa-whatsapp mr-2"></i> WhatsApp Community</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200 flex items-center"><i class="fab fa-facebook mr-2"></i> Facebook</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200 flex items-center"><i class="far fa-envelope mr-2"></i> Email Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Trading Resources</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">About Our Community</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Success Stories</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Trading Education</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-sm text-gray-400">
+                <p class="mb-4">
+                    <strong>Risk Disclosure:</strong> Trading in financial instruments carries a high level of risk to your capital with the possibility of losing more than your initial investment. You should not invest money that you cannot afford to lose.
+                </p>
+                <p>
+                    &copy; 2023 StockPro Community. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popup -->
+    <div id="popup" class="popup-overlay hidden">
+        <div class="popup-content">
+            <button onclick="closePopup()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="p-6">
+                <div class="text-center mb-4">
+                    <i class="fab fa-whatsapp text-4xl text-accent"></i>
+                    <h3 class="text-xl font-bold text-primary mt-2">Don't Miss Out!</h3>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    Our WhatsApp community is about to share new market insights. Join now to get today's trading signals!
+                </p>
+                <div class="bg-gray-100 p-3 rounded-lg mb-4 text-sm">
+                    <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white mr-2">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="font-semibold">John (Lead Analyst)</span>
+                    </div>
+                    <p class="text-gray-700">Just posted a major signal on tech stocks that's showing a 92% success rate in our backtesting...</p>
+                </div>
+                <button onclick="opensite()" class="w-full bg-accent hover:bg-green-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-2"></i> Join WhatsApp Group Now
+                </button>
+                <p class="text-xs text-center text-gray-500 mt-3">Only 12 spots remaining!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
