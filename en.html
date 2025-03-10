@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Susan英语</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/marked@4.0.2/marked.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#FF9D6C',
+                        accent: '#FFD166',
+                        background: {
+                            light: '#FFFFFF',
+                            dark: '#181818'
+                        },
+                        text: {
+                            light: '#333333',
+                            dark: '#F5F5F5'
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                    }
+                }
+            },
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        /* Custom styles */
+        .category-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .star {
+            animation: star-pulse 1.5s ease infinite;
+        }
+        @keyframes star-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* For Firefox support */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #5D5CDE #DFE9EB;
+        }
+        
+        /* For Chrome, Edge, and Safari */
+        *::-webkit-scrollbar {
+            width: 10px;
+        }
+        *::-webkit-scrollbar-track {
+            background: #DFE9EB;
+            border-radius: 5px;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #5D5CDE;
+            border-radius: 5px;
+            border: 2px solid #DFE9EB;
+        }
+        
+        .dark * {
+            scrollbar-color: #7775E8 #333;
+        }
+        .dark *::-webkit-scrollbar-track {
+            background: #333;
+        }
+        .dark *::-webkit-scrollbar-thumb {
+            background-color: #7775E8;
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark min-h-screen">
+    <div id="app" class="max-w-md mx-auto pb-20 relative">
+        <!-- Header -->
+        <header class="p-4 flex items-center justify-between bg-primary text-white rounded-b-xl shadow-md sticky top-0 z-10">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mr-3 overflow-hidden">
+                    <!-- Susan Avatar (placeholder) -->
+                    <svg class="w-full h-full text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" fill="currentColor"/>
+                        <path d="M12 13C7.58172 13 4 16.5817 4 21H20C20 16.5817 16.4183 13 12 13Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h1 class="text-xl font-bold">Susan英语</h1>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center">
+                    <span id="star-count" class="font-bold text-lg mr-1">0</span>
+                    <svg class="w-6 h-6 text-yellow-300 star" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab navigation -->
+        <div class="flex border-b dark:border-gray-700 mt-2">
+            <button id="video-tab" class="flex-1 py-3 px-4 text-center font-bold text-primary border-b-2 border-primary">
+                视频
+            </button>
+            <button id="audio-tab" class="flex-1 py-3 px-4 text-center font-bold text-gray-500 dark:text-gray-400">
+                音频
+            </button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="content-container" class="p-4">
+            <!-- Videos tab (default visible) -->
+            <div id="video-content" class="space-y-6">
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Category 1 -->
+                    <div class="category-card rounded-xl overflow-hidden shadow-md bg-white dark:bg-gray-800">
+                        <div class="bg-primary p-3 text-white font-bold flex justify-between items-center">
+                            <span>启蒙贴贴卡</span>
+                            <span class="text-xs px-2 py-1 bg-white text-primary rounded-full">热门</span>
+                        </div>
+                        <div class="p-4 space-y-3">
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="启蒙贴贴卡" data-item="引导输出 1">
+                                <div class="w-14 h-14 bg-primary rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">引导输出</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">贴贴卡视频 1</p>
+                                </div>
+                            </div>
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="启蒙贴贴卡" data-item="常速语境 1">
+                                <div class="w-14 h-14 bg-primary rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">常速语境</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">贴贴卡视频 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2 -->
+                    <div class="category-card rounded-xl overflow-hidden shadow-md bg-white dark:bg-gray-800">
+                        <div class="bg-secondary p-3 text-white font-bold">超级名词卡</div>
+                        <div class="p-4 space-y-3">
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="超级名词卡" data-item="引导输出 1">
+                                <div class="w-14 h-14 bg-secondary rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">引导输出</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">名词卡视频 1</p>
+                                </div>
+                            </div>
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="超级名词卡" data-item="常速语境 1">
+                                <div class="w-14 h-14 bg-secondary rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">常速语境</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">名词卡视频 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3 -->
+                    <div class="category-card rounded-xl overflow-hidden shadow-md bg-white dark:bg-gray-800">
+                        <div class="bg-accent p-3 text-white font-bold">超级动词卡</div>
+                        <div class="p-4 space-y-3">
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="超级动词卡" data-item="引导输出 1">
+                                <div class="w-14 h-14 bg-accent rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">引导输出</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">动词卡视频 1</p>
+                                </div>
+                            </div>
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="超级动词卡" data-item="常速语境 1">
+                                <div class="w-14 h-14 bg-accent rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">常速语境</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">动词卡视频 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4 -->
+                    <div class="category-card rounded-xl overflow-hidden shadow-md bg-white dark:bg-gray-800">
+                        <div class="bg-pink-500 p-3 text-white font-bold">超级形容词卡</div>
+                        <div class="p-4 space-y-3">
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="超级形容词卡" data-item="引导输出 1">
+                                <div class="w-14 h-14 bg-pink-500 rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">引导输出</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">形容词卡视频 1</p>
+                                </div>
+                            </div>
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="超级形容词卡" data-item="常速语境 1">
+                                <div class="w-14 h-14 bg-pink-500 rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">常速语境</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">形容词卡视频 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 5 -->
+                    <div class="category-card rounded-xl overflow-hidden shadow-md bg-white dark:bg-gray-800">
+                        <div class="bg-green-500 p-3 text-white font-bold">万物贴</div>
+                        <div class="p-4 space-y-3">
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="万物贴" data-item="引导输出 1">
+                                <div class="w-14 h-14 bg-green-500 rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">引导输出</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">万物贴视频 1</p>
+                                </div>
+                            </div>
+                            <div class="video-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="video" data-category="万物贴" data-item="常速语境 1">
+                                <div class="w-14 h-14 bg-green-500 rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">常速语境</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">万物贴视频 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Audio tab (initially hidden) -->
+            <div id="audio-content" class="space-y-6 hidden">
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Category 1 -->
+                    <div class="category-card rounded-xl overflow-hidden shadow-md bg-white dark:bg-gray-800">
+                        <div class="bg-primary p-3 text-white font-bold flex justify-between items-center">
+                            <span>启蒙贴贴卡</span>
+                            <span class="text-xs px-2 py-1 bg-white text-primary rounded-full">热门</span>
+                        </div>
+                        <div class="p-4 space-y-3">
+                            <div class="audio-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="audio" data-category="启蒙贴贴卡" data-item="引导输出 1">
+                                <div class="w-14 h-14 bg-primary rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414-6.658m-2.9 9.9a9 9 0 01-2.804-12.728"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v-2m0-8v2m0 6a2 2 0 100-4 2 2 0 000 4z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">引导输出</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">贴贴卡音频 1</p>
+                                </div>
+                            </div>
+                            <div class="audio-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="audio" data-category="启蒙贴贴卡" data-item="常速语境 1">
+                                <div class="w-14 h-14 bg-primary rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414-6.658m-2.9 9.9a9 9 0 01-2.804-12.728"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v-2m0-8v2m0 6a2 2 0 100-4 2 2 0 000 4z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">常速语境</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">贴贴卡音频 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Audio Categories follow the same pattern... -->
+                    <!-- (Condensed for brevity) -->
+                    
+                    <!-- Category 2 -->
+                    <div class="category-card rounded-xl overflow-hidden shadow-md bg-white dark:bg-gray-800">
+                        <div class="bg-secondary p-3 text-white font-bold">超级名词卡</div>
+                        <div class="p-4 space-y-3">
+                            <div class="audio-item p-3 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center cursor-pointer" data-type="audio" data-category="超级名词卡" data-item="引导输出 1">
+                                <div class="w-14 h-14 bg-secondary rounded-lg flex items-center justify-center text-white mr-3">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414-6.658m-2.9 9.9a9 9 0 01-2.804-12.728"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v-2m0-8v2m0 6a2 2 0 100-4 2 2 0 000 4z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold">引导输出</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">名词卡音频 1</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3-5 follow similar patterns for audio items -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Player overlay (hidden by default) -->
+        <div id="player-overlay" class="fixed inset-0 bg-black bg-opacity-80 z-20 flex flex-col justify-center items-center hidden p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-5 relative">
+                <button id="close-player" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
+                <div id="player-content" class="pt-4">
+                    <h2 id="player-title" class="text-xl font-bold mb-2 text-gray-800 dark:text-white"></h2>
+                    <p id="player-category" class="text-sm text-gray-600 dark:text-gray-300 mb-4"></p>
+                    
+                    <!-- Video Player -->
+                    <div id="video-player-container" class="rounded-lg overflow-hidden mb-4 aspect-video bg-gray-900 flex items-center justify-center">
+                        <div class="text-center p-6">
+                            <svg class="w-16 h-16 text-primary mx-auto mb-4 animate-bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="text-white text-lg font-bold">视频播放模拟</p>
+                            <p class="text-gray-300 text-sm mt-2">实际应用中，这里将显示来自百度网盘的视频内容</p>
+                        </div>
+                    </div>
+
+                    <!-- Audio Player -->
+                    <div id="audio-player-container" class="rounded-lg overflow-hidden mb-4 bg-gray-100 dark:bg-gray-700 p-4 hidden">
+                        <div class="flex flex-col items-center">
+                            <svg class="w-16 h-16 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414-6.658m-2.9 9.9a9 9 0 01-2.804-12.728"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18v-2m0-8v2m0 6a2 2 0 100-4 2 2 0 000 4z"></path>
+                            </svg>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 h-2 rounded-full overflow-hidden">
+                                <div id="audio-progress" class="bg-primary h-full" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between w-full mt-2 text-sm">
+                                <span id="audio-current-time">0:00</span>
+                                <span id="audio-duration">1:00</span>
+                            </div>
+                            <div class="mt-4 flex space-x-4">
+                                <button id="audio-play-pause" class="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center">
+                                    <svg id="play-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <svg id="pause-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-2">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">演示版本 - 实际使用需下载网盘内容</p>
+                        <button id="complete-lesson" class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold">
+                            完成学习
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Star reward animation container (fixed position) -->
+        <div id="star-animation-container" class="fixed inset-0 pointer-events-none z-30"></div>
+
+        <!-- Path instructions modal -->
+        <div id="path-instructions" class="fixed inset-0 bg-black bg-opacity-80 z-20 flex flex-col justify-center items-center p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-5 relative">
+                <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white text-center">欢迎使用 Susan英语！</h2>
+                
+                <div class="mb-4 p-4 bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-30 rounded-lg border border-yellow-100 dark:border-yellow-800">
+                    <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                        本应用需要访问<span class="font-bold">百度网盘</span>中的内容。请按以下步骤操作：
+                    </p>
+                    <ol class="list-decimal pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <li>使用百度网盘链接: <span class="font-mono bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded">https://pan.baidu.com/s/1Or9NWfpLICrUJ0xUTRSykQ</span></li>
+                        <li>输入提取码: <span class="font-mono bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded">pwyn</span></li>
+                        <li>下载"五件套"文件夹中的全部内容</li>
+                    </ol>
+                </div>
+                
+                <div class="mb-6 p-4 bg-blue-50 dark:bg-blue-900 dark:bg-opacity-30 rounded-lg border border-blue-100 dark:border-blue-800">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">使用说明</h3>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                        <li>• 点击视频或音频内容进行学习</li>
+                        <li>• 完成学习后可以获得星星奖励</li>
+                        <li>• 根据孩子学习进度选择合适的内容</li>
+                        <li>• "引导输出"比"常速语境"更容易上手</li>
+                    </ul>
+                </div>
+
+                <button id="start-app" class="w-full py-3 bg-primary text-white rounded-lg font-bold">
+                    开始学习
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Stars counter
+        let starCount = 0;
+        const starCountElement = document.getElementById('star-count');
+
+        // Tab switching
+        const videoTab = document.getElementById('video-tab');
+        const audioTab = document.getElementById('audio-tab');
+        const videoContent = document.getElementById('video-content');
+        const audioContent = document.getElementById('audio-content');
+
+        videoTab.addEventListener('click', () => {
+            videoTab.classList.add('text-primary', 'border-b-2', 'border-primary');
+            videoTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+            audioTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            audioTab.classList.add('text-gray-500', 'dark:text-gray-400');
+            
+            videoContent.classList.remove('hidden');
+            audioContent.classList.add('hidden');
+        });
+
+        audioTab.addEventListener('click', () => {
+            audioTab.classList.add('text-primary', 'border-b-2', 'border-primary');
+            audioTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+            videoTab.classList.remove('text-primary', 'border-b-2', 'border-primary');
+            videoTab.classList.add('text-gray-500', 'dark:text-gray-400');
+            
+            audioContent.classList.remove('hidden');
+            videoContent.classList.add('hidden');
+        });
+
+        // Player overlay
+        const playerOverlay = document.getElementById('player-overlay');
+        const closePlayer = document.getElementById('close-player');
+        const playerTitle = document.getElementById('player-title');
+        const playerCategory = document.getElementById('player-category');
+        const videoPlayerContainer = document.getElementById('video-player-container');
+        const audioPlayerContainer = document.getElementById('audio-player-container');
+        const completeLesson = document.getElementById('complete-lesson');
+        const audioProgress = document.getElementById('audio-progress');
+        const audioCurrentTime = document.getElementById('audio-current-time');
+        const audioDuration = document.getElementById('audio-duration');
+        const audioPlayPause = document.getElementById('audio-play-pause');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+
+        // Show player when clicking on a video or audio item
+        document.querySelectorAll('.video-item, .audio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const type = item.getAttribute('data-type');
+                const category = item.getAttribute('data-category');
+                const itemName = item.getAttribute('data-item');
+                
+                playerTitle.textContent = itemName;
+                playerCategory.textContent = category;
+                
+                if (type === 'video') {
+                    videoPlayerContainer.classList.remove('hidden');
+                    audioPlayerContainer.classList.add('hidden');
+                } else {
+                    videoPlayerContainer.classList.add('hidden');
+                    audioPlayerContainer.classList.remove('hidden');
+                    // Reset audio player state
+                    audioProgress.style.width = '0%';
+                    audioCurrentTime.textContent = '0:00';
+                    audioDuration.textContent = '1:00';
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                    if (audioInterval) {
+                        clearInterval(audioInterval);
+                        audioInterval = null;
+                    }
+                }
+                
+                playerOverlay.classList.remove('hidden');
+            });
+        });
+
+        // Close player
+        closePlayer.addEventListener('click', () => {
+            playerOverlay.classList.add('hidden');
+            // Stop audio simulation if running
+            if (audioInterval) {
+                clearInterval(audioInterval);
+                audioInterval = null;
+            }
+        });
+
+        // Audio player simulation
+        let audioPlaying = false;
+        let audioInterval = null;
+        let currentAudioTime = 0;
+        const audioDurationValue = 60; // 1 minute in seconds
+        
+        audioPlayPause.addEventListener('click', () => {
+            if (audioPlaying) {
+                // Pause audio
+                audioPlaying = false;
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                clearInterval(audioInterval);
+            } else {
+                // Play audio
+                audioPlaying = true;
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                
+                // Simulate audio playback
+                audioInterval = setInterval(() => {
+                    currentAudioTime += 1;
+                    const progress = (currentAudioTime / audioDurationValue) * 100;
+                    audioProgress.style.width = `${progress}%`;
+                    
+                    // Format time display
+                    const minutes = Math.floor(currentAudioTime / 60);
+                    const seconds = currentAudioTime % 60;
+                    audioCurrentTime.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // End of audio
+                    if (currentAudioTime >= audioDurationValue) {
+                        clearInterval(audioInterval);
+                        audioPlaying = false;
+                        playIcon.classList.remove('hidden');
+                        pauseIcon.classList.add('hidden');
+                        currentAudioTime = 0;
+                    }
+                }, 1000);
+            }
+        });
+
+        // Complete lesson button
+        completeLesson.addEventListener('click', () => {
+            playerOverlay.classList.add('hidden');
+            addStar();
+            
+            // Stop audio simulation if running
+            if (audioInterval) {
+                clearInterval(audioInterval);
+                audioInterval = null;
+                currentAudioTime = 0;
+                audioPlaying = false;
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+        });
+
+        // Star animation and counter
+        function addStar() {
+            starCount++;
+            starCountElement.textContent = starCount;
+            
+            // Create star element for animation
+            const star = document.createElement('div');
+            star.className = 'absolute text-yellow-400 text-4xl animate-star';
+            star.style.left = `${Math.random() * 80 + 10}%`;
+            star.style.top = `${Math.random() * 50 + 25}%`;
+            star.innerHTML = `
+                <svg class="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"/>
+                </svg>
+            `;
+            
+            // Add animation styles
+            star.style.animation = 'star-float 1.5s ease-out forwards';
+            document.getElementById('star-animation-container').appendChild(star);
+            
+            // Remove star element after animation
+            setTimeout(() => {
+                star.remove();
+            }, 1500);
+        }
+        
+        // Star animation keyframes
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes star-float {
+                0% {
+                    transform: scale(0.5) rotate(0deg);
+                    opacity: 0;
+                }
+                20% {
+                    opacity: 1;
+                }
+                80% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1.5) rotate(360deg) translateY(-100px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // Instructions modal
+        const pathInstructions = document.getElementById('path-instructions');
+        const startApp = document.getElementById('start-app');
+
+        startApp.addEventListener('click', () => {
+            pathInstructions.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
