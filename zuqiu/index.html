@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
 <head>
@@ -106,30 +105,20 @@
             background: linear-gradient(135deg, #00a651 0%, #00834c 100%);
         }
         
-        .ticker-container {
-            overflow: hidden;
-            background: rgba(0, 82, 204, 0.05);
-            position: relative;
-            height: 40px;
-        }
-        
-        .ticker-wrap {
-            white-space: nowrap;
-            display: inline-block;
-            animation: ticker 30s linear infinite;
-        }
-        
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
         .dark .testimonial-card {
             background: rgba(255, 255, 255, 0.05);
         }
         
         .testimonial-card {
             background: rgba(0, 82, 204, 0.05);
+        }
+        
+        .line-btn {
+            background-color: #06C755;
+        }
+        
+        .line-btn:hover {
+            background-color: #05a748;
         }
     </style>
 </head>
@@ -139,21 +128,9 @@
         <button 
             onclick="opensite()" 
             class="bg-white dark:bg-gray-800 rounded-full w-14 h-14 flex items-center justify-center shadow-lg relative hover:bg-gray-100 dark:hover:bg-gray-700 transition">
-            <i class="fas fa-comments text-primary dark:text-blue-400 text-2xl"></i>
+            <i class="fab fa-line text-[#06C755] text-2xl"></i>
             <span class="notification-badge">1</span>
         </button>
-    </div>
-
-    <!-- Live Score Ticker -->
-    <div class="ticker-container border-b border-gray-200 dark:border-gray-800">
-        <div class="ticker-wrap flex items-center h-full">
-            <span class="inline-block px-4 font-medium">⚽ リアルタイムスコア：</span>
-            <span class="inline-block px-4 font-medium">レアル・マドリード 2-1 バルセロナ</span>
-            <span class="inline-block px-4 font-medium">マンチェスター・シティ 3-0 リバプール</span>
-            <span class="inline-block px-4 font-medium">バイエルン 1-0 ドルトムント</span>
-            <span class="inline-block px-4 font-medium">ミラン 2-2 インテル</span>
-            <span class="inline-block px-4 font-medium">アーセナル 1-0 チェルシー</span>
-        </div>
     </div>
 
     <!-- Header -->
@@ -164,8 +141,8 @@
             </div>
             <button 
                 onclick="opensite()" 
-                class="bg-primary hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition">
-                アドバイザーに連絡
+                class="line-btn hover:bg-green-600 text-white px-5 py-2 rounded-lg text-sm font-medium transition flex items-center">
+                <i class="fab fa-line mr-2"></i> LINE で問い合わせ
             </button>
         </div>
     </header>
@@ -173,7 +150,7 @@
     <!-- Hero Section -->
     <section class="hero-gradient py-16 lg:py-24 text-white relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full opacity-15">
-            <img src="https://www.goodmja.online/zuqiu/photo-1492011393635-d0c4f7545227.webp" alt="サッカー場" class="w-full h-full object-cover">
+            <img src="https://www.goodmja.online/zuqiu/photo-1603788911107-29995a9863c1.webp" alt="サッカー場" class="w-full h-full object-cover">
         </div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-col lg:flex-row items-center justify-between">
@@ -188,8 +165,8 @@
                     <div class="flex flex-col sm:flex-row gap-4">
                         <button 
                             onclick="opensite()" 
-                            class="bg-accent hover:bg-red-600 text-white font-bold px-8 py-4 rounded-lg transition duration-300 text-lg shadow-xl button-pulse">
-                            今すぐ登録する
+                            class="line-btn hover:bg-green-600 text-white font-bold px-8 py-4 rounded-lg transition duration-300 text-lg shadow-xl button-pulse flex items-center justify-center">
+                            <i class="fab fa-line mr-2 text-xl"></i> LINEで無料相談
                         </button>
                         
                         <!-- Countdown Timer -->
@@ -206,26 +183,22 @@
                 <div class="lg:w-1/2 relative">
                     <div class="bg-white bg-opacity-10 rounded-xl p-6 border border-white border-opacity-20 shadow-2xl">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-semibold">今日の注目試合</h3>
-                            <span class="text-sm bg-accent text-white px-2 py-1 rounded font-medium">高勝率</span>
+                            <h3 class="text-xl font-semibold">専門家の分析</h3>
+                            <span class="text-sm bg-accent text-white px-2 py-1 rounded font-medium">高精度</span>
                         </div>
                         
                         <div class="mb-6">
                             <img src="https://www.goodmja.online/zuqiu/photo-1517293713403-d47ac01ffca4.webp" alt="サッカーの試合" class="w-full h-48 object-cover rounded-lg mb-4">
                             
-                            <div class="flex justify-between items-center mb-4">
-                                <div class="flex items-center">
-                                    <span class="font-bold mr-2">バルセロナ</span>
-                                    <span class="text-sm">vs</span>
-                                    <span class="font-bold ml-2">レアル・マドリード</span>
-                                </div>
-                                <span class="text-sm bg-primary px-2 py-1 rounded">22:00 開始</span>
+                            <div class="bg-white bg-opacity-10 p-4 rounded-lg mb-4">
+                                <p class="text-sm mb-2">プロアナリストからのメッセージ：</p>
+                                <p class="italic">「最新の選手データと戦術分析に基づいて、高精度の予測を提供しています。LINEで今すぐ無料相談を！」</p>
                             </div>
                             
                             <button 
                                 onclick="opensite()" 
-                                class="w-full bg-secondary hover:bg-green-700 text-white font-bold py-3 rounded-lg transition">
-                                分析を見る
+                                class="w-full line-btn hover:bg-green-600 text-white font-bold py-3 rounded-lg transition flex items-center justify-center">
+                                <i class="fab fa-line mr-2"></i> 今すぐLINEで相談する
                             </button>
                         </div>
                     </div>
@@ -297,69 +270,54 @@
         </div>
     </section>
 
-    <!-- Featured Matches -->
+    <!-- LINE Community Benefits -->
     <section class="py-16 bg-gray-50 dark:bg-gray-900">
         <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-bold">今週の注目試合</h2>
-                <button 
-                    onclick="opensite()" 
-                    class="text-primary dark:text-blue-400 font-medium flex items-center">
-                    すべて見る <i class="fas fa-arrow-right ml-2"></i>
-                </button>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">LINEコミュニティの<span class="text-[#06C755]">特典</span></h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+                    私たちのLINEコミュニティに参加して、これらの無料特典をお楽しみください
+                </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm">
-                    <img src="https://www.goodmja.online/zuqiu/photo-1551390415-0de411440ca3.webp" alt="サッカーの試合" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-sm text-gray-500">欧州チャンピオンズリーグ</span>
-                            <span class="text-xs bg-accent text-white px-2 py-1 rounded">明日 21:00</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">マンチェスター・シティ vs PSG</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">両チームとも最高の状態で、接戦が予想されます。</p>
-                        <button 
-                            onclick="opensite()" 
-                            class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition">
-                            分析を見る
-                        </button>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+                    <div class="w-16 h-16 mx-auto bg-[#06C755] bg-opacity-10 rounded-full flex items-center justify-center text-[#06C755] text-3xl mb-4">
+                        <i class="fas fa-bolt"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3 text-center">速報アラート</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">
+                        最新の試合情報、怪我の選手、天候の変化など、ベッティングに影響する重要情報をリアルタイムで受け取れます。
+                    </p>
                 </div>
                 
-                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm">
-                    <img src="https://www.goodmja.online/zuqiu/photo-1603788911107-29995a9863c1.webp" alt="サッカーの試合" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-sm text-gray-500">プレミアリーグ</span>
-                            <span class="text-xs bg-secondary text-white px-2 py-1 rounded">今日 19:30</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">アーセナル vs マンチェスター・ユナイテッド</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">優勝争いの行方を左右する重要な一戦。</p>
-                        <button 
-                            onclick="opensite()" 
-                            class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition">
-                            分析を見る
-                        </button>
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+                    <div class="w-16 h-16 mx-auto bg-[#06C755] bg-opacity-10 rounded-full flex items-center justify-center text-[#06C755] text-3xl mb-4">
+                        <i class="fas fa-comments"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3 text-center">専門家との対話</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">
+                        プロのアナリストに直接質問でき、あなたの戦略について個別アドバイスを受けられます。
+                    </p>
                 </div>
                 
-                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm">
-                    <img src="https://www.goodmja.online/zuqiu/photo-1641280173166-14cd8784a529.webp" alt="サッカーの試合" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-sm text-gray-500">Jリーグ</span>
-                            <span class="text-xs bg-primary text-white px-2 py-1 rounded">土曜日 14:00</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">鹿島アントラーズ vs 浦和レッズ</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">日本サッカーの伝統的な好カード、接戦必至。</p>
-                        <button 
-                            onclick="opensite()" 
-                            class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition">
-                            分析を見る
-                        </button>
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+                    <div class="w-16 h-16 mx-auto bg-[#06C755] bg-opacity-10 rounded-full flex items-center justify-center text-[#06C755] text-3xl mb-4">
+                        <i class="fas fa-chart-pie"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3 text-center">独占分析コンテンツ</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">
+                        一般公開されていない詳細な分析情報や統計データにアクセスできます。
+                    </p>
                 </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button 
+                    onclick="opensite()" 
+                    class="line-btn hover:bg-green-600 text-white font-bold px-8 py-4 rounded-lg transition text-lg shadow-lg flex items-center mx-auto">
+                    <i class="fab fa-line mr-2 text-xl"></i> 今すぐLINEで友達追加
+                </button>
             </div>
         </div>
     </section>
@@ -437,56 +395,46 @@
         </div>
     </section>
 
-    <!-- Premium Offer -->
+    <!-- LINE Contact Section -->
     <section class="stats-gradient py-16 text-white">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mx-auto text-center">
-                <span class="bg-white bg-opacity-20 text-sm font-medium px-4 py-1 rounded-full inline-block mb-4">期間限定オファー</span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">プレミアム分析パッケージ</h2>
+                <span class="bg-white bg-opacity-20 text-sm font-medium px-4 py-1 rounded-full inline-block mb-4">期間限定</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">無料のLINE分析サービス</h2>
                 <p class="text-xl mb-8 opacity-90">
-                    VIP会員限定の詳細分析と高勝率予測をご利用いただけます
+                    今だけ特別に無料でプロの試合分析とアドバイスを提供しています
                 </p>
                 
                 <div class="bg-white bg-opacity-10 rounded-xl p-6 border border-white border-opacity-20 mb-8">
                     <ul class="space-y-3 text-left mb-6">
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
-                            <span>プロアナリストによる詳細な試合分析</span>
+                            <span>完全無料で利用可能</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
-                            <span>AIデータモデルによる勝率予測</span>
+                            <span>プロのアナリストによる最新分析を受け取る</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
-                            <span>リアルタイム更新と最新情報へのアクセス</span>
+                            <span>質問し放題のサポート</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
-                            <span>専属アドバイザーによる個別サポート</span>
+                            <span>LINEで簡単にアクセス可能</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
-                            <span>コミュニティフォーラムへの参加権</span>
+                            <span>いつでも退会可能</span>
                         </li>
                     </ul>
-                    
-                    <div class="flex justify-between items-center border-t border-white border-opacity-20 pt-4 mb-6">
-                        <div>
-                            <div class="text-sm opacity-80">通常価格: <span class="line-through">¥15,000/月</span></div>
-                            <div class="text-2xl font-bold">今だけ特別価格: ¥7,500/月</div>
-                        </div>
-                        <div class="text-sm bg-accent px-3 py-1 rounded-full font-medium">
-                            50% OFF
-                        </div>
-                    </div>
                     
                     <div id="countdown-bottom" class="text-center mb-6 font-mono text-lg"></div>
                     
                     <button 
                         onclick="opensite()" 
-                        class="w-full bg-accent hover:bg-red-600 text-white font-bold py-4 rounded-lg transition text-lg button-pulse">
-                        今すぐ登録する
+                        class="w-full bg-white hover:bg-gray-100 text-[#06C755] font-bold py-4 rounded-lg transition text-lg flex items-center justify-center">
+                        <i class="fab fa-line mr-2 text-xl"></i> 今すぐLINEで友達追加する
                     </button>
                 </div>
                 
@@ -508,23 +456,23 @@
         
         <div class="max-w-3xl mx-auto space-y-4">
             <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+                <h3 class="text-lg font-semibold mb-2">LINEの友達追加は無料ですか？</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    はい、完全に無料です。登録料や月額料金は一切かかりません。
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+                <h3 class="text-lg font-semibold mb-2">どのような情報が提供されますか？</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    試合前分析、チーム情報、選手の状態、統計データに基づく予測などを提供します。すべての情報は最新かつ正確なものです。
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
                 <h3 class="text-lg font-semibold mb-2">予測は100%正確ですか？</h3>
                 <p class="text-gray-600 dark:text-gray-400">
                     スポーツは本質的に予測不可能な要素があるため、100%の予測精度は保証できません。ただし、私たちのデータ分析と専門家の知識を組み合わせることで、高い確率で正確な予測を提供しています。
-                </p>
-            </div>
-            
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-                <h3 class="text-lg font-semibold mb-2">登録後すぐに分析を見ることができますか？</h3>
-                <p class="text-gray-600 dark:text-gray-400">
-                    はい、登録後すぐにすべての分析コンテンツにアクセスできます。リアルタイムで更新される情報もご利用いただけます。
-                </p>
-            </div>
-            
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
-                <h3 class="text-lg font-semibold mb-2">どのスポーツブックと連携していますか？</h3>
-                <p class="text-gray-600 dark:text-gray-400">
-                    私たちは特定のスポーツブックと提携していません。独立した分析を提供することで、どのプラットフォームでもご利用いただける客観的な情報を提供しています。
                 </p>
             </div>
         </div>
@@ -543,8 +491,8 @@
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <button 
                     onclick="opensite()" 
-                    class="bg-white text-primary hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition text-lg shadow-lg">
-                    無料アカウント登録
+                    class="bg-[#06C755] hover:bg-green-600 text-white font-bold px-8 py-4 rounded-lg transition text-lg shadow-lg flex items-center">
+                    <i class="fab fa-line mr-2 text-xl"></i> 無料でLINE友達追加
                 </button>
                 <div class="text-center bg-white bg-opacity-10 rounded-lg p-4 border border-white border-opacity-20">
                     <p class="text-sm font-medium mb-1">期間限定オファー終了まで</p>
