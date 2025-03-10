@@ -1,1 +1,615 @@
 
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弘森サッカー | 専門分析でベッティング成功へ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0052cc', // Strong Blue
+                        secondary: '#00a651', // Green
+                        accent: '#ff3838', // Red
+                        dark: '#141b2d',
+                        light: '#f4f7fc'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif']
+                    }
+                }
+            }
+        }
+        
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Function to open LINE
+        function opensite() {
+            window.open('https://line.me/ti/p/~example', '_blank');
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0052cc 0%, #004198 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 82, 204, 0.2);
+        }
+        
+        .button-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .floating-icon {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ff3838;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 56, 56, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 56, 56, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 56, 56, 0);
+            }
+        }
+        
+        .stats-gradient {
+            background: linear-gradient(135deg, #00a651 0%, #00834c 100%);
+        }
+        
+        .ticker-container {
+            overflow: hidden;
+            background: rgba(0, 82, 204, 0.05);
+            position: relative;
+            height: 40px;
+        }
+        
+        .ticker-wrap {
+            white-space: nowrap;
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .dark .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .testimonial-card {
+            background: rgba(0, 82, 204, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-light dark:bg-dark text-gray-900 dark:text-gray-100">
+    <!-- Notification Icon (Fixed on right side) -->
+    <div class="floating-icon">
+        <button 
+            onclick="opensite()" 
+            class="bg-white dark:bg-gray-800 rounded-full w-14 h-14 flex items-center justify-center shadow-lg relative hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+            <i class="fas fa-comments text-primary dark:text-blue-400 text-2xl"></i>
+            <span class="notification-badge">1</span>
+        </button>
+    </div>
+
+    <!-- Live Score Ticker -->
+    <div class="ticker-container border-b border-gray-200 dark:border-gray-800">
+        <div class="ticker-wrap flex items-center h-full">
+            <span class="inline-block px-4 font-medium">⚽ リアルタイムスコア：</span>
+            <span class="inline-block px-4 font-medium">レアル・マドリード 2-1 バルセロナ</span>
+            <span class="inline-block px-4 font-medium">マンチェスター・シティ 3-0 リバプール</span>
+            <span class="inline-block px-4 font-medium">バイエルン 1-0 ドルトムント</span>
+            <span class="inline-block px-4 font-medium">ミラン 2-2 インテル</span>
+            <span class="inline-block px-4 font-medium">アーセナル 1-0 チェルシー</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white dark:bg-gray-900 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold text-primary dark:text-blue-400">弘森サッカー</span>
+            </div>
+            <button 
+                onclick="opensite()" 
+                class="bg-primary hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition">
+                アドバイザーに連絡
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-16 lg:py-24 text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-15">
+            <img src="https://www.goodmja.online/zuqiu/photo-1492011393635-d0c4f7545227.webp" alt="サッカー場" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <span class="bg-white bg-opacity-20 text-sm font-medium px-4 py-1 rounded-full inline-block mb-4">プロアナリスト30名以上在籍</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        プロの<span class="text-accent">分析</span>でサッカーベッティングを成功へ
+                    </h1>
+                    <p class="text-xl mb-8 max-w-lg opacity-90">
+                        最新のデータ分析技術で予測精度を高め、経験豊富なアナリストが信頼性の高いアドバイスを提供します。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button 
+                            onclick="opensite()" 
+                            class="bg-accent hover:bg-red-600 text-white font-bold px-8 py-4 rounded-lg transition duration-300 text-lg shadow-xl button-pulse">
+                            今すぐ登録する
+                        </button>
+                        
+                        <!-- Countdown Timer -->
+                        <div class="bg-white bg-opacity-10 rounded-lg px-4 py-3 flex flex-col justify-center border border-white border-opacity-20">
+                            <span class="text-sm font-medium">特別オファー終了まで：</span>
+                            <div class="countdown-timer flex gap-2 font-mono text-lg" id="countdown">
+                                <span id="hours">23</span>時間
+                                <span id="minutes">59</span>分
+                                <span id="seconds">59</span>秒
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <div class="bg-white bg-opacity-10 rounded-xl p-6 border border-white border-opacity-20 shadow-2xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold">今日の注目試合</h3>
+                            <span class="text-sm bg-accent text-white px-2 py-1 rounded font-medium">高勝率</span>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <img src="https://www.goodmja.online/zuqiu/photo-1517293713403-d47ac01ffca4.webp" alt="サッカーの試合" class="w-full h-48 object-cover rounded-lg mb-4">
+                            
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="flex items-center">
+                                    <span class="font-bold mr-2">バルセロナ</span>
+                                    <span class="text-sm">vs</span>
+                                    <span class="font-bold ml-2">レアル・マドリード</span>
+                                </div>
+                                <span class="text-sm bg-primary px-2 py-1 rounded">22:00 開始</span>
+                            </div>
+                            
+                            <button 
+                                onclick="opensite()" 
+                                class="w-full bg-secondary hover:bg-green-700 text-white font-bold py-3 rounded-lg transition">
+                                分析を見る
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter -->
+    <section class="py-12 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">98.7%</div>
+                    <p class="text-gray-600 dark:text-gray-400">予測精度</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">10,000+</div>
+                    <p class="text-gray-600 dark:text-gray-400">満足したユーザー</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">30+</div>
+                    <p class="text-gray-600 dark:text-gray-400">プロアナリスト</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Authority Section -->
+    <section class="py-16 lg:py-24 container mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-accent font-semibold uppercase tracking-wider">信頼性</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">なぜ弘森サッカーが<span class="text-primary dark:text-blue-400">選ばれるのか</span></h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                私たちのサービスは、データ分析と専門家の知識を組み合わせて、高精度の予測を提供します
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card-hover p-6 rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
+                <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center text-primary text-2xl mb-4">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">高度データ分析</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    AIとビッグデータを活用し、過去のパフォーマンス、選手の状態、天候などを総合的に分析します。
+                </p>
+            </div>
+            
+            <div class="card-hover p-6 rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
+                <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center text-primary text-2xl mb-4">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">プロアナリスト</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    各リーグの専門家が、最新の戦術分析と市場動向を考慮した予測を提供します。
+                </p>
+            </div>
+            
+            <div class="card-hover p-6 rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
+                <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center text-primary text-2xl mb-4">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">透明性と信頼性</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    すべての分析プロセスは透明で、過去の予測結果も公開しています。安心してご利用いただけます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Matches -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">今週の注目試合</h2>
+                <button 
+                    onclick="opensite()" 
+                    class="text-primary dark:text-blue-400 font-medium flex items-center">
+                    すべて見る <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm">
+                    <img src="https://www.goodmja.online/zuqiu/photo-1551390415-0de411440ca3.webp" alt="サッカーの試合" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-gray-500">欧州チャンピオンズリーグ</span>
+                            <span class="text-xs bg-accent text-white px-2 py-1 rounded">明日 21:00</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">マンチェスター・シティ vs PSG</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">両チームとも最高の状態で、接戦が予想されます。</p>
+                        <button 
+                            onclick="opensite()" 
+                            class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition">
+                            分析を見る
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm">
+                    <img src="https://www.goodmja.online/zuqiu/photo-1603788911107-29995a9863c1.webp" alt="サッカーの試合" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-gray-500">プレミアリーグ</span>
+                            <span class="text-xs bg-secondary text-white px-2 py-1 rounded">今日 19:30</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">アーセナル vs マンチェスター・ユナイテッド</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">優勝争いの行方を左右する重要な一戦。</p>
+                        <button 
+                            onclick="opensite()" 
+                            class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition">
+                            分析を見る
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm">
+                    <img src="https://www.goodmja.online/zuqiu/photo-1641280173166-14cd8784a529.webp" alt="サッカーの試合" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-gray-500">Jリーグ</span>
+                            <span class="text-xs bg-primary text-white px-2 py-1 rounded">土曜日 14:00</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">鹿島アントラーズ vs 浦和レッズ</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">日本サッカーの伝統的な好カード、接戦必至。</p>
+                        <button 
+                            onclick="opensite()" 
+                            class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition">
+                            分析を見る
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 lg:py-24 container mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-accent font-semibold uppercase tracking-wider">実績</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">ユーザーの<span class="text-primary dark:text-blue-400">成功事例</span></h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                多くのユーザーが私たちのサービスを利用して成功を収めています
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="testimonial-card p-6 rounded-xl">
+                <div class="flex text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    「このサイトを利用し始めてから、安定した収益を得ることができるようになりました。データ分析が特に役立っています。」
+                </p>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white mr-3">TK</div>
+                    <div>
+                        <div class="font-semibold">田中 健太</div>
+                        <div class="text-xs text-gray-500">3年間のユーザー</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card p-6 rounded-xl">
+                <div class="flex text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    「専門家のアドバイスは非常に信頼できます。安心してベットできるようになりました。今後も利用し続けたいと思います。」
+                </p>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center text-white mr-3">SM</div>
+                    <div>
+                        <div class="font-semibold">佐藤 美咲</div>
+                        <div class="text-xs text-gray-500">1年間のユーザー</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card p-6 rounded-xl">
+                <div class="flex text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    「透明性のあるプロセスで、安心して利用できます。初心者の私でも簡単に利用でき、良い結果が出ています。」
+                </p>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mr-3">KY</div>
+                    <div>
+                        <div class="font-semibold">木村 裕太</div>
+                        <div class="text-xs text-gray-500">6ヶ月間のユーザー</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Offer -->
+    <section class="stats-gradient py-16 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <span class="bg-white bg-opacity-20 text-sm font-medium px-4 py-1 rounded-full inline-block mb-4">期間限定オファー</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">プレミアム分析パッケージ</h2>
+                <p class="text-xl mb-8 opacity-90">
+                    VIP会員限定の詳細分析と高勝率予測をご利用いただけます
+                </p>
+                
+                <div class="bg-white bg-opacity-10 rounded-xl p-6 border border-white border-opacity-20 mb-8">
+                    <ul class="space-y-3 text-left mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>プロアナリストによる詳細な試合分析</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>AIデータモデルによる勝率予測</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>リアルタイム更新と最新情報へのアクセス</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>専属アドバイザーによる個別サポート</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>コミュニティフォーラムへの参加権</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="flex justify-between items-center border-t border-white border-opacity-20 pt-4 mb-6">
+                        <div>
+                            <div class="text-sm opacity-80">通常価格: <span class="line-through">¥15,000/月</span></div>
+                            <div class="text-2xl font-bold">今だけ特別価格: ¥7,500/月</div>
+                        </div>
+                        <div class="text-sm bg-accent px-3 py-1 rounded-full font-medium">
+                            50% OFF
+                        </div>
+                    </div>
+                    
+                    <div id="countdown-bottom" class="text-center mb-6 font-mono text-lg"></div>
+                    
+                    <button 
+                        onclick="opensite()" 
+                        class="w-full bg-accent hover:bg-red-600 text-white font-bold py-4 rounded-lg transition text-lg button-pulse">
+                        今すぐ登録する
+                    </button>
+                </div>
+                
+                <p class="text-sm opacity-80">
+                    *責任あるベッティングを心がけましょう。ベッティングは18歳以上の方のみご利用いただけます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 lg:py-24 container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">よくある質問</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                サービスについてよくある質問と回答です
+            </p>
+        </div>
+        
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+                <h3 class="text-lg font-semibold mb-2">予測は100%正確ですか？</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    スポーツは本質的に予測不可能な要素があるため、100%の予測精度は保証できません。ただし、私たちのデータ分析と専門家の知識を組み合わせることで、高い確率で正確な予測を提供しています。
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+                <h3 class="text-lg font-semibold mb-2">登録後すぐに分析を見ることができますか？</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    はい、登録後すぐにすべての分析コンテンツにアクセスできます。リアルタイムで更新される情報もご利用いただけます。
+                </p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+                <h3 class="text-lg font-semibold mb-2">どのスポーツブックと連携していますか？</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    私たちは特定のスポーツブックと提携していません。独立した分析を提供することで、どのプラットフォームでもご利用いただける客観的な情報を提供しています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="hero-gradient py-16 text-white relative">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">データ主導の分析で勝率を上げよう</h2>
+                <p class="text-xl opacity-90 max-w-2xl mx-auto mb-8">
+                    10,000人以上のユーザーが既に成功しています。今すぐ参加しましょう。
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button 
+                    onclick="opensite()" 
+                    class="bg-white text-primary hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition text-lg shadow-lg">
+                    無料アカウント登録
+                </button>
+                <div class="text-center bg-white bg-opacity-10 rounded-lg p-4 border border-white border-opacity-20">
+                    <p class="text-sm font-medium mb-1">期間限定オファー終了まで</p>
+                    <div id="countdown-footer" class="font-mono text-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">弘森サッカー</h3>
+                    <p class="text-sm text-gray-400">データ主導のサッカー分析</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-line"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 text-sm text-gray-400 text-center">
+                <p>© 2023 弘森サッカー. All rights reserved.</p>
+                <p class="mt-2 text-xs">
+                    提供される情報は情報提供のみを目的としており、特定の賭けを推奨するものではありません。ベッティングは自己責任で行ってください。
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dynamic countdown
+        function updateCountdown() {
+            const now = new Date();
+            const hours = 23 - now.getHours();
+            const minutes = 59 - now.getMinutes();
+            const seconds = 59 - now.getSeconds();
+            
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Update other countdown displays
+            const countdownFormat = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (document.getElementById('countdown-bottom')) {
+                document.getElementById('countdown-bottom').textContent = countdownFormat;
+            }
+            
+            if (document.getElementById('countdown-footer')) {
+                document.getElementById('countdown-footer').textContent = countdownFormat;
+            }
+        }
+        
+        // Initialize countdown and update every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
