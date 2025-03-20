@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="ip-info">正在查询IP信息...</div>
+
+  <script>
+    // 调用 ipinfo.io API
+    fetch('https://ipinfo.io?token=76a43e3733f2d4')
+      .then(response => response.json())
+      .then(data => {
+        const infoDiv = document.getElementById('ip-info');
+        infoDiv.innerHTML = `
+          IP地址: ${data.ip}<br>
+          城市: ${data.city}<br>
+          地区: ${data.region}<br>
+          国家: ${data.country}<br>
+          地理位置: ${data.loc}<br>
+          运营商: ${data.org}
+        `;
+      })
+      .catch(error => {
+        console.error('查询失败:', error);
+        document.getElementById('ip-info').textContent = 'IP信息获取失败';
+      });
+  </script>
+</body>
+</html>
