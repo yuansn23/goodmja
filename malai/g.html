@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>15天股票投资实战课程 - 从新手到投资高手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00A651',
+                        secondary: '#0055A5',
+                        highlight: '#FF3A2F',
+                        dark: '#1A1A1A',
+                        light: '#F8F8F8'
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(0, 166, 81, 0); }
+        }
+        
+        .pulse-border {
+            animation: pulse-border 2s infinite;
+        }
+        
+        .bg-stock-pattern {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMxLjIgMCAyLjMuNSAzLjQgMS40IDEgLjkgMS42IDIgMS42IDMuMiAwIDEuMi0uNSAyLjMtMS40IDMuNC0uOSAxLTIgMS42LTMuMiAxLjYtMS4yIDAtMi4zLS41LTMuNC0xLjQtMS0uOS0xLjYtMi0xLjYtMy4yIDAtMS4yLjUtMi4zIDEuNC0zLjQuOS0xIDItMS42IDMuMi0xLjZ6IiBmaWxsPSIjMDBBNjUxIiBmaWxsLW9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=');
+        }
+        
+        .notification-bubble {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(0, 166, 81, 0.5);
+        }
+        
+        /* Dark mode support */
+        .dark body {
+            background-color: #1A1A1A;
+            color: #F8F8F8;
+        }
+        
+        /* Prevent iOS clicking behavior */
+        a, button {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-sans bg-light dark:bg-dark text-gray-900 dark:text-gray-100">
+    <!-- Notification bubble icon - WhatsApp style -->
+    <div class="notification-bubble cursor-pointer" onclick="opensite()">
+        <div class="relative">
+            <div class="w-16 h-16 bg-[#25D366] rounded-full shadow-lg flex items-center justify-center pulse-border">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+            </div>
+            <div class="absolute -top-1 -right-1 w-6 h-6 bg-red-600 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-primary to-secondary py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/8fe49945468e8bd0003f9a56b96b3b15c8263aa98d6a0e9ac5ac601c727efbfd?w=793&h=587" alt="Spark Liang" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+                    <h1 class="ml-3 text-xl md:text-2xl font-bold text-white">马来西亚股票投资实战课</h1>
+                </div>
+                <button onclick="opensite()" class="bg-highlight hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    立即免费领取
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-8 md:py-12 bg-white dark:bg-gray-900 bg-stock-pattern">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-secondary dark:text-primary">
+                        15天内让你从<span class="text-highlight">新手变成投资高手</span>
+                    </h2>
+                    <p class="text-lg mb-6 text-gray-700 dark:text-gray-300">
+                        装备投资大师的思维，学习价值投资的精髓。从怎样买，买什么，什么时候买，什么时候卖，通通教会你，保证你可以有信心地做投资！
+                    </p>
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-700 dark:text-gray-300">今日已有人领取</span>
+                            <span class="font-bold text-red-600 dark:text-red-400">3,292</span>
+                        </div>
+                        <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5">
+                            <div class="bg-highlight h-2.5 rounded-full" style="width: 94%"></div>
+                        </div>
+                        <div class="mt-2 text-right">
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">剩余名额：</span>
+                            <span class="text-sm font-bold text-red-600 dark:text-red-400">20</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="opensite()" class="cta-button bg-highlight hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg text-lg animate-pulse-fast">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 0C4.486 0 0 4.486 0 10s4.486 10 10 10 10-4.486 10-10S15.514 0 10 0zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                                    <path d="M15 10a.5.5 0 01-.5.5h-9a.5.5 0 010-1h9a.5.5 0 01.5.5z"/>
+                                    <path d="M10 15a.5.5 0 01-.5-.5v-9a.5.5 0 011 0v9a.5.5 0 01-.5.5z"/>
+                                </svg>
+                                免费领取课程
+                            </span>
+                        </button>
+                        <button onclick="opensite()" class="cta-button bg-white border-2 border-secondary hover:border-primary text-secondary hover:text-primary font-bold py-3 px-6 rounded-lg text-lg dark:bg-gray-800 dark:border-primary dark:text-primary">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                </svg>
+                                联系投资顾问
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-8">
+                    <div class="relative">
+                        <div class="absolute -top-4 -right-4 bg-highlight text-white py-1 px-3 rounded-lg text-sm font-bold animate-pulse z-10">
+                            限时0元领取
+                        </div>
+                        <img src="https://www.goodmja.online/malai/1.jpg" alt="股票投资课程" class="rounded-xl shadow-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Intro Section -->
+    <section class="py-12 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-secondary dark:text-primary">
+                实战股票投资课：专为您量身打造
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4 mx-auto">1</div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-gray-800 dark:text-white">建立投资思维</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">
+                        学习如何找出赚钱的优质股，建立系统化的投资思维模式，培养独立分析市场的能力。
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4 mx-auto">2</div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-gray-800 dark:text-white">分析目标股票</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">
+                        学会如何分析目标投资股票，掌握专业技术指标，让你知道适合的买入价格和时机。
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4 mx-auto">3</div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-gray-800 dark:text-white">投资组合管理</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">
+                        掌握有效的买卖策略和风险管理方法，学习如何构建和管理自己的投资组合。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-10 flex justify-center">
+                <button onclick="opensite()" class="cta-button bg-primary hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg animate-float">
+                    <span class="flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        立即免费获取课程
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Will Get Section -->
+    <section class="py-12 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/44be95ce9fa362d12d4a0c43ef6a8de3d339f0baabf63e4a8249f40a27d37063?w=626&h=417" alt="投资课程优势" class="rounded-xl shadow-lg max-w-full">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-secondary dark:text-primary">
+                        现在加入「实战股票投资课」<br>你将<span class="text-highlight">免费</span>获得：
+                    </h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-primary mt-1">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="ml-3 text-gray-700 dark:text-gray-300">
+                                <strong>「实战股票投资课」</strong>，价值799USD，全方位学习股票投资的精髓，让你在股市里无往不利
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-primary mt-1">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="ml-3 text-gray-700 dark:text-gray-300">
+                                <strong>各大交易平台的分析参照表</strong>，让你无需耗时翻查资料，也能自行选择最适合自己的交易平台
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-primary mt-1">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="ml-3 text-gray-700 dark:text-gray-300">
+                                <strong>数位课程证书</strong>，为你的学习留下一份证明
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 text-primary mt-1">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="ml-3 text-gray-700 dark:text-gray-300">
+                                <strong>「永久课程会员」</strong>课程可以永久观看，随时复习，不用怕忘记。价值899USD
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <div class="p-4 bg-yellow-50 dark:bg-yellow-900 border-l-4 border-yellow-500 rounded-r-lg">
+                            <p class="text-yellow-800 dark:text-yellow-200 font-medium">
+                                <span class="font-bold">注意：</span> 今日仅剩<span class="text-red-600 dark:text-red-400 font-bold">20个免费名额</span>，抓紧时间加入！
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button onclick="opensite()" class="cta-button bg-highlight hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">
+                            <span class="flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                                </svg>
+                                立即报名（0元）
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Features -->
+    <section class="py-12 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-secondary dark:text-primary">
+                课程特色
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-primary dark:text-primary mb-4 flex justify-center">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-center">每天仅需20分钟</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">短时高效学习，轻松掌握投资精髓</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-primary dark:text-primary mb-4 flex justify-center">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-center">多种学习模式</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">音频、视频、图文，满足不同学习偏好</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-primary dark:text-primary mb-4 flex justify-center">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-center">全线上教学</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">无论在何时何地都可以自由学习</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="text-primary dark:text-primary mb-4 flex justify-center">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-center">实战案例解析</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-center">真实市场案例，理论与实践相结合</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-12 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center text-secondary dark:text-primary">
+                学员见证
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            LK
+                        </div>
+                        <div>
+                            <h4 class="font-bold">李坤</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">吉隆坡、软件工程师</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        「以前总是盲目跟风买股票，参加阿聪老师的课程后，我学会了独立分析和判断。现在我能够自信地选择适合自己的投资，不再被市场情绪左右。」
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-highlight text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            ZW
+                        </div>
+                        <div>
+                            <h4 class="font-bold">张伟明</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">槟城、银行职员</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        「课程内容非常实用，特别是风险管理部分让我受益匪浅。阿聪老师讲解通俗易懂，15天的课程让我对投资市场有了全新的认识，投资决策更加冷静和理性。」
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold mr-4">
+                            TM
+                        </div>
+                        <div>
+                            <h4 class="font-bold">陈美玲</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">新山、教师</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        「作为投资新手，这个课程非常适合我。特别喜欢每天只需20分钟的学习设计，不会占用太多时间。课程内容由浅入深，让我从零基础也能轻松上手，现在我对股票投资有了清晰的思路。」
+                    </p>
+                    <div class="flex text-yellow-500">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 flex justify-center">
+                <img src="https://pfst.cf2.poecdn.net/base/image/c581f5060a0aa9e6a2c6c1febae73f095ce39c74c3f0c427627604adabcee696?w=735&h=490" alt="股票趋势图" class="rounded-xl shadow-lg max-w-full h-auto md:max-w-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Instructor -->
+    <section class="py-12 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/8fe49945468e8bd0003f9a56b96b3b15c8263aa98d6a0e9ac5ac601c727efbfd?w=793&h=587" alt="阿聪 吴启聪" class="rounded-xl shadow-lg max-w-full h-auto">
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-secondary dark:text-primary">
+                        关于讲师：阿聪（吴启聪）
+                    </h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Spark Liang，畅销书《从0资金开始圆创业梦》作者，拥有马来西亚注册财务规划师文凭(Registered Financial Planner, RFP)，也曾经是Affin Hwang的股票中介。
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                通过金融分析师CFA一级的测试
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                上传了上百个简单易懂的投资理财影片
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                两年内累积超过3千万的影片总观看次数
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 text-primary mr-2">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                具备财务尽职调查、风险分析等相关经验
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md">
+                        <p class="text-gray-700 dark:text-gray-300 italic">
+                            "投资不是赌博，而是一门科学和艺术的结合。我希望通过这门课程，能够帮助更多人掌握正确的投资方法，实现财务自由的梦想。"
+                        </p>
+                        <p class="mt-2 text-right font-semibold text-secondary dark:text-primary">— 阿聪（吴启聪）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-12 bg-gradient-to-r from-primary to-secondary">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-4xl font-bold mb-6 text-white">
+                准备好提升您的投资技能了吗？
+            </h2>
+            <p class="text-white text-lg mb-8 max-w-2xl mx-auto">
+                立即免费领取「实战股票投资课」，15天内掌握专业投资技能！
+            </p>
+            <button onclick="opensite()" class="cta-button bg-white text-secondary hover:text-primary font-bold py-4 px-8 rounded-lg text-xl shadow-xl animate-bounce-slow">
+                <span class="flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    立即免费领取（0元）
+                </span>
+            </button>
+            <p class="mt-4 text-white text-sm">
+                <span class="font-semibold">仅剩20个名额！</span> 今日已有3,292人成功领取
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer with Disclaimer -->
+    <footer class="py-8 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-4">
+            <div class="border-t border-gray-800 pt-6 mb-6"></div>
+            
+            <div class="mb-6">
+                <h3 class="text-lg font-bold mb-4 text-white">重要声明</h3>
+                <div class="text-xs space-y-2">
+                    <p>
+                        本网站内容仅供教育和信息目的，不构成投资建议、财务建议或任何专业建议。投资股票涉及风险，包括损失部分或全部投资资金的可能性。过去的表现不代表未来的结果。
+                    </p>
+                    <p>
+                        在做出任何投资决定之前，建议您咨询合格的财务顾问或投资专业人士。我们不保证任何投资回报，所有投资决策应基于您自己的研究和判断。
+                    </p>
+                    <p>
+                        本网站遵循Google的广告政策，提供透明、准确的投资相关信息，不提供与证券、投资或金融服务相关的误导性广告。我们不提供股票交易服务，也不直接销售任何金融产品。
+                    </p>
+                    <p>
+                        课程内容仅作教育目的使用，不提供个人投资建议。用户应当根据自己的财务状况和风险承受能力，谨慎评估投资决策。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center text-xs">
+                <p>© 2024 马来西亚股票投资实战课. 版权所有.</p>
+                <p class="mt-2">本网站提供的信息仅用于教育目的，不构成投资建议。投资有风险，入市须谨慎。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Function to open WhatsApp
+        function opensite() {
+            // Replace with your WhatsApp URL
+            window.open('https://wa.me/your_whatsapp_number', '_blank');
+        }
+    </script>
+</body>
+</html>
