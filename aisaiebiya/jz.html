@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Part-Time Opportunity in Ethiopia</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0078D7;
+            --secondary-color: #ff7a00;
+            --accent-color: #5D5CDE;
+            --dark-color: #333333;
+            --light-color: #f9f9f9;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+        }
+        
+        .cta-button {
+            background-color: var(--secondary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 122, 0, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(255, 122, 0, 0.5);
+        }
+        
+        .cta-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover::after {
+            left: 100%;
+        }
+        
+        .secondary-button {
+            background-color: var(--accent-color);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(93, 92, 222, 0.3);
+        }
+        
+        .secondary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(93, 92, 222, 0.4);
+        }
+        
+        .feature-card {
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .notification-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--secondary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-icon:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 122, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+            }
+        }
+        
+        .income-highlight {
+            background: linear-gradient(90deg, #ff7a00, #ff0097);
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            font-weight: bold;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body:not(.light-mode) {
+                background-color: #1a1a1a;
+                color: #ffffff;
+            }
+            
+            .testimonial-card {
+                background-color: #2d2d2d;
+            }
+            
+            .bg-white {
+                background-color: #2d2d2d;
+            }
+            
+            .text-gray-700 {
+                color: #e0e0e0;
+            }
+            
+            .text-gray-600 {
+                color: #c0c0c0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Icon -->
+    <div class="notification-icon pulse" onclick="opensite()">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <div class="notification-badge">1</div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Join Our Team in Ethiopia</h1>
+                    <p class="text-xl mb-6">We're looking for passionate individuals to join our growing team!</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="cta-button text-xl font-bold py-3 px-8 rounded-full" onclick="opensite()">Join via WhatsApp</button>
+                        <button class="secondary-button text-xl font-bold py-3 px-8 rounded-full" onclick="opensite()">Learn More</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://www.goodmja.online/aisaiebiya/1.jpg" alt="Team members working together" class="rounded-lg shadow-2xl floating">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Opportunity Details -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Flexible Opportunity - Earn While You Learn</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">Join our dynamic team and earn up to <span class="income-highlight">20,000 ETB per week</span> based on your performance. No previous experience required!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white p-6 text-center">
+                    <div class="text-accent-color text-5xl mb-4">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Unlimited Earning Potential</h3>
+                    <p class="text-gray-600">Your income is directly tied to your performance, with no upper limit.</p>
+                    <button class="cta-button mt-4 py-2 px-4 rounded-full text-sm" onclick="opensite()">Start Earning Now</button>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white p-6 text-center">
+                    <div class="text-accent-color text-5xl mb-4">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Flexible Schedule</h3>
+                    <p class="text-gray-600">Work when it suits you. Perfect for students, parents, or anyone with existing commitments.</p>
+                    <button class="cta-button mt-4 py-2 px-4 rounded-full text-sm" onclick="opensite()">Learn About Flexibility</button>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white p-6 text-center">
+                    <div class="text-accent-color text-5xl mb-4">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Full Training Provided</h3>
+                    <p class="text-gray-600">Comprehensive training and ongoing support to ensure your success.</p>
+                    <button class="cta-button mt-4 py-2 px-4 rounded-full text-sm" onclick="opensite()">Join Training Program</button>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="cta-button text-xl font-bold py-3 px-8 rounded-full pulse" onclick="opensite()">Apply Now via WhatsApp</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Roles Section -->
+    <section class="py-16 px-4 bg-gray-100">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Find Your Perfect Role</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">We have multiple positions available to match your skills and interests</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Role 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-accent-color">Regional Manager</h3>
+                    <p class="text-gray-600 mb-4">Perfect for those with planning and organizational skills.</p>
+                    <ul class="mb-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Oversee regional operations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Coordinate team activities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Higher earning potential</span>
+                        </li>
+                    </ul>
+                    <button class="cta-button py-2 px-6 rounded-full" onclick="opensite()">Apply for This Role</button>
+                </div>
+                
+                <!-- Role 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-accent-color">Market Agent</h3>
+                    <p class="text-gray-600 mb-4">Ideal for those with strong networking abilities.</p>
+                    <ul class="mb-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Develop market opportunities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Build client relationships</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Commission-based structure</span>
+                        </li>
+                    </ul>
+                    <button class="cta-button py-2 px-6 rounded-full" onclick="opensite()">Apply for This Role</button>
+                </div>
+                
+                <!-- Role 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-accent-color">Promotion Ambassador</h3>
+                    <p class="text-gray-600 mb-4">Great for those with strong communication skills.</p>
+                    <ul class="mb-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Represent our brand publicly</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Organize promotional events</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Performance-based bonuses</span>
+                        </li>
+                    </ul>
+                    <button class="cta-button py-2 px-6 rounded-full" onclick="opensite()">Apply for This Role</button>
+                </div>
+                
+                <!-- Role 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-2 text-accent-color">Team Builder</h3>
+                    <p class="text-gray-600 mb-4">Perfect for those with leadership abilities.</p>
+                    <ul class="mb-4 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Recruit and train team members</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Develop organizational structure</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>Team performance bonuses</span>
+                        </li>
+                    </ul>
+                    <button class="cta-button py-2 px-6 rounded-full" onclick="opensite()">Apply for This Role</button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="cta-button text-xl font-bold py-3 px-8 rounded-full pulse" onclick="opensite()">Message Us on WhatsApp</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="py-16 px-4" style="background-image: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-white">Success Stories</h2>
+                <p class="text-xl text-white max-w-3xl mx-auto">Join hundreds of satisfied team members who have transformed their lives</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-accent-color rounded-full flex items-center justify-center text-white">
+                            <span class="font-bold">AB</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Abel B.</h4>
+                            <p class="text-sm text-gray-600">Addis Ababa</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"I started as a part-time agent while studying. Now I earn more than I ever imagined possible, with full flexibility around my classes."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary-color rounded-full flex items-center justify-center text-white">
+                            <span class="font-bold">MT</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Makeda T.</h4>
+                            <p class="text-sm text-gray-600">Bahir Dar</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"As a mother of two, I needed flexible work. This opportunity allowed me to earn while still being present for my family. I've now built a team of 15 people!"</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary-color rounded-full flex items-center justify-center text-white">
+                            <span class="font-bold">DG</span>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Daniel G.</h4>
+                            <p class="text-sm text-gray-600">Hawassa</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"I had no previous experience, but the training was comprehensive. Within 3 months, I was earning more than at my previous full-time job, with half the hours."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://www.goodmja.online/aisaiebiya/2.jpg" alt="Team celebration" class="rounded-lg shadow-xl">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Income?</h2>
+                    <p class="text-xl text-gray-700 mb-6">Join our team today and start your journey toward financial freedom. No experience needed - just bring your enthusiasm and determination!</p>
+                    <div class="space-y-4">
+                        <button class="cta-button w-full text-xl font-bold py-4 px-8 rounded-full pulse" onclick="opensite()">
+                            <i class="fab fa-whatsapp mr-2"></i> Connect on WhatsApp
+                        </button>
+                        <p class="text-gray-600 text-center">We'll respond within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer with Disclosures -->
+    <footer class="py-10 px-4 bg-gray-800 text-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">About Us</h3>
+                    <p class="text-gray-400">We're a leading team-building organization in Ethiopia focused on creating flexible income opportunities for motivated individuals.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <p class="text-gray-400">For inquiries, please contact us via WhatsApp or email.</p>
+                    <button class="secondary-button mt-2 py-2 px-4 rounded-full text-sm" onclick="opensite()">
+                        <i class="fab fa-whatsapp mr-1"></i> Connect Now
+                    </button>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Important Information</h3>
+                    <p class="text-gray-400">Income varies based on individual effort and results. Training is provided but success requires dedication and work.</p>
+                </div>
+            </div>
+            
+            <hr class="border-gray-700 mb-6">
+            
+            <div class="text-gray-400 text-sm">
+                <h4 class="font-bold mb-2">Disclosures:</h4>
+                <p class="mb-4">The income figures stated (up to 20,000 ETB weekly) represent the earnings of our top performers. Individual results will vary based on effort, time commitment, skills, and market conditions. This opportunity requires dedication and consistent work.</p>
+                
+                <h4 class="font-bold mb-2">Terms of Service:</h4>
+                <p class="mb-4">By contacting us through this page, you agree to receive information about our opportunity. All training materials provided remain our intellectual property. Full terms will be provided during onboarding.</p>
+                
+                <h4 class="font-bold mb-2">Privacy Policy:</h4>
+                <p class="mb-4">Information collected through this page will be used solely to contact you regarding this opportunity. We do not sell or share your personal information with unaffiliated third parties. Your contact information will be stored securely and handled in accordance with Ethiopian data protection regulations.</p>
+                
+                <p class="mt-6">&copy; 2023 Ethiopia Part-Time Opportunity. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Function to open WhatsApp
+        function opensite() {
+            window.open('https://wa.me/yourphonenumberhere', '_blank');
+        }
+        
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>
