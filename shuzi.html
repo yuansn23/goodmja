@@ -12,35 +12,37 @@
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
+            background-color: #111111;
+            color: #f5f5f5;
         }
         
-        .coral-gradient-bg {
-            background: linear-gradient(135deg, #FF6B6B 0%, #FE9191 50%, #FFACAC 100%);
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
         }
         
-        .coral-dark-gradient-bg {
-            background: linear-gradient(135deg, #D64545 0%, #FF6B6B 50%, #FE9191 100%);
+        .black-gold-gradient-bg {
+            background: linear-gradient(135deg, #111111 0%, #222222 85%, #333333 100%);
         }
         
-        .coral-gradient-text {
-            background: linear-gradient(90deg, #D64545 0%, #FE9191 50%, #FFACAC 100%);
+        .gold-gradient-text {
+            background: linear-gradient(90deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
-        .coral-gradient-button {
-            background: linear-gradient(90deg, #D64545 0%, #FE9191 50%, #FFACAC 100%);
+        .gold-gradient-button {
+            background: linear-gradient(90deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
             transition: all 0.3s ease;
         }
         
-        .coral-gradient-button:hover {
-            background: linear-gradient(90deg, #FFACAC 0%, #FE9191 50%, #D64545 100%);
+        .gold-gradient-button:hover {
+            background: linear-gradient(90deg, #bb9900 0%, #e6b800 50%, #F7D136 100%);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(254, 145, 145, 0.3);
+            box-shadow: 0 10px 20px rgba(247, 209, 54, 0.3);
         }
         
         .hero-section {
-            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -53,7 +55,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(214, 69, 69, 0.9) 0%, rgba(254, 145, 145, 0.8) 50%, rgba(255, 172, 172, 0.7) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.8) 100%);
             z-index: 1;
         }
         
@@ -68,7 +70,7 @@
         
         .case-study-card:hover, .testimonial-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .contact-icon {
@@ -78,14 +80,14 @@
             transform: translateY(-50%);
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #D64545 0%, #FE9191 51%, #FFACAC 100%);
+            background: linear-gradient(135deg, #F7D136 0%, #e6b800 100%);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: black;
             font-size: 24px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             z-index: 1000;
             transition: all 0.3s ease;
@@ -93,7 +95,7 @@
         
         .contact-icon:hover {
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 10px 20px rgba(214, 69, 69, 0.3);
+            box-shadow: 0 10px 20px rgba(247, 209, 54, 0.3);
         }
         
         .stats-item {
@@ -105,7 +107,7 @@
         }
         
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(17, 17, 17, 0.95);
             backdrop-filter: blur(10px);
         }
         
@@ -136,24 +138,76 @@
             left: 0;
             width: 50%;
             height: 3px;
-            background: linear-gradient(90deg, #D64545 0%, #FE9191 50%, #FFACAC 100%);
+            background: linear-gradient(90deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
         }
         
         /* Custom card styling */
-        .coral-card {
-            background-color: white;
-            border: 1px solid rgba(254, 145, 145, 0.2);
-            box-shadow: 0 4px 6px rgba(254, 145, 145, 0.1);
+        .dark-card {
+            background-color: #1a1a1a;
+            border: 1px solid rgba(247, 209, 54, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         
-        .coral-card-dark {
-            background-color: #2D3748;
-            border: 1px solid rgba(254, 145, 145, 0.3);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        .slider-scroll {
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+            scrollbar-color: #F7D136 #333333;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+        }
+        
+        .slider-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .slider-scroll::-webkit-scrollbar-track {
+            background: #333333;
+            border-radius: 10px;
+        }
+        
+        .slider-scroll::-webkit-scrollbar-thumb {
+            background: #F7D136;
+            border-radius: 10px;
+        }
+        
+        .slider-scroll::-webkit-scrollbar-thumb:hover {
+            background: #e6b800;
+        }
+        
+        .slider-container {
+            display: inline-flex;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .slider-control {
+            background: #333;
+            color: #F7D136;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-control:hover {
+            background: #F7D136;
+            color: #111;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
     <!-- Contact Icon -->
     <div class="contact-icon" onclick="siteweb()">
         <i class="fas fa-headset"></i>
@@ -164,18 +218,18 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <div class="text-2xl font-bold coral-gradient-text">OmniDigitalM</div>
+                    <div class="text-2xl font-bold gold-gradient-text">OmniDigitalM</div>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="font-medium text-gray-700 hover:text-red-500 transition-colors">Home</a>
-                    <a href="#about" class="font-medium text-gray-700 hover:text-red-500 transition-colors">About</a>
-                    <a href="#clients" class="font-medium text-gray-700 hover:text-red-500 transition-colors">Clients</a>
-                    <a href="#case-studies" class="font-medium text-gray-700 hover:text-red-500 transition-colors">Case Studies</a>
-                    <a href="#testimonials" class="font-medium text-gray-700 hover:text-red-500 transition-colors">Testimonials</a>
-                    <a href="#contact" class="font-medium text-gray-700 hover:text-red-500 transition-colors">Contact</a>
+                    <a href="#home" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Home</a>
+                    <a href="#about" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">About</a>
+                    <a href="#clients" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Clients</a>
+                    <a href="#case-studies" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Case Studies</a>
+                    <a href="#testimonials" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Testimonials</a>
+                    <a href="#contact" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Contact</a>
                 </div>
                 <div>
-                    <button onclick="siteweb()" class="coral-gradient-button text-white px-6 py-2 rounded-full font-medium">Get Started</button>
+                    <button onclick="siteweb()" class="gold-gradient-button text-black px-6 py-2 rounded-full font-medium">Get Started</button>
                 </div>
             </div>
         </div>
@@ -187,43 +241,48 @@
             <div class="max-w-3xl mx-auto text-center">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fadeUp" style="animation-delay: 0.1s;">Global Digital Marketing Excellence</h1>
                 <p class="text-xl md:text-2xl mb-10 animate-fadeUp" style="animation-delay: 0.2s;">Looking to expand your brand into new markets? We provide comprehensive digital marketing solutions.</p>
-                <button onclick="siteweb()" class="bg-white text-red-600 px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate-fadeUp" style="animation-delay: 0.3s;">Discover How</button>
+                <button onclick="siteweb()" class="bg-white text-black hover:bg-gray-200 px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate-fadeUp" style="animation-delay: 0.3s;">Discover How</button>
+                <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                    <a href="#about" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+                        <i class="fas fa-chevron-down text-2xl"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20 black-gold-gradient-bg">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold section-title coral-gradient-text">About OmniDigitalM</h2>
-                <p class="text-gray-600 mt-6 max-w-3xl mx-auto">Global Digital Marketing Strategists | 15+ Years of Multinational Brand Growth Experience</p>
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">About OmniDigitalM</h2>
+                <p class="text-gray-300 mt-6 max-w-3xl mx-auto">Global Digital Marketing Strategists | 15+ Years of Multinational Brand Growth Experience</p>
             </div>
             
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 md:pr-12 mb-10 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Your Partner in Digital Growth</h3>
-                    <p class="text-gray-600 mb-6">As pioneers in the digital marketing arena, our team has been providing data-driven growth solutions to businesses across 20+ countries since 2008. We have deep expertise in e-commerce, technology, FMCG, finance, and multiple other industries, managing over $120 million in digital advertising budgets and helping our clients achieve average ROI improvements of over 300%.</p>
-                    <p class="text-gray-600 mb-6">At OmniDigitalM, we combine strategic thinking with technical excellence to deliver measurable results for your business. Our global team of specialists works tirelessly to stay ahead of market trends and leverage emerging technologies to your advantage.</p>
-                    <button onclick="siteweb()" class="coral-gradient-button text-white px-8 py-3 rounded-full text-lg font-medium">Learn More About Us</button>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Your Partner in Digital Growth</h3>
+                    <p class="text-gray-300 mb-6">As pioneers in the digital marketing arena, our team has been providing data-driven growth solutions to businesses across 20+ countries since 2008. We have deep expertise in e-commerce, technology, FMCG, finance, and multiple other industries, managing over $120 million in digital advertising budgets and helping our clients achieve average ROI improvements of over 300%.</p>
+                    <p class="text-gray-300 mb-6">At OmniDigitalM, we combine strategic thinking with technical excellence to deliver measurable results for your business. Our global team of specialists works tirelessly to stay ahead of market trends and leverage emerging technologies to your advantage.</p>
+                    <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 rounded-full text-lg font-medium">Learn More About Us</button>
                 </div>
                 <div class="md:w-1/2">
                     <div class="grid grid-cols-2 gap-6">
-                        <div class="coral-card p-8 rounded-lg text-center stats-item">
-                            <div class="text-4xl font-bold coral-gradient-text mb-2">15+</div>
-                            <div class="text-gray-600">Years of Experience</div>
+                        <div class="dark-card p-8 rounded-lg text-center stats-item">
+                            <div class="text-4xl font-bold gold-gradient-text mb-2">15+</div>
+                            <div class="text-gray-300">Years of Experience</div>
                         </div>
-                        <div class="coral-card p-8 rounded-lg text-center stats-item">
-                            <div class="text-4xl font-bold coral-gradient-text mb-2">160+</div>
-                            <div class="text-gray-600">Global Team Members</div>
+                        <div class="dark-card p-8 rounded-lg text-center stats-item">
+                            <div class="text-4xl font-bold gold-gradient-text mb-2">160+</div>
+                            <div class="text-gray-300">Global Team Members</div>
                         </div>
-                        <div class="coral-card p-8 rounded-lg text-center stats-item">
-                            <div class="text-4xl font-bold coral-gradient-text mb-2">5</div>
-                            <div class="text-gray-600">Global Offices</div>
+                        <div class="dark-card p-8 rounded-lg text-center stats-item">
+                            <div class="text-4xl font-bold gold-gradient-text mb-2">5</div>
+                            <div class="text-gray-300">Global Offices</div>
                         </div>
-                        <div class="coral-card p-8 rounded-lg text-center stats-item">
-                            <div class="text-4xl font-bold coral-gradient-text mb-2">2,500+</div>
-                            <div class="text-gray-600">Brands Served</div>
+                        <div class="dark-card p-8 rounded-lg text-center stats-item">
+                            <div class="text-4xl font-bold gold-gradient-text mb-2">2,500+</div>
+                            <div class="text-gray-300">Brands Served</div>
                         </div>
                     </div>
                 </div>
@@ -232,206 +291,243 @@
     </section>
 
     <!-- Clients Section -->
-    <section id="clients" class="py-20 bg-gray-50">
+    <section id="clients" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold section-title coral-gradient-text">Our Major Clients</h2>
-                <p class="text-gray-600 mt-6 max-w-3xl mx-auto">We're proud to have worked with leading brands across diverse industries worldwide</p>
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Our Major Clients</h2>
+                <p class="text-gray-300 mt-6 max-w-3xl mx-auto">We're proud to have worked with leading brands across diverse industries worldwide</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-building text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-building text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">Corporate</h3>
-                    <p class="text-gray-600 text-center">Helping enterprise clients transform their digital presence and engagement strategies.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">Corporate</h3>
+                    <p class="text-gray-300 text-center">Helping enterprise clients transform their digital presence and engagement strategies.</p>
                 </div>
                 
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-shopping-cart text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-shopping-cart text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">E-Commerce</h3>
-                    <p class="text-gray-600 text-center">Driving traffic, conversions, and customer retention for online retailers globally.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">E-Commerce</h3>
+                    <p class="text-gray-300 text-center">Driving traffic, conversions, and customer retention for online retailers globally.</p>
                 </div>
                 
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-laptop-code text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-laptop-code text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">SaaS</h3>
-                    <p class="text-gray-600 text-center">Creating effective lead generation and user acquisition strategies for software companies.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">SaaS</h3>
+                    <p class="text-gray-300 text-center">Creating effective lead generation and user acquisition strategies for software companies.</p>
                 </div>
                 
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-plane text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-plane text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">Travel</h3>
-                    <p class="text-gray-600 text-center">Elevating the digital presence of travel brands to attract global travelers.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">Travel</h3>
+                    <p class="text-gray-300 text-center">Elevating the digital presence of travel brands to attract global travelers.</p>
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-gamepad text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-gamepad text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">Gaming</h3>
-                    <p class="text-gray-600 text-center">Implementing user acquisition and engagement strategies for gaming companies.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">Gaming</h3>
+                    <p class="text-gray-300 text-center">Implementing user acquisition and engagement strategies for gaming companies.</p>
                 </div>
                 
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-heartbeat text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-heartbeat text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">Health</h3>
-                    <p class="text-gray-600 text-center">Developing ethical marketing solutions for healthcare providers and wellness brands.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">Health</h3>
+                    <p class="text-gray-300 text-center">Developing ethical marketing solutions for healthcare providers and wellness brands.</p>
                 </div>
                 
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-landmark text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-landmark text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">Finance</h3>
-                    <p class="text-gray-600 text-center">Creating compliant and effective digital strategies for financial institutions.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">Finance</h3>
+                    <p class="text-gray-300 text-center">Creating compliant and effective digital strategies for financial institutions.</p>
                 </div>
                 
-                <div class="coral-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-red-100">
-                        <i class="fas fa-microchip text-2xl text-red-500"></i>
+                <div class="dark-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-yellow-200">
+                        <i class="fas fa-microchip text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2">Technology</h3>
-                    <p class="text-gray-600 text-center">Helping tech innovators communicate their value proposition to target audiences.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 text-white">Technology</h3>
+                    <p class="text-gray-300 text-center">Helping tech innovators communicate their value proposition to target audiences.</p>
                 </div>
             </div>
             
             <div class="text-center mt-12">
-                <button onclick="siteweb()" class="coral-gradient-button text-white px-8 py-3 rounded-full text-lg font-medium">View All Industries</button>
+                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 rounded-full text-lg font-medium">View All Industries</button>
             </div>
         </div>
     </section>
 
     <!-- Case Studies Section -->
-    <section id="case-studies" class="py-20 bg-white">
+    <section id="case-studies" class="py-20 black-gold-gradient-bg">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold section-title coral-gradient-text">Case Studies</h2>
-                <p class="text-gray-600 mt-6 max-w-3xl mx-auto">Explore how we've helped businesses across different industries achieve remarkable results</p>
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Case Studies</h2>
+                <p class="text-gray-300 mt-6 max-w-3xl mx-auto">Explore how we've helped businesses across different industries achieve remarkable results</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="case-study-card coral-card rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Corporate Case Study" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-sm text-red-500 font-semibold mb-2">Corporate</div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Global Expansion Strategy</h3>
-                        <p class="text-gray-600 mb-4">Helped a multinational corporation enter 5 new markets with localized digital strategies.</p>
-                        <div class="flex items-center text-sm text-gray-700">
-                            <div class="mr-4"><span class="font-bold">+42%</span> Lead Generation</div>
-                            <div><span class="font-bold">520%</span> ROI</div>
+            <div class="slider-scroll" id="caseStudySlider">
+                <div class="slider-container">
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80">
+                        <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Corporate Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-yellow-400 font-semibold mb-2">Corporate</div>
+                            <h3 class="text-xl font-bold mb-2 text-white">Global Expansion Strategy</h3>
+                            <p class="text-gray-300 mb-4">Helped a multinational corporation enter 5 new markets with localized digital strategies.</p>
+                            <div class="flex items-center text-sm text-gray-300">
+                                <div class="mr-4"><span class="font-bold">+42%</span> Lead Generation</div>
+                                <div><span class="font-bold">520%</span> ROI</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="case-study-card coral-card rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="E-Commerce Case Study" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-sm text-red-500 font-semibold mb-2">E-Commerce</div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Revenue Optimization</h3>
-                        <p class="text-gray-600 mb-4">Restructured the digital marketing strategy for a major online retailer.</p>
-                        <div class="flex items-center text-sm text-gray-700">
-                            <div class="mr-4"><span class="font-bold">+187%</span> Conversion Rate</div>
-                            <div><span class="font-bold">413%</span> ROI</div>
+                    
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="E-Commerce Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-yellow-400 font-semibold mb-2">E-Commerce</div>
+                            <h3 class="text-xl font-bold mb-2 text-white">Revenue Optimization</h3>
+                            <p class="text-gray-300 mb-4">Restructured the digital marketing strategy for a major online retailer.</p>
+                            <div class="flex items-center text-sm text-gray-300">
+                                <div class="mr-4"><span class="font-bold">+187%</span> Conversion Rate</div>
+                                <div><span class="font-bold">413%</span> ROI</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="case-study-card coral-card rounded-lg overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="SaaS Case Study" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="text-sm text-red-500 font-semibold mb-2">SaaS</div>
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Growth Acceleration</h3>
-                        <p class="text-gray-600 mb-4">Created a multi-channel acquisition strategy for a B2B software platform.</p>
-                        <div class="flex items-center text-sm text-gray-700">
-                            <div class="mr-4"><span class="font-bold">+156%</span> Lead Quality</div>
-                            <div><span class="font-bold">312%</span> ROI</div>
+                    
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="SaaS Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-yellow-400 font-semibold mb-2">SaaS</div>
+                            <h3 class="text-xl font-bold mb-2 text-white">Growth Acceleration</h3>
+                            <p class="text-gray-300 mb-4">Created a multi-channel acquisition strategy for a B2B software platform.</p>
+                            <div class="flex items-center text-sm text-gray-300">
+                                <div class="mr-4"><span class="font-bold">+156%</span> Lead Quality</div>
+                                <div><span class="font-bold">312%</span> ROI</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80">
+                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Travel Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-yellow-400 font-semibold mb-2">Travel</div>
+                            <h3 class="text-xl font-bold mb-2 text-white">Bookings Maximization</h3>
+                            <p class="text-gray-300 mb-4">Developed a data-driven campaign for a luxury travel operator.</p>
+                            <div class="flex items-center text-sm text-gray-300">
+                                <div class="mr-4"><span class="font-bold">+89%</span> Bookings</div>
+                                <div><span class="font-bold">278%</span> ROI</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Gaming Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-yellow-400 font-semibold mb-2">Gaming</div>
+                            <h3 class="text-xl font-bold mb-2 text-white">User Acquisition</h3>
+                            <p class="text-gray-300 mb-4">Created a global user acquisition strategy for a mobile game developer.</p>
+                            <div class="flex items-center text-sm text-gray-300">
+                                <div class="mr-4"><span class="font-bold">+245%</span> Installs</div>
+                                <div><span class="font-bold">362%</span> ROI</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-12">
-                <button onclick="siteweb()" class="coral-gradient-button text-white px-8 py-3 rounded-full text-lg font-medium">View All Case Studies</button>
+            <div class="slider-controls">
+                <div class="slider-control" onclick="scrollSlider('caseStudySlider', -300)">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="slider-control" onclick="scrollSlider('caseStudySlider', 300)">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 rounded-full text-lg font-medium">View All Case Studies</button>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 bg-gray-50">
+    <section id="testimonials" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold section-title coral-gradient-text">Client Testimonials</h2>
-                <p class="text-gray-600 mt-6 max-w-3xl mx-auto">Hear what our clients have to say about working with OmniDigitalM</p>
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Client Testimonials</h2>
+                <p class="text-gray-300 mt-6 max-w-3xl mx-auto">Hear what our clients have to say about working with OmniDigitalM</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="testimonial-card coral-card p-8 rounded-lg shadow-md">
-                    <div class="mb-4 text-yellow-500">
+                <div class="testimonial-card dark-card p-8 rounded-lg shadow-md">
+                    <div class="mb-4 text-yellow-400">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-600 mb-6">"OmniDigitalM transformed our approach to digital marketing. Their strategic insights and data-driven methodology helped us establish a strong market position in highly competitive markets."</p>
+                    <p class="text-gray-300 mb-6">"OmniDigitalM transformed our approach to digital marketing. Their strategic insights and data-driven methodology helped us establish a strong market position in highly competitive markets."</p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
-                            <i class="fas fa-building text-red-500"></i>
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-building text-yellow-800"></i>
                         </div>
                         <div>
-                            <div class="font-bold text-gray-800">Michael Richardson</div>
-                            <div class="text-sm text-gray-500">Chief Marketing Officer, Global Corp</div>
+                            <div class="font-bold text-white">Michael Richardson</div>
+                            <div class="text-sm text-gray-400">Chief Marketing Officer, Global Corp</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-card coral-card p-8 rounded-lg shadow-md">
-                    <div class="mb-4 text-yellow-500">
+                <div class="testimonial-card dark-card p-8 rounded-lg shadow-md">
+                    <div class="mb-4 text-yellow-400">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-600 mb-6">"Working with the OmniDigitalM team has been a game-changer for our e-commerce business. They helped us scale our online sales by 300% in just six months through their innovative strategies."</p>
+                    <p class="text-gray-300 mb-6">"Working with the OmniDigitalM team has been a game-changer for our e-commerce business. They helped us scale our online sales by 300% in just six months through their innovative strategies."</p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
-                            <i class="fas fa-shopping-cart text-red-500"></i>
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-shopping-cart text-yellow-800"></i>
                         </div>
                         <div>
-                            <div class="font-bold text-gray-800">Sarah Johnson</div>
-                            <div class="text-sm text-gray-500">Founder, StyleCart</div>
+                            <div class="font-bold text-white">Sarah Johnson</div>
+                            <div class="text-sm text-gray-400">Founder, StyleCart</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-card coral-card p-8 rounded-lg shadow-md">
-                    <div class="mb-4 text-yellow-500">
+                <div class="testimonial-card dark-card p-8 rounded-lg shadow-md">
+                    <div class="mb-4 text-yellow-400">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-600 mb-6">"The expertise at OmniDigitalM is unmatched. Their team understood our SaaS product and created a lead generation strategy that delivered high-quality prospects at a significantly lower cost per acquisition."</p>
+                    <p class="text-gray-300 mb-6">"The expertise at OmniDigitalM is unmatched. Their team understood our SaaS product and created a lead generation strategy that delivered high-quality prospects at a significantly lower cost per acquisition."</p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
-                            <i class="fas fa-laptop-code text-red-500"></i>
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4">
+                            <i class="fas fa-laptop-code text-yellow-800"></i>
                         </div>
                         <div>
-                            <div class="font-bold text-gray-800">David Chen</div>
-                            <div class="text-sm text-gray-500">CEO, CloudSolutions</div>
+                            <div class="font-bold text-white">David Chen</div>
+                            <div class="text-sm text-gray-400">CEO, CloudSolutions</div>
                         </div>
                     </div>
                 </div>
@@ -440,52 +536,52 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 coral-gradient-bg text-white">
+    <section id="contact" class="py-20 gold-gradient-bg">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
-                <p class="text-lg max-w-3xl mx-auto">Ready to expand your brand's digital presence? Get in touch with our team today.</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">Contact Us</h2>
+                <p class="text-lg max-w-3xl mx-auto text-gray-800">Ready to expand your brand's digital presence? Get in touch with our team today.</p>
             </div>
             
             <div class="max-w-4xl mx-auto">
-                <div class="bg-white bg-opacity-10 rounded-lg p-8 text-center">
-                    <h3 class="text-2xl font-bold mb-6">Let's Connect</h3>
-                    <p class="text-white mb-8 opacity-80">Our team of experts is ready to discuss your digital marketing needs and develop a customized strategy for your business.</p>
+                <div class="bg-black bg-opacity-20 rounded-lg p-8 text-center">
+                    <h3 class="text-2xl font-bold mb-6 text-black">Let's Connect</h3>
+                    <p class="text-gray-800 mb-8">Our team of experts is ready to discuss your digital marketing needs and develop a customized strategy for your business.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                        <div class="bg-white bg-opacity-10 p-6 rounded-lg border border-white border-opacity-20">
-                            <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                        <div class="bg-black bg-opacity-30 p-6 rounded-lg">
+                            <div class="w-12 h-12 rounded-full bg-black bg-opacity-30 flex items-center justify-center mx-auto mb-4 text-white">
                                 <i class="fab fa-telegram text-2xl"></i>
                             </div>
-                            <p class="font-medium">Telegram</p>
-                            <p>@snvtr2</p>
+                            <p class="font-medium text-black">Telegram</p>
+                            <p class="text-gray-800">@snvtr2</p>
                         </div>
                         
-                        <div class="bg-white bg-opacity-10 p-6 rounded-lg border border-white border-opacity-20">
-                            <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                        <div class="bg-black bg-opacity-30 p-6 rounded-lg">
+                            <div class="w-12 h-12 rounded-full bg-black bg-opacity-30 flex items-center justify-center mx-auto mb-4 text-white">
                                 <i class="fas fa-envelope text-2xl"></i>
                             </div>
-                            <p class="font-medium">Email</p>
-                            <p>qwerty2015009@gmail.com</p>
+                            <p class="font-medium text-black">Email</p>
+                            <p class="text-gray-800">qwerty2015009@gmail.com</p>
                         </div>
                         
-                        <div class="bg-white bg-opacity-10 p-6 rounded-lg border border-white border-opacity-20">
-                            <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                        <div class="bg-black bg-opacity-30 p-6 rounded-lg">
+                            <div class="w-12 h-12 rounded-full bg-black bg-opacity-30 flex items-center justify-center mx-auto mb-4 text-white">
                                 <i class="fab fa-skype text-2xl"></i>
                             </div>
-                            <p class="font-medium">Skype</p>
-                            <p>13121232@sda.com</p>
+                            <p class="font-medium text-black">Skype</p>
+                            <p class="text-gray-800">13121232@sda.com</p>
                         </div>
                     </div>
                     
                     <div class="mb-6">
-                        <p class="font-medium text-xl mb-2">StarPulse Influence Limited</p>
-                        <p class="mb-6 opacity-80">542 Hang Kin Street, Sha Tin District, Hong Kong</p>
+                        <p class="font-medium text-xl mb-2 text-black">StarPulse Influence Limited</p>
+                        <p class="mb-6 text-gray-800">542 Hang Kin Street, Sha Tin District, Hong Kong</p>
                     </div>
                     
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <button onclick="siteweb()" class="bg-white text-red-600 hover:bg-red-50 px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Contact Us Now</button>
-                        <button onclick="siteweb()" class="bg-transparent border-2 border-white text-white hover:bg-white hover:bg-opacity-10 px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Start Your Project</button>
+                        <button onclick="siteweb()" class="bg-black text-white hover:bg-gray-900 px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Contact Us Now</button>
+                        <button onclick="siteweb()" class="bg-white text-black hover:bg-gray-100 px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Start Your Project</button>
                     </div>
                 </div>
             </div>
@@ -493,52 +589,52 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-black text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="text-2xl font-bold mb-4 text-white">OmniDigitalM</div>
+                    <div class="text-2xl font-bold mb-4 gold-gradient-text">OmniDigitalM</div>
                     <p class="text-gray-400 mb-4">Global Digital Marketing Solutions for brands seeking growth across borders.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-white">Services</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Digital Strategy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Performance Marketing</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Content Creation</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Social Media Management</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">SEO Optimization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Digital Strategy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Performance Marketing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Content Creation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Social Media Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">SEO Optimization</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Industries</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-white">Industries</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">E-Commerce</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">SaaS</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Finance</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Healthcare</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Technology</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">E-Commerce</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">SaaS</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Finance</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Healthcare</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Technology</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Global Offices</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-white">Global Offices</h3>
                     <ul class="space-y-2">
                         <li class="text-gray-400">Hong Kong (HQ)</li>
                         <li class="text-gray-400">Singapore</li>
@@ -552,9 +648,9 @@
             <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <div class="text-gray-400 mb-4 md:mb-0">© 2024 StarPulse Influence Limited. All rights reserved.</div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-red-400 transition-colors">Cookie Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Cookie Policy</a>
                 </div>
             </div>
         </div>
@@ -563,6 +659,11 @@
     <script>
         function siteweb() {
             window.open('https://www.baidu.com', '_blank');
+        }
+        
+        function scrollSlider(sliderId, amount) {
+            const slider = document.getElementById(sliderId);
+            slider.scrollLeft += amount;
         }
     </script>
 </body>
