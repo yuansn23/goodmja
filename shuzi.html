@@ -334,6 +334,28 @@
             justify-content: center;
             margin-right: 15px;
         }
+        
+        .faq-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #F7D136;
+        }
+        
+        .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .faq-icon {
+            background: rgba(247, 209, 54, 0.15);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -355,6 +377,7 @@
                     <a href="#clients" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Clients</a>
                     <a href="#case-studies" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Case Studies</a>
                     <a href="#testimonials" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Testimonials</a>
+                    <a href="#expertise" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Expertise</a>
                     <a href="#contact" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Contact</a>
                 </div>
                 <div>
@@ -792,8 +815,95 @@
         </div>
     </section>
 
+    <!-- Expertise FAQ Section -->
+    <section id="expertise" class="py-24 black-gold-gradient-bg">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Our Expertise</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Discover how our specialized knowledge can help your business reach its full potential</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="faq-card dark-card p-8 rounded-lg">
+                    <div class="flex items-start mb-6">
+                        <div class="faq-icon">
+                            <i class="fas fa-question text-yellow-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">What is your marketing expertise?</h3>
+                    </div>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        We are proficient in all aspects of digital marketing, from website design and SEO strategy development to video production and paid advertising campaigns. However, our digital marketing agency excels particularly in B2B, FinTech, cryptocurrency, and high-growth startup brands.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        We believe our team's first-hand experience in these industries gives us a competitive edge that helps us better serve our clients.
+                    </p>
+                    
+                    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-gray-800 bg-opacity-50 p-4 rounded text-center">
+                            <i class="fas fa-laptop-code text-yellow-400 text-2xl mb-2"></i>
+                            <p class="text-white text-sm">Web Design</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-4 rounded text-center">
+                            <i class="fas fa-search text-yellow-400 text-2xl mb-2"></i>
+                            <p class="text-white text-sm">SEO Strategy</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-4 rounded text-center">
+                            <i class="fas fa-film text-yellow-400 text-2xl mb-2"></i>
+                            <p class="text-white text-sm">Video Production</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-4 rounded text-center">
+                            <i class="fas fa-ad text-yellow-400 text-2xl mb-2"></i>
+                            <p class="text-white text-sm">Paid Advertising</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-card dark-card p-8 rounded-lg">
+                    <div class="flex items-start mb-6">
+                        <div class="faq-icon">
+                            <i class="fas fa-lightbulb text-yellow-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">How will working with you benefit my business?</h3>
+                    </div>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Online digital marketing is an ever-changing field, and it can be difficult to know where to begin without a solid foundation. Our agency provides expert guidance and strategic planning tailored to your brand and long-term goals.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Now that you've found our digital marketing website, you can avoid common pitfalls and quickly move toward sustainable growth.
+                    </p>
+                    
+                    <div class="mt-6 bg-gray-800 bg-opacity-50 p-6 rounded-lg border border-yellow-500 border-opacity-20">
+                        <h4 class="text-xl font-bold text-white mb-4">Benefits of Working With Us:</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-yellow-400 mr-3"></i>
+                                <span class="text-gray-300">Customized strategies aligned with your business goals</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-yellow-400 mr-3"></i>
+                                <span class="text-gray-300">Data-driven approach to maximize ROI</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-yellow-400 mr-3"></i>
+                                <span class="text-gray-300">Industry-specific expertise that understands your challenges</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-yellow-400 mr-3"></i>
+                                <span class="text-gray-300">Ongoing optimization and performance reporting</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-14">
+                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-4 rounded-full text-lg font-medium">Schedule a Strategy Session</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
-    <section id="contact" class="py-24 black-gold-gradient-bg">
+    <section id="contact" class="py-24 bg-gray-900">
         <div class="page-container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Contact Us</h2>
