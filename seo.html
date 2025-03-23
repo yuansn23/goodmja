@@ -42,6 +42,34 @@
             background: linear-gradient(135deg, #111111 0%, #222222 85%, #333333 100%);
         }
         
+        .hero-gradient-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #111111 40%, #222222 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient-bg::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(247, 209, 54, 0.1) 0%, rgba(247, 209, 54, 0) 70%);
+            z-index: 1;
+        }
+        
+        .hero-gradient-bg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(247, 209, 54, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 1;
+        }
+        
         .gold-accent-bg {
             background: linear-gradient(135deg, #111111 0%, #222222 95%);
             border-left: 4px solid #F7D136;
@@ -62,24 +90,6 @@
             background: linear-gradient(90deg, #bb9900 0%, #e6b800 50%, #F7D136 100%);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(247, 209, 54, 0.3);
-        }
-        
-        .hero-section {
-            background-image: url('https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.8) 100%);
-            z-index: 1;
         }
         
         .hero-content {
@@ -301,6 +311,27 @@
             color: white;
             cursor: pointer;
         }
+        
+        .solution-item {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .solution-item .number {
+            font-size: 64px;
+            font-weight: 700;
+            position: absolute;
+            bottom: -15px;
+            right: 10px;
+            opacity: 0.1;
+            color: #F7D136;
+        }
     </style>
 </head>
 <body>
@@ -351,16 +382,16 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero-section min-h-screen flex items-center">
+    <section class="hero-gradient-bg min-h-screen flex items-center">
         <div class="page-container mx-auto px-4 hero-content text-white py-32">
-            <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-8 animate-fadeUp" style="animation-delay: 0.1s;">Enterprise SEO Growth Solutions</h1>
-                <p class="text-xl md:text-2xl mb-12 animate-fadeUp" style="animation-delay: 0.2s;">Transform your website into a 24/7 customer acquisition engine with our data-driven SEO strategies</p>
-                <button onclick="siteweb()" class="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate-fadeUp" style="animation-delay: 0.3s;">Boost Your Rankings</button>
-                <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                    <a href="#what-is-seo" class="text-white opacity-80 hover:opacity-100 transition-opacity">
-                        <i class="fas fa-chevron-down text-2xl"></i>
-                    </a>
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                <div class="w-full lg:w-1/2 text-left animate-fadeUp" style="animation-delay: 0.1s;">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Enterprise SEO Growth Solutions</h1>
+                    <p class="text-xl md:text-2xl mb-8">Transform your website into a 24/7 customer acquisition engine with our data-driven SEO strategies</p>
+                    <button onclick="siteweb()" class="gold-gradient-button text-black hover:bg-gray-200 px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Boost Your Rankings</button>
+                </div>
+                <div class="w-full lg:w-1/2 animate-fadeUp" style="animation-delay: 0.3s;">
+                    <img src="https://www.goodmja.online/shuziyingxiao/s1.jpg" alt="SEO Visualization" class="w-full rounded-xl shadow-2xl">
                 </div>
             </div>
         </div>
@@ -376,15 +407,15 @@
             
             <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
                 <div class="w-full lg:w-1/2">
-                    <img src="https://www.goodmja.online/shuziyingxiao/s1.jpg" alt="SEO Concept" class="rounded-xl shadow-2xl w-full transform hover:scale-105 transition-all duration-500">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/a3f5e12dddff4f054450dc9be706b00dea2576ed4d733bb550ca3340f826a3ee?w=1224&h=816" alt="SEO Concept" class="rounded-xl shadow-2xl w-full transform hover:scale-105 transition-all duration-500">
                 </div>
                 <div class="w-full lg:w-1/2 space-y-6 md:space-y-8 mt-8 lg:mt-0">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white leading-relaxed">More Than Technology, It's a Growth Engine</h3>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white leading-relaxed">Not Just Technology, But a Growth Engine</h3>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        SEO (Search Engine Optimization) is a promotional technique that utilizes search engine ranking algorithms to improve a website's natural ranking in search results (non-advertising) through various optimization techniques.
+                        SEO (Search Engine Optimization) is a promotional technique that leverages search engine ranking algorithms through various optimization techniques to improve a website's natural (non-advertising) ranking in search results.
                     </p>
                     <p class="text-gray-300 text-base md:text-lg leading-relaxed">
-                        When potential customers develop purchasing needs and search for related products or businesses on Google, the business website appears in the natural search results, enhancing the business's authority in the customer's mind, while also receiving clicks and visits from potential customers, significantly improving business conversion rates and brand awareness.
+                        When potential customers develop purchasing needs and search for related products or services on Google, business websites appear in natural search results, enhancing the company's authority in customers' minds while gaining clicks and visits from potential customers. This significantly increases business conversion rates and brand awareness.
                     </p>
                     
                     <div class="pt-4 md:pt-6">
@@ -408,32 +439,32 @@
                     <div class="benefit-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-business-time text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">24/7 Online Sales Team</h3>
-                    <p class="text-gray-300 text-center">Your website becomes a gold-standard salesperson that works around the clock, letting even late-night searchers find your products</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">24/7 Online Salesperson</h3>
+                    <p class="text-gray-300 text-center">Your website works as a top salesperson year-round, even helping customers who search for products in different time zones</p>
                 </div>
                 
                 <div class="benefit-item dark-card p-6 md:p-8 rounded-lg shadow-md">
                     <div class="benefit-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-shield-alt text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Built-in Trust Factor</h3>
-                    <p class="text-gray-300 text-center">Businesses appearing in Google's top 3 spots are considered more trustworthy than a presidential address by customers</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Built-in Trust Halo</h3>
+                    <p class="text-gray-300 text-center">Businesses appearing in Google's top 3 positions are considered more trustworthy than a presidential speech by customers</p>
                 </div>
                 
                 <div class="benefit-item dark-card p-6 md:p-8 rounded-lg shadow-md">
                     <div class="benefit-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-tachometer-alt text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">All-You-Can-Eat Free Traffic</h3>
-                    <p class="text-gray-300 text-center">Unlike ads that stop when you stop spending, good SEO brings a constant stream of targeted customers from Google search</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Free Traffic Feast</h3>
+                    <p class="text-gray-300 text-center">Unlike ads that stop when you stop spending, good SEO continuously brings targeted customers from Google search</p>
                 </div>
                 
                 <div class="benefit-item dark-card p-6 md:p-8 rounded-lg shadow-md">
                     <div class="benefit-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-dollar-sign text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Big Results on a Small Budget</h3>
-                    <p class="text-gray-300 text-center">Much more economical than Facebook ads, like getting a Michelin-star meal at supermarket discount prices</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Cost-Effective Results</h3>
+                    <p class="text-gray-300 text-center">Much more economical than Facebook ads, like getting a Michelin-quality meal at supermarket discount prices</p>
                 </div>
             </div>
             
@@ -444,8 +475,8 @@
                         <div class="p-5 rounded-lg bg-gray-800 bg-opacity-50 border border-yellow-500 border-opacity-20">
                             <div class="text-center">
                                 <i class="fas fa-users text-yellow-400 text-3xl mb-4"></i>
-                                <h4 class="text-xl font-bold text-white mb-2">Website Traffic Explosion</h4>
-                                <p class="text-gray-300">Like a Walmart parking lot on Black Friday</p>
+                                <h4 class="text-xl font-bold text-white mb-2">Website Traffic Surge</h4>
+                                <p class="text-gray-300">Like Black Friday crowds at Walmart's parking lot</p>
                             </div>
                         </div>
                         
@@ -460,15 +491,15 @@
                         <div class="p-5 rounded-lg bg-gray-800 bg-opacity-50 border border-yellow-500 border-opacity-20">
                             <div class="text-center">
                                 <i class="fas fa-chart-line text-yellow-400 text-3xl mb-4"></i>
-                                <h4 class="text-xl font-bold text-white mb-2">Conversion Rates Skyrocket</h4>
-                                <p class="text-gray-300">Customers order faster than limited-edition sneaker drops</p>
+                                <h4 class="text-xl font-bold text-white mb-2">Conversion Rate Skyrockets</h4>
+                                <p class="text-gray-300">Customers order faster than grabbing limited-edition sneakers</p>
                             </div>
                         </div>
                         
                         <div class="p-5 rounded-lg bg-gray-800 bg-opacity-50 border border-yellow-500 border-opacity-20">
                             <div class="text-center">
                                 <i class="fas fa-chart-pie text-yellow-400 text-3xl mb-4"></i>
-                                <h4 class="text-xl font-bold text-white mb-2">ROI That Makes You Smile</h4>
+                                <h4 class="text-xl font-bold text-white mb-2">The ROI Sweet Spot</h4>
                                 <p class="text-gray-300">The joy of earning $3 back for every $1 spent</p>
                             </div>
                         </div>
@@ -481,96 +512,100 @@
     <!-- Solutions Section -->
     <section id="solutions" class="py-20 md:py-24 black-gold-gradient-bg">
         <div class="page-container mx-auto px-4">
-            <div class="text-center mb-16 md:mb-20">
-                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">OmniDigitalM | Enterprise SEO Growth Solutions</h2>
-                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Comprehensive SEO solutions designed for sustainable growth</p>
-            </div>
-            
-            <div class="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center mb-12">
-                <div class="w-full lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    <!-- Solution 1 -->
-                    <div class="solution-card dark-card p-6 md:p-6 rounded-lg">
-                        <div class="flex items-start mb-4">
-                            <div class="solution-icon">
-                                <i class="fas fa-search-plus text-yellow-400 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Website Competitive Diagnostic System</h3>
-                        </div>
-                        <p class="text-gray-300 text-base leading-relaxed ml-0 mt-4">
-                            Based on Google Search Console data benchmarks, executing 70+ in-depth tests (covering technical architecture/content quality/user experience) to output a quantifiable SEO health index report.
-                        </p>
+            <div class="mb-16 md:mb-20">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">OmniDigitalM | Enterprise SEO Growth Solutions</h2>
+                        <p class="text-gray-300 mt-8 max-w-2xl">Comprehensive SEO solutions designed for sustainable growth</p>
                     </div>
-                    
-                    <!-- Solution 2 -->
-                    <div class="solution-card dark-card p-6 md:p-6 rounded-lg">
-                        <div class="flex items-start mb-4">
-                            <div class="solution-icon">
-                                <i class="fas fa-shield-alt text-yellow-400 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Competitive Barrier Building Plan</h3>
-                        </div>
-                        <p class="text-gray-300 text-base leading-relaxed ml-0 mt-4">
-                            Using Semrush/Ahrefs dual data engines to deconstruct competitor traffic matrices and generate differentiated breakthrough paths.
-                        </p>
-                    </div>
-                    
-                    <!-- Solution 3 -->
-                    <div class="solution-card dark-card p-6 md:p-6 rounded-lg">
-                        <div class="flex items-start mb-4">
-                            <div class="solution-icon">
-                                <i class="fas fa-key text-yellow-400 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Commercial Intent Keyword Engineering</h3>
-                        </div>
-                        <p class="text-gray-300 text-base leading-relaxed ml-0 mt-4">
-                            Deep mining of long-tail semantic clusters with commercial conversion potential, combined with user decision path analysis.
-                        </p>
-                    </div>
-                    
-                    <!-- Solution 4 -->
-                    <div class="solution-card dark-card p-6 md:p-6 rounded-lg">
-                        <div class="flex items-start mb-4">
-                            <div class="solution-icon">
-                                <i class="fas fa-cogs text-yellow-400 text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Intelligent On-Site Optimization Hub</h3>
-                        </div>
-                        <p class="text-gray-300 text-base leading-relaxed ml-0 mt-4">
-                            Combining Google's latest RankBrain algorithm for comprehensive on-site analysis and optimization of 50+ elements from site structure to load speed.
-                        </p>
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <img src="https://www.goodmja.online/shuziyingxiao/s2.jpg" alt="SEO Solutions" class="rounded-xl shadow-2xl w-full object-cover transform hover:scale-105 transition-all duration-500" style="max-height: 600px;">
+                    <img src="https://www.goodmja.online/shuziyingxiao/s2.jpg" alt="SEO Growth Solutions" class="w-full max-w-md rounded-lg shadow-xl">
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Solution 1 -->
+                <div class="solution-item dark-card p-6 md:p-8 rounded-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="solution-icon">
+                            <i class="fas fa-search-plus text-yellow-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Website Competitiveness Diagnostic System</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        Performs 70+ in-depth tests based on Google Search Console data benchmarks (covering technical architecture/content quality/user experience), outputs quantifiable SEO health index reports and phased optimization roadmaps.
+                    </p>
+                    <div class="number">1</div>
+                </div>
+                
+                <!-- Solution 2 -->
+                <div class="solution-item dark-card p-6 md:p-8 rounded-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="solution-icon">
+                            <i class="fas fa-shield-alt text-yellow-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Competitive Barrier Building Plan</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        Utilizes Semrush/Ahrefs dual data engines to deconstruct competitor traffic matrices (TOP20 keyword layout strategy/backlink ecology/content update frequency) to generate differentiated breakthrough paths.
+                    </p>
+                    <div class="number">2</div>
+                </div>
+                
+                <!-- Solution 3 -->
+                <div class="solution-item dark-card p-6 md:p-8 rounded-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="solution-icon">
+                            <i class="fas fa-key text-yellow-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Commercial Intent Keyword Engineering</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        Deep mining of long-tail semantic clusters with commercial conversion potential. Building brand-specific keyword ecological networks combined with user decision path analysis.
+                    </p>
+                    <div class="number">3</div>
+                </div>
+                
+                <!-- Solution 4 -->
+                <div class="solution-item dark-card p-6 md:p-8 rounded-lg">
+                    <div class="flex items-start mb-4">
+                        <div class="solution-icon">
+                            <i class="fas fa-cogs text-yellow-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Smart On-Page Optimization Hub</h3>
+                    </div>
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        Comprehensive on-site analysis and optimization using Google's latest RankBrain algorithm: site structure, keyword distribution, column titles and architecture, content layout, page load speed, and 50 other optimization services.
+                    </p>
+                    <div class="number">4</div>
+                </div>
+                
                 <!-- Solution 5 -->
-                <div class="solution-card dark-card p-6 md:p-8 rounded-lg">
+                <div class="solution-item dark-card p-6 md:p-8 rounded-lg">
                     <div class="flex items-start mb-4">
                         <div class="solution-icon">
                             <i class="fas fa-link text-yellow-400 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Global Backlink Ecosystem Matrix</h3>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Global Backlink Ecology Matrix</h3>
                     </div>
-                    <p class="text-gray-300 text-base leading-relaxed ml-16">
-                        Brand Backlink System: Wikipedia entries/industry white papers/vertical forum pins<br>
-                        International Localized Backlinks: Connecting with US/EU/Southeast Asian local media, avoiding regional SEO risks
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        Brand backlink system: Wikipedia entries/industry white papers/vertical forum placements<br>
+                        International localized backlinks: Connecting US/European/Southeast Asian local media to avoid regional SEO risks
                     </p>
+                    <div class="number">5</div>
                 </div>
                 
                 <!-- Solution 6 -->
-                <div class="solution-card dark-card p-6 md:p-8 rounded-lg">
+                <div class="solution-item dark-card p-6 md:p-8 rounded-lg">
                     <div class="flex items-start mb-4">
                         <div class="solution-icon">
                             <i class="fas fa-exchange-alt text-yellow-400 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Brand Performance Synergy Conversion Engine</h3>
+                        <h3 class="text-lg md:text-xl font-bold text-white">Brand-Performance Synergy Conversion Engine</h3>
                     </div>
-                    <p class="text-gray-300 text-base leading-relaxed ml-16">
-                        Intelligent Traffic Filtering: Using UTM tracking to exclude ineffective traffic and lock in high LTV user groups
+                    <p class="text-gray-300 text-base leading-relaxed">
+                        Intelligent traffic filtering: Eliminates invalid traffic through UTM tracking, targeting high-LTV user groups for maximum business impact and ROI.
                     </p>
+                    <div class="number">6</div>
                 </div>
             </div>
             
@@ -592,7 +627,7 @@
                 <div class="dark-card p-6 md:p-8 rounded-lg">
                     <h3 class="text-2xl font-bold text-white mb-6 border-b border-yellow-500 pb-4">Deep Coupling of Search Engines and Business Strategy</h3>
                     <p class="text-gray-300 text-lg mb-6">
-                        Each optimization action is configured with KPI dashboards (organic traffic growth rate/target keyword ranking achievement rate/inquiry conversion rate), ensuring SEO investment directly drives business metrics
+                        Each optimization action is configured with KPI dashboards (organic traffic growth rate/target word ranking achievement rate/inquiry conversion rate), ensuring SEO investments directly drive business metrics.
                     </p>
                     <div class="bg-gray-800 bg-opacity-50 p-5 rounded-lg">
                         <div class="flex items-center mb-4">
@@ -601,7 +636,7 @@
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-tachometer-alt text-yellow-400 text-2xl mr-4"></i>
-                            <span class="text-white text-lg">Real-Time Performance Monitoring System</span>
+                            <span class="text-white text-lg">Real-time Performance Monitoring System</span>
                         </div>
                     </div>
                 </div>
@@ -609,16 +644,16 @@
                 <div class="dark-card p-6 md:p-8 rounded-lg">
                     <h3 class="text-2xl font-bold text-white mb-6 border-b border-yellow-500 pb-4">Safe and Compliant Technical Architecture</h3>
                     <p class="text-gray-300 text-lg mb-6">
-                        Strictly follow Google Webmaster Guidelines, using zero black hat risk and sustainable optimization solutions
+                        Strictly adhering to Google Webmaster Guidelines, using zero black-hat risk sustainable optimization solutions.
                     </p>
                     <div class="bg-gray-800 bg-opacity-50 p-5 rounded-lg">
                         <div class="flex items-center mb-4">
                             <i class="fas fa-shield-alt text-yellow-400 text-2xl mr-4"></i>
-                            <span class="text-white text-lg">Zero Black Hat SEO Tactics</span>
+                            <span class="text-white text-lg">Zero Black-Hat SEO Tactics</span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-lock text-yellow-400 text-2xl mr-4"></i>
-                            <span class="text-white text-lg">Long-Term Stable Ranking Improvement</span>
+                            <span class="text-white text-lg">Long-term Stable Ranking Improvements</span>
                         </div>
                     </div>
                 </div>
@@ -626,30 +661,30 @@
             
             <div class="mt-12 md:mt-16">
                 <div class="dark-card p-6 md:p-8 rounded-lg">
-                    <h3 class="text-2xl font-bold text-white mb-6 text-center">We Focus On These Things</h3>
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">What We Focus On</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="p-5 rounded-lg bg-gray-800 bg-opacity-50 border-l-4 border-yellow-500">
                             <div class="flex items-center mb-3">
                                 <i class="fas fa-check-circle text-yellow-400 text-xl mr-3"></i>
-                                <span class="text-white font-bold">Turn Your Website Into a 24/7 Lead Generator</span>
+                                <span class="text-white font-bold">Turn Your Website Into a 24/7 Customer Acquisition Machine</span>
                             </div>
-                            <p class="text-gray-300 ml-8">Let your website continually bring new inquiries and business opportunities</p>
+                            <p class="text-gray-300 ml-8">Let your website continuously bring new inquiries and business opportunities</p>
                         </div>
                         
                         <div class="p-5 rounded-lg bg-gray-800 bg-opacity-50 border-l-4 border-yellow-500">
                             <div class="flex items-center mb-3">
                                 <i class="fas fa-check-circle text-yellow-400 text-xl mr-3"></i>
-                                <span class="text-white font-bold">Make It Easier for Existing Customers to Find You (Brand Term Defense)</span>
+                                <span class="text-white font-bold">Make It Easier For Existing Customers To Find You (Brand Term Defense)</span>
                             </div>
-                            <p class="text-gray-300 ml-8">Ensure your brand terms firmly occupy the top search results</p>
+                            <p class="text-gray-300 ml-8">Ensure your brand terms firmly occupy the top positions in search results</p>
                         </div>
                         
                         <div class="p-5 rounded-lg bg-gray-800 bg-opacity-50 border-l-4 border-yellow-500">
                             <div class="flex items-center mb-3">
                                 <i class="fas fa-check-circle text-yellow-400 text-xl mr-3"></i>
-                                <span class="text-white font-bold">Divert Competitors' Customers to Your Pages</span>
+                                <span class="text-white font-bold">Divert Competitors' Customers To Your Pages</span>
                             </div>
-                            <p class="text-gray-300 ml-8">Acquire competitors' potential customers through strategic keyword positioning</p>
+                            <p class="text-gray-300 ml-8">Capture competitors' potential customers through strategic keyword positioning</p>
                         </div>
                     </div>
                 </div>
@@ -660,56 +695,55 @@
     <!-- Checklist Section -->
     <section id="checklist" class="py-20 md:py-24 black-gold-gradient-bg">
         <div class="page-container mx-auto px-4">
-            <div class="text-center mb-16 md:mb-20">
-                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Business Owner Decision Checklist</h2>
-                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Is SEO the right strategy for your business? Find out now</p>
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center mb-16 md:mb-20">
+                <div class="w-full lg:w-1/2 text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Business Owner Decision Checklist</h2>
+                    <p class="text-gray-300 mt-8 max-w-3xl">Is SEO the right strategy for your business? Find out now</p>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="https://www.goodmja.online/shuziyingxiao/s3.jpg" alt="Business Decision Checklist" class="w-full rounded-xl shadow-2xl transform transition-all duration-500">
+                </div>
             </div>
             
-            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
-                <div class="w-full lg:w-1/2">
-                    <img src="https://www.goodmja.online/shuziyingxiao/s3.jpg" alt="SEO Decision" class="rounded-xl shadow-2xl w-full transform hover:scale-105 transition-all duration-500">
-                </div>
-                
-                <div class="w-full lg:w-1/2">
-                    <div class="dark-card p-6 md:p-8 rounded-lg">
-                        <p class="text-xl text-white text-center mb-8">If any of the following applies to you, you should start SEO now:</p>
+            <div class="max-w-3xl mx-auto">
+                <div class="dark-card p-6 md:p-8 rounded-lg">
+                    <p class="text-xl text-white text-center mb-8">If any of the following applies to you, you should start SEO now:</p>
+                    
+                    <div class="space-y-6">
+                        <div class="checklist-item flex items-start p-4 bg-gray-800 bg-opacity-50 rounded-lg">
+                            <div class="text-yellow-400 text-2xl mr-4 mt-1">
+                                <i class="fas fa-check-square"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-white mb-2">Google Ad Spending Over $20,000 Monthly (We Can Reduce Acquisition Costs by 50%)</h4>
+                                <p class="text-gray-300">If you're already investing heavily in paid advertising, SEO can be a more cost-effective long-term strategy, significantly reducing your customer acquisition costs.</p>
+                            </div>
+                        </div>
                         
-                        <div class="space-y-6">
-                            <div class="checklist-item flex items-start p-4 bg-gray-800 bg-opacity-50 rounded-lg">
-                                <div class="text-yellow-400 text-2xl mr-4 mt-1">
-                                    <i class="fas fa-check-square"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg md:text-xl font-bold text-white mb-2">Google Ad Spend Exceeds $20,000 Monthly (We Can Reduce Acquisition Costs by 50%)</h4>
-                                    <p class="text-gray-300">If you're already investing heavily in paid advertising, SEO can be a more cost-effective long-term strategy, significantly reducing your customer acquisition costs.</p>
-                                </div>
+                        <div class="checklist-item flex items-start p-4 bg-gray-800 bg-opacity-50 rounded-lg">
+                            <div class="text-yellow-400 text-2xl mr-4 mt-1">
+                                <i class="fas fa-check-square"></i>
                             </div>
-                            
-                            <div class="checklist-item flex items-start p-4 bg-gray-800 bg-opacity-50 rounded-lg">
-                                <div class="text-yellow-400 text-2xl mr-4 mt-1">
-                                    <i class="fas fa-check-square"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg md:text-xl font-bold text-white mb-2">Customers Search Multiple Times Before Deciding (Particularly Evident in Industrial Equipment/Custom Services/B2B Fields)</h4>
-                                    <p class="text-gray-300">For products with long decision cycles, SEO ensures your brand appears multiple times throughout the customer's decision process, building trust and promoting conversion.</p>
-                                </div>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-white mb-2">Customers Search Multiple Times Before Deciding (Especially Evident in Industrial Equipment/Custom Services/B2B Fields)</h4>
+                                <p class="text-gray-300">For long-cycle decision products, SEO ensures your brand appears multiple times throughout the customer's decision process, building trust and promoting conversion.</p>
                             </div>
-                            
-                            <div class="checklist-item flex items-start p-4 bg-gray-800 bg-opacity-50 rounded-lg">
-                                <div class="text-yellow-400 text-2xl mr-4 mt-1">
-                                    <i class="fas fa-check-square"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg md:text-xl font-bold text-white mb-2">You're Often Target of Competitors' Keyword Attacks (Urgent Need for Brand Search Defense)</h4>
-                                    <p class="text-gray-300">Prevent competitors from taking over your brand keywords, protecting your online brand reputation and direct traffic.</p>
-                                </div>
+                        </div>
+                        
+                        <div class="checklist-item flex items-start p-4 bg-gray-800 bg-opacity-50 rounded-lg">
+                            <div class="text-yellow-400 text-2xl mr-4 mt-1">
+                                <i class="fas fa-check-square"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-white mb-2">Frequently Targeted by Competitors' Malicious Keyword Competition (Urgent Need for Brand Search Defense)</h4>
+                                <p class="text-gray-300">Prevent competitors from bidding on your brand keywords, protecting your online brand reputation and direct traffic.</p>
                             </div>
                         </div>
                     </div>
+                </div>
                 
-                    <div class="text-center mt-8">
-                        <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">Get Your Free SEO Diagnostic Report</button>
-                    </div>
+                <div class="text-center mt-12">
+                    <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">Get Your Free SEO Diagnostic Report</button>
                 </div>
             </div>
         </div>
@@ -758,7 +792,7 @@
                     
                     <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
                         <button onclick="siteweb()" class="gold-gradient-button text-black hover:bg-yellow-400 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Contact Us Now</button>
-                        <button onclick="siteweb()" class="bg-transparent border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:bg-opacity-10 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Get Your SEO Optimization Plan</button>
+                        <button onclick="siteweb()" class="bg-transparent border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:bg-opacity-10 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Get Your SEO Plan</button>
                     </div>
                 </div>
             </div>
@@ -806,4 +840,42 @@
                         <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">B2B Companies</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Finance & Fintech</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Technology</a></li>
-                        <li><a href="#" class="text-gray-400 hover:
+                        <li><a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Healthcare</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-white">Global Offices</h3>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400">Hong Kong (HQ)</li>
+                        <li class="text-gray-400">Singapore</li>
+                        <li class="text-gray-400">London</li>
+                        <li class="text-gray-400">New York</li>
+                        <li class="text-gray-400">Sydney</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 mb-4 md:mb-0">© 2024 StarPulse Influence Limited. All rights reserved.</div>
+                <div class="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function siteweb() {
+            window.open('https://www.baidu.com', '_blank');
+        }
+        
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
