@@ -17,8 +17,21 @@
         }
         
         .page-container {
-            max-width: calc(100% - 500px);
+            width: 92%;
+            max-width: calc(100% - 40px);
             margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .page-container {
+                max-width: calc(100% - 120px);
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .page-container {
+                max-width: calc(100% - 500px);
+            }
         }
         
         .gold-gradient-bg {
@@ -85,9 +98,8 @@
         
         .contact-icon {
             position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
+            right: 20px;
+            bottom: 20px;
             width: 60px;
             height: 60px;
             background: linear-gradient(135deg, #F7D136 0%, #e6b800 100%);
@@ -103,9 +115,17 @@
             transition: all 0.3s ease;
         }
         
-        .contact-icon:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 10px 20px rgba(247, 209, 54, 0.3);
+        @media (min-width: 768px) {
+            .contact-icon {
+                right: 30px;
+                top: 50%;
+                transform: translateY(-50%);
+                bottom: auto;
+            }
+            
+            .contact-icon:hover {
+                transform: translateY(-50%) scale(1.1);
+            }
         }
         
         .stats-item {
@@ -356,6 +376,63 @@
             margin-right: 20px;
             flex-shrink: 0;
         }
+        
+        /* Mobile menu */
+        .mobile-menu-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-button span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #F7D136;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            font-size: 24px;
+            margin: 15px 0;
+            color: white;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: #F7D136;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -377,15 +454,33 @@
                     <a href="#clients" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Clients</a>
                     <a href="#case-studies" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Case Studies</a>
                     <a href="#testimonials" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Testimonials</a>
-                    <a href="#faq" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">FAQ</a>
-                    <a href="#contact" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Contact</a>
                 </div>
-                <div>
+                <div class="hidden md:block">
                     <button onclick="siteweb()" class="gold-gradient-button text-black px-6 py-2 rounded-full font-medium">Get Started</button>
+                </div>
+                <div class="md:hidden">
+                    <div class="mobile-menu-button" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="close-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#home" onclick="toggleMobileMenu()">Home</a>
+        <a href="#about" onclick="toggleMobileMenu()">About</a>
+        <a href="#clients" onclick="toggleMobileMenu()">Clients</a>
+        <a href="#case-studies" onclick="toggleMobileMenu()">Case Studies</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()">Testimonials</a>
+        <button onclick="siteweb()" class="gold-gradient-button text-black px-6 py-2 rounded-full font-medium mt-6">Get Started</button>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero-section min-h-screen flex items-center">
@@ -404,18 +499,18 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-32 black-gold-gradient-bg">
+    <section id="about" class="py-24 md:py-32 black-gold-gradient-bg">
         <div class="page-container mx-auto px-4">
-            <div class="text-center mb-20">
+            <div class="text-center mb-16 md:mb-20">
                 <h2 class="text-3xl md:text-5xl font-bold section-title gold-gradient-text">About OmniDigitalM</h2>
                 <p class="text-gray-300 mt-12 max-w-3xl mx-auto text-xl leading-relaxed">Global Digital Marketing Strategists with Multinational Brand Growth Experience</p>
             </div>
             
-            <div class="flex flex-col lg:flex-row gap-16 items-center">
-                <div class="lg:w-1/2">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+                <div class="w-full lg:w-1/2">
                     <img src="https://www.goodmja.online/1.jpg" alt="OmniDigitalM Team" class="rounded-xl shadow-2xl w-full transform hover:scale-105 transition-all duration-500">
                     
-                    <div class="mt-10 grid grid-cols-2 gap-6">
+                    <div class="mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <div class="stat-highlight">
                             <div class="stat-icon">
                                 <i class="fas fa-calendar-check text-yellow-400"></i>
@@ -457,17 +552,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="lg:w-1/2 space-y-8">
-                    <h3 class="text-3xl font-bold mb-6 text-white leading-relaxed">Your Partner in Digital Growth</h3>
-                    <p class="text-gray-300 text-lg leading-relaxed">As pioneers in the digital marketing arena, our team has been providing data-driven growth solutions to businesses across 20+ countries since 2008. We have deep expertise in e-commerce, technology, FMCG, finance, and multiple other industries.</p>
-                    <p class="text-gray-300 text-lg leading-relaxed">At OmniDigitalM, we combine strategic thinking with technical excellence to deliver measurable results for your business. Our global team of specialists works tirelessly to stay ahead of market trends and leverage emerging technologies to your advantage.</p>
+                <div class="w-full lg:w-1/2 space-y-6 md:space-y-8 mt-8 lg:mt-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white leading-relaxed">Your Partner in Digital Growth</h3>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">As pioneers in the digital marketing arena, our team has been providing data-driven growth solutions to businesses across 20+ countries since 2008. We have deep expertise in e-commerce, technology, FMCG, finance, and multiple other industries.</p>
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed">At OmniDigitalM, we combine strategic thinking with technical excellence to deliver measurable results for your business. Our global team of specialists works tirelessly to stay ahead of market trends and leverage emerging technologies to your advantage.</p>
                     
-                    <div class="p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-yellow-500 border-opacity-20 mt-8">
-                        <p class="text-lg text-white"><span class="text-yellow-400 font-bold">$120M+</span> in managed digital advertising budgets with average <span class="text-yellow-400 font-bold">300%+ ROI</span> improvement for our clients</p>
+                    <div class="p-5 md:p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-yellow-500 border-opacity-20 mt-6 md:mt-8">
+                        <p class="text-base md:text-lg text-white"><span class="text-yellow-400 font-bold">$120M+</span> in managed digital advertising budgets with average <span class="text-yellow-400 font-bold">300%+ ROI</span> improvement for our clients</p>
                     </div>
                     
-                    <div class="pt-6">
-                        <button onclick="siteweb()" class="gold-gradient-button text-black px-10 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">Learn More About Us</button>
+                    <div class="pt-4 md:pt-6">
+                        <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">Learn More About Us</button>
                     </div>
                 </div>
             </div>
@@ -475,20 +570,20 @@
     </section>
 
     <!-- Clients Section -->
-    <section id="clients" class="py-24 bg-gray-900">
+    <section id="clients" class="py-20 md:py-24 bg-gray-900">
         <div class="page-container mx-auto px-4">
-            <div class="text-center mb-20">
+            <div class="text-center mb-16 md:mb-20">
                 <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Our Major Clients</h2>
                 <p class="text-gray-300 mt-8 max-w-3xl mx-auto">We're proud to have worked with leading brands across diverse industries worldwide</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-building text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">Corporate</h3>
-                    <p class="text-gray-300 text-center mb-6">Helping enterprise clients transform their digital presence and engagement strategies.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Corporate</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Helping enterprise clients transform their digital presence and engagement strategies.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">78%</div>
@@ -503,12 +598,12 @@
                     </div>
                 </div>
                 
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-shopping-cart text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">E-Commerce</h3>
-                    <p class="text-gray-300 text-center mb-6">Driving traffic, conversions, and customer retention for online retailers globally.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">E-Commerce</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Driving traffic, conversions, and customer retention for online retailers globally.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">92%</div>
@@ -523,12 +618,12 @@
                     </div>
                 </div>
                 
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-laptop-code text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">SaaS</h3>
-                    <p class="text-gray-300 text-center mb-6">Creating effective lead generation and user acquisition strategies for software companies.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">SaaS</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Creating effective lead generation and user acquisition strategies for software companies.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">85%</div>
@@ -543,12 +638,12 @@
                     </div>
                 </div>
                 
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-plane text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">Travel</h3>
-                    <p class="text-gray-300 text-center mb-6">Elevating the digital presence of travel brands to attract global travelers.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Travel</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Elevating the digital presence of travel brands to attract global travelers.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">68%</div>
@@ -563,13 +658,13 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10">
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 mt-6 md:mt-10">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-gamepad text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">Gaming</h3>
-                    <p class="text-gray-300 text-center mb-6">Implementing user acquisition and engagement strategies for gaming companies.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Gaming</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Implementing user acquisition and engagement strategies for gaming companies.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">95%</div>
@@ -584,12 +679,12 @@
                     </div>
                 </div>
                 
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-heartbeat text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">Health</h3>
-                    <p class="text-gray-300 text-center mb-6">Developing ethical marketing solutions for healthcare providers and wellness brands.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Health</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Developing ethical marketing solutions for healthcare providers and wellness brands.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">72%</div>
@@ -604,12 +699,12 @@
                     </div>
                 </div>
                 
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-landmark text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">Finance</h3>
-                    <p class="text-gray-300 text-center mb-6">Creating compliant and effective digital strategies for financial institutions.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Finance</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Creating compliant and effective digital strategies for financial institutions.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">82%</div>
@@ -624,12 +719,12 @@
                     </div>
                 </div>
                 
-                <div class="client-card dark-card p-8 rounded-lg shadow-md">
-                    <div class="client-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-yellow-200">
+                <div class="client-card dark-card p-6 md:p-8 rounded-lg shadow-md">
+                    <div class="client-icon w-16 h-16 mx-auto mb-4 md:mb-6 flex items-center justify-center rounded-full bg-yellow-200">
                         <i class="fas fa-microchip text-2xl text-yellow-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-3 text-white">Technology</h3>
-                    <p class="text-gray-300 text-center mb-6">Helping tech innovators communicate their value proposition to target audiences.</p>
+                    <h3 class="text-xl font-semibold text-center mb-2 md:mb-3 text-white">Technology</h3>
+                    <p class="text-gray-300 text-center mb-4 md:mb-6">Helping tech innovators communicate their value proposition to target audiences.</p>
                     
                     <div class="mt-4 text-center">
                         <div class="text-3xl font-bold text-yellow-400 mb-2">89%</div>
@@ -645,25 +740,25 @@
                 </div>
             </div>
             
-            <div class="text-center mt-14">
-                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-4 rounded-full text-lg font-medium">View All Industries</button>
+            <div class="text-center mt-12 md:mt-14">
+                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 md:py-4 rounded-full text-lg font-medium">View All Industries</button>
             </div>
         </div>
     </section>
 
     <!-- Case Studies Section -->
-    <section id="case-studies" class="py-24 black-gold-gradient-bg">
+    <section id="case-studies" class="py-20 md:py-24 black-gold-gradient-bg">
         <div class="page-container mx-auto px-4">
-            <div class="text-center mb-20">
+            <div class="text-center mb-16 md:mb-20">
                 <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Case Studies</h2>
                 <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Explore how we've helped businesses across different industries achieve remarkable results</p>
             </div>
             
             <div class="slider-scroll" id="caseStudySlider">
                 <div class="slider-container">
-                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-96">
-                        <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Corporate Case Study" class="w-full h-52 object-cover">
-                        <div class="p-8">
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80 sm:w-96">
+                        <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Corporate Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6 md:p-8">
                             <div class="text-sm text-yellow-400 font-semibold mb-2">Corporate</div>
                             <h3 class="text-xl font-bold mb-3 text-white">Global Expansion Strategy</h3>
                             <p class="text-gray-300 mb-5">Helped a multinational corporation enter 5 new markets with localized digital strategies.</p>
@@ -674,9 +769,9 @@
                         </div>
                     </div>
                     
-                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-96">
-                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="E-Commerce Case Study" class="w-full h-52 object-cover">
-                        <div class="p-8">
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80 sm:w-96">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="E-Commerce Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6 md:p-8">
                             <div class="text-sm text-yellow-400 font-semibold mb-2">E-Commerce</div>
                             <h3 class="text-xl font-bold mb-3 text-white">Revenue Optimization</h3>
                             <p class="text-gray-300 mb-5">Restructured the digital marketing strategy for a major online retailer.</p>
@@ -687,9 +782,9 @@
                         </div>
                     </div>
                     
-                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-96">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="SaaS Case Study" class="w-full h-52 object-cover">
-                        <div class="p-8">
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80 sm:w-96">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="SaaS Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6 md:p-8">
                             <div class="text-sm text-yellow-400 font-semibold mb-2">SaaS</div>
                             <h3 class="text-xl font-bold mb-3 text-white">Growth Acceleration</h3>
                             <p class="text-gray-300 mb-5">Created a multi-channel acquisition strategy for a B2B software platform.</p>
@@ -700,9 +795,9 @@
                         </div>
                     </div>
                     
-                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-96">
-                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Travel Case Study" class="w-full h-52 object-cover">
-                        <div class="p-8">
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80 sm:w-96">
+                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Travel Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6 md:p-8">
                             <div class="text-sm text-yellow-400 font-semibold mb-2">Travel</div>
                             <h3 class="text-xl font-bold mb-3 text-white">Bookings Maximization</h3>
                             <p class="text-gray-300 mb-5">Developed a data-driven campaign for a luxury travel operator.</p>
@@ -713,9 +808,9 @@
                         </div>
                     </div>
                     
-                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-96">
-                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Gaming Case Study" class="w-full h-52 object-cover">
-                        <div class="p-8">
+                    <div class="case-study-card dark-card rounded-lg overflow-hidden shadow-md flex-shrink-0 w-80 sm:w-96">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Gaming Case Study" class="w-full h-48 object-cover">
+                        <div class="p-6 md:p-8">
                             <div class="text-sm text-yellow-400 font-semibold mb-2">Gaming</div>
                             <h3 class="text-xl font-bold mb-3 text-white">User Acquisition</h3>
                             <p class="text-gray-300 mb-5">Created a global user acquisition strategy for a mobile game developer.</p>
@@ -729,30 +824,30 @@
             </div>
             
             <div class="slider-controls">
-                <div class="slider-control" onclick="scrollSlider('caseStudySlider', -350)">
+                <div class="slider-control" onclick="scrollSlider('caseStudySlider', -300)">
                     <i class="fas fa-chevron-left"></i>
                 </div>
-                <div class="slider-control" onclick="scrollSlider('caseStudySlider', 350)">
+                <div class="slider-control" onclick="scrollSlider('caseStudySlider', 300)">
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             
             <div class="text-center mt-10">
-                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-4 rounded-full text-lg font-medium">View All Case Studies</button>
+                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 md:py-4 rounded-full text-lg font-medium">View All Case Studies</button>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-24 bg-gray-900">
+    <section id="testimonials" class="py-20 md:py-24 bg-gray-900">
         <div class="page-container mx-auto px-4">
-            <div class="text-center mb-20">
+            <div class="text-center mb-16 md:mb-20">
                 <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Client Testimonials</h2>
                 <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Hear what our clients have to say about working with OmniDigitalM</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="testimonial-card dark-card p-8 rounded-lg shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                <div class="testimonial-card dark-card p-6 md:p-8 rounded-lg shadow-md">
                     <div class="mb-4 text-yellow-400">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -772,7 +867,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card dark-card p-8 rounded-lg shadow-md">
+                <div class="testimonial-card dark-card p-6 md:p-8 rounded-lg shadow-md">
                     <div class="mb-4 text-yellow-400">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -792,7 +887,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card dark-card p-8 rounded-lg shadow-md">
+                <div class="testimonial-card dark-card p-6 md:p-8 rounded-lg shadow-md">
                     <div class="mb-4 text-yellow-400">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -816,68 +911,68 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-24 black-gold-gradient-bg">
+    <section id="faq" class="py-20 md:py-24 black-gold-gradient-bg">
         <div class="page-container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">常见问题</h2>
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Frequently Asked Questions</h2>
                 <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Get answers to the most commonly asked questions about our services</p>
             </div>
             
-            <div class="max-w-4xl mx-auto space-y-10">
+            <div class="max-w-4xl mx-auto space-y-8 md:space-y-10">
                 <!-- Question 1 -->
-                <div class="dark-card p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-l-4 border-yellow-400">
+                <div class="dark-card p-6 md:p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-l-4 border-yellow-400">
                     <div class="flex items-start mb-4">
                         <div class="bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
                             <span class="text-yellow-400 font-bold">Q1</span>
                         </div>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">您的营销专长是什么？</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-white">What is your marketing expertise?</h3>
                     </div>
                     <div class="ml-14">
-                        <p class="text-gray-300 text-lg leading-relaxed">
-                            我们精通数字营销的各个方面，从设计网站和制定 SEO 策略到制作视频和起草付费广告。但在 B2B、金融科技、加密货币和高增长初创品牌方面，我们的网页设计和数字营销公司最擅长。我们相信，我们团队在这些行业的第一手经验为我们提供了竞争优势，有助于我们更好地服务客户。
+                        <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                            We are proficient in all aspects of digital marketing, from website design and SEO strategy development to video production and paid advertising campaigns. Our web design and digital marketing agency excels particularly in B2B, FinTech, cryptocurrency, and high-growth startup brands. We believe our team's first-hand experience in these industries gives us a competitive edge that helps us better serve our clients.
                         </p>
                     </div>
                 </div>
                 
                 <!-- Question 2 -->
-                <div class="dark-card p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-l-4 border-yellow-400">
+                <div class="dark-card p-6 md:p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-l-4 border-yellow-400">
                     <div class="flex items-start mb-4">
                         <div class="bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
                             <span class="text-yellow-400 font-bold">Q2</span>
                         </div>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">与您合作能给我的业务带来什么益处？</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-white">How will working with you benefit my business?</h3>
                     </div>
                     <div class="ml-14">
-                        <p class="text-gray-300 text-lg leading-relaxed">
-                            在线数字营销是一个不断变化的领域，如果您没有扎实的基础，甚至很难知道从哪里开始。我们的机构可以提供针对您的品牌和长期目标量身定制的专家指导和战略计划。现在您已经找到了我们的数字营销网站，您可以避免常见的陷阱并快速走上长期增长的道路。
+                        <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                            Online digital marketing is an ever-changing field, and it can be difficult to know where to begin without a solid foundation. Our agency provides expert guidance and strategic planning tailored to your brand and long-term goals. Now that you've found our digital marketing website, you can avoid common pitfalls and quickly move toward sustainable long-term growth.
                         </p>
                     </div>
                 </div>
                 
                 <!-- Question 3 -->
-                <div class="dark-card p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-l-4 border-yellow-400">
+                <div class="dark-card p-6 md:p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-l-4 border-yellow-400">
                     <div class="flex items-start mb-4">
                         <div class="bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
                             <span class="text-yellow-400 font-bold">Q3</span>
                         </div>
-                        <h3 class="text-xl md:text-2xl font-bold text-white">我如何确定我的营销预算？</h3>
+                        <h3 class="text-xl md:text-2xl font-bold text-white">How do I determine my marketing budget?</h3>
                     </div>
                     <div class="ml-14">
-                        <p class="text-gray-300 text-lg leading-relaxed">
-                            这个问题没有"一刀切"的答案，因为您应该分配的金额取决于各种因素，例如您的业务规模、您的长期目标以及您所处的行业。但是，一般来说，公司应该花费其总收入的 2-5％ 来推广其品牌。
+                        <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+                            There is no "one-size-fits-all" answer to this question, as the amount you should allocate depends on various factors such as your business size, your long-term goals, and the industry you're in. However, as a general guideline, companies should spend 2-5% of their total revenue on promoting their brand.
                         </p>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-14">
-                <button onclick="siteweb()" class="gold-gradient-button text-black px-10 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">还有疑问？联系我们</button>
+            <div class="text-center mt-12 md:mt-14">
+                <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">Have more questions? Contact us</button>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gray-900">
+    <section id="contact" class="py-20 md:py-24 bg-gray-900">
         <div class="page-container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Contact Us</h2>
@@ -885,41 +980,41 @@
             </div>
             
             <div class="max-w-4xl mx-auto">
-                <div class="dark-card rounded-lg p-10 text-center border border-yellow-500 border-opacity-20">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                        <div class="p-6 rounded-lg gold-accent bg-gray-800">
-                            <div class="w-14 h-14 rounded-full bg-gray-700 flex items-center justify-center mx-auto mb-4 text-yellow-400">
-                                <i class="fab fa-telegram text-2xl"></i>
+                <div class="dark-card rounded-lg p-6 md:p-10 text-center border border-yellow-500 border-opacity-20">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-10">
+                        <div class="p-4 md:p-6 rounded-lg gold-accent bg-gray-800">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-700 flex items-center justify-center mx-auto mb-4 text-yellow-400">
+                                <i class="fab fa-telegram text-xl md:text-2xl"></i>
                             </div>
                             <p class="font-medium text-white mb-2">Telegram</p>
                             <p class="text-gray-300">@snvtr2</p>
                         </div>
                         
-                        <div class="p-6 rounded-lg gold-accent bg-gray-800">
-                            <div class="w-14 h-14 rounded-full bg-gray-700 flex items-center justify-center mx-auto mb-4 text-yellow-400">
-                                <i class="fas fa-envelope text-2xl"></i>
+                        <div class="p-4 md:p-6 rounded-lg gold-accent bg-gray-800">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-700 flex items-center justify-center mx-auto mb-4 text-yellow-400">
+                                <i class="fas fa-envelope text-xl md:text-2xl"></i>
                             </div>
                             <p class="font-medium text-white mb-2">Email</p>
                             <p class="text-gray-300">qwerty2015009@gmail.com</p>
                         </div>
                         
-                        <div class="p-6 rounded-lg gold-accent bg-gray-800">
-                            <div class="w-14 h-14 rounded-full bg-gray-700 flex items-center justify-center mx-auto mb-4 text-yellow-400">
-                                <i class="fab fa-skype text-2xl"></i>
+                        <div class="p-4 md:p-6 rounded-lg gold-accent bg-gray-800">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-700 flex items-center justify-center mx-auto mb-4 text-yellow-400">
+                                <i class="fab fa-skype text-xl md:text-2xl"></i>
                             </div>
                             <p class="font-medium text-white mb-2">Skype</p>
                             <p class="text-gray-300">13121232@sda.com</p>
                         </div>
                     </div>
                     
-                    <div class="mb-10 p-8 rounded-lg bg-gray-800 border-l-4 border-yellow-500">
-                        <p class="font-medium text-xl mb-3 text-white">StarPulse Influence Limited</p>
+                    <div class="mb-8 md:mb-10 p-6 md:p-8 rounded-lg bg-gray-800 border-l-4 border-yellow-500">
+                        <p class="font-medium text-xl mb-2 md:mb-3 text-white">StarPulse Influence Limited</p>
                         <p class="text-gray-300">542 Hang Kin Street, Sha Tin District, Hong Kong</p>
                     </div>
                     
-                    <div class="flex flex-col sm:flex-row justify-center gap-6">
-                        <button onclick="siteweb()" class="gold-gradient-button text-black hover:bg-yellow-400 px-10 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Contact Us Now</button>
-                        <button onclick="siteweb()" class="bg-transparent border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:bg-opacity-10 px-10 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Start Your Project</button>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
+                        <button onclick="siteweb()" class="gold-gradient-button text-black hover:bg-yellow-400 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Contact Us Now</button>
+                        <button onclick="siteweb()" class="bg-transparent border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:bg-opacity-10 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Start Your Project</button>
                     </div>
                 </div>
             </div>
@@ -929,7 +1024,7 @@
     <!-- Footer -->
     <footer class="bg-black text-white py-12">
         <div class="page-container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
                 <div>
                     <div class="text-2xl font-bold gold-gradient-text mb-4">OmniDigitalM</div>
                     <p class="text-gray-400 mb-6">Global Digital Marketing Solutions for brands seeking growth across borders.</p>
@@ -985,7 +1080,7 @@
             
             <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <div class="text-gray-400 mb-4 md:mb-0">© 2024 StarPulse Influence Limited. All rights reserved.</div>
-                <div class="flex space-x-6">
+                <div class="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
                     <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Privacy Policy</a>
                     <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Terms of Service</a>
                     <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">Cookie Policy</a>
@@ -1002,6 +1097,11 @@
         function scrollSlider(sliderId, amount) {
             const slider = document.getElementById(sliderId);
             slider.scrollLeft += amount;
+        }
+        
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
         }
     </script>
 </body>
