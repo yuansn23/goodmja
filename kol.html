@@ -371,38 +371,11 @@
             transition: all 0.3s ease;
             aspect-ratio: 1 / 1.2;
             cursor: pointer;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
-            animation-delay: calc(var(--animation-order) * 0.1s);
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
         }
         
         .creator-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s infinite;
         }
         
         .creator-item::after {
@@ -427,22 +400,41 @@
             transform: scale(1.1);
         }
         
-        .creator-overlay {
+        .creator-info {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 15px;
             z-index: 2;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px;
         }
         
-        .creator-item:hover .creator-overlay {
-            opacity: 1;
-            transform: translateY(0);
+        .creator-industry {
+            background: rgba(247, 209, 54, 0.8);
+            color: #000;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .creator-country {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            align-self: flex-end;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
     </style>
 </head>
@@ -631,185 +623,185 @@
                 <div class="creator-gallery">
                     <!-- Row 1 -->
                     <!-- Creator 1 -->
-                    <div class="creator-item" style="--animation-order: 1">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/1.png" alt="KOL Creator 1" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Beauty & Lifestyle</div>
-                            <div class="text-gray-300 text-sm">United States</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-spa"></i> Beauty</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> United States</div>
                         </div>
                     </div>
                     
                     <!-- Creator 2 -->
-                    <div class="creator-item" style="--animation-order: 2">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/2.png" alt="KOL Creator 2" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Tech Reviews</div>
-                            <div class="text-gray-300 text-sm">United Kingdom</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-laptop"></i> Tech</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> United Kingdom</div>
                         </div>
                     </div>
                     
                     <!-- Creator 3 -->
-                    <div class="creator-item" style="--animation-order: 3">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/3.png" alt="KOL Creator 3" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Fitness & Nutrition</div>
-                            <div class="text-gray-300 text-sm">Australia</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-dumbbell"></i> Fitness</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Australia</div>
                         </div>
                     </div>
                     
                     <!-- Creator 4 -->
-                    <div class="creator-item" style="--animation-order: 4">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/4.png" alt="KOL Creator 4" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Fashion</div>
-                            <div class="text-gray-300 text-sm">France</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-tshirt"></i> Fashion</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> France</div>
                         </div>
                     </div>
                     
                     <!-- Creator 5 -->
-                    <div class="creator-item" style="--animation-order: 5">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/5.png" alt="KOL Creator 5" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Home & Lifestyle</div>
-                            <div class="text-gray-300 text-sm">Canada</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-home"></i> Lifestyle</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Canada</div>
                         </div>
                     </div>
                     
                     <!-- Row 2 -->
                     <!-- Creator 6 -->
-                    <div class="creator-item" style="--animation-order: 6">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/6.png" alt="KOL Creator 6" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Comedy & Entertainment</div>
-                            <div class="text-gray-300 text-sm">Brazil</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-laugh"></i> Comedy</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Brazil</div>
                         </div>
                     </div>
                     
                     <!-- Creator 7 -->
-                    <div class="creator-item" style="--animation-order: 7">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/7.png" alt="KOL Creator 7" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Travel</div>
-                            <div class="text-gray-300 text-sm">Spain</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-plane"></i> Travel</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Spain</div>
                         </div>
                     </div>
                     
                     <!-- Creator 8 -->
-                    <div class="creator-item" style="--animation-order: 8">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/8.png" alt="KOL Creator 8" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Gaming</div>
-                            <div class="text-gray-300 text-sm">Germany</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-gamepad"></i> Gaming</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Germany</div>
                         </div>
                     </div>
                     
                     <!-- Creator 9 -->
-                    <div class="creator-item" style="--animation-order: 9">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/9.png" alt="KOL Creator 9" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Business & Finance</div>
-                            <div class="text-gray-300 text-sm">Singapore</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-chart-line"></i> Business</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Singapore</div>
                         </div>
                     </div>
                     
                     <!-- Creator 10 -->
-                    <div class="creator-item" style="--animation-order: 10">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/10.png" alt="KOL Creator 10" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Dance & Music</div>
-                            <div class="text-gray-300 text-sm">South Korea</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-music"></i> Music</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> South Korea</div>
                         </div>
                     </div>
                     
                     <!-- Row 3 -->
                     <!-- Creator 11 -->
-                    <div class="creator-item" style="--animation-order: 11">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/11.png" alt="KOL Creator 11" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Food & Cooking</div>
-                            <div class="text-gray-300 text-sm">Italy</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-utensils"></i> Food</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Italy</div>
                         </div>
                     </div>
                     
                     <!-- Creator 12 -->
-                    <div class="creator-item" style="--animation-order: 12">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/12.png" alt="KOL Creator 12" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Parenting</div>
-                            <div class="text-gray-300 text-sm">United States</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-baby"></i> Parenting</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> United States</div>
                         </div>
                     </div>
                     
                     <!-- Creator 13 -->
-                    <div class="creator-item" style="--animation-order: 13">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/13.png" alt="KOL Creator 13" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Beauty</div>
-                            <div class="text-gray-300 text-sm">United Kingdom</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-spa"></i> Beauty</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> United Kingdom</div>
                         </div>
                     </div>
                     
                     <!-- Creator 14 -->
-                    <div class="creator-item" style="--animation-order: 14">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/14.png" alt="KOL Creator 14" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Comedy</div>
-                            <div class="text-gray-300 text-sm">Canada</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-laugh"></i> Comedy</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Canada</div>
                         </div>
                     </div>
                     
                     <!-- Creator 15 -->
-                    <div class="creator-item" style="--animation-order: 15">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/15.png" alt="KOL Creator 15" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">DIY & Crafts</div>
-                            <div class="text-gray-300 text-sm">Australia</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-cut"></i> DIY</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Australia</div>
                         </div>
                     </div>
                     
                     <!-- Row 4 -->
                     <!-- Creator 16 -->
-                    <div class="creator-item" style="--animation-order: 16">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/16.png" alt="KOL Creator 16" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Fitness</div>
-                            <div class="text-gray-300 text-sm">Germany</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-dumbbell"></i> Fitness</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Germany</div>
                         </div>
                     </div>
                     
                     <!-- Creator 17 -->
-                    <div class="creator-item" style="--animation-order: 17">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/17.png" alt="KOL Creator 17" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Travel</div>
-                            <div class="text-gray-300 text-sm">Japan</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-plane"></i> Travel</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Japan</div>
                         </div>
                     </div>
                     
                     <!-- Creator 18 -->
-                    <div class="creator-item" style="--animation-order: 18">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/18.png" alt="KOL Creator 18" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Tech Reviews</div>
-                            <div class="text-gray-300 text-sm">South Korea</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-laptop"></i> Tech</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> South Korea</div>
                         </div>
                     </div>
                     
                     <!-- Creator 19 -->
-                    <div class="creator-item" style="--animation-order: 19">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/19.png" alt="KOL Creator 19" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Fashion</div>
-                            <div class="text-gray-300 text-sm">France</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-tshirt"></i> Fashion</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> France</div>
                         </div>
                     </div>
                     
                     <!-- Creator 20 -->
-                    <div class="creator-item" style="--animation-order: 20">
+                    <div class="creator-item">
                         <img src="https://www.goodmja.online/shuziyingxiao/kol/20.png" alt="KOL Creator 20" class="w-full h-full object-cover">
-                        <div class="creator-overlay">
-                            <div class="text-white font-bold">Lifestyle</div>
-                            <div class="text-gray-300 text-sm">Brazil</div>
+                        <div class="creator-info">
+                            <div class="creator-industry"><i class="fas fa-home"></i> Lifestyle</div>
+                            <div class="creator-country"><i class="fas fa-map-marker-alt"></i> Brazil</div>
                         </div>
                     </div>
                 </div>
