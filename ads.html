@@ -407,6 +407,38 @@
             font-size: 1rem;
             color: #e0e0e0;
         }
+        
+        .client-case-study {
+            background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(247, 209, 54, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .client-case-study:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .client-case-study .header {
+            border-bottom: 1px solid rgba(247, 209, 54, 0.2);
+            padding: 15px;
+        }
+        
+        .client-case-study .content {
+            padding: 15px;
+        }
+        
+        .client-case-study .metric {
+            display: inline-block;
+            background: rgba(247, 209, 54, 0.15);
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -617,124 +649,294 @@
                 <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Real results for businesses across industries</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                <!-- Client 1 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-shopping-bag text-yellow-400"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Client Case Study 1 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-shopping-bag text-pink-500"></i>
                         </div>
-                        <div class="stat-value">385%</div>
-                        <div class="stat-label">Increase in ROAS</div>
-                        <p class="text-gray-400 mt-3 text-sm">E-commerce Brand</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">ElegantWear Fashion</h3>
+                            <p class="text-sm text-gray-400">Online clothing retailer</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Struggling with high CPAs on Facebook and poor conversion rates despite significant ad spend.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Redesigned ad creative strategy with lifestyle-focused content and implemented custom audience segmentation based on browsing behavior.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-down text-green-400 mr-1"></i> 47% lower CPA</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 3.8x ROAS increase</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 112% revenue growth</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "Within 45 days, our Facebook ads went from bleeding money to our top acquisition channel." - Marketing Director
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 2 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-mobile-alt text-yellow-400"></i>
+                <!-- Client Case Study 2 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-mobile-alt text-blue-500"></i>
                         </div>
-                        <div class="stat-value">210%</div>
-                        <div class="stat-label">App Installs Growth</div>
-                        <p class="text-gray-400 mt-3 text-sm">Mobile App Startup</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">FitLife Mobile App</h3>
+                            <p class="text-sm text-gray-400">Fitness subscription application</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Needed to scale app installs while maintaining acquisition cost below $2.50 per user.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Developed a multi-platform approach with Google UAC campaigns and TikTok ad sequences showing transformation stories.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 278% increase in daily installs</div>
+                            <div class="metric"><i class="fas fa-arrow-down text-green-400 mr-1"></i> CPI reduced to $1.85</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 34% better retention rate</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "Their TikTok strategy completely transformed our user acquisition economics." - Growth Lead
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 3 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-graduation-cap text-yellow-400"></i>
+                <!-- Client Case Study 3 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-graduation-cap text-green-500"></i>
                         </div>
-                        <div class="stat-value">165%</div>
-                        <div class="stat-label">Lead Generation</div>
-                        <p class="text-gray-400 mt-3 text-sm">EdTech Company</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">MasterClass Online</h3>
+                            <p class="text-sm text-gray-400">E-learning platform</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Needed to increase qualified leads for business courses while reducing cost per lead.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Implemented multi-step lead generation process with free value content and retargeting campaigns on Google and Facebook.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 165% increase in lead volume</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 42% higher lead quality</div>
+                            <div class="metric"><i class="fas fa-arrow-down text-green-400 mr-1"></i> 38% reduction in CPL</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "Not only did we get more leads, but the conversion to paid enrollments improved dramatically." - CEO
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 4 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-spa text-yellow-400"></i>
+                <!-- Client Case Study 4 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-headphones text-purple-500"></i>
                         </div>
-                        <div class="stat-value">73%</div>
-                        <div class="stat-label">CPA Reduction</div>
-                        <p class="text-gray-400 mt-3 text-sm">Beauty Brand</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">SonicWave Audio</h3>
+                            <p class="text-sm text-gray-400">Premium headphone manufacturer</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Launching a new product line against established competitors with limited brand recognition.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Created comprehensive Google Shopping campaign with A/B tested ad creative and influencer unboxing reviews on TikTok and YouTube.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 314% sales above target</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 4.7x ROAS on shopping ads</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 22,000+ organic shares</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "Our product launch became a trending topic thanks to the coordinated ad strategy." - Marketing VP
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 5 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-utensils text-yellow-400"></i>
+                <!-- Client Case Study 5 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-utensils text-red-500"></i>
                         </div>
-                        <div class="stat-value">420%</div>
-                        <div class="stat-label">Sales Increase</div>
-                        <p class="text-gray-400 mt-3 text-sm">F&B Chain</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Fresh Harvest Meal Kits</h3>
+                            <p class="text-sm text-gray-400">Food delivery service</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> High customer acquisition costs and poor retention in competitive market.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Developed targeted Facebook campaigns with lookalike audiences based on high-LTV customers and implemented sequential messaging strategy.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-down text-green-400 mr-1"></i> 52% lower CAC</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 87% increase in subscribers</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 41% better 3-month retention</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "They transformed our Facebook approach from basic offers to a sophisticated acquisition machine." - Founder
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 6 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-tshirt text-yellow-400"></i>
+                <!-- Client Case Study 6 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-tshirt text-indigo-500"></i>
                         </div>
-                        <div class="stat-value">92%</div>
-                        <div class="stat-label">Brand Awareness</div>
-                        <p class="text-gray-400 mt-3 text-sm">Fashion Retailer</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">EcoWear Activewear</h3>
+                            <p class="text-sm text-gray-400">Sustainable sportswear brand</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Needed to build brand awareness and communicate sustainable advantage against larger competitors.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Created comprehensive Facebook and Instagram story campaign focusing on eco-friendly materials and manufacturing, complemented by targeted Google display ads.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 218% increase in brand searches</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 92% uplift in organic traffic</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 67% increase in direct sales</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "Their ability to communicate our sustainable advantage through visual storytelling was impressive." - Brand Manager
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 7 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-headphones text-yellow-400"></i>
+                <!-- Client Case Study 7 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-gamepad text-yellow-500"></i>
                         </div>
-                        <div class="stat-value">189%</div>
-                        <div class="stat-label">Conversion Rate</div>
-                        <p class="text-gray-400 mt-3 text-sm">Tech Hardware</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">AdventureQuest Games</h3>
+                            <p class="text-sm text-gray-400">Mobile gaming company</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Required scalable user acquisition for new game launch with specific ROAS targets.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Implemented multi-platform TikTok and Google App campaign strategy with creative testing framework and optimized in-app event tracking.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 315% increase in installs</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 28% higher day-7 retention</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 3.2x ROAS after 30 days</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "The TikTok creative strategy and optimization approach exceeded all our targets." - UA Manager
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 8 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-gamepad text-yellow-400"></i>
+                <!-- Client Case Study 8 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-plane text-teal-500"></i>
                         </div>
-                        <div class="stat-value">315%</div>
-                        <div class="stat-label">User Acquisition</div>
-                        <p class="text-gray-400 mt-3 text-sm">Gaming Company</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">WorldExplorer Travel</h3>
+                            <p class="text-sm text-gray-400">Travel booking platform</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Recovery strategy post-COVID with need to rebuild customer base and regain market share.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Phased approach with initial Google Search campaigns targeting high-intent keywords, followed by Facebook prospecting for new customer acquisition.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 243% booking volume increase</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 189% revenue growth</div>
+                            <div class="metric"><i class="fas fa-arrow-down text-green-400 mr-1"></i> 34% lower acquisition cost</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "Their data-driven approach helped us recover faster than our competitors." - Chief Revenue Officer
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 9 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-plane text-yellow-400"></i>
+                <!-- Client Case Study 9 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-spa text-amber-500"></i>
                         </div>
-                        <div class="stat-value">240%</div>
-                        <div class="stat-label">Booking Volume</div>
-                        <p class="text-gray-400 mt-3 text-sm">Travel Agency</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">NaturalGlow Skincare</h3>
+                            <p class="text-sm text-gray-400">Organic beauty products</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> High CPAs on Facebook limiting growth and profitability.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Redesigned conversion funnel with educational content, customer testimonial videos, and dynamic product ads based on browsing behavior.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-down text-green-400 mr-1"></i> 73% reduction in CPA</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 245% increase in ROAS</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 45% higher AOV</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "Their Facebook optimization expertise turned our campaigns from unprofitable to our main growth channel." - CMO
+                        </p>
                     </div>
                 </div>
                 
-                <!-- Client 10 -->
-                <div class="stat-card p-6">
-                    <div class="text-center">
-                        <div class="mb-3 mx-auto w-12 h-12 rounded-full flex items-center justify-center bg-opacity-20 bg-yellow-400">
-                            <i class="fas fa-home text-yellow-400"></i>
+                <!-- Client Case Study 10 -->
+                <div class="client-case-study">
+                    <div class="header flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-3 flex-shrink-0">
+                            <i class="fas fa-home text-emerald-500"></i>
                         </div>
-                        <div class="stat-value">195%</div>
-                        <div class="stat-label">Lead Quality</div>
-                        <p class="text-gray-400 mt-3 text-sm">Real Estate Firm</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">PremierProperties Real Estate</h3>
+                            <p class="text-sm text-gray-400">Luxury property broker</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Challenge:</span> Declining lead quality and conversion rates from digital channels.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            <span class="font-bold">Solution:</span> Implemented sophisticated lead qualification process with Facebook lead ads and Google search campaigns targeting high-net-worth demographics.
+                        </p>
+                        <div class="metrics mb-3">
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 195% increase in qualified leads</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 67% higher lead-to-client rate</div>
+                            <div class="metric"><i class="fas fa-arrow-up text-green-400 mr-1"></i> 1.2M in commission from digital leads</div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic">
+                            "The improvement in lead quality transformed our sales team's efficiency and results." - Sales Director
+                        </p>
                     </div>
                 </div>
             </div>
