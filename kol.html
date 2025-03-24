@@ -344,6 +344,88 @@
             background: rgba(247, 209, 54, 0.3);
             transform: scale(1.1);
         }
+        
+        /* KOL Creator Gallery Styling */
+        .creator-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+        
+        @media (min-width: 640px) {
+            .creator-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .creator-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 25px;
+            }
+        }
+        
+        .creator-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            aspect-ratio: 1 / 1.2;
+            cursor: pointer;
+        }
+        
+        .creator-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .creator-item::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+        
+        .creator-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .creator-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .creator-item:hover .creator-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .creator-item .platform-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            background: rgba(247, 209, 54, 0.9);
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body>
@@ -518,6 +600,220 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Creator Gallery Section -->
+            <div class="mt-24">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white">Our Global Creator Network</h3>
+                    <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Explore some of our vetted KOLs from around the world ready to promote your brand</p>
+                </div>
+                
+                <div class="creator-gallery">
+                    <!-- Creator 1 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/1.png" alt="KOL Creator 1" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 125K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Beauty & Lifestyle</div>
+                            <div class="text-gray-300 text-sm">United States</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 2 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/2.png" alt="KOL Creator 2" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-tiktok mr-1"></i> 450K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Tech Reviews</div>
+                            <div class="text-gray-300 text-sm">United Kingdom</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 3 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/3.png" alt="KOL Creator 3" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-youtube mr-1"></i> 780K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Fitness & Nutrition</div>
+                            <div class="text-gray-300 text-sm">Australia</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 4 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/4.png" alt="KOL Creator 4" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 320K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Fashion</div>
+                            <div class="text-gray-300 text-sm">France</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 5 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/5.png" alt="KOL Creator 5" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-youtube mr-1"></i> 1.2M</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Home & Lifestyle</div>
+                            <div class="text-gray-300 text-sm">Canada</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 6 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/6.png" alt="KOL Creator 6" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-tiktok mr-1"></i> 950K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Comedy & Entertainment</div>
+                            <div class="text-gray-300 text-sm">Brazil</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 7 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/7.png" alt="KOL Creator 7" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 230K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Travel</div>
+                            <div class="text-gray-300 text-sm">Spain</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 8 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/8.png" alt="KOL Creator 8" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-youtube mr-1"></i> 890K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Gaming</div>
+                            <div class="text-gray-300 text-sm">Germany</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 9 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/9.png" alt="KOL Creator 9" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 410K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Business & Finance</div>
+                            <div class="text-gray-300 text-sm">Singapore</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 10 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/10.png" alt="KOL Creator 10" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-tiktok mr-1"></i> 1.5M</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Dance & Music</div>
+                            <div class="text-gray-300 text-sm">South Korea</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 11 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/11.png" alt="KOL Creator 11" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 280K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Food & Cooking</div>
+                            <div class="text-gray-300 text-sm">Italy</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 12 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/12.png" alt="KOL Creator 12" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-youtube mr-1"></i> 670K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Parenting</div>
+                            <div class="text-gray-300 text-sm">United States</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 13 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/13.png" alt="KOL Creator 13" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 190K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Beauty</div>
+                            <div class="text-gray-300 text-sm">United Kingdom</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 14 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/14.png" alt="KOL Creator 14" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-tiktok mr-1"></i> 520K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Comedy</div>
+                            <div class="text-gray-300 text-sm">Canada</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 15 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/15.png" alt="KOL Creator 15" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-youtube mr-1"></i> 730K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">DIY & Crafts</div>
+                            <div class="text-gray-300 text-sm">Australia</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 16 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/16.png" alt="KOL Creator 16" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 370K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Fitness</div>
+                            <div class="text-gray-300 text-sm">Germany</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 17 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/17.png" alt="KOL Creator 17" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-tiktok mr-1"></i> 820K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Travel</div>
+                            <div class="text-gray-300 text-sm">Japan</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 18 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/18.png" alt="KOL Creator 18" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-youtube mr-1"></i> 1.1M</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Tech Reviews</div>
+                            <div class="text-gray-300 text-sm">South Korea</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 19 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/19.png" alt="KOL Creator 19" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-instagram mr-1"></i> 250K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Fashion</div>
+                            <div class="text-gray-300 text-sm">France</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Creator 20 -->
+                    <div class="creator-item">
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/20.png" alt="KOL Creator 20" class="w-full h-full object-cover">
+                        <div class="platform-badge"><i class="fab fa-tiktok mr-1"></i> 680K</div>
+                        <div class="creator-overlay">
+                            <div class="text-white font-bold">Lifestyle</div>
+                            <div class="text-gray-300 text-sm">Brazil</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <button onclick="siteweb()" class="gold-gradient-button text-black px-8 py-3 md:py-4 rounded-full text-lg font-medium">Access Our Full KOL Network</button>
                 </div>
             </div>
         </div>
