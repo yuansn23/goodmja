@@ -364,6 +364,14 @@
                 border-bottom: 1px solid rgba(247, 209, 54, 0.1);
             }
         }
+        
+        .package-inclusion-alert {
+            background-color: rgba(247, 209, 54, 0.15);
+            border-left: 4px solid #F7D136;
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 0 8px 8px 0;
+        }
     </style>
 </head>
 <body>
@@ -426,9 +434,15 @@
     <!-- Pricing Table Section -->
     <section id="pricing-table" class="py-24 md:py-32 bg-gray-900">
         <div class="page-container mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Our Pricing Plans</h2>
                 <p class="text-gray-300 mt-12 max-w-3xl mx-auto">Transparent pricing with no hidden fees. Choose the package that best suits your business needs and goals.</p>
+            </div>
+            
+            <div class="package-inclusion-alert mb-12">
+                <p class="font-bold text-yellow-400 text-xl mb-2">Important Note:</p>
+                <p class="text-white mb-2"><span class="font-semibold">Intermediate Package:</span> Includes all services from the Basic Package plus additional features.</p>
+                <p class="text-white"><span class="font-semibold">Advanced Package:</span> Includes all services from the Intermediate Package plus additional features.</p>
             </div>
             
             <!-- Desktop Pricing Table -->
@@ -443,6 +457,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr class="price-row">
+                            <td>Package Price</td>
+                            <td>
+                                <div class="original-price">$2,500/month</div>
+                                <div class="discounted-price">$1,997/month</div>
+                            </td>
+                            <td>
+                                <div class="original-price">$4,500/month</div>
+                                <div class="discounted-price">$2,997/month</div>
+                            </td>
+                            <td>
+                                <div class="discounted-price">Contact for Pricing</div>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="category">SEO</td>
                             <td>Optimize 30 long-tail keywords monthly</td>
@@ -521,32 +549,19 @@
                             <td></td>
                             <td></td>
                         </tr>
-                        <tr class="price-row">
-                            <td>Package Price</td>
-                            <td>
-                                <div class="original-price">$2,500/month</div>
-                                <div class="discounted-price">$1,997/month</div>
-                            </td>
-                            <td>
-                                <div class="original-price">$4,500/month</div>
-                                <div class="discounted-price">$2,997/month</div>
-                            </td>
-                            <td>
-                                <div class="discounted-price">Contact for Pricing</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td class="note">Note: Intermediate package includes all Basic package services</td>
-                            <td class="note">Note: Advanced package includes all Intermediate package services</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
             
             <!-- Mobile Pricing Cards -->
             <div class="md:hidden space-y-8">
+                <!-- Package Inclusion Notice for Mobile -->
+                <div class="dark-card p-4 mb-6 border-l-4 border-yellow-400">
+                    <p class="text-yellow-400 font-bold mb-2">Important: Package Inclusions</p>
+                    <p class="text-sm text-gray-300">• Intermediate Package includes all Basic services</p>
+                    <p class="text-sm text-gray-300">• Advanced Package includes all Intermediate services</p>
+                </div>
+                
                 <!-- Basic Package -->
                 <div class="mobile-pricing-card dark-card">
                     <div class="mobile-pricing-header" style="background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);">
@@ -700,10 +715,6 @@
                             <span>Multi-language functionality</span>
                         </div>
                         
-                        <div class="text-sm italic text-gray-400 mt-4">
-                            Note: Includes all Basic package services
-                        </div>
-                        
                         <div class="mt-6">
                             <button onclick="siteweb()" class="gold-gradient-button text-black px-6 py-3 rounded-full font-medium w-full">Choose Plan</button>
                         </div>
@@ -778,10 +789,6 @@
                         <div class="mobile-pricing-feature">
                             <i class="fas fa-check check-icon"></i>
                             <span>Eliminates buffering issues</span>
-                        </div>
-                        
-                        <div class="text-sm italic text-gray-400 mt-4">
-                            Note: Includes all Intermediate package services
                         </div>
                         
                         <div class="mt-6">
@@ -1043,11 +1050,17 @@
                 
                 <!-- FAQ Item 4 -->
                 <div class="dark-card p-6 rounded-lg">
+                    <div class="font-semibold text-xl mb-3 text-white">What is your refund policy?</div>
+                    <p class="text-gray-300">We offer a 100% satisfaction guarantee for all our packages. If you're not satisfied with our services, you can request a refund within the first 14 days of your subscription. For monthly subscriptions, we can provide a prorated refund for unused services if cancelled mid-month. Please contact our support team for more details on our refund process.</p>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="dark-card p-6 rounded-lg">
                     <div class="font-semibold text-xl mb-3 text-white">How soon will I see results?</div>
                     <p class="text-gray-300">While some results can be seen immediately (especially with paid advertising), significant organic growth typically takes 3-6 months. We provide monthly reports to track progress and will adjust strategies as needed to optimize results.</p>
                 </div>
                 
-                <!-- FAQ Item 5 -->
+                <!-- FAQ Item 6 -->
                 <div class="dark-card p-6 rounded-lg">
                     <div class="font-semibold text-xl mb-3 text-white">Do I need to provide my own ad budget?</div>
                     <p class="text-gray-300">Yes, the ad budget is separate from our management fees. We will provide recommendations for optimal budget allocation based on your goals and industry, with complete transparency on how your advertising dollars are being spent.</p>
@@ -1097,36 +1110,10 @@
                         <p class="text-gray-300">542 Hang Kin Street, Sha Tin District, Hong Kong</p>
                     </div>
                     
-                    <form class="max-w-2xl mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
-                            </div>
-                            <div>
-                                <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
-                            </div>
-                            <div>
-                                <input type="tel" placeholder="Your Phone" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
-                            </div>
-                            <div>
-                                <select class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
-                                    <option value="" selected disabled>Select Package</option>
-                                    <option value="basic">Basic Package</option>
-                                    <option value="intermediate">Intermediate Package</option>
-                                    <option value="advanced">Advanced Package</option>
-                                    <option value="custom">Custom Solution</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-6">
-                            <textarea rows="4" placeholder="Tell us about your business and goals" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-yellow-500"></textarea>
-                        </div>
-                        
-                        <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
-                            <button onclick="siteweb()" class="gold-gradient-button text-black hover:bg-yellow-400 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Send Message</button>
-                            <button onclick="siteweb()" class="bg-transparent border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:bg-opacity-10 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Schedule a Call</button>
-                        </div>
-                    </form>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
+                        <button onclick="siteweb()" class="gold-gradient-button text-black hover:bg-yellow-400 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Contact Us Now</button>
+                        <button onclick="siteweb()" class="bg-transparent border-2 border-yellow-500 text-white hover:bg-yellow-500 hover:bg-opacity-10 px-8 py-3 md:px-10 md:py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Schedule a Call</button>
+                    </div>
                 </div>
             </div>
         </div>
