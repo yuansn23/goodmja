@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniDigitalM - Website Development Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #111111;
+            color: #f5f5f5;
+        }
+        
+        .page-container {
+            width: 92%;
+            max-width: calc(100% - 40px);
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .page-container {
+                max-width: calc(100% - 120px);
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .page-container {
+                max-width: calc(100% - 500px);
+            }
+        }
+        
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
+        }
+        
+        .black-gold-gradient-bg {
+            background: linear-gradient(135deg, #111111 0%, #222222 85%, #333333 100%);
+        }
+        
+        .hero-gradient-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #111111 40%, #222222 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient-bg::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(247, 209, 54, 0.1) 0%, rgba(247, 209, 54, 0) 70%);
+            z-index: 1;
+        }
+        
+        .hero-gradient-bg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(247, 209, 54, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 1;
+        }
+        
+        .gold-accent-bg {
+            background: linear-gradient(135deg, #111111 0%, #222222 95%);
+            border-left: 4px solid #F7D136;
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(90deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gold-gradient-button {
+            background: linear-gradient(90deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gold-gradient-button:hover {
+            background: linear-gradient(90deg, #bb9900 0%, #e6b800 50%, #F7D136 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(247, 209, 54, 0.3);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-icon {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #F7D136 0%, #e6b800 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .contact-icon {
+                right: 30px;
+                top: 50%;
+                transform: translateY(-50%);
+                bottom: auto;
+            }
+            
+            .contact-icon:hover {
+                transform: translateY(-50%) scale(1.1);
+            }
+        }
+        
+        .case-study-item {
+            transition: all 0.5s ease;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .case-study-item:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(247, 209, 54, 0.1) 0%, rgba(247, 209, 54, 0.2) 100%);
+            transform: scaleX(0);
+            transform-origin: 0 50%;
+            transition: transform 0.5s ease-out;
+        }
+        
+        .case-study-item:hover:before {
+            transform: scaleX(1);
+        }
+        
+        .case-study-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar {
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeUp {
+            animation: fadeUp 0.5s ease forwards;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
+        }
+        
+        /* Custom card styling */
+        .dark-card {
+            background-color: #1a1a1a;
+            border: 1px solid rgba(247, 209, 54, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gold-accent {
+            border-left: 3px solid #F7D136;
+        }
+
+        .kol-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #F7D136;
+        }
+        
+        .kol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #F7D136;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            min-width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(247, 209, 54, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 20px;
+            color: #F7D136;
+        }
+        
+        .benefit-icon {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(247, 209, 54, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-button span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #F7D136;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            font-size: 24px;
+            margin: 15px 0;
+            color: white;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: #F7D136;
+        }
+        
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 120px;
+            line-height: 1;
+            font-family: serif;
+            opacity: 0.1;
+            color: #F7D136;
+        }
+        
+        .stat-card {
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(247, 209, 54, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-color: rgba(247, 209, 54, 0.5);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #F7D136 0%, #e6b800 50%, #bb9900 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .feature-list-icon {
+            color: #F7D136;
+            font-size: 1.1rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contact Icon -->
+    <div class="contact-icon" onclick="siteweb()">
+        <i class="fas fa-headset"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 shadow-md">
+        <div class="page-container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold gold-gradient-text">OmniDigitalM</div>
+                </div>
+                <div class="hidden md:flex space-x-10">
+                    <a href="#shopify" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Shopify</a>
+                    <a href="#wordpress" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">WordPress</a>
+                    <a href="#landing-page" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Landing Pages</a>
+                    <a href="#copywriting" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Copywriting</a>
+                    <a href="#testimonials" class="font-medium text-gray-300 hover:text-yellow-400 transition-colors">Testimonials</a>
+                </div>
+                <div class="hidden md:block">
+                    <button onclick="siteweb()" class="gold-gradient-button text-black px-6 py-2 rounded-full font-medium">Get Started</button>
+                </div>
+                <div class="md:hidden">
+                    <div class="mobile-menu-button" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="close-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#shopify" onclick="toggleMobileMenu()">Shopify</a>
+        <a href="#wordpress" onclick="toggleMobileMenu()">WordPress</a>
+        <a href="#landing-page" onclick="toggleMobileMenu()">Landing Pages</a>
+        <a href="#copywriting" onclick="toggleMobileMenu()">Copywriting</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()">Testimonials</a>
+        <button onclick="siteweb()" class="gold-gradient-button text-black px-6 py-2 rounded-full font-medium mt-6">Get Started</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient-bg min-h-screen flex items-center">
+        <div class="page-container mx-auto px-4 hero-content text-white py-32">
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                <div class="w-full lg:w-1/2 text-left animate-fadeUp" style="animation-delay: 0.1s;">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Web Development Excellence</h1>
+                    <p class="text-xl md:text-2xl mb-8 gold-gradient-text font-bold">Create a Custom Web Experience That Powers Your Business Growth</p>
+                    <p class="text-lg text-gray-300 mb-8">Transform your online presence from a mere placeholder to a powerful business growth engine with our professional web development services.</p>
+                    <button onclick="siteweb()" class="gold-gradient-button text-black hover:bg-gray-200 px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">Start Your Project</button>
+                </div>
+                <div class="w-full lg:w-1/2 animate-fadeUp" style="animation-delay: 0.3s;">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/d1a2be50d76bdc5bca8605e45f02c5be8705904efabf082b275cfca426b537b7?w=1224&h=904" alt="Web Development" class="w-full rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopify Section -->
+    <section id="shopify" class="py-24 md:py-32 bg-gray-900">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-5xl font-bold section-title gold-gradient-text">Shopify Development</h2>
+                <p class="text-gray-300 mt-12 max-w-3xl mx-auto text-xl leading-relaxed">Launch your e-commerce business with a professional, custom-designed Shopify store</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+                <div class="w-full lg:w-1/2 space-y-6 md:space-y-8">
+                    <ul class="feature-list">
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Quick E-commerce Launch</h3>
+                                <p class="text-gray-300">We provide one-stop Shopify setup services, from store design to product uploads, helping you launch a professional online store in record time to kickstart your e-commerce business.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Custom Design for Brand Recognition</h3>
+                                <p class="text-gray-300">Our designers are experts in Shopify theme customization, crafting unique store aesthetics based on your brand philosophy and product features to enhance brand recognition.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Mobile Optimization</h3>
+                                <p class="text-gray-300">Our Shopify store designs emphasize mobile user experience, ensuring smooth access on all devices to boost conversion rates in today's mobile-first world.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Powerful Marketing Integration</h3>
+                                <p class="text-gray-300">We integrate various marketing tools from the Shopify ecosystem, including email marketing, social media promotion, and SEO optimization, helping you quickly acquire customers.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Secure E-commerce Platform</h3>
+                                <p class="text-gray-300">As a global leader in e-commerce, Shopify offers robust security and technical support, ensuring stable operation and secure transactions for your store.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="w-full lg:w-1/2">
+                    <img src="https://www.goodmja.online/shuziyingxiao/web/web1.jpg" alt="Shopify Development" class="w-full rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WordPress Section -->
+    <section id="wordpress" class="py-20 md:py-24 black-gold-gradient-bg">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">WordPress Development</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Powerful, flexible websites built on the world's most popular CMS platform</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <div class="w-full lg:w-1/2">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/de60e380ab6386b7d5fc5b4d433400eb99f73d7c2d545addd39aada763c5b699?w=1224&h=816" alt="WordPress Development" class="w-full rounded-xl shadow-2xl">
+                </div>
+                
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <ul class="feature-list">
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Flexible Customization</h3>
+                                <p class="text-gray-300">WordPress offers rich plugins and themes, allowing us to customize various types of websites according to your specific needs, from corporate sites to blogs, forums, and e-commerce platforms.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">SEO-Friendly Structure</h3>
+                                <p class="text-gray-300">WordPress's structure and code are highly favorable for SEO optimization. We can implement professional SEO settings to improve your site's search engine rankings and drive more organic traffic.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Easy Management</h3>
+                                <p class="text-gray-300">WordPress features a user-friendly admin system, enabling you to easily update website content without technical expertise, thereby reducing maintenance costs.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Powerful Content Management</h3>
+                                <p class="text-gray-300">Originally a blogging platform, WordPress offers robust content management capabilities, allowing you to easily create and manage various types of articles, images, videos, and other content.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Community Support</h3>
+                                <p class="text-gray-300">WordPress boasts a massive user community, making it easy to find solutions to various issues and receive timely technical support when needed.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landing Page Section -->
+    <section id="landing-page" class="py-20 md:py-24 bg-gray-900">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Landing Page Design</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Conversion-focused pages that turn visitors into customers</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Landing Page Feature 1 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">High Conversion Rate</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Our landing page designs focus on user experience and conversion rates. Through elegant design and persuasive copy, we guide users to complete desired actions such as purchases, registrations, or sign-ups.
+                    </p>
+                </div>
+                
+                <!-- Landing Page Feature 2 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Data-Driven Optimization</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        We use analytics tools to track landing page metrics like click-through and conversion rates, continuously optimizing based on data results to enhance landing page performance.
+                    </p>
+                </div>
+                
+                <!-- Landing Page Feature 3 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Mobile Optimization</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Our landing page designs prioritize mobile user experience, ensuring smooth access across all devices to reach more potential customers in today's mobile-first world.
+                    </p>
+                </div>
+                
+                <!-- Landing Page Feature 4 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">A/B Testing</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        We offer A/B testing services to compare different landing page versions, helping you select the optimal design to maximize conversion rates through data-backed decisions.
+                    </p>
+                </div>
+                
+                <!-- Landing Page Feature 5 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Rapid Deployment</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Our experienced landing page design team can quickly complete design and development, helping you seize market opportunities and stay ahead of the competition.
+                    </p>
+                </div>
+                
+                <!-- Landing Page Feature 6 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Proven Results</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Our landing page designs have consistently delivered measurable results for clients across industries, with conversion rate improvements of 50-200% compared to standard pages.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copywriting Section -->
+    <section id="copywriting" class="py-20 md:py-24 black-gold-gradient-bg">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Website Copywriting</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Compelling content that converts visitors into customers</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <ul class="feature-list">
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Precise Targeting</h3>
+                                <p class="text-gray-300">Our copywriting team deeply understands your target audience, precisely identifies pain points, and creates compelling copy that resonates with potential customers.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">SEO Optimization</h3>
+                                <p class="text-gray-300">Our copywriting emphasizes SEO optimization through keyword research and content enhancement to improve your website's search engine ranking and drive more organic traffic.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Brand Storytelling</h3>
+                                <p class="text-gray-300">We craft your brand story, narrating your brand philosophy, development journey, and values to build trust with users and create emotional connections.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-mouse-pointer"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Call-to-Action Focus</h3>
+                                <p class="text-gray-300">Our copywriting emphasizes clear calls to action, guiding users to complete purchases, registrations, and other conversion goals with strategic placement and compelling language.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-feather-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Versatile Writing Styles</h3>
+                                <p class="text-gray-300">Our copywriting team masters various writing styles—humorous, professional, emotional—to meet your diverse needs and target different audience segments effectively.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="w-full lg:w-1/2">
+                    <img src="https://www.goodmja.online/shuziyingxiao/web/web2.jpg" alt="Website Copywriting" class="w-full rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketing Path Section -->
+    <section id="marketing-path" class="py-20 md:py-24 bg-gray-900">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Marketing Path Design</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Strategic planning for maximum conversion and customer retention</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Marketing Path Feature 1 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">User Journey Analysis</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        We comprehensively analyze the user journey, understanding needs and behaviors at different stages to design optimal marketing paths that guide customers through the funnel effectively.
+                    </p>
+                </div>
+                
+                <!-- Marketing Path Feature 2 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Multi-Channel Integration</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        We integrate various marketing channels—SEO, SEM, social media, email marketing—to create synergistic effects that amplify your message and maximize marketing impact.
+                    </p>
+                </div>
+                
+                <!-- Marketing Path Feature 3 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Personalized Recommendations</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Based on user interests and behaviors, we implement personalized recommendation strategies to increase conversion rates through relevant, timely content and offers.
+                    </p>
+                </div>
+                
+                <!-- Marketing Path Feature 4 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Automated Marketing</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        We build automated marketing systems that handle various marketing tasks automatically, increasing efficiency while maintaining personalized customer interactions.
+                    </p>
+                </div>
+                
+                <!-- Marketing Path Feature 5 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Data-Driven Optimization</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Using analytics tools, we track key marketing path metrics and continuously optimize based on data results to maximize ROI and conversion effectiveness.
+                    </p>
+                </div>
+                
+                <!-- Marketing Path Feature 6 -->
+                <div class="service-card dark-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="service-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Customer Retention Focus</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Our marketing paths emphasize not just acquisition but retention, with strategies to increase customer lifetime value through engagement, loyalty programs, and remarketing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Website Maintenance Section -->
+    <section id="maintenance" class="py-20 md:py-24 black-gold-gradient-bg">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Website Maintenance & Support</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Keep your website running smoothly with our comprehensive maintenance services</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <div class="w-full lg:w-1/2">
+                    <img src="https://www.goodmja.online/shuziyingxiao/web/web3.jpg" alt="Website Maintenance" class="w-full rounded-xl shadow-2xl">
+                </div>
+                
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <ul class="feature-list">
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Regular Maintenance</h3>
+                                <p class="text-gray-300">We provide regular maintenance services including website backups, security vulnerability fixes, and server maintenance to ensure your website's secure and stable operation.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Technical Support</h3>
+                                <p class="text-gray-300">We offer 7x24 hour technical support, promptly responding to your various issues to ensure your website operates normally with minimal downtime.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Content Updates</h3>
+                                <p class="text-gray-300">We provide content update services, regularly refreshing your website content to maintain vitality and attractiveness, keeping your audience engaged.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Feature Upgrades</h3>
+                                <p class="text-gray-300">We provide feature upgrade services, continuously optimizing website functionality to enhance user experience and keep pace with industry standards.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Training & Guidance</h3>
+                                <p class="text-gray-300">We provide website management training and guidance, enhancing your website management capabilities so you can handle routine updates independently.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="py-20 md:py-24 bg-gray-900 relative">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://pfst.cf2.poecdn.net/base/image/8e97ab81be294d219209975a87f0964d9e0c20dbb8fa3d89f513f0bd8599e6fa?w=1224&h=816')"></div>
+        <div class="page-container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Our Track Record</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Building successful websites and client relationships since 2018</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="stat-card">
+                    <div class="stat-number">6+</div>
+                    <p class="text-xl text-white font-medium mt-2">Years Experience</p>
+                    <p class="text-gray-400 mt-1">In website design and development</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">108+</div>
+                    <p class="text-xl text-white font-medium mt-2">Client Projects</p>
+                    <p class="text-gray-400 mt-1">Delivered across multiple industries</p>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <p class="text-xl text-white font-medium mt-2">Client Satisfaction</p>
+                    <p class="text-gray-400 mt-1">Based on post-project surveys</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 md:py-24 black-gold-gradient-bg">
+        <div class="page-container mx-auto px-4">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold section-title gold-gradient-text">Client Testimonials</h2>
+                <p class="text-gray-300 mt-8 max-w-3xl mx-auto">Hear what our clients have to say about our web development services</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card dark-card p-8 rounded-lg relative">
+                    <div class="mb-6 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 relative z-10">
+                        "Their Shopify development expertise transformed our online store. Sales increased by 45% in the first month after launch, and the mobile experience is flawless."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4 text-yellow-800">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Sarah Johnson</div>
+                            <div class="text-sm text-gray-400">E-commerce Director, Boutique Fashions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card dark-card p-8 rounded-lg relative">
+                    <div class="mb-6 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 relative z-10">
+                        "The WordPress site they built for our company is both beautiful and functional. Our organic traffic has increased by 210% thanks to their SEO-focused development approach."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4 text-yellow-800">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Michael Chen</div>
+                            <div class="text-sm text-gray-400">CEO, TechSolutions Inc.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card dark-card p-8 rounded-lg relative">
+                    <div class="mb-6 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 relative z-10">
+                        "Their landing page design for our product launch exceeded expectations. The conversion rate was 320% higher than our previous pages, directly impacting our bottom line."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4 text-yellow-800">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Jessica Miller</div>
+                            <div class="text-sm text-gray-400">Marketing Director, LaunchPad SaaS</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card dark-card p-8 rounded-lg relative">
+                    <div class="mb-6 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 relative z-10">
+                        "The copy they wrote for our website perfectly captured our brand voice and addressed our customers' pain points. Engagement metrics improved across the board."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4 text-yellow-800">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">David Thompson</div>
+                            <div class="text-sm text-gray-400">Founder, Wellness Innovations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card dark-card p-8 rounded-lg relative">
+                    <div class="mb-6 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 relative z-10">
+                        "Their marketing pathway design completely transformed our customer acquisition strategy. Lead quality improved by 85% and our cost per acquisition decreased significantly."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4 text-yellow-800">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Emily Zhang</div>
+                            <div class="text-sm text-gray-400">Growth Manager, Digital Solutions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card dark-card p-8 rounded-lg relative">
+                    <div class="mb-6 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 relative z-10">
+                        "We've been using their maintenance services for over 2 years. Our site is always up-to-date, secure, and they respond to issues within minutes. Worth every penny."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-yellow-200 flex items-center justify-center mr-4 text-yellow-800">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white">Robert Williams</div>
+                            <div class="text-sm text-gray-400">IT Director, Global Enterprises</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
