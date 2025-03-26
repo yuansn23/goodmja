@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SBIサポート付き株式投資コミュニティ - プロの視点で未来を掴む</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --line-green: #06C755;
+            --primary-blue: #0056B3;
+            --secondary-orange: #FF7A00;
+            --dark-blue: #003366;
+            --light-gray: #F7F9FC;
+        }
+        
+        * {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+        }
+        
+        .line-btn {
+            background-color: var(--line-green);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .line-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(6, 199, 85, 0.3);
+        }
+        
+        .orange-btn {
+            background-color: var(--secondary-orange);
+            transition: all 0.3s ease;
+            animation: shimmer 2s infinite;
+        }
+        
+        .orange-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
+        }
+        
+        .float-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--line-green);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .float-icon:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(6, 199, 85, 0.4);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF3860;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(6, 199, 85, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(6, 199, 85, 0);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-color: var(--secondary-orange);
+            }
+            50% {
+                background-color: #FF9A40;
+            }
+            100% {
+                background-color: var(--secondary-orange);
+            }
+        }
+        
+        .highlight-box {
+            border-radius: 8px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--line-green), var(--secondary-orange));
+        }
+        
+        .counter-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .counter-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .counter-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .pain-point {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pain-point:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+        
+        .bullet-point {
+            display: flex;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        
+        .bullet-icon {
+            color: var(--line-green);
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .profile-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating LINE Icon -->
+    <div class="float-icon" onclick="opensite()">
+        <i class="fab fa-line text-white text-3xl"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg relative py-16 md:py-24">
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 text-white mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                        日本の株式投資を<br><span class="text-yellow-300">プロの視点</span>で変革する
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl font-medium mb-8 text-gray-100">
+                        北尾吉孝が率いるSBIの専門チームによる、<span class="text-yellow-300 font-bold">週間株式予測</span>と<span class="text-yellow-300 font-bold">投資コミュニティ</span>
+                    </p>
+                    
+                    <div class="highlight-box mb-8 animate-fade-in-up">
+                        <h3 class="text-xl font-bold mb-4 text-yellow-300">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            多くの投資家が直面する3つの課題
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="pain-point delay-100">
+                                <div class="flex items-start">
+                                    <i class="fas fa-times-circle text-red-400 mt-1 mr-3 text-xl"></i>
+                                    <div>
+                                        <span class="font-bold text-white">信頼できる情報源の不足</span>
+                                        <p class="text-gray-300 mt-1">個人投資家は情報過多の中、どの情報を信じるべきか分からず、重要な投資判断を誤る</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pain-point delay-200">
+                                <div class="flex items-start">
+                                    <i class="fas fa-times-circle text-red-400 mt-1 mr-3 text-xl"></i>
+                                    <div>
+                                        <span class="font-bold text-white">市場の変動に対する不安</span>
+                                        <p class="text-gray-300 mt-1">予測不可能な市場動向と経済ニュースに振り回され、感情的な投資判断をしてしまう</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pain-point delay-300">
+                                <div class="flex items-start">
+                                    <i class="fas fa-times-circle text-red-400 mt-1 mr-3 text-xl"></i>
+                                    <div>
+                                        <span class="font-bold text-white">孤独な投資の旅</span>
+                                        <p class="text-gray-300 mt-1">他の投資家との交流や意見交換の機会がなく、投資の孤独感と不安を抱えている</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="opensite()" class="line-btn text-white text-lg font-bold py-4 px-6 rounded-full flex items-center justify-center">
+                            <i class="fab fa-line mr-2 text-2xl"></i>
+                            今すぐ無料で参加する
+                        </button>
+                        
+                        <button onclick="opensite()" class="orange-btn text-white text-lg font-bold py-4 px-6 rounded-full flex items-center justify-center">
+                            <i class="fas fa-gift mr-2"></i>
+                            10銘柄の株式リストを受け取る
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4 text-gray-300 flex items-center text-sm">
+                        <i class="fas fa-users mr-2"></i>
+                        <span>本日すでに<span class="font-bold text-yellow-300">2,392</span>人が参加</span>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <img src="https://www.goodmja.online/rigu/b1.jpg" alt="北尾吉孝 - SBIホールディングス社長" class="rounded-lg shadow-2xl max-w-md w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title">株式投資をより効果的に</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="feature-card bg-white">
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-chart-line text-primary-blue text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">週間株式予測</h3>
+                        <p class="text-gray-600">
+                            プロのアナリストチームによる市場動向の分析と、今後の見通しについての週間予測を提供します。重要な経済指標や企業ニュースも含まれています。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-card bg-white">
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-users text-line-green text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">投資家コミュニティ</h3>
+                        <p class="text-gray-600">
+                            同じ目標を持つ投資家との交流の場。経験を共有し、質問をし、アイデアを議論できる環境で、投資の孤独感を解消します。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="feature-card bg-white">
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-lightbulb text-secondary-orange text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">投資教育リソース</h3>
+                        <p class="text-gray-600">
+                            投資の基本から高度な戦略まで、あらゆるレベルの投資家向けの教育コンテンツ。ウェビナー、記事、分析ツールを通じてスキルを向上させます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <button onclick="opensite()" class="line-btn text-white font-bold py-3 px-8 rounded-full text-lg inline-flex items-center">
+                    <i class="fab fa-line mr-2 text-2xl"></i>
+                    今すぐコミュニティに参加する
+                </button>
+                <p class="text-gray-500 mt-3">参加は完全無料です</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-6">北尾吉孝氏について</h2>
+                    
+                    <div class="space-y-4 text-gray-700">
+                        <p>北尾吉孝氏は日本の著名な企業家で、現在SBIホールディングスの代表取締役社長兼CEOを務めています。兵庫県出身で、金融業界における豊富な経験と革新的なビジョンを持っています。</p>
+                        
+                        <p>1995年、当時44歳だった北尾氏はソフトバンクグループのIPO担当責任者として孫正義氏と出会い、野村証券を退社してソフトバンクの常務取締役（副社長相当）に就任しました。彼の優れた資金調達能力は、ソフトバンク帝国の構築に大きく貢献しました。</p>
+                        
+                        <p>1999年、北尾氏はソフトバンクを離れ、55人のチームと共にSBIホールディングス（当時はソフトバンク・インベストメント）を設立し、社長に就任しました。彼のリーダーシップの下、SBIは日本の金融業界における革新的な存在となりました。</p>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold mb-3">なぜ北尾氏の株式見通しが重要なのか</h3>
+                            <div class="bullet-point">
+                                <div class="bullet-icon">
+                                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="font-semibold">豊富な経験と実績</span>
+                                    <p class="mt-1 text-gray-600">金融業界での数十年にわたる経験と、成功した投資の実績</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bullet-point">
+                                <div class="bullet-icon">
+                                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="font-semibold">業界内の強力なネットワーク</span>
+                                    <p class="mt-1 text-gray-600">金融業界のトップリーダーたちとの関係による優れた情報源へのアクセス</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bullet-point">
+                                <div class="bullet-icon">
+                                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="font-semibold">戦略的な洞察力</span>
+                                    <p class="mt-1 text-gray-600">市場動向を読み解き、将来の投資機会を特定する能力</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2">
+                    <img src="https://www.goodmja.online/rigu/3.jpg" alt="株式投資コミュニティ" class="rounded-lg shadow-xl mx-auto" style="max-width: 500px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Benefits -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center section-title">コミュニティのメリット</h2>
+            
+            <div class="max-w-4xl mx-auto mt-12">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-alt text-primary-blue text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">週間株式予測</h3>
+                        </div>
+                        <p class="text-gray-600">
+                            専門アナリストチームによる詳細な市場分析と今後1週間の株式市場の見通しをお届けします。重要な経済指標や企業ニュースも含め、投資判断に役立つ情報を提供します。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-comments text-line-green text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">活発な意見交換</h3>
+                        </div>
+                        <p class="text-gray-600">
+                            同じ目標を持つ投資家との交流の場で、経験を共有し、質問をし、アイデアを議論できます。投資の孤独感を解消し、集合知を活用した投資判断が可能になります。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-gift text-secondary-orange text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">10銘柄の有望株リスト</h3>
+                        </div>
+                        <p class="text-gray-600">
+                            参加者特典として、プロのアナリストが厳選した上昇潜力のある10銘柄のリストを無料で提供します。各銘柄の選定理由と見通しも含まれています。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-purple-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">投資教育リソース</h3>
+                        </div>
+                        <p class="text-gray-600">
+                            投資の基本から高度な戦略まで、あらゆるレベルの投資家向けの教育コンテンツ。ウェビナー、記事、分析ツールを通じてスキルを向上させることができます。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg inline-block">
+                        <h3 class="text-2xl font-bold mb-4">参加はたった3ステップ</h3>
+                        <div class="flex flex-wrap justify-center gap-4 mb-6">
+                            <div class="counter-box w-24">
+                                <div class="counter-number">1</div>
+                                <div class="counter-label">LINE登録</div>
+                            </div>
+                            
+                            <div class="counter-box w-24">
+                                <div class="counter-number">2</div>
+                                <div class="counter-label">挨拶</div>
+                            </div>
+                            
+                            <div class="counter-box w-24">
+                                <div class="counter-number">3</div>
+                                <div class="counter-label">情報受取</div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="opensite()" class="line-btn text-white font-bold py-3 px-8 rounded-full w-full">
+                            <i class="fab fa-line mr-2"></i>
+                            今すぐLINEに登録する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">コミュニティの活動</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    私たちのコミュニティでは、メンバー同士の活発な意見交換と専門家チームのサポートにより、投資家としての成長をサポートしています。
+                </p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+                <div class="flex items-center justify-between mb-6 border-b pb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-primary-blue text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">活発なコミュニティ</h3>
+                            <p class="text-gray-600">メンバー同士の意見交換が日々行われています</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold text-primary-blue">2,392</div>
+                        <div class="text-sm text-gray-600">今日の参加者</div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4 mb-6">
+                    <div class="flex gap-4 items-start p-4 bg-gray-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold">T</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center">
+                                <p class="font-bold">田中さん</p>
+                                <span class="text-gray-500 text-sm ml-2">東京</span>
+                            </div>
+                            <p class="text-gray-700 mt-1">
+                                このコミュニティに参加して3ヶ月になります。毎週の株式予測が非常に参考になり、投資の方向性を決める助けになっています。他のメンバーとの意見交換も刺激的です。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4 items-start p-4 bg-gray-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold">S</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center">
+                                <p class="font-bold">佐藤さん</p>
+                                <span class="text-gray-500 text-sm ml-2">大阪</span>
+                            </div>
+                            <p class="text-gray-700 mt-1">
+                                株式投資を始めたばかりでしたが、このコミュニティのおかげで基礎から学ぶことができました。質問にも丁寧に回答していただき、安心して投資を続けられています。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="opensite()" class="line-btn text-white font-bold py-3 px-8 rounded-full">
+                        <i class="fab fa-line mr-2"></i>
+                        コミュニティに参加する
+                    </button>
+                    <p class="text-gray-500 mt-2">参加費は一切かかりません</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="gradient-bg py-16 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">今すぐ無料で始めましょう</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                LINEアカウントを登録するだけで、週間株式予測と10銘柄の有望株リストを無料で受け取れます。投資家コミュニティで経験を共有し、一緒に成長しましょう。
+            </p>
+            
+            <div class="max-w-md mx-auto bg-white bg-opacity-10 p-8 rounded-lg backdrop-filter backdrop-blur-sm border border-white border-opacity-20 mb-10">
+                <h3 class="text-2xl font-bold mb-4">特典：無料株式リスト</h3>
+                <p class="mb-6">
+                    今すぐ登録すると、北尾吉孝氏のチームが厳選した10銘柄の有望株リストを無料でお届けします。各銘柄の分析と投資判断のポイントも含まれています。
+                </p>
+                
+                <button onclick="opensite()" class="line-btn text-white font-bold py-4 px-8 rounded-lg w-full text-lg flex items-center justify-center">
+                    <i class="fab fa-line mr-2 text-2xl"></i>
+                    今すぐLINEで無料登録
+                </button>
+                
+                <p class="mt-4 text-sm">※ 特典は先着順となります</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="inline-flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <i class="fas fa-shield-alt text-yellow-300 mr-2"></i>
+                    <span>個人情報は厳重に保護されます</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Disclaimer -->
+    <footer class="py-10 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-lg font-bold mb-4 text-gray-300">重要な開示事項</h3>
+                
+                <div class="space-y-4 text-sm">
+                    <p>
+                        <strong>リスク開示：</strong> 株式投資は元本保証ではなく、市場の変動により投資金額を下回る可能性があります。過去の実績は将来の成果を保証するものではありません。投資判断は自己責任で行ってください。
+                    </p>
+                    
+                    <p>
+                        <strong>投資助言業務に関する開示：</strong> 当サイトは、金融商品取引法に基づく投資助言業の登録を行っておらず、特定の金融商品の売買を推奨するものではありません。提供される情報は一般的な情報提供を目的としており、個別の投資アドバイスを構成するものではありません。
+                    </p>
+                    
+                    <p>
+                        <strong>情報の正確性：</strong> 当サイトで提供される情報は信頼できると考えられる情報源から取得していますが、その正確性、完全性、適時性を保証するものではありません。情報は予告なく変更されることがあります。
+                    </p>
+                    
+                    <p>
+                        <strong>個人の見解：</strong> 当サイトに掲載されている意見や見解は、特定の個人の見解であり、必ずしも組織全体の見解を反映するものではありません。
+                    </p>
+                    
+                    <p>
+                        <strong>無料サービスに関する説明：</strong> 当サイトで提供される無料サービスやグループへの参加は、将来有料サービスへの勧誘を含む場合があります。利用者は自由に参加・退会することができます。
+                    </p>
+                    
+                    <p>
+                        <strong>個人情報の取り扱い：</strong> 当サイトを通じて収集された個人情報は、プライバシーポリシーに基づき適切に保護され、サービス提供の目的以外には使用されません。
+                    </p>
+                    
+                    <p>
+                        <strong>金融庁への登録：</strong> 当サイトの運営者は、金融商品取引法に基づく金融商品取引業者または登録金融機関ではありません。
+                    </p>
+                    
+                    <p>
+                        <strong>広告掲載ポリシー：</strong> 当サイトは、金融商品取引法および関連法令、日本証券業協会および投資信託協会の広告等に関するガイドラインを遵守し、誤解を招く表現や過度な期待を抱かせる表現を行わないよう努めています。
+                    </p>
+                </div>
+                
+                <div class="mt-8 pt-4 border-t border-gray-800 text-sm text-center">
+                    <p>© 2023 株式投資コミュニティ. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function opensite() {
+            window.open('https://line.me/R/ti/p/@your-line-id', '_blank');
+        }
+    </script>
+</body>
+</html>
