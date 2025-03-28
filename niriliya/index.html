@@ -1,1 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nigeria Poverty Alleviation Commission</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nigeria-green': '#008751',
+                        'nigeria-dark': '#005238',
+                        'nigeria-light': '#E6F7EF',
+                        'whatsapp': '#25D366',
+                        'accent-orange': '#FF9800',
+                        'accent-purple': '#8E44AD',
+                        'accent-blue': '#3498DB'
+                    },
+                    fontFamily: {
+                        'body': ['Inter', 'sans-serif'],
+                        'heading': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
 
+        function opensite() {
+            window.open('https://wa.me/message/XXXXXXXXXXXXX', '_blank');
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .whatsapp-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-icon:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF3B30;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+            }
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(255, 59, 48, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+            }
+        }
+        
+        .btn-pulse {
+            animation: btnPulse 2s infinite;
+        }
+        
+        @keyframes btnPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .hero-pattern {
+            background-color: #008751;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, rgba(0,135,81,0.05) 0%, rgba(142,68,173,0.1) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- WhatsApp Icon -->
+    <div class="whatsapp-icon" onclick="opensite()">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="h-12 w-12 rounded-full bg-nigeria-green flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">NPC</span>
+                </div>
+                <div class="ml-3">
+                    <h1 class="text-lg md:text-xl font-bold text-gray-800">Nigeria Poverty Alleviation Commission</h1>
+                    <p class="text-sm text-gray-600">Fostering Prosperity Together</p>
+                </div>
+            </div>
+            <button onclick="opensite()" class="btn-pulse hidden md:block bg-whatsapp hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all">
+                <i class="fab fa-whatsapp mr-2"></i>Contact Us
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 font-heading leading-tight">Building a Prosperous Nigeria Together</h2>
+                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg mb-8">
+                        <h3 class="text-xl font-semibold mb-3">Our Core Vision</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-white rounded-full flex items-center justify-center mr-2">
+                                    <span class="text-nigeria-green font-bold text-sm">1</span>
+                                </div>
+                                <p>Eliminating intergenerational poverty, building a sustainable future</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-white rounded-full flex items-center justify-center mr-2">
+                                    <span class="text-nigeria-green font-bold text-sm">2</span>
+                                </div>
+                                <p>Empowering vulnerable groups to achieve economic independence</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 bg-white rounded-full flex items-center justify-center mr-2">
+                                    <span class="text-nigeria-green font-bold text-sm">3</span>
+                                </div>
+                                <p>Creating inclusive growth communities</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="opensite()" class="btn-pulse bg-whatsapp hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all">
+                            <i class="fab fa-whatsapp mr-2"></i>Join Our Initiative
+                        </button>
+                        <button onclick="opensite()" class="bg-white text-nigeria-green hover:bg-gray-100 font-bold py-3 px-6 rounded-lg shadow-lg transition-all">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                    <img src="https://www.goodmja.online/niriliya/n6.jpg" alt="Nigerian community" class="rounded-lg shadow-lg w-full h-48 md:h-64 object-cover transform -rotate-2">
+                    <img src="https://www.goodmja.online/niriliya/n5.jpg" alt="Nigerian farmers" class="rounded-lg shadow-lg w-full h-48 md:h-64 object-cover transform rotate-2 mt-6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Introduction -->
+    <section class="py-16 px-4 md:px-8 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-nigeria-dark mb-4 font-heading">Poverty Alleviation Programs</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Comprehensive support systems designed to break the cycle of poverty and create sustainable opportunities for all Nigerians.</p>
+                <div class="h-1 w-24 bg-nigeria-green mx-auto mt-6"></div>
+            </div>
+            
+            <!-- House of Hope Program -->
+            <div class="flex flex-col md:flex-row items-center mb-16">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-bold text-nigeria-dark mb-4 font-heading">House of Hope Initiative</h3>
+                    <p class="text-gray-600 mb-6">Providing essential support to uplift vulnerable families and create pathways out of poverty through holistic assistance programs.</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-nigeria-green/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-nigeria-green text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Monthly Living Allowance</h4>
+                                <p class="text-gray-600">For low-income families (includes food and educational support)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-nigeria-green/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-nigeria-green text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Housing Improvement Fund</h4>
+                                <p class="text-gray-600">Special funding for essential home repairs and improvements</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-nigeria-green/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-nigeria-green text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Clean Water Project</h4>
+                                <p class="text-gray-600">Expanding access to safe, clean drinking water across communities</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-nigeria-green/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-nigeria-green text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Vocational Skills Matching</h4>
+                                <p class="text-gray-600">Connecting individuals with employment opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="opensite()" class="bg-accent-orange hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">
+                        Apply for Support
+                    </button>
+                </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                    <img src="https://www.goodmja.online/niriliya/n3.jpg" alt="Nigerian families" class="rounded-lg shadow-lg w-full h-48 object-cover">
+                    <img src="https://www.goodmja.online/niriliya/n4.jpg" alt="Nigerian community" class="rounded-lg shadow-lg w-full h-48 object-cover">
+                </div>
+            </div>
+            
+            <!-- Women Empowerment Program -->
+            <div class="flex flex-col md:flex-row-reverse items-center mb-16">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pl-8">
+                    <h3 class="text-2xl font-bold text-nigeria-dark mb-4 font-heading">Women Empowerment Program</h3>
+                    <p class="text-gray-600 mb-6">Dedicated initiatives to support women's economic independence and strengthen family wellbeing through skill development and health support.</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-accent-purple/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-purple text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Vocational Skills Training</h4>
+                                <p class="text-gray-600">Specialized training in textiles, e-commerce, and handicrafts</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-accent-purple/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-purple text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Maternal & Child Health Support</h4>
+                                <p class="text-gray-600">Comprehensive healthcare packages for mothers and infants</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="opensite()" class="bg-accent-purple hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">
+                        Join Program
+                    </button>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-accent-purple opacity-10 rounded-lg transform rotate-3"></div>
+                        <img src="https://www.goodmja.online/niriliya/n2.jpg" alt="Nigerian women entrepreneurs" class="relative rounded-lg shadow-lg w-full h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Care Program -->
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-bold text-nigeria-dark mb-4 font-heading">Special Care Program</h3>
+                    <p class="text-gray-600 mb-6">Targeted support for vulnerable populations, ensuring inclusive growth and development opportunities for all Nigerians regardless of ability or circumstance.</p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-accent-blue/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-blue text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Disability Employment Training</h4>
+                                <p class="text-gray-600">Specialized job training programs for persons with disabilities</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-accent-blue/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-blue text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">School Nutrition Support</h4>
+                                <p class="text-gray-600">Nutritional programs for children attending school</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-accent-blue/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-accent-blue text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Youth Skills Scholarships</h4>
+                                <p class="text-gray-600">Educational support for talented youth from disadvantaged backgrounds</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="opensite()" class="bg-accent-blue hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-accent-blue opacity-10 rounded-lg transform -rotate-2"></div>
+                        <img src="https://www.goodmja.online/niriliya/n1.jpg" alt="Nigerian youth education" class="relative rounded-lg shadow-lg w-full h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 px-4 md:px-8 bg-nigeria-green text-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 font-heading">Join Us in Making a Difference</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Connect with us through our WhatsApp green channel to learn more about our programs or to contribute to our initiatives.</p>
+            
+            <button onclick="opensite()" class="btn-pulse bg-white text-nigeria-green hover:bg-gray-100 font-bold py-4 px-8 rounded-lg shadow-lg text-lg transition-all">
+                <i class="fab fa-whatsapp text-whatsapp mr-2"></i>Contact via WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <!-- Impact Statistics -->
+    <section class="py-16 px-4 md:px-8 section-gradient">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-nigeria-dark mb-4 font-heading">Witnessing Change Together</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Real impact in communities across Nigeria through our collaborative initiatives</p>
+                <div class="h-1 w-24 bg-nigeria-green mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md card-hover border border-gray-100">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="h-16 w-16 rounded-full bg-nigeria-green/10 flex items-center justify-center">
+                            <i class="fas fa-tools text-nigeria-green text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-nigeria-dark mb-2">83,200+</h3>
+                    <p class="text-gray-600 text-center">Families received production toolkits (including farm equipment, quality seeds, technical manuals)</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md card-hover border border-gray-100">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="h-16 w-16 rounded-full bg-accent-purple/10 flex items-center justify-center">
+                            <i class="fas fa-female text-accent-purple text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-nigeria-dark mb-2">86.7%-89.2%</h3>
+                    <p class="text-gray-600 text-center">Women achieved sustainable income through entrepreneurship programs</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md card-hover border border-gray-100">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="h-16 w-16 rounded-full bg-accent-blue/10 flex items-center justify-center">
+                            <i class="fas fa-home text-accent-blue text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-nigeria-dark mb-2">36</h3>
+                    <p class="text-gray-600 text-center">Communities have entered sustainable development phases</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional CTA Buttons -->
+    <section class="py-12 px-4 md:px-8 bg-white">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <button onclick="opensite()" class="btn-pulse bg-whatsapp hover:bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-2"></i>Ask About Programs
+                </button>
+                <button onclick="opensite()" class="bg-accent-orange hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <i class="fas fa-hand-holding-heart mr-2"></i>Support Our Mission
+                </button>
+                <button onclick="opensite()" class="bg-accent-purple hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <i class="fas fa-users mr-2"></i>Volunteer Opportunities
+                </button>
+                <button onclick="opensite()" class="bg-accent-blue hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all flex items-center justify-center">
+                    <i class="fas fa-file-alt mr-2"></i>Download Resources
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Our Mission</h3>
+                    <p class="text-gray-300 mb-4">Ensuring that people are well-fed, comfortable, and living with dignity. Solving poverty is our goal.</p>
+                    <p class="text-gray-300">Working together for a better Nigeria tomorrow.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                    <p class="text-gray-300 mb-2"><i class="fas fa-envelope mr-2 text-whatsapp"></i> nirudna9823@gmail.com</p>
+                    <p class="text-gray-300 mb-4"><i class="fas fa-map-marker-alt mr-2 text-whatsapp"></i> Poverty Alleviation Office: Radio House, Herbert Macaulay Way (South) Area 8, PMB 242, Garki - Abuja</p>
+                    <button onclick="opensite()" class="bg-whatsapp hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-all">
+                        <i class="fab fa-whatsapp mr-2"></i>WhatsApp Support
+                    </button>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Legal Information</h3>
+                    <p class="text-gray-300 mb-4">This initiative is in compliance with Federal Government of Nigeria guidelines for poverty alleviation programs.</p>
+                    <p class="text-gray-300 text-sm">The content on this website is for informational purposes only. Program eligibility and benefits are subject to official government policies and available resources. Documentation may be required for program participation.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400 text-sm">© 2023 Nigeria Poverty Alleviation Commission. All rights reserved.</p>
+                <p class="text-gray-500 text-xs mt-2">This is an official government initiative aimed at improving the lives of Nigerian citizens.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>
