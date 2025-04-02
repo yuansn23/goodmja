@@ -97,19 +97,6 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        .floating-download {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            cursor: pointer;
-        }
-        .floating-download img {
-            width: 60px;
-            height: 60px;
-            animation: pulse 2s infinite;
-        }
         section {
             padding: 50px 0;
         }
@@ -171,8 +158,8 @@
             margin-bottom: 15px;
         }
         .testimonials {
-            background-color: #1a4b8c;
-            color: white;
+            background: linear-gradient(135deg, #ff9f1c 0%, #ffbf69 100%);
+            color: #1a4b8c;
             padding: 50px 0;
         }
         .testimonial-grid {
@@ -181,23 +168,86 @@
             gap: 30px;
         }
         .testimonial-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.8);
             padding: 25px;
             border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        .testimonial-card p:first-child {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .testimonial-card p:first-child::before {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            left: -10px;
+            top: -15px;
+            color: rgba(26, 75, 140, 0.2);
+        }
+        .testimonial-author {
+            font-style: italic;
+            color: #1a4b8c;
+            font-weight: bold;
+            text-align: right;
         }
         .security {
-            background-color: #f8f9fa;
+            background-color: #1a4b8c;
+            color: white;
             text-align: center;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
         }
-        .security-badges {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+        .security::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #ff9f1c, #ffbf69, #ff9f1c);
+        }
+        .security .section-title {
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-top: 30px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
         }
-        .badge-item {
-            max-width: 150px;
+        .security-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .security-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+        }
+        .security-icon {
+            font-size: 2.5rem;
+            color: #ff9f1c;
+            margin-bottom: 15px;
+        }
+        .security-item h3 {
+            color: #ffbf69;
+            margin-bottom: 15px;
         }
         footer {
             background-color: #0d2d59;
@@ -256,13 +306,6 @@
             .hero {
                 flex-direction: column;
             }
-            .floating-download {
-                right: 10px;
-            }
-            .floating-download img {
-                width: 50px;
-                height: 50px;
-            }
         }
     </style>
 </head>
@@ -286,10 +329,6 @@
             </div>
         </div>
     </header>
-
-    <div class="floating-download" onclick="opensite()">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LINE_logo.svg/1024px-LINE_logo.svg.png" alt="Download Now">
-    </div>
 
     <section class="container">
         <h2 class="section-title">Most Popular Games Among Filipino Players</h2>
@@ -339,43 +378,47 @@
 
     <section class="testimonials">
         <div class="container">
-            <h2 class="section-title" style="color: white;">What Players Say</h2>
+            <h2 class="section-title" style="color: #1a4b8c;">What Players Say</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
-                    <p>"The game selection is amazing! I've discovered so many new favorites that I can't find elsewhere."</p>
-                    <p style="margin-top: 15px; font-style: italic;">- Miguel, Manila</p>
+                    <p>The game selection is amazing! I've discovered so many new favorites that I can't find elsewhere.</p>
+                    <p class="testimonial-author">- Miguel, Manila</p>
                 </div>
                 <div class="testimonial-card">
-                    <p>"I love the daily challenges and tournaments. They make playing even more exciting and competitive!"</p>
-                    <p style="margin-top: 15px; font-style: italic;">- Sofia, Cebu</p>
+                    <p>I love the daily challenges and tournaments. They make playing even more exciting and competitive!</p>
+                    <p class="testimonial-author">- Sofia, Cebu</p>
                 </div>
                 <div class="testimonial-card">
-                    <p>"The community here is fantastic. I've made friends while playing and we often team up for games."</p>
-                    <p style="margin-top: 15px; font-style: italic;">- Juan, Davao</p>
+                    <p>The community here is fantastic. I've made friends while playing and we often team up for games.</p>
+                    <p class="testimonial-author">- Juan, Davao</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="security container">
-        <h2 class="section-title">Your Security is Our Priority</h2>
-        <p>Three-layer fund protection system:</p>
-        <div class="features" style="margin-top: 30px;">
-            <div class="feature-item">
-                <h3>BSP Certified</h3>
-                <p>Funds held by licensed financial institutions</p>
+    <section class="security">
+        <div class="container">
+            <h2 class="section-title">Your Security is Our Priority</h2>
+            <div class="security-features">
+                <div class="security-item">
+                    <div class="security-icon">🔒</div>
+                    <h3>BSP Certified</h3>
+                    <p>Funds held by licensed financial institutions with strict regulatory oversight</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">💳</div>
+                    <h3>Secure Payments</h3>
+                    <p>GCash/PayMaya encrypted direct connections with end-to-end protection</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">👁️</div>
+                    <h3>24/7 Monitoring</h3>
+                    <p>Round-the-clock suspicious activity surveillance and fraud prevention</p>
+                </div>
             </div>
-            <div class="feature-item">
-                <h3>Secure Payments</h3>
-                <p>GCash/PayMaya encrypted direct connections</p>
+            <div style="text-align: center; margin-top: 40px;">
+                <a class="btn btn-primary" onclick="opensite()" style="padding: 15px 40px; font-size: 1.2rem; background-color: #ff9f1c; color: #1a4b8c;">Get Your ₱500 Free Credits Now</a>
             </div>
-            <div class="feature-item">
-                <h3>24/7 Monitoring</h3>
-                <p>Round-the-clock suspicious activity surveillance</p>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 40px;">
-            <a class="btn btn-primary" onclick="opensite()" style="padding: 15px 40px; font-size: 1.2rem;">Get Your ₱500 Free Credits Now</a>
         </div>
     </section>
 
