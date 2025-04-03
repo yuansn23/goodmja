@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spark Connect - Find Your Match</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-purple: #8A2BE2;
+            --light-purple: #9D4EDD;
+            --dark-purple: #6A0DAD;
+            --accent-pink: #FF73B9;
+            --accent-blue: #73D0FF;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F9F5FF;
+            color: #333;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #4ade80;
+            display: inline-block;
+        }
+        
+        .purple-gradient {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--dark-purple) 100%);
+        }
+        
+        .pink-purple-gradient {
+            background: linear-gradient(135deg, var(--accent-pink) 0%, var(--light-purple) 100%);
+        }
+        
+        .blue-purple-gradient {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--light-purple) 100%);
+        }
+        
+        .category-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .category-icon:active {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        
+        .profile-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-card:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blur-image {
+            filter: blur(3px);
+            transition: filter 0.3s ease;
+        }
+        
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .image-container:active .blur-image {
+            filter: blur(1px);
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-purple);
+            opacity: 0.9;
+        }
+        
+        .trending-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 73, 185, 0.8);
+            color: white;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .views-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 12px;
+        }
+        
+        .custom-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #D1D5DB;
+            display: inline-block;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .active-dot {
+            background-color: var(--primary-purple);
+            width: 20px;
+            border-radius: 4px;
+        }
+        
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+            color: #9CA3AF;
+            font-size: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .bottom-nav-item.active {
+            color: var(--primary-purple);
+        }
+        
+        .bottom-nav-item i {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        
+        .banner-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            border-radius: 15px;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse-animate {
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            height: 180px;
+        }
+        
+        /* Waterfall layout */
+        .waterfall-layout {
+            columns: 2;
+            column-gap: 16px;
+        }
+        
+        .waterfall-layout .profile-card {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body class="pb-20">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white z-50 shadow-sm">
+        <div class="container px-4 py-3 mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-xl font-bold text-purple-700">Spark<span class="text-pink-500">♥</span></div>
+                <div class="ml-1 px-2 py-0.5 bg-purple-100 rounded-full text-xs text-purple-700 flex items-center">
+                    <span class="status-indicator mr-1"></span>5.2k online
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button class="p-2 rounded-full bg-purple-100 text-purple-700">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="p-2 rounded-full bg-purple-100 text-purple-700 relative">
+                    <i class="fas fa-bell"></i>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-4">
+        <!-- Carousel Banner -->
+        <div class="carousel mb-6">
+            <div class="carousel-inner" id="bannerCarousel">
+                <div class="carousel-item purple-gradient flex flex-col justify-center pl-6 pr-20">
+                    <h3 class="text-white text-xl font-bold mb-1">Find Your Perfect Match</h3>
+                    <p class="text-white text-sm opacity-90">Over 5,000 new members joined today</p>
+                    <button class="mt-3 bg-white text-purple-700 px-4 py-1.5 rounded-full text-sm font-medium w-max">
+                        Explore Now
+                    </button>
+                </div>
+                <div class="carousel-item pink-purple-gradient flex flex-col justify-center pl-6 pr-20">
+                    <h3 class="text-white text-xl font-bold mb-1">Premium Features</h3>
+                    <p class="text-white text-sm opacity-90">Unlock unlimited chats & video calls</p>
+                    <button class="mt-3 bg-white text-pink-500 px-4 py-1.5 rounded-full text-sm font-medium w-max">
+                        Upgrade Now
+                    </button>
+                </div>
+                <div class="carousel-item blue-purple-gradient flex flex-col justify-center pl-6 pr-20">
+                    <h3 class="text-white text-xl font-bold mb-1">Special Events</h3>
+                    <p class="text-white text-sm opacity-90">Join our weekend virtual mixers</p>
+                    <button class="mt-3 bg-white text-indigo-600 px-4 py-1.5 rounded-full text-sm font-medium w-max">
+                        Register
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carousel Indicators -->
+            <div class="flex justify-center mt-3">
+                <span class="custom-dot active-dot" data-index="0"></span>
+                <span class="custom-dot" data-index="1"></span>
+                <span class="custom-dot" data-index="2"></span>
+            </div>
+        </div>
+        
+        <!-- Category Icons -->
+        <div class="mb-8">
+            <div class="grid grid-cols-4 gap-4 mb-4">
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-coffee text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">Casual</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full pink-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-heart text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">Serious</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full blue-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">Friends</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full pink-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-video text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">Video</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-4 gap-4">
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full blue-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-map-marker-alt text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">Nearby</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-gamepad text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">Gaming</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full pink-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-music text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">Music</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full blue-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-ellipsis-h text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">More</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trending Profiles -->
+        <div class="mb-4 flex justify-between items-center">
+            <h2 class="text-lg font-semibold text-gray-800">Trending Profiles</h2>
+            <a href="#" class="text-purple-600 text-sm font-medium">See All</a>
+        </div>
+        
+        <!-- Profiles Waterfall Layout -->
+        <div class="waterfall-layout">
+            <!-- Profile 1 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Sophia, 25</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">Online</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Fashion Designer • 3mi away</p>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>Trending
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>3.2k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 2 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=9" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Emma, 27</h3>
+                            <span class="ml-1 text-xs bg-purple-100 text-purple-600 px-1.5 rounded-full">New</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Photographer • 5mi away</p>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>1.8k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 3 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=16" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Olivia, 24</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">Online</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Student • 2mi away</p>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>Hot
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>4.7k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 4 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=20" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Mia, 26</h3>
+                            <span class="ml-1 text-xs bg-blue-100 text-blue-600 px-1.5 rounded-full">Popular</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Yoga Instructor • 4mi away</p>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>2.5k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Load More Button -->
+        <div class="text-center mt-6 mb-8">
+            <button class="bg-white border border-purple-500 text-purple-600 rounded-full px-6 py-2 font-medium text-sm shadow-sm hover:bg-purple-50 transition">
+                Load More
+            </button>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+        <div class="flex justify-around items-center px-2">
+            <a href="#" class="bottom-nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <i class="fas fa-search"></i>
+                <span>Discover</span>
+            </a>
+            <a href="#" class="bottom-nav-item relative">
+                <div class="w-12 h-12 rounded-full purple-gradient flex items-center justify-center text-white shadow-lg -mt-5">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <i class="fas fa-heart"></i>
+                <span>Favorites</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Simple banner carousel
+        let currentSlide = 0;
+        const slides = document.getElementById('bannerCarousel').children;
+        const dots = document.querySelectorAll('.custom-dot');
+        
+        function showSlide(index) {
+            document.getElementById('bannerCarousel').style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active-dot'));
+            dots[index].classList.add('active-dot');
+            
+            currentSlide = index;
+        }
+        
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-index'));
+                showSlide(slideIndex);
+            });
+        });
+        
+        // Auto-rotate banner
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }, 5000);
+    </script>
+</body>
+</html>
