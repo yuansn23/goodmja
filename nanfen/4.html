@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>心动交友 - 寻找你的完美匹配</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-purple: #8A2BE2;
+            --light-purple: #9D4EDD;
+            --dark-purple: #6A0DAD;
+            --accent-pink: #FF73B9;
+            --accent-blue: #73D0FF;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F9F5FF;
+            color: #333;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #4ade80;
+            display: inline-block;
+        }
+        
+        .purple-gradient {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--dark-purple) 100%);
+        }
+        
+        .pink-purple-gradient {
+            background: linear-gradient(135deg, var(--accent-pink) 0%, var(--light-purple) 100%);
+        }
+        
+        .blue-purple-gradient {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--light-purple) 100%);
+        }
+        
+        .category-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .category-icon:active {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        
+        .profile-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.12);
+            background-color: white;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-card:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(138, 43, 226, 0.18);
+        }
+        
+        .blur-image {
+            filter: blur(3px);
+            transition: filter 0.3s ease;
+        }
+        
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .image-container:active .blur-image {
+            filter: blur(1px);
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-purple);
+            opacity: 0.9;
+        }
+        
+        .trending-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 73, 185, 0.8);
+            color: white;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .views-counter {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 12px;
+        }
+        
+        .custom-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #D1D5DB;
+            display: inline-block;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .active-dot {
+            background-color: var(--primary-purple);
+            width: 20px;
+            border-radius: 4px;
+        }
+        
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+            color: #9CA3AF;
+            font-size: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .bottom-nav-item.active {
+            color: var(--primary-purple);
+        }
+        
+        .bottom-nav-item i {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        
+        .banner-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            border-radius: 15px;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse-animate {
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            height: 180px;
+        }
+        
+        /* Social proof elements */
+        .social-proof {
+            background-color: rgba(138, 43, 226, 0.05);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 4px;
+            font-size: 12px;
+        }
+        
+        .activity-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #8A2BE2;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+            z-index: 5;
+        }
+        
+        .match-percentage {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(74, 222, 128, 0.9);
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+        
+        .live-now {
+            display: inline-block;
+            padding: 2px 6px;
+            background-color: #EF4444;
+            color: white;
+            border-radius: 10px;
+            font-size: 10px;
+            animation: pulse 1.5s infinite;
+            margin-left: 6px;
+        }
+        
+        .people-interested {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(138, 43, 226, 0.9);
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+            z-index: 5;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #EF4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Live activity feed */
+        .live-activity {
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            background-color: rgba(138, 43, 226, 0.08);
+            padding: 12px;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #374151;
+        }
+        
+        .activity-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .activity-item .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 8px;
+        }
+        
+        .activity-item .time {
+            color: #9CA3AF;
+            font-size: 11px;
+            margin-left: auto;
+        }
+        
+        .limited-spots {
+            background: linear-gradient(45deg, #8A2BE2, #FF73B9);
+            color: white;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 12px;
+            margin-left: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="pb-20">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white z-50 shadow-sm">
+        <div class="container px-4 py-3 mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-xl font-bold text-purple-700">心动<span class="text-pink-500">♥</span></div>
+                <div class="ml-1 px-2 py-0.5 bg-purple-100 rounded-full text-xs text-purple-700 flex items-center">
+                    <span class="status-indicator mr-1"></span>7.2k 在线
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button class="p-2 rounded-full bg-purple-100 text-purple-700">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="p-2 rounded-full bg-purple-100 text-purple-700 relative">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-4">
+        <!-- Carousel Banner -->
+        <div class="carousel mb-6">
+            <div class="carousel-inner" id="bannerCarousel">
+                <div class="carousel-item purple-gradient flex flex-col justify-center pl-6 pr-20">
+                    <h3 class="text-white text-xl font-bold mb-1">寻找你的完美匹配</h3>
+                    <p class="text-white text-sm opacity-90">今天已有5,000+新用户加入</p>
+                    <button class="mt-3 bg-white text-purple-700 px-4 py-1.5 rounded-full text-sm font-medium w-max">
+                        立即探索
+                    </button>
+                </div>
+                <div class="carousel-item pink-purple-gradient flex flex-col justify-center pl-6 pr-20">
+                    <h3 class="text-white text-xl font-bold mb-1">高级功能</h3>
+                    <p class="text-white text-sm opacity-90">解锁无限聊天和视频通话</p>
+                    <button class="mt-3 bg-white text-pink-500 px-4 py-1.5 rounded-full text-sm font-medium w-max">
+                        立即升级
+                    </button>
+                </div>
+                <div class="carousel-item blue-purple-gradient flex flex-col justify-center pl-6 pr-20">
+                    <h3 class="text-white text-xl font-bold mb-1">特别活动</h3>
+                    <p class="text-white text-sm opacity-90">参加我们的周末虚拟聚会</p>
+                    <button class="mt-3 bg-white text-indigo-600 px-4 py-1.5 rounded-full text-sm font-medium w-max">
+                        报名参加
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Carousel Indicators -->
+            <div class="flex justify-center mt-3">
+                <span class="custom-dot active-dot" data-index="0"></span>
+                <span class="custom-dot" data-index="1"></span>
+                <span class="custom-dot" data-index="2"></span>
+            </div>
+        </div>
+        
+        <!-- Category Icons -->
+        <div class="mb-8">
+            <div class="grid grid-cols-4 gap-4 mb-4">
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-coffee text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">休闲</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full pink-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-heart text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">认真交往</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full blue-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">交友</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full pink-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-video text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">视频</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-4 gap-4">
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full blue-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-map-marker-alt text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">附近</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-gamepad text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">游戏</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full pink-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-music text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">音乐</span>
+                </div>
+                <div class="category-icon flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full blue-purple-gradient flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-ellipsis-h text-xl"></i>
+                    </div>
+                    <span class="text-xs mt-1 text-gray-700">更多</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Live Activity Feed -->
+        <div class="live-activity mb-6">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-semibold text-sm text-purple-900">实时动态</h3>
+                <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">直播</span>
+            </div>
+            <div class="activity-item">
+                <img class="avatar" src="https://i.pravatar.cc/100?img=32" alt="头像">
+                <span class="font-medium">小婷</span> 刚刚与 <span class="font-medium">小明</span> 匹配成功
+                <span class="time">刚刚</span>
+            </div>
+            <div class="activity-item">
+                <img class="avatar" src="https://i.pravatar.cc/100?img=48" alt="头像">
+                <span class="font-medium">艾玛</span> 开始了视频通话
+                <span class="time">2分钟前</span>
+            </div>
+            <div class="activity-item">
+                <img class="avatar" src="https://i.pravatar.cc/100?img=56" alt="头像">
+                <span class="font-medium">小山</span> 加入了社区
+                <span class="time">5分钟前</span>
+            </div>
+        </div>
+        
+        <!-- New Members Banner -->
+        <div class="bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl p-4 mb-6 text-white flex justify-between items-center">
+            <div>
+                <h3 class="font-bold text-sm">新会员聚焦</h3>
+                <p class="text-xs opacity-90">今日已有548人加入</p>
+            </div>
+            <div class="flex -space-x-2">
+                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=36" alt="头像">
+                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=41" alt="头像">
+                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=18" alt="头像">
+                <div class="w-8 h-8 rounded-full border-2 border-white bg-purple-800 flex items-center justify-center text-xs font-medium">+42</div>
+            </div>
+        </div>
+
+        <!-- Trending Profiles -->
+        <div class="mb-4 flex justify-between items-center">
+            <h2 class="text-lg font-semibold text-gray-800">热门用户</h2>
+            <a href="#" class="text-purple-600 text-sm font-medium">查看全部</a>
+        </div>
+        
+        <!-- Profiles List -->
+        <div class="profiles-list">
+            <!-- Profile 1 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=5" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">小晴, 25</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">在线</span>
+                            <span class="live-now">直播</span>
+                        </div>
+                        <p class="text-xs text-gray-500">时尚设计师 • 3公里</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        95% 匹配
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=5" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>热门
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>3.2k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=5" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>425
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=5" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>198
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=5" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>352 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(346 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">82 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        立即连接
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 2 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=9" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">艾玛, 27</h3>
+                            <span class="ml-1 text-xs bg-purple-100 text-purple-600 px-1.5 rounded-full">新人</span>
+                        </div>
+                        <p class="text-xs text-gray-500">摄影师 • 5公里</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        88% 匹配
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=9" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>1.8k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=9" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>287
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=9" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>142
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=9" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>218 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.7</span>
+                            <span class="text-gray-500">(183 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">43 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center">
+                        立即连接 <span class="limited-spots ml-1">剩7个名额</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 3 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=16" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">小云, 24</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">在线</span>
+                        </div>
+                        <p class="text-xs text-gray-500">学生 • 2公里</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        92% 匹配
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=16" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>火爆
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>4.7k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=16" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>519
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=16" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>234
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=16" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>487 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(412 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">95 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        立即连接
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 4 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=20" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">小美, 26</h3>
+                            <span class="ml-1 text-xs bg-blue-100 text-blue-600 px-1.5 rounded-full">人气</span>
+                        </div>
+                        <p class="text-xs text-gray-500">瑜伽教练 • 4公里</p>
+                    </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>今日活跃
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=20" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>2.5k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=20" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>312
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=20" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>176
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=20" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>284 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.8</span>
+                            <span class="text-gray-500">(267 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">56 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        立即连接
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 5 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=23" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">莉莉, 23</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">在线</span>
+                            <span class="live-now">直播</span>
+                        </div>
+                        <p class="text-xs text-gray-500">艺术家 • 1公里</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        91% 匹配
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=23" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>人气
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>3.8k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=23" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>478
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=23" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>212
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=23" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>395 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(329 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">79 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        立即连接
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 6 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=29" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">瑞秋, 28</h3>
+                            <span class="ml-1 text-xs bg-purple-100 text-purple-600 px-1.5 rounded-full">新人</span>
+                        </div>
+                        <p class="text-xs text-gray-500">市场经理 • 6公里</p>
+                    </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>正在活跃
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=29" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>1.2k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=29" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>192
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=29" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>87
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=29" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>167 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.6</span>
+                            <span class="text-gray-500">(143 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">35 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center">
+                        立即连接 <span class="limited-spots ml-1">剩3个名额</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 7 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=31" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">维多利亚, 25</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">在线</span>
+                        </div>
+                        <p class="text-xs text-gray-500">健身教练 • 3公里</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        89% 匹配
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=31" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>人气上升
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>2.7k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=31" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>358
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=31" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>184
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=31" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>312 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.8</span>
+                            <span class="text-gray-500">(231 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">64 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        立即连接
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 8 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">凯莉, 29</h3>
+                            <span class="ml-1 text-xs bg-blue-100 text-blue-600 px-1.5 rounded-full">VIP</span>
+                        </div>
+                        <p class="text-xs text-gray-500">厨师 • 4公里</p>
+                    </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>今日活跃
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=33" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>2.2k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=33" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>275
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=33" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>153
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=33" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>246 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.7</span>
+                            <span class="text-gray-500">(184 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">51 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        立即连接
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 9 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=37" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">杰西卡, 26</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">在线</span>
+                            <span class="live-now">直播</span>
+                        </div>
+                        <p class="text-xs text-gray-500">护士 • 5公里</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        94% 匹配
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=37" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>热门
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>4.1k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=37" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>493
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=37" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>227
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=37" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>419 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(376 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">87 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        立即连接
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 10 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=44" alt="头像" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">阿曼达, 27</h3>
+                            <span class="ml-1 text-xs bg-purple-100 text-purple-600 px-1.5 rounded-full">新人</span>
+                        </div>
+                        <p class="text-xs text-gray-500">教师 • 2公里</p>
+                    </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>正在活跃
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=44" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>1.4k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=44" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>165
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=44" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>98
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=44" class="w-full h-36 object-cover blur-image" alt="照片">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>187 人感兴趣
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.6</span>
+                            <span class="text-gray-500">(112 评分)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">32 个共同好友</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center">
+                        立即连接 <span class="limited-spots ml-1">剩5个名额</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Load More Button -->
+        <div class="text-center mt-6 mb-8">
+            <button class="bg-white border border-purple-500 text-purple-600 rounded-full px-6 py-2 font-medium text-sm shadow-sm hover:bg-purple-50 transition">
+                加载更多
+            </button>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+        <div class="flex justify-around items-center px-2">
+            <a href="#" class="bottom-nav-item active">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <i class="fas fa-search"></i>
+                <span>发现</span>
+            </a>
+            <a href="#" class="bottom-nav-item relative">
+                <div class="w-12 h-12 rounded-full purple-gradient flex items-center justify-center text-white shadow-lg -mt-5">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <i class="fas fa-heart"></i>
+                <span>收藏</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <i class="fas fa-user"></i>
+                <span>我的</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Simple banner carousel
+        let currentSlide = 0;
+        const slides = document.getElementById('bannerCarousel').children;
+        const dots = document.querySelectorAll('.custom-dot');
+        
+        function showSlide(index) {
+            document.getElementById('bannerCarousel').style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active-dot'));
+            dots[index].classList.add('active-dot');
+            
+            currentSlide = index;
+        }
+        
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-index'));
+                showSlide(slideIndex);
+            });
+        });
+        
+        // Auto-rotate banner
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }, 5000);
+    </script>
+</body>
+</html>
