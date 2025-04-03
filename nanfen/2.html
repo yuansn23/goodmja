@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>心动交友 - 遇见你的TA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f5ff;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding-bottom: 60px;
+        }
+        
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, #8a2be2 0%, #ba55d3 50%, #d8bfd8 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(138, 43, 226, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* 轮播图样式 */
+        .swiper {
+            width: 100%;
+            height: 180px;
+            border-radius: 0 0 15px 15px;
+            overflow: hidden;
+        }
+        
+        .swiper-slide {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.6;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #ba55d3;
+            opacity: 1;
+        }
+        
+        /* 分类图标区域 */
+        .categories {
+            padding: 15px;
+            background: white;
+            margin: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.1);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .category-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #e6d4ff 0%, #ba55d3 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(186, 85, 211, 0.2);
+        }
+        
+        .category-name {
+            font-size: 0.7rem;
+            color: #666;
+            text-align: center;
+        }
+        
+        .section-title {
+            padding: 0 15px;
+            margin: 20px 0 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title h2 {
+            font-size: 1.1rem;
+            color: #5a2d82;
+            font-weight: 600;
+        }
+        
+        .section-title a {
+            font-size: 0.8rem;
+            color: #ba55d3;
+            text-decoration: none;
+        }
+        
+        /* 瀑布流样式 */
+        .waterfall {
+            columns: 2;
+            column-gap: 10px;
+            padding: 0 10px;
+        }
+        
+        .card {
+            break-inside: avoid;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 8px rgba(138, 43, 226, 0.1);
+            position: relative;
+        }
+        
+        .card-image {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 130%;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(2px);
+            transition: filter 0.3s ease;
+        }
+        
+        .card:hover .card-image img {
+            filter: blur(0);
+        }
+        
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ba55d3;
+            font-size: 16px;
+            z-index: 2;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover .play-btn {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .hot-label {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+            color: white;
+            font-size: 0.6rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .hot-label i {
+            margin-right: 3px;
+            font-size: 0.7rem;
+        }
+        
+        .popular-count {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 0.6rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .card-info {
+            padding: 10px;
+        }
+        
+        .card-info h3 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-info p {
+            font-size: 0.7rem;
+            color: #999;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-info p i {
+            color: #ba55d3;
+            margin-right: 3px;
+        }
+        
+        /* 底部导航 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.7rem;
+        }
+        
+        .nav-item.active {
+            color: #ba55d3;
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+        }
+        
+        /* 响应式调整 */
+        @media (min-width: 768px) {
+            .swiper {
+                height: 250px;
+            }
+            
+            .category-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+            
+            .category-name {
+                font-size: 0.8rem;
+            }
+            
+            .waterfall {
+                columns: 3;
+                column-gap: 15px;
+                padding: 0 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>心动交友</h1>
+        </div>
+        
+        <!-- 轮播图 -->
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Banner 1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Banner 2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Banner 3">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
+        <!-- 分类图标 -->
+        <div class="categories">
+            <div class="category-grid">
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <span class="category-name">推荐</span>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="category-name">附近</span>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="category-name">优质</span>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <span class="category-name">直播</span>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <span class="category-name">游戏</span>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <span class="category-name">音乐</span>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <span class="category-name">美食</span>
+                </div>
+                <div class="category-item">
+                    <div class="category-icon">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <span class="category-name">更多</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 推荐用户 -->
+        <div class="section-title">
+            <h2>热门推荐</h2>
+            <a href="#">查看更多 <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <!-- 瀑布流 -->
+        <div class="waterfall">
+            <!-- 卡片1 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="用户1">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="hot-label">
+                        <i class="fas fa-fire"></i> 热门
+                    </div>
+                    <div class="popular-count">
+                        <i class="fas fa-eye"></i> 2.4k
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>小雨 · 22岁</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 北京 · 2km</p>
+                </div>
+            </div>
+            
+            <!-- 卡片2 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="用户2">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="hot-label">
+                        <i class="fas fa-fire"></i> 热门
+                    </div>
+                    <div class="popular-count">
+                        <i class="fas fa-eye"></i> 1.8k
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>小美 · 24岁</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 上海 · 5km</p>
+                </div>
+            </div>
+            
+            <!-- 卡片3 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="用户3">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="popular-count">
+                        <i class="fas fa-eye"></i> 1.2k
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>小丽 · 21岁</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 广州 · 3km</p>
+                </div>
+            </div>
+            
+            <!-- 卡片4 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="用户4">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="hot-label">
+                        <i class="fas fa-fire"></i> 热门
+                    </div>
+                    <div class="popular-count">
+                        <i class="fas fa-eye"></i> 3.1k
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>小芳 · 23岁</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 深圳 · 1km</p>
+                </div>
+            </div>
+            
+            <!-- 卡片5 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="用户5">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="popular-count">
+                        <i class="fas fa-eye"></i> 890
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>小婷 · 20岁</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 杭州 · 4km</p>
+                </div>
+            </div>
+            
+            <!-- 卡片6 -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="用户6">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="hot-label">
+                        <i class="fas fa-fire"></i> 热门
+                    </div>
+                    <div class="popular-count">
+                        <i class="fas fa-eye"></i> 2.7k
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>小娜 · 25岁</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 成都 · 6km</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航 -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <div class="nav-icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div>首页</div>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="nav-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div>收藏</div>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="nav-icon">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+            <div>消息</div>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="nav-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div>我的</div>
+        </a>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        // 初始化轮播图
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+        
+        // 图片点击效果
+        document.querySelectorAll('.card-image').forEach(item => {
+            item.addEventListener('click', function() {
+                // 这里可以添加点击后的逻辑，比如跳转到详情页
+                console.log('点击了卡片');
+            });
+        });
+    </script>
+</body>
+</html>
