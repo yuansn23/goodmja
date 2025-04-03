@@ -55,15 +55,15 @@
         .profile-card {
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.12);
             background-color: white;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
         
         .profile-card:active {
             transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 16px rgba(138, 43, 226, 0.18);
         }
         
         .blur-image {
@@ -196,15 +196,129 @@
             height: 180px;
         }
         
-        /* Waterfall layout */
-        .waterfall-layout {
-            columns: 2;
-            column-gap: 16px;
+        /* Social proof elements */
+        .social-proof {
+            background-color: rgba(138, 43, 226, 0.05);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 4px;
+            font-size: 12px;
         }
         
-        .waterfall-layout .profile-card {
-            break-inside: avoid;
-            page-break-inside: avoid;
+        .activity-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #8A2BE2;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+            z-index: 5;
+        }
+        
+        .match-percentage {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(74, 222, 128, 0.9);
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+        
+        .live-now {
+            display: inline-block;
+            padding: 2px 6px;
+            background-color: #EF4444;
+            color: white;
+            border-radius: 10px;
+            font-size: 10px;
+            animation: pulse 1.5s infinite;
+            margin-left: 6px;
+        }
+        
+        .people-interested {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(138, 43, 226, 0.9);
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+            z-index: 5;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #EF4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Live activity feed */
+        .live-activity {
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            background-color: rgba(138, 43, 226, 0.08);
+            padding: 12px;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #374151;
+        }
+        
+        .activity-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .activity-item .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 8px;
+        }
+        
+        .activity-item .time {
+            color: #9CA3AF;
+            font-size: 11px;
+            margin-left: auto;
+        }
+        
+        .limited-spots {
+            background: linear-gradient(45deg, #8A2BE2, #FF73B9);
+            color: white;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 12px;
+            margin-left: 8px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -215,7 +329,7 @@
             <div class="flex items-center">
                 <div class="text-xl font-bold text-purple-700">Spark<span class="text-pink-500">♥</span></div>
                 <div class="ml-1 px-2 py-0.5 bg-purple-100 rounded-full text-xs text-purple-700 flex items-center">
-                    <span class="status-indicator mr-1"></span>5.2k online
+                    <span class="status-indicator mr-1"></span>7.2k online
                 </div>
             </div>
             <div class="flex items-center space-x-3">
@@ -224,7 +338,7 @@
                 </button>
                 <button class="p-2 rounded-full bg-purple-100 text-purple-700 relative">
                     <i class="fas fa-bell"></i>
-                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">3</span>
+                    <span class="notification-badge">5</span>
                 </button>
             </div>
         </div>
@@ -323,14 +437,51 @@
             </div>
         </div>
         
+        <!-- Live Activity Feed -->
+        <div class="live-activity mb-6">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-semibold text-sm text-purple-900">Live Activity</h3>
+                <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">Live</span>
+            </div>
+            <div class="activity-item">
+                <img class="avatar" src="https://i.pravatar.cc/100?img=32" alt="Avatar">
+                <span class="font-medium">Jessica</span> just matched with <span class="font-medium">Michael</span>
+                <span class="time">just now</span>
+            </div>
+            <div class="activity-item">
+                <img class="avatar" src="https://i.pravatar.cc/100?img=48" alt="Avatar">
+                <span class="font-medium">Emma</span> started a video call
+                <span class="time">2m ago</span>
+            </div>
+            <div class="activity-item">
+                <img class="avatar" src="https://i.pravatar.cc/100?img=56" alt="Avatar">
+                <span class="font-medium">Sam</span> joined the community
+                <span class="time">5m ago</span>
+            </div>
+        </div>
+        
+        <!-- New Members Banner -->
+        <div class="bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl p-4 mb-6 text-white flex justify-between items-center">
+            <div>
+                <h3 class="font-bold text-sm">New Members Spotlight</h3>
+                <p class="text-xs opacity-90">548 people joined today</p>
+            </div>
+            <div class="flex -space-x-2">
+                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=36" alt="Avatar">
+                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=41" alt="Avatar">
+                <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=18" alt="Avatar">
+                <div class="w-8 h-8 rounded-full border-2 border-white bg-purple-800 flex items-center justify-center text-xs font-medium">+42</div>
+            </div>
+        </div>
+
         <!-- Trending Profiles -->
         <div class="mb-4 flex justify-between items-center">
             <h2 class="text-lg font-semibold text-gray-800">Trending Profiles</h2>
             <a href="#" class="text-purple-600 text-sm font-medium">See All</a>
         </div>
         
-        <!-- Profiles Waterfall Layout -->
-        <div class="waterfall-layout">
+        <!-- Profiles List -->
+        <div class="profiles-list">
             <!-- Profile 1 -->
             <div class="profile-card">
                 <div class="p-3 flex items-center">
@@ -341,14 +492,18 @@
                         <div class="flex items-center">
                             <h3 class="font-medium text-sm">Sophia, 25</h3>
                             <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">Online</span>
+                            <span class="live-now">Live</span>
                         </div>
                         <p class="text-xs text-gray-500">Fashion Designer • 3mi away</p>
                     </div>
+                    <div class="match-percentage ml-auto">
+                        95% Match
+                    </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/300?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/300?img=5" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -360,24 +515,46 @@
                         </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/301?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/301?img=5" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>425
                         </div>
                     </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/302?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/302?img=5" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>198
+                        </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/303?img=5" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/303?img=5" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>352 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(346 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">82 mutual friends</span>
                         </div>
                     </div>
                 </div>
@@ -410,11 +587,14 @@
                         </div>
                         <p class="text-xs text-gray-500">Photographer • 5mi away</p>
                     </div>
+                    <div class="match-percentage ml-auto">
+                        88% Match
+                    </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/300?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/300?img=9" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -423,24 +603,46 @@
                         </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/301?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/301?img=9" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>287
                         </div>
                     </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/302?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/302?img=9" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>142
+                        </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/303?img=9" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/303?img=9" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>218 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.7</span>
+                            <span class="text-gray-500">(183 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">43 mutual friends</span>
                         </div>
                     </div>
                 </div>
@@ -454,8 +656,8 @@
                             <i class="fas fa-heart"></i>
                         </button>
                     </div>
-                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
-                        Connect
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center">
+                        Connect <span class="limited-spots ml-1">7 spots left</span>
                     </button>
                 </div>
             </div>
@@ -473,11 +675,14 @@
                         </div>
                         <p class="text-xs text-gray-500">Student • 2mi away</p>
                     </div>
+                    <div class="match-percentage ml-auto">
+                        92% Match
+                    </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/300?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/300?img=16" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -489,24 +694,46 @@
                         </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/301?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/301?img=16" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>519
                         </div>
                     </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/302?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/302?img=16" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>234
+                        </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/303?img=16" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/303?img=16" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>487 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(412 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">95 mutual friends</span>
                         </div>
                     </div>
                 </div>
@@ -539,11 +766,14 @@
                         </div>
                         <p class="text-xs text-gray-500">Yoga Instructor • 4mi away</p>
                     </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>Active today
+                    </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/300?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/300?img=20" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -552,24 +782,46 @@
                         </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/301?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/301?img=20" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>312
                         </div>
                     </div>
                 </div>
                 
-                <div class="px-3 grid grid-cols-2 gap-2 mb-3">
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/302?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/302?img=20" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>176
+                        </div>
                     </div>
                     <div class="image-container">
-                        <img src="https://i.pravatar.cc/303?img=20" class="w-full h-32 object-cover blur-image" alt="Photo">
+                        <img src="https://i.pravatar.cc/303?img=20" class="w-full h-36 object-cover blur-image" alt="Photo">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>284 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.8</span>
+                            <span class="text-gray-500">(267 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">56 mutual friends</span>
                         </div>
                     </div>
                 </div>
@@ -585,6 +837,545 @@
                     </div>
                     <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
                         Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 5 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=23" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Lily, 23</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">Online</span>
+                            <span class="live-now">Live</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Artist • 1mi away</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        91% Match
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=23" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>Popular
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>3.8k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=23" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>478
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=23" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>212
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=23" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>395 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(329 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">79 mutual friends</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 6 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=29" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Rachel, 28</h3>
+                            <span class="ml-1 text-xs bg-purple-100 text-purple-600 px-1.5 rounded-full">New</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Marketing Manager • 6mi away</p>
+                    </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>Active now
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=29" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>1.2k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=29" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>192
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=29" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>87
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=29" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>167 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.6</span>
+                            <span class="text-gray-500">(143 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">35 mutual friends</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center">
+                        Connect <span class="limited-spots ml-1">3 spots left</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 7 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=31" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Victoria, 25</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">Online</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Fitness Trainer • 3mi away</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        89% Match
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=31" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>Rising
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>2.7k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=31" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>358
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=31" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>184
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=31" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>312 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.8</span>
+                            <span class="text-gray-500">(231 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">64 mutual friends</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 8 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Kelly, 29</h3>
+                            <span class="ml-1 text-xs bg-blue-100 text-blue-600 px-1.5 rounded-full">VIP</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Chef • 4mi away</p>
+                    </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>Active today
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=33" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>2.2k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=33" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>275
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=33" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>153
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=33" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>246 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.7</span>
+                            <span class="text-gray-500">(184 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">51 mutual friends</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 9 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=37" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Jessica, 26</h3>
+                            <span class="ml-1 text-xs bg-green-100 text-green-600 px-1.5 rounded-full">Online</span>
+                            <span class="live-now">Live</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Nurse • 5mi away</p>
+                    </div>
+                    <div class="match-percentage ml-auto">
+                        94% Match
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=37" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="trending-tag pulse-animate">
+                            <i class="fas fa-fire mr-1"></i>Trending
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>4.1k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=37" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>493
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=37" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>227
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=37" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>419 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.9</span>
+                            <span class="text-gray-500">(376 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">87 mutual friends</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                        Connect
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Profile 10 -->
+            <div class="profile-card">
+                <div class="p-3 flex items-center">
+                    <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                        <img src="https://i.pravatar.cc/100?img=44" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium text-sm">Amanda, 27</h3>
+                            <span class="ml-1 text-xs bg-purple-100 text-purple-600 px-1.5 rounded-full">New</span>
+                        </div>
+                        <p class="text-xs text-gray-500">Teacher • 2mi away</p>
+                    </div>
+                    <div class="activity-indicator">
+                        <i class="fas fa-clock mr-1"></i>Active now
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/300?img=44" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-eye mr-1"></i>1.4k
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/301?img=44" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-heart mr-1"></i>165
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 px-3 mt-2 mb-3">
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/302?img=44" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="views-counter">
+                            <i class="fas fa-comment mr-1"></i>98
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="https://i.pravatar.cc/303?img=44" class="w-full h-36 object-cover blur-image" alt="Photo">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="people-interested">
+                            <i class="fas fa-users mr-1"></i>187 interested
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-proof mx-3 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span class="font-medium">4.6</span>
+                            <span class="text-gray-500">(112 ratings)</span>
+                        </div>
+                        <div>
+                            <span class="text-purple-600 font-medium">32 mutual friends</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-3 pb-3 flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <button class="p-2 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-comment"></i>
+                        </button>
+                        <button class="p-2 rounded-full bg-pink-100 text-pink-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white text-sm font-medium px-4 py-1.5 rounded-full flex items-center">
+                        Connect <span class="limited-spots ml-1">5 spots left</span>
                     </button>
                 </div>
             </div>
