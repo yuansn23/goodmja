@@ -1,1 +1,1094 @@
-1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stock Market Mastery | Educational Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-yellow: #F2C925;
+            --primary-blue: #0E3B7D;
+            --secondary-blue: #1A56DB;
+            --light-blue: #E1EFFE;
+            --dark-blue: #1E3A8A;
+            --light-gray: #F9FAFB;
+            --medium-gray: #6B7280;
+            --dark-gray: #374151;
+            --accent-red: #EF4444;
+            --whatsapp-green: #25D366;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--white);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* WhatsApp Fixed Button */
+        .whatsapp-fixed {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            background-color: var(--whatsapp-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-fixed:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .whatsapp-icon {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 22px;
+            height: 22px;
+            background-color: var(--accent-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Header Section */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .logo span {
+            color: var(--primary-yellow);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="50" height="50" fill="%23ffffff" fill-opacity="0.05"/><rect x="50" y="50" width="50" height="50" fill="%23ffffff" fill-opacity="0.05"/></svg>');
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        
+        .hero-content h1 span {
+            color: var(--primary-yellow);
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+        
+        .pain-points {
+            margin-bottom: 32px;
+        }
+        
+        .pain-point {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .pain-point i {
+            color: var(--primary-yellow);
+            margin-right: 12px;
+            font-size: 20px;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-yellow);
+            color: var(--primary-blue);
+            box-shadow: 0 4px 14px rgba(242, 201, 37, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #FFDB5C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(242, 201, 37, 0.4);
+        }
+        
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+            color: white;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #20C255;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 16px;
+        }
+        
+        .section-header h2 span {
+            color: var(--primary-blue);
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .feature-icon i {
+            font-size: 28px;
+            color: var(--white);
+        }
+        
+        .feature-content h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--dark-gray);
+        }
+        
+        .feature-content p {
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+        
+        /* Community Section */
+        .community {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .community-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .community-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 16px;
+        }
+        
+        .community-header h2 span {
+            color: var(--primary-yellow);
+        }
+        
+        .community-header p {
+            font-size: 18px;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .benefit-card {
+            background-color: var(--light-blue);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-left: 5px solid var(--primary-blue);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-yellow), #FFDB5C);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+        
+        .benefit-icon i {
+            font-size: 24px;
+            color: var(--primary-blue);
+        }
+        
+        .benefit-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .benefit-content p {
+            color: var(--dark-gray);
+        }
+        
+        .social-proof {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .social-proof h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .social-proof p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .counter {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-yellow);
+            margin-bottom: 10px;
+        }
+        
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-content p {
+            font-style: italic;
+            color: var(--medium-gray);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 16px;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-details h4 {
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .author-details p {
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+        
+        .stars {
+            color: var(--primary-yellow);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* Footer Section */
+        footer {
+            padding: 60px 0 30px;
+            background-color: var(--white);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-yellow);
+        }
+        
+        .footer-desc {
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--medium-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .social-icon i {
+            color: var(--primary-blue);
+            font-size: 18px;
+        }
+        
+        .social-icon:hover i {
+            color: var(--white);
+        }
+        
+        .footer-divider {
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--medium-gray);
+            font-size: 14px;
+        }
+        
+        .disclaimer {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--primary-blue);
+        }
+        
+        .disclaimer-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+        
+        .disclaimer-text {
+            color: var(--medium-gray);
+            margin-bottom: 15px;
+        }
+        
+        /* Animated Button */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .btn-animated {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content {
+                order: 2;
+            }
+            
+            .hero-image {
+                order: 1;
+                margin-bottom: 30px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .features-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2,
+            .community-header h2,
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            
+            .section-header h2,
+            .community-header h2,
+            .cta h2 {
+                font-size: 26px;
+            }
+            
+            .counter {
+                font-size: 36px;
+            }
+            
+            .whatsapp-fixed {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .whatsapp-icon {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Fixed Button -->
+    <div class="whatsapp-fixed" onclick="opensite()">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Stock<span>Mastery</span></div>
+                <button class="btn btn-primary" onclick="opensite()">Join Community</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Master the <span>Stock Market</span> with Confidence</h1>
+                    <p>Join thousands of traders who are transforming their investment approach through our educational community.</p>
+                    
+                    <div class="pain-points">
+                        <div class="pain-point">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Feeling overwhelmed by market volatility?</span>
+                        </div>
+                        <div class="pain-point">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Struggling to develop a consistent investment strategy?</span>
+                        </div>
+                        <div class="pain-point">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Unsure how to properly manage risk in your portfolio?</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-whatsapp btn-animated" onclick="opensite()">
+                        <i class="fab fa-whatsapp"></i> Join WhatsApp Community
+                    </button>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://www.goodmja.online/meigu/126951.jpg" alt="Stock market professionals">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>What You Will <span>Learn</span></h2>
+                <p>Our comprehensive educational resources will help you develop the knowledge and skills needed to navigate the stock market effectively.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Market Analysis</h3>
+                        <p>Learn to analyze market trends, identify patterns, and make informed decisions based on technical and fundamental analysis.</p>
+                        <button class="btn btn-primary" onclick="opensite()">Learn More</button>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Risk Management</h3>
+                        <p>Discover crucial risk indicators and develop strategies to protect your portfolio during market fluctuations.</p>
+                        <button class="btn btn-primary" onclick="opensite()">Learn More</button>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Strategy Development</h3>
+                        <p>Build customized trading strategies that align with your financial goals, risk tolerance, and market outlook.</p>
+                        <button class="btn btn-primary" onclick="opensite()">Learn More</button>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Liquidity Analysis</h3>
+                        <p>Understand the liquidity hierarchy law and how it impacts your ability to enter and exit positions efficiently.</p>
+                        <button class="btn btn-primary" onclick="opensite()">Learn More</button>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Policy Cycle Impact</h3>
+                        <p>Learn how policy decisions affect different market sectors and how to position your investments accordingly.</p>
+                        <button class="btn btn-primary" onclick="opensite()">Learn More</button>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Investment Psychology</h3>
+                        <p>Master the mental aspects of trading, overcome emotional biases, and develop disciplined decision-making.</p>
+                        <button class="btn btn-primary" onclick="opensite()">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community">
+        <div class="container">
+            <div class="community-header">
+                <h2>Why Join Our <span>Community</span></h2>
+                <p>Connect with like-minded investors and experienced traders who share knowledge, insights, and support.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="benefit-title">Collaborative Learning</h3>
+                    </div>
+                    <div class="benefit-content">
+                        <p>Access a supportive environment where members share diverse perspectives, experiences, and market insights that accelerate your learning journey.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="benefit-title">Expert Guidance</h3>
+                    </div>
+                    <div class="benefit-content">
+                        <p>Receive educational resources and insights from experienced traders who help clarify complex market concepts and improve your analytical skills.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="benefit-title">Real-Time Discussions</h3>
+                    </div>
+                    <div class="benefit-content">
+                        <p>Participate in meaningful conversations about current market events, educational topics, and investment approaches in our active WhatsApp community.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-proof">
+                <h3>Join Our Growing Community</h3>
+                <p>Be part of a supportive network focused on educational growth and market understanding</p>
+                <div class="counter">6,922</div>
+                <p>People joined today</p>
+                <button class="btn btn-primary btn-animated" onclick="opensite()">
+                    <i class="fab fa-whatsapp"></i> Join WhatsApp Community
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Community <span>Testimonials</span></h2>
+                <p>Hear what our members have to say about their learning experience</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"The community has transformed my approach to market analysis. I've learned to identify patterns and make more informed decisions rather than acting on impulse."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Robert J.">
+                        </div>
+                        <div class="author-details">
+                            <h4>Robert J.</h4>
+                            <p>Member for 8 months</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"The risk management strategies I've learned here have completely changed how I structure my portfolio. I feel more confident during market volatility now."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M.">
+                        </div>
+                        <div class="author-details">
+                            <h4>Sarah M.</h4>
+                            <p>Member for 6 months</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>"As a beginner, I found the stock market incredibly intimidating. This community broke down complex concepts and helped me build a solid foundation of knowledge."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Michael T.">
+                        </div>
+                        <div class="author-details">
+                            <h4>Michael T.</h4>
+                            <p>Member for 3 months</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Elevate Your Investment Knowledge?</h2>
+            <p>Join our WhatsApp community today and start your journey toward becoming a more confident, knowledgeable investor.</p>
+            <button class="btn btn-primary btn-animated" onclick="opensite()">
+                <i class="fab fa-whatsapp"></i> Join Our Community Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="disclaimer">
+                <h3 class="disclaimer-title">Important Disclosures</h3>
+                <p class="disclaimer-text">
+                    <strong>Educational Purpose Only:</strong> The content provided on this website is for educational and informational purposes only. It is not intended to be and does not constitute financial advice, investment advice, trading advice, or any other type of advice.
+                </p>
+                <p class="disclaimer-text">
+                    <strong>Risk Warning:</strong> Investing in financial markets involves risk, including the possible loss of principal. Past performance is not indicative of future results. All investors should make their own investment decisions based on their specific investment objectives and financial situation using their own financial advisors as necessary.
+                </p>
+                <p class="disclaimer-text">
+                    <strong>No Financial Product Recommendations:</strong> This website does not recommend or endorse any specific securities, strategies, or investment products. All examples, charts, and materials are for educational use only.
+                </p>
+                <p class="disclaimer-text">
+                    <strong>Community Guidelines:</strong> Our WhatsApp community is a space for educational discussion and sharing of market insights. Members are prohibited from sharing specific trading signals, recommending securities purchases, or promoting guaranteed investment returns.
+                </p>
+                <p class="disclaimer-text">
+                    <strong>Age Restriction:</strong> The content and services provided are intended for individuals who are at least 18 years of age.
+                </p>
+            </div>
+            
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Stock<span>Mastery</span></div>
+                    <p class="footer-desc">
+                        Empowering investors through education, community, and market insight.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Learning Library</a></li>
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Risk Management</a></li>
+                        <li><a href="#">Strategy Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 StockMastery. All rights reserved.</p>
+                <p>Educational platform for stock market knowledge</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function opensite() {
+            window.open('https://wa.me/message/ABCDEFG123456', '_blank');
+        }
+    </script>
+</body>
+</html>
