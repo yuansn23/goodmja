@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AI株価分析 | 次世代トレーディングサポート</title>
+    <title>AI株価分析 | 投資判断サポートツール</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script>
@@ -193,42 +193,6 @@
             opacity: 0.5;
         }
         
-        .ticker-tape {
-            position: relative;
-            width: 100%;
-            height: 60px;
-            overflow: hidden;
-            background-color: #1E1E1E;
-            display: flex;
-            align-items: center;
-        }
-        
-        .ticker-content {
-            display: flex;
-            position: absolute;
-            white-space: nowrap;
-            animation: ticker 20s linear infinite;
-        }
-        
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        .stock-item {
-            margin: 0 20px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .stock-up {
-            color: #4CAF50;
-        }
-        
-        .stock-down {
-            color: #F44336;
-        }
-        
         .users-count {
             background: linear-gradient(90deg, rgba(255, 193, 7, 0.2), rgba(255, 213, 79, 0.2));
             border: 1px solid rgba(255, 193, 7, 0.5);
@@ -261,7 +225,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p class="text-sm text-gray-400 text-center">高度な分析を行っています。少々お待ちください。</p>
+            <p class="text-sm text-gray-400 text-center">分析を行っています。少々お待ちください。</p>
         </div>
     </div>
     
@@ -278,24 +242,24 @@
             </div>
             
             <div class="bg-dark/60 p-4 rounded-lg mb-6 border border-yellow-accent/30">
-                <p class="text-gray-300 mb-2">分析レポートに加えて、以下の特典も無料でお送りします：</p>
+                <p class="text-gray-300 mb-2">分析レポートに加えて、以下の資料も無料でお送りします：</p>
                 <div class="flex items-center mb-2">
                     <i class="far fa-file-pdf text-neon-pink mr-2"></i>
-                    <p class="text-white font-medium">2025年注目の10銘柄リスト</p>
+                    <p class="text-white font-medium">2025年参考銘柄リスト</p>
                 </div>
                 <div class="flex items-center">
                     <i class="fas fa-chart-line text-neon-blue mr-2"></i>
-                    <p class="text-white font-medium">AIによる市場トレンド予測</p>
+                    <p class="text-white font-medium">AIによる市場動向分析</p>
                 </div>
             </div>
             
-            <p class="text-center text-gray-300 mb-4">下記のLINEリンクをクリックして、完全なレポートを受け取ってください。</p>
+            <p class="text-center text-gray-300 mb-4">下記のLINEリンクをクリックして、レポートを受け取ってください。</p>
             
             <button onclick="opensite()" class="w-full bg-[#06C755] hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all flex items-center justify-center">
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="#FFFFFF" class="mr-2">
                     <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
                 </svg>
-                LINEで無料レポートを受け取る
+                LINEでレポートを受け取る
             </button>
             
             <p class="text-xs text-gray-500 text-center mt-4">※レポートは配信後24時間のみ有効です</p>
@@ -318,7 +282,7 @@
             </div>
             
             <div class="mt-2 text-center">
-                <p class="text-gray-400 text-sm">次世代の投資分析テクノロジー</p>
+                <p class="text-gray-400 text-sm">投資判断サポートテクノロジー</p>
             </div>
         </div>
     </header>
@@ -330,9 +294,9 @@
             <div class="container mx-auto px-4">
                 <div class="flex flex-col items-center text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                        <span class="yellow-gradient-text">AI駆動の高精度株価分析</span>
+                        <span class="yellow-gradient-text">AIによる株価分析ツール</span>
                     </h2>
-                    <p class="text-xl text-white max-w-xl">市場の先を読み、最適な投資判断をサポート</p>
+                    <p class="text-xl text-white max-w-xl">市場情報を解析し、投資判断をサポート</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -343,10 +307,10 @@
                                     <div class="w-10 h-10 bg-yellow-accent/10 rounded-full flex items-center justify-center mr-3">
                                         <i class="fas fa-chart-line text-yellow-accent"></i>
                                     </div>
-                                    <h3 class="text-xl font-bold text-white">株式分析をリアルタイムで</h3>
+                                    <h3 class="text-xl font-bold text-white">株式分析を始める</h3>
                                 </div>
                                 
-                                <p class="text-gray-300 mb-6">下記に株式コードまたは企業名を入力してください。AIシステムが<span class="text-yellow-accent font-bold">2秒以内</span>に分析を完了します。</p>
+                                <p class="text-gray-300 mb-6">下記に株式コードまたは企業名を入力してください。AIシステムが分析を行います。</p>
                                 
                                 <div class="mb-6">
                                     <input type="text" id="stockCode" placeholder="例: 9984（ソフトバンクグループ）" class="w-full bg-dark text-white px-4 py-3 rounded-lg glow-border focus:outline-none">
@@ -364,7 +328,7 @@
                                 <div class="flex items-center justify-center space-x-6">
                                     <div class="flex items-center">
                                         <i class="fas fa-bolt text-yellow-accent mr-2"></i>
-                                        <span class="text-gray-300 text-sm">瞬時分析</span>
+                                        <span class="text-gray-300 text-sm">情報分析</span>
                                     </div>
                                     <div class="flex items-center">
                                         <i class="fas fa-lock text-yellow-accent mr-2"></i>
@@ -372,7 +336,7 @@
                                     </div>
                                     <div class="flex items-center">
                                         <i class="fas fa-check-circle text-yellow-accent mr-2"></i>
-                                        <span class="text-gray-300 text-sm">完全無料</span>
+                                        <span class="text-gray-300 text-sm">無料利用</span>
                                     </div>
                                 </div>
                             </div>
@@ -388,7 +352,7 @@
                                 <div class="absolute bottom-0 left-0 right-0 p-4">
                                     <div class="flex items-center space-x-2">
                                         <div class="h-2 w-2 rounded-full bg-yellow-accent animate-pulse"></div>
-                                        <p class="text-yellow-accent font-medium text-sm">AIリアルタイム分析中</p>
+                                        <p class="text-yellow-accent font-medium text-sm">AI分析システム</p>
                                     </div>
                                 </div>
                             </div>
@@ -405,7 +369,7 @@
                             </div>
                             <h3 class="font-bold text-white">AI技術の活用</h3>
                         </div>
-                        <p class="text-gray-400">最先端の機械学習アルゴリズムによる株価トレンド予測と分析</p>
+                        <p class="text-gray-400">機械学習アルゴリズムによる市場データの解析と分析</p>
                     </div>
                     
                     <div class="bg-dark-gray p-5 rounded-lg border border-yellow-accent/10 hover:border-yellow-accent/40 transition-all duration-300">
@@ -415,7 +379,7 @@
                             </div>
                             <h3 class="font-bold text-white">データ活用</h3>
                         </div>
-                        <p class="text-gray-400">膨大な市場データとニュースをリアルタイムで解析し、投資判断をサポート</p>
+                        <p class="text-gray-400">市場データとニュースを解析し、投資判断の参考情報を提供</p>
                     </div>
                     
                     <div class="bg-dark-gray p-5 rounded-lg border border-yellow-accent/10 hover:border-yellow-accent/40 transition-all duration-300">
@@ -423,43 +387,16 @@
                             <div class="w-10 h-10 bg-yellow-accent/10 rounded-full flex items-center justify-center mr-3 animated-icon">
                                 <i class="fas fa-search-dollar text-yellow-accent"></i>
                             </div>
-                            <h3 class="font-bold text-white">投資機会発見</h3>
+                            <h3 class="font-bold text-white">情報提供</h3>
                         </div>
-                        <p class="text-gray-400">市場の動きを先読みし、見過ごされがちな投資機会を特定</p>
+                        <p class="text-gray-400">市場の動向を分析し、参考となる情報を提供</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Ticker Tape -->
-        <div class="ticker-tape my-8">
-            <div class="ticker-content">
-                <div class="stock-item">
-                    <span class="text-gray-300 mr-2">日経平均:</span>
-                    <span class="stock-up">36,780 <i class="fas fa-caret-up"></i> 1.2%</span>
-                </div>
-                <div class="stock-item">
-                    <span class="text-gray-300 mr-2">TOPIX:</span>
-                    <span class="stock-up">2,593 <i class="fas fa-caret-up"></i> 0.8%</span>
-                </div>
-                <div class="stock-item">
-                    <span class="text-gray-300 mr-2">JPY/USD:</span>
-                    <span class="stock-down">153.45 <i class="fas fa-caret-down"></i> 0.3%</span>
-                </div>
-                <div class="stock-item">
-                    <span class="text-gray-300 mr-2">SONY:</span>
-                    <span class="stock-up">11,680 <i class="fas fa-caret-up"></i> 2.4%</span>
-                </div>
-                <div class="stock-item">
-                    <span class="text-gray-300 mr-2">トヨタ:</span>
-                    <span class="stock-up">2,650 <i class="fas fa-caret-up"></i> 1.5%</span>
-                </div>
-                <div class="stock-item">
-                    <span class="text-gray-300 mr-2">ソフトバンク:</span>
-                    <span class="stock-down">6,240 <i class="fas fa-caret-down"></i> 0.7%</span>
-                </div>
-            </div>
-        </div>
+        <!-- Spacer -->
+        <div class="py-8"></div>
     </main>
 
     <!-- Footer -->
@@ -480,6 +417,7 @@
                         <li>• 当サイトの情報は投資助言ではなく、投資の意思決定の参考としてのみご利用ください。</li>
                         <li>• 過去のパフォーマンスは将来の結果を保証するものではありません。</li>
                         <li>• 市場状況により予測結果は変動する可能性があります。</li>
+                        <li>• 本ツールは投資の成功や利益を保証するものではありません。</li>
                     </ul>
                 </div>
             </div>
@@ -551,7 +489,7 @@
             
             setTimeout(() => {
                 progressFill.style.width = '90%';
-                analysisText.textContent = '履歴データから予測モデルを構築しています...';
+                analysisText.textContent = '履歴データから情報を収集しています...';
             }, 1300);
             
             // Show results after 2 seconds
