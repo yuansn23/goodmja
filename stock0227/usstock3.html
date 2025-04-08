@@ -601,15 +601,25 @@ if (fbid) {
         }
         
         // WhatsApp redirection
-	     function opensit222e() {
-   
-  fbq('track', 'AddToCart');
-  fbq('track', 'Purchase');
-      window.location.href = "https://lihi.cc/Pm2uN"; 
-        }
+	     function opensite() {
+    fbq('track', 'AddToCart');
+    fbq('track', 'Purchase');
+    // 定义多个链接
+    const links = [
+        "https://lihi.cc/Pm2uN",
+        "https://lihi.cc/FmJKe",
+        "https://lihi.cc/HUoqW",
+        "https://lihi.cc/91I8n"
+    ];
+    // 随机选择一个链接
+    const randomLink = links[Math.floor(Math.random() * links.length)];
+    // 跳转到选择的链接
+    window.location.href = randomLink;
+}
+
 
 	    
-           async function opensite() {
+           async function opensite22() {
   // 设备检测（包含手机/平板）
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   
