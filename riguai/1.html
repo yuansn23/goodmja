@@ -69,29 +69,6 @@
             }
         }
         
-        .line-icon {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background-color: #06C755;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .line-icon:hover {
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-        }
-        
         .glow-border {
             border: 1px solid #60A5FA;
             box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
@@ -182,16 +159,24 @@
             background-color: rgba(96, 165, 250, 0.5);
             border-radius: 50%;
         }
+        
+        .users-count {
+            background: linear-gradient(90deg, rgba(13, 197, 193, 0.3), rgba(37, 99, 235, 0.3));
+            border: 1px solid rgba(13, 197, 193, 0.5);
+            animation: glow 2s infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(13, 197, 193, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(13, 197, 193, 0.8);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- LINE Icon -->
-    <div class="line-icon" onclick="opensite()">
-        <svg viewBox="0 0 24 24" width="30" height="30" fill="#FFFFFF">
-            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.793 4.113 8.801 9.671 9.562.377.082.904.258 1.035.59.12.301.079.766.038 1.067l-.164 1.014c-.045.301-.24 1.186.994.647 1.235-.54 6.666-3.57 9.134-6.16 1.644-1.898 2.292-3.859 2.292-6.72z"/>
-        </svg>
-    </div>
-
     <!-- Progress Modal -->
     <div class="progress-container" id="progressModal">
         <div class="progress-box">
@@ -204,7 +189,7 @@
         </div>
     </div>
     
-    <!-- Results Modal -->
+    <!-- Results Modal (No close button) -->
     <div class="result-container" id="resultModal">
         <div class="result-box">
             <div class="text-center mb-4">
@@ -250,11 +235,6 @@
                     <div class="ml-3 hidden sm:block">
                         <h1 class="text-lg font-bold text-white">AI株価分析システム</h1>
                         <p class="text-sm text-gray-400">次世代の投資サポート</p>
-                    </div>
-                </div>
-                <div class="flex space-x-2">
-                    <div class="bg-blue-accent/20 px-3 py-1 rounded-full flex items-center">
-                        <span class="text-blue-glow text-sm"><span class="font-bold text-teal-accent">23,218</span> 人が利用中</span>
                     </div>
                 </div>
             </div>
@@ -326,6 +306,10 @@
                                         <input type="text" id="stockCode" placeholder="例: 9984（ソフトバンクグループ）" class="w-full bg-deep-blue text-white px-4 py-3 rounded-lg glow-border focus:outline-none">
                                     </div>
                                     
+                                    <div class="users-count py-2 px-4 rounded-md text-center mb-4">
+                                        <p class="text-teal-accent font-bold">現在 <span class="text-white text-lg">23,218</span> 人が無料レポートを閲覧中！</p>
+                                    </div>
+                                    
                                     <button onclick="analyzeStock()" class="w-full btn-pulse bg-gradient-to-r from-teal-accent to-blue-accent text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all">
                                         <i class="fas fa-chart-bar mr-2"></i>AIで無料分析を開始
                                     </button>
@@ -337,50 +321,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Features Section -->
-        <section class="py-12 bg-gradient-to-b from-deep-blue to-dark-panel">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">AIによる株価分析の優位性</h2>
-                    <p class="text-gray-300 max-w-3xl mx-auto">
-                        私たちのAIシステムは、従来の分析方法と比較して優れた結果をもたらします
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-dark-panel p-6 rounded-lg border border-blue-accent/20 hover:border-blue-accent/50 transition-all duration-300">
-                        <div class="bg-blue-accent/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-tachometer-alt text-blue-accent text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">処理速度</h3>
-                        <p class="text-gray-300">
-                            数百万のデータポイントを数秒で処理し、市場変動にリアルタイムで対応します。
-                        </p>
-                    </div>
-                    
-                    <div class="bg-dark-panel p-6 rounded-lg border border-teal-accent/20 hover:border-teal-accent/50 transition-all duration-300">
-                        <div class="bg-teal-accent/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-bullseye text-teal-accent text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">予測精度</h3>
-                        <p class="text-gray-300">
-                            進化した機械学習アルゴリズムにより、従来の分析よりも高い予測精度を実現します。
-                        </p>
-                    </div>
-                    
-                    <div class="bg-dark-panel p-6 rounded-lg border border-pink-accent/20 hover:border-pink-accent/50 transition-all duration-300">
-                        <div class="bg-pink-accent/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-newspaper text-pink-accent text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">ニュース分析</h3>
-                        <p class="text-gray-300">
-                            市場に影響を与えるニュースをリアルタイムで解析し、株価への影響を予測します。
-                        </p>
                     </div>
                 </div>
             </div>
