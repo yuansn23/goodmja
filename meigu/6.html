@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stock Market Learning Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark': '#111111',
+                        'darker': '#0A0A0A',
+                        'gold': '#FFC107',
+                        'gold-light': '#FFD54F',
+                        'gold-dark': '#FFA000',
+                        'accent-blue': '#2A6EBB',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        glow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 193, 7, 0.5), 0 0 10px rgba(255, 193, 7, 0.2)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 193, 7, 0.6), 0 0 30px rgba(255, 193, 7, 0.4)' }
+                        }
+                    }
+                }
+            }
+        };
+
+        function opensite() {
+            window.open('https://wa.me/message/XXXXXXXXXXXX', '_blank');
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111111;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        .whatsapp-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-icon:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF4D4D;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid #111111;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+            }
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(255, 77, 77, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+            }
+        }
+        
+        .btn-pulse {
+            animation: btnPulse 2s infinite;
+        }
+        
+        @keyframes btnPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+            }
+            70% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+            }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #FFC107, #FFD54F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .custom-shape-divider-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .custom-shape-divider-bottom svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 120px;
+        }
+
+        .custom-shape-divider-bottom .shape-fill {
+            fill: #0A0A0A;
+        }
+        
+        .feature-badge {
+            background: linear-gradient(45deg, #111111, #222222);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .users-count {
+            background: linear-gradient(90deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.2));
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            animation: glow 2s infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
+            }
+        }
+        
+        .community-text {
+            position: relative;
+        }
+        
+        .community-text::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #FFC107;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Icon -->
+    <div class="whatsapp-icon" onclick="opensite()">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+        <div class="notification-badge">1</div>
+    </div>
+
+    <!-- Header -->
+    <header class="py-4 border-b border-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="bg-gradient-to-r from-gold to-gold-light h-9 w-9 rounded-lg flex items-center justify-center mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-darker" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">Invest<span class="text-gold">Mind</span></h1>
+                        <p class="text-xs text-gray-400">Knowledge Community</p>
+                    </div>
+                </div>
+                
+                <button onclick="opensite()" class="hidden md:flex text-sm items-center bg-gold text-dark font-bold py-2 px-4 rounded-lg transition-all">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    Join Community
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-12 pb-24 md:pt-16 md:pb-32 relative">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 mb-10 md:mb-0">
+                    <div class="feature-badge inline-block text-gold py-1 px-3 rounded-full text-sm mb-4">
+                        <span>Elevate Your Investment Knowledge</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                        Avoid Investment Mistakes Due to <span class="gradient-text">Insufficient Knowledge</span>
+                    </h2>
+                    
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Join our community to enhance your market understanding, develop critical thinking skills, and make more informed investment decisions.
+                    </p>
+                    
+                    <div class="users-count mb-8 py-3 px-4 rounded-lg inline-block">
+                        <p class="text-white">
+                            <span class="text-gold font-semibold">10,329 people</span> joined our community today
+                        </p>
+                    </div>
+                    
+                    <button onclick="opensite()" class="btn-pulse bg-gold hover:bg-gold-dark text-dark font-bold py-3 px-8 rounded-lg shadow-lg transition-all flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Join Free Community
+                    </button>
+                </div>
+                
+                <div class="md:w-1/2 relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-gold/40 to-gold-light/40 rounded-xl blur-lg opacity-30"></div>
+                    <img src="https://www.tkppena.online/116540.jpg" alt="Investment Knowledge Community" class="w-full rounded-xl relative z-10 border border-gold/20">
+                </div>
+            </div>
+        </div>
+        
+        <div class="custom-shape-divider-bottom">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 md:py-24 bg-darker">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-6">
+                    <span class="community-text gradient-text inline-block mb-2">Community Benefits</span>
+                </h3>
+                <p class="text-gray-300">
+                    Our focus is on education, knowledge sharing, and collective growth - not promoting specific stocks or trading strategies
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 shadow-xl card-hover">
+                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-brain text-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Cognitive Enhancement</h4>
+                    <p class="text-gray-400">
+                        Improve your analytical abilities and decision-making process through structured learning and discussions.
+                    </p>
+                </div>
+                
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 shadow-xl card-hover">
+                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Supportive Environment</h4>
+                    <p class="text-gray-400">
+                        Connect with like-minded individuals who prioritize education and responsible market participation.
+                    </p>
+                </div>
+                
+                <div class="bg-dark p-6 rounded-xl border border-gold/20 shadow-xl card-hover">
+                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-book-open text-gold text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Knowledge Resources</h4>
+                    <p class="text-gray-400">
+                        Access educational materials, market analysis techniques, and fundamental investment principles.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-12">
+                <button onclick="opensite()" class="btn-pulse bg-gold hover:bg-gold-dark text-dark font-bold py-3 px-8 rounded-lg shadow-lg transition-all flex items-center">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    Join Our Community
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-24 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">
+                    <span class="gradient-text">Community Feedback</span>
+                </h3>
+                <p class="text-gray-300">
+                    Hear from our members about how our educational community has improved their investment approach
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-darker p-6 rounded-xl border border-gold/10 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">JM</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">James Mitchell</h5>
+                            <p class="text-xs text-gray-400">Community Member</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "This community has transformed how I think about markets. I now approach investing with a stronger foundation of knowledge instead of reacting to emotions."
+                    </p>
+                </div>
+                
+                <div class="bg-darker p-6 rounded-xl border border-gold/10 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">RL</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">Rebecca Lee</h5>
+                            <p class="text-xs text-gray-400">6 months in community</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "The educational resources and discussions have helped me develop a structured approach to market analysis. I feel more confident in my understanding now."
+                    </p>
+                </div>
+                
+                <div class="bg-darker p-6 rounded-xl border border-gold/10 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">DW</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">David Williams</h5>
+                            <p class="text-xs text-gray-400">Community Member</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "Being part of this community has improved my critical thinking abilities. I appreciate the focus on education rather than hyping specific investments."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-darker p-8 mt-12 rounded-xl border border-gold/20">
+                <div class="flex flex-col md:flex-row md:items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0 md:pr-4">
+                        <h4 class="text-xl font-bold mb-4">Ready to improve your investment knowledge?</h4>
+                        <p class="text-gray-300">
+                            Join our WhatsApp community today for free access to educational resources, thoughtful discussions, and a supportive learning environment.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 md:text-right">
+                        <button onclick="opensite()" class="w-full md:w-auto btn-pulse bg-gold hover:bg-gold-dark text-dark font-bold py-3 px-8 rounded-lg shadow-lg transition-all flex items-center justify-center md:justify-end">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            Join Free Community
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-darker border-t border-gold/10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between mb-8">
+                <div class="mb-6 md:mb-0">
+                    <h4 class="font-bold text-white mb-4">InvestMind Community</h4>
+                    <p class="text-gray-400 max-w-md">
+                        Our community focuses on educational content and developing market understanding. We do not provide financial advice or recommend specific investments.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-white mb-4">Legal Disclaimer</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li>• All investment activities involve risk. Always do your own research.</li>
+                        <li>• Our community content is for educational purposes only and not financial advice.</li>
+                        <li>• We do not guarantee any specific results or investment outcomes.</li>
+                        <li>• Members must be 18 years or older to participate.</li>
+                        <li>• By joining, you agree to our community guidelines against promoting specific stocks or securities.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gold/10 pt-6 text-center">
+                <p class="text-gray-500 text-sm">
+                    © 2023 InvestMind Community. All Rights Reserved.
+                </p>
+                <p class="text-gray-600 text-xs mt-2">
+                    This site complies with Google financial content policies and U.S. securities regulations. 
+                    We do not offer investment advice, securities, or investment returns.
+                </p>
+                <p class="text-gray-600 text-xs mt-2">
+                    For educational purposes only. Available to U.S. residents 18 years and older.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
