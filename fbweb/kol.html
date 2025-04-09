@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>全球网红营销 | 助力品牌出海</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#252B59',
+                        'navy-dark': '#1E2347',
+                        'navy-light': '#2F3573',
+                        'gold': '#FFD700',
+                        'gold-light': '#FFEB3B',
+                        'gold-dark': '#FFC107',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                }
+            }
+        };
+
+        function opensite() {
+            // Add your site opening logic here
+            alert('Contact information: Telegram: @snvtr2, WeChat: tangguo955');
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #252B59;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #252B59 0%, #1E2347 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+        }
+        
+        .img-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .img-container {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .img-container img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(30, 35, 71, 0.9) 0%, rgba(30, 35, 71, 0) 100%);
+            padding: 20px 10px 10px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .img-container:hover .img-overlay {
+            opacity: 1;
+        }
+        
+        .stats-container {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .stats-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('path/to/pattern.png');
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .btn-contact {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #1E2347;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .btn-contact::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn-contact:hover::after {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="py-4 bg-navy-dark border-b border-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="h-10 w-10 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fas fa-globe text-navy-dark text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">全球<span class="text-gold">KOL</span>营销</h1>
+                        <p class="text-xs text-gray-400">专业出海品牌推广服务</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#features" class="text-white hover:text-gold transition-colors">服务特点</a>
+                    <a href="#services" class="text-white hover:text-gold transition-colors">服务内容</a>
+                    <a href="#cases" class="text-white hover:text-gold transition-colors">成功案例</a>
+                    <a href="#gallery" class="text-white hover:text-gold transition-colors">博主展示</a>
+                </div>
+                
+                <button onclick="opensite()" class="bg-gold text-navy-dark font-bold py-2 px-4 rounded-lg hover:bg-gold-dark transition-colors">
+                    立即联系
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 hero-gradient">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-shadow">
+                        <span class="gold-gradient">150+ 海外真人视频广告拍摄</span>
+                        <br>助力品牌出海红人营销带动高转化
+                    </h2>
+                    
+                    <p class="text-gray-300 text-lg mb-8">
+                        与全球优质KOL合作，打造高转化率的出海营销方案。精准定位目标受众，提升品牌影响力，实现业务增长。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-contact py-3 px-8 rounded-lg flex items-center">
+                            <i class="fas fa-headset mr-2"></i>
+                            免费咨询
+                        </button>
+                        
+                        <a href="#gallery" class="py-3 px-8 rounded-lg border border-gold text-gold hover:bg-gold/10 transition-colors flex items-center">
+                            <i class="fas fa-users mr-2"></i>
+                            查看博主
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-xl blur-lg opacity-30"></div>
+                        <img src="https://www.goodmja.online/shuziyingxiao/kol/kol1.jpg" alt="KOL Marketing" class="relative z-10 rounded-xl w-full shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">全球KOL网络覆盖</h2>
+            
+            <div class="bg-navy-dark p-8 rounded-xl shadow-lg border border-gold/20 mb-12">
+                <p class="text-xl text-center mb-6">
+                    拥有全球<span class="text-gold font-bold">150+</span> KOL博主联系方式，涵盖主流国家和地区
+                </p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-flag-usa text-gold text-2xl mb-2"></i>
+                        <p>美国</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-landmark text-gold text-2xl mb-2"></i>
+                        <p>英国</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fab fa-canadian-maple-leaf text-gold text-2xl mb-2"></i>
+                        <p>加拿大</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-water text-gold text-2xl mb-2"></i>
+                        <p>澳大利亚</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-cheese text-gold text-2xl mb-2"></i>
+                        <p>法国</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-pizza-slice text-gold text-2xl mb-2"></i>
+                        <p>意大利</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-mountain text-gold text-2xl mb-2"></i>
+                        <p>南美</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-sun text-gold text-2xl mb-2"></i>
+                        <p>西班牙</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-torii-gate text-gold text-2xl mb-2"></i>
+                        <p>日本</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg">
+                        <i class="fas fa-building text-gold text-2xl mb-2"></i>
+                        <p>新加坡</p>
+                    </div>
+                    <div class="bg-navy p-4 rounded-lg col-span-2">
+                        <i class="fas fa-ellipsis-h text-gold text-2xl mb-2"></i>
+                        <p>更多国家和地区...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="flex-1 bg-navy-dark p-6 rounded-xl border border-gold/20 card">
+                    <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-video text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">视频广告拍摄</h3>
+                    <p class="text-gray-300">提供专业的真人视频广告拍摄服务，为品牌打造高质量的营销内容</p>
+                </div>
+                
+                <div class="flex-1 bg-navy-dark p-6 rounded-xl border border-gold/20 card">
+                    <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-globe text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">全球化覆盖</h3>
+                    <p class="text-gray-300">与来自全球各地的KOL合作，帮助品牌精准触达不同地区的目标受众</p>
+                </div>
+                
+                <div class="flex-1 bg-navy-dark p-6 rounded-xl border border-gold/20 card">
+                    <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">高转化率</h3>
+                    <p class="text-gray-300">经过验证的营销策略，帮助品牌实现更高的转化率和投资回报率</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">服务内容</h2>
+            
+            <div class="flex flex-col md:flex-row gap-10 items-center mb-16">
+                <div class="md:w-1/2">
+                    <div class="bg-navy p-8 rounded-xl border border-gold/20 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-gold">一站式服务</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-gold/20 rounded-full p-1 mt-1">
+                                    <i class="fas fa-check text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">专业文案策划</h4>
+                                    <p class="text-gray-300">根据品牌特点和受众需求，定制高效的营销文案</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-gold/20 rounded-full p-1 mt-1">
+                                    <i class="fas fa-check text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">高质量拍摄</h4>
+                                    <p class="text-gray-300">专业团队确保视频拍摄质量，展现产品最佳形象</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-gold/20 rounded-full p-1 mt-1">
+                                    <i class="fas fa-check text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">精细剪辑制作</h4>
+                                    <p class="text-gray-300">后期剪辑精心打磨，确保内容吸引力和转化效果</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-6">覆盖全行业</h3>
+                    <p class="text-lg text-gray-300 mb-6">
+                        我们的服务不限行业，可以为各类产品提供专业的KOL营销解决方案
+                    </p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-spa text-gold mb-2"></i>
+                            <p>美妆个护</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-dumbbell text-gold mb-2"></i>
+                            <p>体育健身</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-microchip text-gold mb-2"></i>
+                            <p>科技硬件</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-couch text-gold mb-2"></i>
+                            <p>家居生活</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-gamepad text-gold mb-2"></i>
+                            <p>游戏娱乐</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-briefcase text-gold mb-2"></i>
+                            <p>商业服务</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-chart-bar text-gold mb-2"></i>
+                            <p>股票金融</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-money-bill-wave text-gold mb-2"></i>
+                            <p>兼职网赚</p>
+                        </div>
+                        <div class="bg-navy p-3 rounded-lg text-center">
+                            <i class="fas fa-ellipsis-h text-gold mb-2"></i>
+                            <p>更多行业</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Case Studies -->
+    <section id="cases" class="py-16 bg-navy stats-container">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">成功案例</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="bg-gold/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-spa text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">美妆个护</h3>
+                    <p class="text-gray-300 mb-4">某户外平台品牌通过我们的KOL营销服务</p>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-3xl font-bold text-gold">320%</span>
+                        <span class="text-gray-400">官网转化率提升</span>
+                    </div>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="bg-gold/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-headphones text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">科技硬件</h3>
+                    <p class="text-gray-300 mb-4">无线耳机品牌与全球KOL合作后</p>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-3xl font-bold text-gold">120%</span>
+                        <span class="text-gray-400">转化率提升</span>
+                    </div>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="bg-gold/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-gamepad text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">游戏产品</h3>
+                    <p class="text-gray-300 mb-4">某slot游戏通过我们的网红营销方案</p>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-3xl font-bold text-gold">130%</span>
+                        <span class="text-gray-400">转化率提升</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- KOL Gallery -->
+    <section id="gallery" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">全球KOL博主展示</h2>
+            <p class="text-gray-300 text-center mb-12 max-w-3xl mx-auto">
+                我们与各个国家和地区的优质KOL建立了长期合作关系，覆盖多种风格和受众群体
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/1.png" alt="KOL 1">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/2.png" alt="KOL 2">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/3.png" alt="KOL 3">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/4.png" alt="KOL 4">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/5.png" alt="KOL 5">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/6.png" alt="KOL 6">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/7.png" alt="KOL 7">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/8.png" alt="KOL 8">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/9.png" alt="KOL 9">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/10.png" alt="KOL 10">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/11.png" alt="KOL 11">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/12.png" alt="KOL 12">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/13.png" alt="KOL 13">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/14.png" alt="KOL 14">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/15.png" alt="KOL 15">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/16.png" alt="KOL 16">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/17.png" alt="KOL 17">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/18.png" alt="KOL 18">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/19.png" alt="KOL 19">
+                </div>
+                <div class="img-container">
+                    <img src="https://www.goodmja.online/shuziyingxiao/kol/20.png" alt="KOL 20">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">用户见证</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">LM</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">李先生</h5>
+                            <p class="text-xs text-gray-400">美妆品牌负责人</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "通过KOL营销服务，我们的产品在欧美市场的知名度迅速提升，销售额增长了3倍。专业的团队和高效的执行力令人印象深刻。"
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">WZ</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">王总监</h5>
+                            <p class="text-xs text-gray-400">科技公司市场主管</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "选择全球KOL营销是我们做出的最明智决策之一。他们对不同市场的了解和专业的营销策略帮助我们迅速打开了国际市场。"
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">ZY</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">张女士</h5>
+                            <p class="text-xs text-gray-400">游戏公司创始人</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "从文案策划到视频制作，团队的专业程度超出预期。博主的表现非常自然，完美展示了产品特点，用户反馈非常积极。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <div class="bg-navy p-8 md:p-12 rounded-2xl border border-gold/30 shadow-xl">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">准备开启全球KOL营销之旅？</h2>
+                        <p class="text-gray-300">
+                            联系我们获取专业建议和优惠方案，助力您的品牌在全球市场脱颖而出。
+                        </p>
+                    </div>
+                    
+                    <div class="md:w-1/3">
+                        <button onclick="opensite()" class="w-full btn-contact py-4 px-6 rounded-lg text-lg flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            联系我们获取优惠
+                        </button>
+                        <div class="text-center mt-3 text-gray-400">
+                            <p>Telegram: @snvtr2</p>
+                            <p>微信: tangguo955</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-navy-dark py-8 border-t border-gold/10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center mb-6">
+                <div class="flex items-center space-x-2">
+                    <div class="h-8 w-8 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fas fa-globe text-navy-dark text-sm"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">全球<span class="text-gold">KOL</span>营销</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-400 text-sm max-w-2xl mx-auto">
+                本服务专注于提供专业的KOL营销方案，帮助品牌提升国际市场曝光度和转化率。
+                所有合作均遵循当地法律法规和广告政策。
+            </p>
+            
+            <div class="border-t border-gold/10 mt-6 pt-6 text-center">
+                <p class="text-sm text-gray-500">© 2023 全球KOL营销服务. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for the scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
