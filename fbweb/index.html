@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>腾飞跨境出海服务 | 专业一站式解决方案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#252B59',
+                        'navy-dark': '#1E2347',
+                        'navy-light': '#2F3573',
+                        'gold': '#FFD700',
+                        'gold-light': '#FFEB3B',
+                        'gold-dark': '#FFC107',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        glow: {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(255, 215, 0, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 215, 0, 0.6)' }
+                        }
+                    }
+                }
+            }
+        };
+
+        function opensite() {
+            alert('Contact information: Telegram: @snvtr2, WeChat: tangguo955');
+        }
+        
+        function showDetails(section) {
+            // This function could be expanded to show more details for each service
+            alert('查看 ' + section + ' 详情，请联系我们\nTelegram: @snvtr2\n微信: tangguo955');
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #252B59;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #252B59 0%, #1E2347 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card {
+            transition: all 0.4s ease;
+            transform: translateY(0);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+        }
+        
+        .feature-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #1E2347;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 215, 0, 0.15);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.25);
+            transform: translateY(-3px);
+        }
+        
+        .service-card {
+            height: 100%;
+            transition: all 0.4s ease;
+            background: #252B59;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        
+        .backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 35, 71, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+        
+        .ripple-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.05);
+            animation: ripple 15s infinite;
+            box-shadow: 0 0 1px 0 #FFD700;
+        }
+        
+        .small {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .medium {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .large {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .xlarge {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .xxlarge {
+            width: 500px;
+            height: 500px;
+        }
+        
+        .circle:nth-child(1) {
+            left: 5%;
+            top: 5%;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            left: 35%;
+            top: 20%;
+            animation-delay: 1s;
+        }
+        
+        .circle:nth-child(3) {
+            left: 55%;
+            top: 35%;
+            animation-delay: 4s;
+        }
+        
+        .circle:nth-child(4) {
+            left: 80%;
+            top: 5%;
+            animation-delay: 2s;
+        }
+        
+        .circle:nth-child(5) {
+            left: 25%;
+            top: 60%;
+            animation-delay: 5s;
+        }
+        
+        .circle:nth-child(6) {
+            left: 80%;
+            top: 70%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(0.8);
+            }
+        }
+        
+        .testimonial-card {
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Ripple Background -->
+    <div class="ripple-background">
+        <div class="circle xxlarge"></div>
+        <div class="circle xlarge"></div>
+        <div class="circle large"></div>
+        <div class="circle medium"></div>
+        <div class="circle small"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="py-4 bg-navy-dark border-b border-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="h-10 w-10 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fas fa-globe-asia text-navy-dark text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">腾飞<span class="text-gold">跨境出海</span></h1>
+                        <p class="text-xs text-gray-400">专业一站式海外营销服务</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#services" class="text-white hover:text-gold transition-colors">业务板块</a>
+                    <a href="#advertising" class="text-white hover:text-gold transition-colors">广告代投</a>
+                    <a href="#training" class="text-white hover:text-gold transition-colors">培训教学</a>
+                    <a href="#testimonials" class="text-white hover:text-gold transition-colors">客户见证</a>
+                    <a href="#contact" class="text-white hover:text-gold transition-colors">联系我们</a>
+                </div>
+                
+                <button onclick="opensite()" class="bg-gold text-navy-dark font-bold py-2 px-4 rounded-lg hover:bg-gold-dark transition-colors">
+                    立即咨询
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 hero-gradient relative">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <div class="feature-badge inline-block text-gold py-1 px-3 rounded-full text-sm mb-4 border border-gold/30">
+                        <span>专业团队 · 6年海外经验</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-shadow">
+                        <span class="gold-gradient">专业跨境营销服务</span>
+                        <br>赋能您的品牌全球化之路
+                    </h2>
+                    
+                    <p class="text-xl text-gray-300 mb-8">
+                        我们提供广告代投、培训教学、落地页制作及红人营销等<span class="text-gold font-bold">一站式跨境营销解决方案</span>，助力您的业务高效拓展全球市场
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-primary py-3 px-8 rounded-lg flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取专属方案
+                        </button>
+                        
+                        <a href="#services" class="py-3 px-8 rounded-lg border border-gold text-gold hover:bg-gold/10 transition-colors flex items-center">
+                            <i class="fas fa-th-large mr-2"></i>
+                            了解服务内容
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-xl blur-lg opacity-30"></div>
+                        <div class="relative bg-navy-dark p-8 rounded-xl border border-gold/30">
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-gold text-3xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-xl font-bold text-white">跨境营销专家</h3>
+                                    <p class="text-gray-300">6年经验 · 全球业务布局</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="p-4 bg-navy-light/40 rounded-lg">
+                                    <h4 class="text-gold font-bold mb-1">500+</h4>
+                                    <p class="text-sm text-gray-300">客户案例</p>
+                                </div>
+                                <div class="p-4 bg-navy-light/40 rounded-lg">
+                                    <h4 class="text-gold font-bold mb-1">20+</h4>
+                                    <p class="text-sm text-gray-300">覆盖国家</p>
+                                </div>
+                                <div class="p-4 bg-navy-light/40 rounded-lg">
+                                    <h4 class="text-gold font-bold mb-1">150+</h4>
+                                    <p class="text-sm text-gray-300">合作KOL</p>
+                                </div>
+                                <div class="p-4 bg-navy-light/40 rounded-lg">
+                                    <h4 class="text-gold font-bold mb-1">98%</h4>
+                                    <p class="text-sm text-gray-300">客户满意度</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-center p-4 bg-gold/10 rounded-lg border border-gold/30">
+                                <p class="text-white">我们的理念：<span class="text-gold">帮您赚到钱，我们才能长久地赚到钱</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Overview -->
+    <section id="services" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 section-title">业务板块</h2>
+            <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto">
+                腾飞跨境为您提供全方位的出海营销服务，打造海外市场增长引擎
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1: Ad Agency -->
+                <div class="service-card p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="service-icon w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-ad text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">广告代投</h3>
+                    <p class="text-gray-300 mb-6">
+                        谷歌、Facebook广告代投一站式服务，专业团队提供高效精准的投放策略
+                    </p>
+                    <a href="#advertising" class="inline-block text-gold hover:text-gold-light transition-colors">
+                        了解更多 <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2: Training -->
+                <div class="service-card p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="service-icon w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">培训教学</h3>
+                    <p class="text-gray-300 mb-6">
+                        Facebook和谷歌广告投放系统培训，从理论到实操全面提升广告投放能力
+                    </p>
+                    <a href="#training" class="inline-block text-gold hover:text-gold-light transition-colors">
+                        了解更多 <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3: Landing Page -->
+                <div class="service-card p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="service-icon w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop-code text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">落地页制作</h3>
+                    <p class="text-gray-300 mb-6">
+                        专业高转化落地页定制，支持多行业，确保通过严格广告审核
+                    </p>
+                    <a href="#landing" class="inline-block text-gold hover:text-gold-light transition-colors">
+                        了解更多 <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4: KOL Marketing -->
+                <div class="service-card p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="service-icon w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">红人营销</h3>
+                    <p class="text-gray-300 mb-6">
+                        150+海外KOL资源，真人视频广告拍摄，覆盖全球主要市场
+                    </p>
+                    <a href="#kol" class="inline-block text-gold hover:text-gold-light transition-colors">
+                        了解更多 <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Advertising Service -->
+    <section id="advertising" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-xl blur-lg opacity-20"></div>
+                        <div class="bg-navy p-6 rounded-xl border border-gold/20 relative">
+                            <div class="flex space-x-4 mb-6">
+                                <div class="flex-1 p-4 bg-navy-light/30 rounded-lg text-center">
+                                    <i class="fab fa-google text-3xl mb-4 text-[#4285F4]"></i>
+                                    <h4 class="font-bold text-white">Google</h4>
+                                    <p class="text-sm text-gray-300">搜索/展示网络</p>
+                                </div>
+                                <div class="flex-1 p-4 bg-navy-light/30 rounded-lg text-center">
+                                    <i class="fab fa-facebook text-3xl mb-4 text-[#1877F2]"></i>
+                                    <h4 class="font-bold text-white">Facebook</h4>
+                                    <p class="text-sm text-gray-300">社交广告平台</p>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5 bg-navy-light/20 rounded-lg mb-6">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-chart-bar text-gold mr-3"></i>
+                                    <h4 class="font-bold">平均投放指标</h4>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-sm text-gray-400">点击率 (CTR)</p>
+                                        <p class="text-white font-bold">4.8% <span class="text-green-500 text-sm">↑32%</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">转化率</p>
+                                        <p class="text-white font-bold">8.3% <span class="text-green-500 text-sm">↑45%</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">获客成本 (CPA)</p>
+                                        <p class="text-white font-bold">-38% <span class="text-green-500 text-sm">↓</span></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">投资回报率 (ROAS)</p>
+                                        <p class="text-white font-bold">3.7x <span class="text-green-500 text-sm">↑</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="italic text-gray-300 text-sm border-l-2 border-gold pl-4">
+                                "专业团队做专业的事情，6年广告投放以及出海经验。帮您赚到钱，我们才能长久的赚到钱。"
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">
+                        <span class="gold-gradient">广告代投一站式服务</span>
+                    </h2>
+                    
+                    <p class="text-gray-300 mb-6">
+                        凭借6年广告投放和出海经验，我们的专业团队为您提供全方位的广告代投服务，从策略制定到投放优化，助力您的品牌在海外市场取得显著成效。
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-bullseye text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">精准定位目标受众</h4>
+                                <p class="text-gray-400">运用先进分析工具，精确锁定您的目标客户群体，提高广告触达效率</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-chart-line text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">数据驱动优化策略</h4>
+                                <p class="text-gray-400">基于实时数据分析，持续优化广告投放策略，提升转化率和投资回报</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-shield-alt text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">账户安全管理</h4>
+                                <p class="text-gray-400">专业团队确保广告账户合规运营，有效避免账户风险，保障投放稳定性</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-primary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取投放方案
+                        </button>
+                        
+                        <button onclick="showDetails('广告代投')" class="btn-secondary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            查看详情
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Training Service -->
+    <section id="training" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-xl blur-lg opacity-20"></div>
+                        <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 relative">
+                            <div class="mb-6">
+                                <h4 class="font-bold mb-3">培训课程内容</h4>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-navy/40 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gold font-bold">1</span>
+                                            </div>
+                                            <h5 class="font-medium">广告平台基础与账户结构</h5>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-navy/40 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gold font-bold">2</span>
+                                            </div>
+                                            <h5 class="font-medium">受众定向与关键词策略</h5>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-navy/40 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gold font-bold">3</span>
+                                            </div>
+                                            <h5 class="font-medium">创意优化与A/B测试</h5>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-navy/40 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gold font-bold">4</span>
+                                            </div>
+                                            <h5 class="font-medium">数据分析与优化策略</h5>
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-navy/40 rounded-lg">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gold font-bold">5</span>
+                                            </div>
+                                            <h5 class="font-medium">高级策略与实战案例解析</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between bg-gold/10 p-4 rounded-lg">
+                                <div>
+                                    <h4 class="font-bold text-gold">学员平均能力提升</h4>
+                                    <p class="text-sm text-gray-300">基于500+培训学员数据</p>
+                                </div>
+                                <div class="text-xl font-bold text-white">
+                                    +125% <i class="fas fa-arrow-up text-green-500 text-sm ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">
+                        <span class="gold-gradient">专业广告投放培训</span>
+                    </h2>
+                    
+                    <p class="text-gray-300 mb-6">
+                        我们提供Facebook和Google广告投放专业培训，从理论到实操，系统化提升您和团队的广告投放能力，让您掌握海外投放的核心技能。
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-chalkboard-teacher text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">系统化课程体系</h4>
+                                <p class="text-gray-400">从平台基础到高级策略，循序渐进的完整课程体系，满足不同水平需求</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-hands-helping text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">实战经验分享</h4>
+                                <p class="text-gray-400">6年海外广告投放经验倾囊相授，实际案例解析，助您少走弯路</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-user-cog text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">个性化辅导</h4>
+                                <p class="text-gray-400">针对您的具体行业和产品特点，提供定制化的投放策略指导</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-primary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取课程详情
+                        </button>
+                        
+                        <button onclick="showDetails('培训教学')" class="btn-secondary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            查看详情
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Landing Page Service -->
+    <section id="landing" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-xl blur-lg opacity-20"></div>
+                        <div class="bg-navy p-6 rounded-xl border border-gold/20 relative">
+                            <div class="flex items-center justify-between mb-6">
+                                <h4 class="font-bold text-lg">落地页制作服务</h4>
+                                <span class="bg-gold/20 text-gold text-xs px-3 py-1 rounded-full">高转化保障</span>
+                            </div>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-gold mr-3"></i>
+                                    <p class="text-gray-300">可过Google和Facebook广告审核</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-gold mr-3"></i>
+                                    <p class="text-gray-300">2次修改不收费</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-gold mr-3"></i>
+                                    <p class="text-gray-300">赠送斗篷服务</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-gold mr-3"></i>
+                                    <p class="text-gray-300">响应式设计，兼容所有设备</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-navy-light/30 p-4 rounded-lg mb-6">
+                                <h5 class="font-bold mb-2">支持行业</h5>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">兼职</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">网赚</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">股票</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">交友</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">体育</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">币粉</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">教育</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">电商</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">更多行业...</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between bg-gold/10 p-4 rounded-lg">
+                                <div>
+                                    <h4 class="font-bold text-gold">平均转化率提升</h4>
+                                </div>
+                                <div class="text-xl font-bold text-white">
+                                    +85% <i class="fas fa-arrow-up text-green-500 text-sm ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">
+                        <span class="gold-gradient">专业落地页制作</span>
+                    </h2>
+                    
+                    <p class="text-gray-300 mb-6">
+                        我们提供高转化率的专业落地页制作服务，不限行业，从设计到开发全程把控，确保通过严格的广告平台审核，为您的广告投放提供强有力的支持。
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-paint-brush text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">专业设计团队</h4>
+                                <p class="text-gray-400">经验丰富的设计师根据行业特点和目标受众，打造吸引眼球的专业设计</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-code text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">高质量开发</h4>
+                                <p class="text-gray-400">采用先进技术栈，确保页面加载速度快、兼容性好、用户体验佳</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-tachometer-alt text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">转化率优化</h4>
+                                <p class="text-gray-400">通过专业的视觉引导和心理学原理，优化用户路径，提高转化率</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-primary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取制作方案
+                        </button>
+                        
+                        <button onclick="showDetails('落地页制作')" class="btn-secondary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            查看详情
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- KOL Marketing Service -->
+    <section id="kol" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-xl blur-lg opacity-20"></div>
+                        <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 relative">
+                            <div class="flex items-center justify-between mb-6">
+                                <h4 class="font-bold text-lg">红人营销服务</h4>
+                                <span class="bg-gold/20 text-gold text-xs px-3 py-1 rounded-full">150+ 全球KOL</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="p-3 bg-navy-light/30 rounded-lg text-center">
+                                    <i class="fas fa-globe-americas text-gold text-xl mb-2"></i>
+                                    <p class="text-sm text-gray-300">欧美地区</p>
+                                </div>
+                                <div class="p-3 bg-navy-light/30 rounded-lg text-center">
+                                    <i class="fas fa-globe-asia text-gold text-xl mb-2"></i>
+                                    <p class="text-sm text-gray-300">东南亚地区</p>
+                                </div>
+                                <div class="p-3 bg-navy-light/30 rounded-lg text-center">
+                                    <i class="fas fa-globe-africa text-gold text-xl mb-2"></i>
+                                    <p class="text-sm text-gray-300">中东地区</p>
+                                </div>
+                                <div class="p-3 bg-navy-light/30 rounded-lg text-center">
+                                    <i class="fas fa-globe-americas text-gold text-xl mb-2"></i>
+                                    <p class="text-sm text-gray-300">南美地区</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-navy-light/30 p-4 rounded-lg mb-6">
+                                <h5 class="font-bold mb-2">支持产品类型</h5>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">股票</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">兼职</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">网赚</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">贷款</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">3C产品</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">APP推广</span>
+                                    <span class="bg-navy-light/40 px-3 py-1 rounded-full text-xs">更多类型...</span>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-gold mr-3"></i>
+                                    <p class="text-gray-300">文案策划</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-gold mr-3"></i>
+                                    <p class="text-gray-300">专业拍摄</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-gold mr-3"></i>
+                                    <p class="text-gray-300">剪辑制作</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">
+                        <span class="gold-gradient">红人营销服务</span>
+                    </h2>
+                    
+                    <p class="text-gray-300 mb-6">
+                        150+海外真人视频广告拍摄，不限产品类型，覆盖全球主要市场，从文案策划到拍摄剪辑一站式服务，助力品牌出海红人营销带动高转化。
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-user-friends text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">丰富的KOL资源</h4>
+                                <p class="text-gray-400">150+合作KOL覆盖全球主要市场，可根据产品特点匹配最适合的红人</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-video text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">高质量视频制作</h4>
+                                <p class="text-gray-400">专业团队负责文案、拍摄和后期制作，确保视频内容吸引力和转化效果</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mt-1 mr-4">
+                                <i class="fas fa-bullhorn text-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">全方位推广策略</h4>
+                                <p class="text-gray-400">结合红人影响力和精准投放，打造立体化营销效果，提升品牌知名度和转化率</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-primary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取营销方案
+                        </button>
+                        
+                        <button onclick="showDetails('红人营销')" class="btn-secondary py-3 px-6 rounded-lg flex items-center text-sm">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            查看详情
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">客户见证</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Testimonial 1 - Ad Agency -->
+                <div class="testimonial-card p-6 rounded-xl border border-gold/20 bg-navy relative">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">LW</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">李先生</h5>
+                            <p class="text-xs text-gray-400">跨境电商</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        "腾飞团队的广告代投服务非常专业，帮我们降低了40%的获客成本，ROI提升了2.8倍，专业的数据分析和优化策略让我们的广告效果持续提升。"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 - Training -->
+                <div class="testimonial-card p-6 rounded-xl border border-gold/20 bg-navy relative">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">ZY</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">张女士</h5>
+                            <p class="text-xs text-gray-400">广告部主管</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        "参加了腾飞的广告培训课程后，团队整体能力提升明显，现在我们能独立处理90%的广告投放工作，实战案例分析和诊断特别有价值。"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 - Landing Page -->
+                <div class="testimonial-card p-6 rounded-xl border border-gold/20 bg-navy relative">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">WJ</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">王总</h5>
+                            <p class="text-xs text-gray-400">金融科技公司</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        "腾飞制作的落地页不仅顺利通过了谷歌的严格审核，转化率比我们以前的页面高出了85%，专业的设计和用户体验优化非常到位。"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 4 - KOL Marketing -->
+                <div class="testimonial-card p-6 rounded-xl border border-gold/20 bg-navy relative">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">CL</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">陈总</h5>
+                            <p class="text-xs text-gray-400">APP开发商</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        "与腾飞合作的红人营销项目效果惊人，通过15位KOL的视频推广，我们的应用下载量增长了320%，红人选择精准，视频质量高。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section id="contact" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <div class="bg-navy-dark p-8 md:p-12 rounded-2xl border border-gold/30 shadow-xl">
+                <h2 class="text-3xl font-bold text-center mb-8">
+                    把你的时间花在你该做的事情上<br>
+                    <span class="gold-gradient">广告这个事，让我们来为你解决</span>
+                </h2>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-10">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-award text-gold text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">6年+</h3>
+                            <p class="text-sm text-gray-400">海外营销经验</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-px h-10 bg-gold/20 hidden md:block"></div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-users text-gold text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">500+</h3>
+                            <p class="text-sm text-gray-400">成功客户案例</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-px h-10 bg-gold/20 hidden md:block"></div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center">
+                            <i class="fas fa-globe text-gold text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">20+</h3>
+                            <p class="text-sm text-gray-400">覆盖全球市场</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="opensite()" class="btn-primary py-4 px-10 rounded-lg flex items-center mx-auto text-lg">
+                        <i class="fas fa-comments mr-2"></i>
+                        立即咨询
+                    </button>
+                    
+                    <div class="mt-6 text-gray-400">
+                        <p>Telegram: @snvtr2</p>
+                        <p>微信: tangguo955</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-navy-dark py-8 border-t border-gold/10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="h-8 w-8 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fas fa-globe-asia text-navy-dark text-sm"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">腾飞<span class="text-gold">跨境出海</span></h1>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-gray-500">© 2023 腾飞跨境出海服务. 版权所有.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
