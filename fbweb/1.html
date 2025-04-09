@@ -8,19 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-yellow: #E6A800; /* 更深的黄色，增加对比度 */
-            --primary-yellow-dark: #D49A00;
-            --accent-blue: #3B82F6;
-            --accent-color: #FF6B35; /* 橙色强调色 */
-            --bg-light: #FFFFFF;
-            --bg-gray: #F5F7FA;
-            --bg-darker: #EAECEF;
-            --card-bg: #FFFFFF;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --card-border: 1px solid #EEEEEE;
-            --text-dark: #2D3748;
-            --text-gray: #718096;
+            --primary-yellow: #F2CA26; /* 明亮的黄色 */
+            --primary-yellow-dark: #E6B800;
+            --dark-blue: #2A2F4F; /* 深空蓝背景 */
+            --darker-blue: #222642; /* 更深的蓝色 */
+            --light-blue: #393E64; /* 浅一点的蓝色，用于卡片背景 */
+            --card-bg: #343A5F; /* 卡片背景色 */
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --card-border: 1px solid #444B77;
             --text-light: #FFFFFF;
+            --text-gray: #B0B6D3;
+            --accent-color: #FF6B35; /* 橙色强调色 */
         }
 
         * {
@@ -31,9 +29,9 @@
 
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            color: var(--text-dark);
+            color: var(--text-light);
             line-height: 1.6;
-            background-color: var(--bg-light);
+            background-color: var(--dark-blue);
             overflow-x: hidden;
         }
 
@@ -47,18 +45,18 @@
         /* 导航栏 */
         header {
             padding: 15px 0;
-            background-color: var(--bg-light);
+            background-color: var(--darker-blue);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
 
         header.scrolled {
             padding: 10px 0;
-            background-color: rgba(255, 255, 255, 0.98);
+            background-color: rgba(34, 38, 66, 0.98);
         }
 
         .header-container {
@@ -99,7 +97,7 @@
         }
 
         .nav-link {
-            color: var(--text-dark);
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
@@ -130,7 +128,7 @@
         .contact-button {
             display: inline-block;
             background-color: var(--primary-yellow);
-            color: var(--text-dark);
+            color: var(--darker-blue);
             padding: 10px 25px;
             border-radius: 50px;
             font-weight: 700;
@@ -141,7 +139,7 @@
 
         .contact-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(230, 168, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(242, 202, 38, 0.3);
             background-color: var(--primary-yellow-dark);
         }
 
@@ -150,14 +148,14 @@
             cursor: pointer;
             background: none;
             border: none;
-            color: var(--text-dark);
+            color: var(--text-light);
             font-size: 1.5rem;
         }
 
         /* 英雄区域 */
         .hero {
             padding: 180px 0 100px;
-            background-color: var(--bg-gray);
+            background-color: var(--dark-blue);
             position: relative;
             overflow: hidden;
         }
@@ -170,8 +168,8 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(230, 168, 0, 0.15), transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(230, 168, 0, 0.05), transparent 40%);
+                radial-gradient(circle at 20% 30%, rgba(242, 202, 38, 0.1), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(242, 202, 38, 0.05), transparent 40%);
         }
 
         .hero-content {
@@ -185,7 +183,7 @@
             font-weight: 900;
             margin-bottom: 20px;
             line-height: 1.2;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .hero-title span {
@@ -216,7 +214,7 @@
         /* 服务区域 */
         .services {
             padding: 100px 0 50px;
-            background-color: var(--bg-light);
+            background-color: var(--dark-blue);
             position: relative;
         }
 
@@ -227,7 +225,7 @@
             right: 0;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle at center, rgba(230, 168, 0, 0.1), transparent 70%);
+            background: radial-gradient(circle at center, rgba(242, 202, 38, 0.1), transparent 70%);
             border-radius: 50%;
         }
 
@@ -237,7 +235,7 @@
             font-weight: 800;
             margin-bottom: 60px;
             position: relative;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .section-title::after {
@@ -269,7 +267,7 @@
 
         .service-heading h2 {
             font-size: 2rem;
-            color: var(--text-dark);
+            color: var(--text-light);
             margin-bottom: 10px;
         }
 
@@ -303,7 +301,7 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
-            background-color: var(--bg-gray);
+            background-color: var(--darker-blue);
         }
 
         .service-image img {
@@ -322,7 +320,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
             display: flex;
             align-items: flex-end;
             padding: 30px;
@@ -342,7 +340,7 @@
 
         .service-logo i {
             font-size: 1.8rem;
-            color: var(--text-dark);
+            color: var(--darker-blue);
         }
 
         .service-info {
@@ -363,7 +361,7 @@
 
         .service-details:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .service-details .service-icon {
@@ -403,7 +401,7 @@
 
         .feature-icon i {
             font-size: 0.8rem;
-            color: var(--text-dark);
+            color: var(--darker-blue);
         }
 
         .feature-text {
@@ -420,7 +418,7 @@
         .service-button {
             display: inline-block;
             background-color: var(--primary-yellow);
-            color: var(--text-dark);
+            color: var(--darker-blue);
             padding: 12px 30px;
             border-radius: 50px;
             font-weight: 700;
@@ -432,7 +430,7 @@
 
         .service-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(230, 168, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(242, 202, 38, 0.3);
             background-color: var(--primary-yellow-dark);
         }
 
@@ -442,13 +440,13 @@
             background: linear-gradient(to right, transparent, var(--primary-yellow), transparent);
             margin: 80px 0;
             width: 100%;
-            opacity: 0.5;
+            opacity: 0.3;
         }
 
         /* 用户见证 */
         .testimonials {
             padding: 100px 0;
-            background-color: var(--bg-gray);
+            background-color: var(--darker-blue);
             position: relative;
         }
 
@@ -459,7 +457,7 @@
             right: 0;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle at center, rgba(230, 168, 0, 0.05), transparent 70%);
+            background: radial-gradient(circle at center, rgba(242, 202, 38, 0.05), transparent 70%);
         }
 
         .testimonial-grid {
@@ -483,7 +481,7 @@
 
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .testimonial-text {
@@ -516,7 +514,7 @@
             height: 50px;
             border-radius: 50%;
             background-color: var(--primary-yellow);
-            color: var(--text-dark);
+            color: var(--darker-blue);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -528,7 +526,7 @@
         .testimonial-info h4 {
             font-size: 1.1rem;
             margin-bottom: 5px;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .testimonial-info p {
@@ -539,7 +537,7 @@
         /* CTA 区域 */
         .cta {
             padding: 100px 0;
-            background-color: var(--bg-light);
+            background-color: var(--dark-blue);
             text-align: center;
         }
 
@@ -547,7 +545,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 30px;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .cta-description {
@@ -568,7 +566,7 @@
         .contact-item {
             display: flex;
             align-items: center;
-            background-color: var(--bg-gray);
+            background-color: var(--card-bg);
             padding: 15px 25px;
             border-radius: 50px;
             transition: transform 0.3s ease;
@@ -577,7 +575,7 @@
 
         .contact-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .contact-item i {
@@ -588,12 +586,12 @@
 
         .contact-item span {
             font-weight: 500;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         /* 底部区域 */
         footer {
-            background-color: var(--bg-darker);
+            background-color: var(--darker-blue);
             padding: 40px 0;
             text-align: center;
             color: var(--text-gray);
@@ -627,14 +625,14 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 70px);
-                background-color: var(--bg-light);
+                background-color: var(--darker-blue);
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
                 padding-top: 40px;
                 transition: all 0.3s ease;
                 opacity: 0;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 z-index: 1000;
             }
 
@@ -735,7 +733,7 @@
                 </div>
                 <div class="service-showcase">
                     <div class="service-image">
-                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_1 path %7B fill: %23EAECEF;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_1'%3E%3Crect width='800' height='500' fill='%23EAECEF'%3E%3C/rect%3E%3Cg%3E%3Cpath d='M400 250L600 150L600 350Z' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Ccircle cx='350' cy='250' r='100' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Cpath d='M150 150L250 150L250 350L150 350Z' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="广告代投服务图">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_1 path %7B fill: %23222642;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_1'%3E%3Crect width='800' height='500' fill='%23222642'%3E%3C/rect%3E%3Cg%3E%3Cpath d='M400 250L600 150L600 350Z' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Ccircle cx='350' cy='250' r='100' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Cpath d='M150 150L250 150L250 350L150 350Z' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="广告代投服务图">
                         <div class="service-overlay">
                             <div class="service-logo">
                                 <i class="fas fa-ad"></i>
@@ -837,7 +835,7 @@
                     </div>
                     
                     <div class="service-image">
-                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_2 path %7B fill: %23EAECEF;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_2'%3E%3Crect width='800' height='500' fill='%23EAECEF'%3E%3C/rect%3E%3Cg%3E%3Cpath d='M200 150L600 150L400 350Z' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Ccircle cx='400' cy='250' r='50' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Crect x='300' y='175' width='200' height='20' fill='%23E6A800' opacity='0.3'%3E%3C/rect%3E%3Crect x='300' y='205' width='200' height='20' fill='%23E6A800' opacity='0.3'%3E%3C/rect%3E%3Crect x='300' y='235' width='200' height='20' fill='%23E6A800' opacity='0.3'%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="培训教学服务图">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_2 path %7B fill: %23222642;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_2'%3E%3Crect width='800' height='500' fill='%23222642'%3E%3C/rect%3E%3Cg%3E%3Cpath d='M200 150L600 150L400 350Z' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Ccircle cx='400' cy='250' r='50' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Crect x='300' y='175' width='200' height='20' fill='%23F2CA26' opacity='0.3'%3E%3C/rect%3E%3Crect x='300' y='205' width='200' height='20' fill='%23F2CA26' opacity='0.3'%3E%3C/rect%3E%3Crect x='300' y='235' width='200' height='20' fill='%23F2CA26' opacity='0.3'%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="培训教学服务图">
                         <div class="service-overlay">
                             <div class="service-logo">
                                 <i class="fas fa-graduation-cap"></i>
@@ -861,7 +859,7 @@
                 </div>
                 <div class="service-showcase">
                     <div class="service-image">
-                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_3 path %7B fill: %23EAECEF;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_3'%3E%3Crect width='800' height='500' fill='%23EAECEF'%3E%3C/rect%3E%3Cg%3E%3Crect x='200' y='100' width='400' height='300' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/rect%3E%3Crect x='250' y='150' width='300' height='50' fill='%23E6A800' opacity='0.3'%3E%3C/rect%3E%3Crect x='250' y='220' width='300' height='20' fill='%23E6A800' opacity='0.3'%3E%3C/rect%3E%3Crect x='250' y='250' width='300' height='20' fill='%23E6A800' opacity='0.3'%3E%3C/rect%3E%3Crect x='300' y='300' width='200' height='40' fill='%23E6A800' opacity='0.5'%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="落地页制作服务图">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_3 path %7B fill: %23222642;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_3'%3E%3Crect width='800' height='500' fill='%23222642'%3E%3C/rect%3E%3Cg%3E%3Crect x='200' y='100' width='400' height='300' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/rect%3E%3Crect x='250' y='150' width='300' height='50' fill='%23F2CA26' opacity='0.3'%3E%3C/rect%3E%3Crect x='250' y='220' width='300' height='20' fill='%23F2CA26' opacity='0.3'%3E%3C/rect%3E%3Crect x='250' y='250' width='300' height='20' fill='%23F2CA26' opacity='0.3'%3E%3C/rect%3E%3Crect x='300' y='300' width='200' height='40' fill='%23F2CA26' opacity='0.5'%3E%3C/rect%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="落地页制作服务图">
                         <div class="service-overlay">
                             <div class="service-logo">
                                 <i class="fas fa-file-code"></i>
@@ -963,7 +961,7 @@
                     </div>
                     
                     <div class="service-image">
-                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_4 path %7B fill: %23EAECEF;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_4'%3E%3Crect width='800' height='500' fill='%23EAECEF'%3E%3C/rect%3E%3Cg%3E%3Ccircle cx='300' cy='250' r='100' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Ccircle cx='500' cy='250' r='100' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Cpath d='M330 180A50 50 0 0 1 270 180' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Cpath d='M530 180A50 50 0 0 1 470 180' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Cpath d='M375 300A75 75 0 0 0 225 300' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Cpath d='M575 300A75 75 0 0 0 425 300' stroke='%23E6A800' stroke-width='2' fill='transparent'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="网红营销服务图">
+                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg width='800' height='500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cstyle type='text/css'%3E%23holder_4 path %7B fill: %23222642;%7D%3C/style%3E%3C/defs%3E%3Cg id='holder_4'%3E%3Crect width='800' height='500' fill='%23222642'%3E%3C/rect%3E%3Cg%3E%3Ccircle cx='300' cy='250' r='100' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Ccircle cx='500' cy='250' r='100' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/circle%3E%3Cpath d='M330 180A50 50 0 0 1 270 180' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Cpath d='M530 180A50 50 0 0 1 470 180' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Cpath d='M375 300A75 75 0 0 0 225 300' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/path%3E%3Cpath d='M575 300A75 75 0 0 0 425 300' stroke='%23F2CA26' stroke-width='2' fill='transparent'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="网红营销服务图">
                         <div class="service-overlay">
                             <div class="service-logo">
                                 <i class="fas fa-star"></i>
