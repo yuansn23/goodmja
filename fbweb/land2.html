@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>专业落地页制作 | 高转化率保证</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#252B59',
+                        'navy-dark': '#1E2347',
+                        'navy-light': '#2F3573',
+                        'gold': '#FFD700',
+                        'gold-light': '#FFEB3B',
+                        'gold-dark': '#FFC107',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-in-right': 'slideInRight 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)', opacity: 0 },
+                            '100%': { transform: 'translateX(0)', opacity: 1 },
+                        }
+                    }
+                }
+            }
+        };
+
+        function opensite() {
+            // Add your site opening logic here
+            alert('Contact information: Telegram: @snvtr2, WeChat: tangguo955');
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #252B59;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #252B59 0%, #1E2347 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+        }
+        
+        .feature-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .btn-contact {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #1E2347;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .btn-contact::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn-contact:hover::after {
+            left: 100%;
+        }
+        
+        .country-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        
+        .country-item {
+            transition: all 0.3s ease;
+        }
+        
+        .country-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .device-mockup {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .browser-top {
+            height: 24px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+        }
+        
+        .browser-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .float-element {
+            position: absolute;
+            opacity: 0.15;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="float-element" style="top: 10%; left: 5%; transform: rotate(15deg);">
+            <i class="fas fa-code text-gold text-7xl"></i>
+        </div>
+        <div class="float-element" style="top: 70%; left: 90%; transform: rotate(-10deg);">
+            <i class="fas fa-globe text-gold text-6xl"></i>
+        </div>
+        <div class="float-element" style="top: 40%; left: 85%; transform: rotate(20deg);">
+            <i class="fas fa-paint-brush text-gold text-5xl"></i>
+        </div>
+        <div class="float-element" style="top: 80%; left: 10%; transform: rotate(-5deg);">
+            <i class="fas fa-desktop text-gold text-6xl"></i>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="py-4 bg-navy-dark border-b border-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="h-10 w-10 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fas fa-layer-group text-navy-dark text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">专业<span class="text-gold">落地页</span>制作</h1>
+                        <p class="text-xs text-gray-400">提升转化率的营销利器</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#features" class="text-white hover:text-gold transition-colors">服务特点</a>
+                    <a href="#industries" class="text-white hover:text-gold transition-colors">覆盖行业</a>
+                    <a href="#testimonials" class="text-white hover:text-gold transition-colors">用户见证</a>
+                    <a href="#contact" class="text-white hover:text-gold transition-colors">联系我们</a>
+                </div>
+                
+                <button onclick="opensite()" class="bg-gold text-navy-dark font-bold py-2 px-4 rounded-lg hover:bg-gold-dark transition-colors">
+                    立即咨询
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 hero-gradient">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <div class="feature-badge inline-block text-gold py-1 px-3 rounded-full text-sm mb-4 border border-gold/30">
+                        <span>专业设计·高转化保证</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-shadow">
+                        <span class="gold-gradient">高转化落地页制作</span>
+                        <br>0-1原创设计，不限产品
+                    </h2>
+                    
+                    <p class="text-gray-300 text-lg mb-8">
+                        专业设计团队提供0-1原创设计，不跟风抄袭，定制高效转化的落地页，为您的广告活动带来最大回报。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-contact py-3 px-8 rounded-lg flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取免费咨询
+                        </button>
+                        
+                        <a href="#features" class="py-3 px-8 rounded-lg border border-gold text-gold hover:bg-gold/10 transition-colors flex items-center">
+                            <i class="fas fa-star mr-2"></i>
+                            服务特点
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="relative device-mockup">
+                        <div class="browser-top">
+                            <div class="browser-dot bg-red-500"></div>
+                            <div class="browser-dot bg-yellow-500"></div>
+                            <div class="browser-dot bg-green-500"></div>
+                            <div class="flex-1 mx-4 bg-gray-700 rounded-full h-3"></div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-b-xl blur-lg opacity-30"></div>
+                            <img class="relative z-10 rounded-b-xl" src="https://www.tkppena.online/116540.jpg" alt="Landing Page Design">
+                        </div>
+                        
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-navy/80 backdrop-blur-sm p-4 rounded-xl border border-gold/30">
+                            <div class="text-center">
+                                <i class="fas fa-chart-line text-gold text-3xl mb-2"></i>
+                                <h3 class="font-bold">高转化设计</h3>
+                                <p class="text-sm text-gray-300">专业视觉引导</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">服务特点</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl card">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-check-circle text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">包过广告审核</h3>
+                    <p class="text-gray-300">
+                        设计符合Google、Facebook等广告平台的审核标准，确保广告顺利通过审核。
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl card">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">赠送斗篷服务</h3>
+                    <p class="text-gray-300">
+                        为您的落地页提供安全保障，有效避免账号风险，提高推广效果。
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl card">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-edit text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">2次修改不收费</h3>
+                    <p class="text-gray-300">
+                        充分尊重客户需求，提供2次免费修改服务，确保满足您的期望。
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl card">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">包域名服务器</h3>
+                    <p class="text-gray-300">
+                        一站式服务，包括域名和服务器，无需您操心技术细节。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-navy-dark p-8 rounded-xl border border-gold/20 shadow-xl">
+                <h3 class="text-xl font-bold mb-6 text-center">我们的落地页设计理念</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-bullseye text-gold text-xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">精准定位</h4>
+                        <p class="text-gray-300">针对目标受众精心设计，抓住用户痛点</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-tachometer-alt text-gold text-xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">高效转化</h4>
+                        <p class="text-gray-300">优化用户体验和视觉引导，提高转化率</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-mobile-alt text-gold text-xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">响应式设计</h4>
+                        <p class="text-gray-300">完美适配各种设备，确保最佳浏览体验</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Coverage -->
+    <section id="industries" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">行业覆盖</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-gold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">股票覆盖国家</h3>
+                    </div>
+                    
+                    <div class="country-grid">
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">台湾</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">日本</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">韩国</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">德国</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">美国</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">马来西亚</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">墨西哥</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">土耳其</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">越南</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">加拿大</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="opensite()" class="mt-6 w-full bg-gold/10 hover:bg-gold/20 text-gold font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center">
+                        <i class="fas fa-eye mr-2"></i>
+                        查看案例请联系我
+                    </button>
+                </div>
+                
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-coins text-gold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">币粉覆盖国家</h3>
+                    </div>
+                    
+                    <div class="country-grid">
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">美国</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">德国</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">日本</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">韩国</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-money-bill-wave text-gold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">网赚兼职覆盖国家</h3>
+                    </div>
+                    
+                    <div class="country-grid">
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">阿塞拜疆</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">尼日利亚</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">加拿大</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">日本</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">土耳其</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">俄罗斯</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">西班牙</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="opensite()" class="mt-6 w-full bg-gold/10 hover:bg-gold/20 text-gold font-medium py-2 px-4 rounded-lg transition-colors flex items-center justify-center">
+                        <i class="fas fa-eye mr-2"></i>
+                        查看案例请联系我
+                    </button>
+                </div>
+                
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-futbol text-gold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">体育足彩覆盖国家</h3>
+                    </div>
+                    
+                    <div class="country-grid">
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">日本</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-heart text-gold text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">交友覆盖国家</h3>
+                    </div>
+                    
+                    <div class="country-grid">
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">韩国</p>
+                        </div>
+                        <div class="country-item bg-navy-dark p-3 rounded-lg text-center">
+                            <i class="text-gold fas fa-flag mb-2"></i>
+                            <p class="text-sm">日本</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">用户见证</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">LW</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">刘先生</h5>
+                            <p class="text-xs text-gray-400">股票推广专员</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "团队的专业程度超出预期，所设计的落地页不仅通过了广告审核，而且转化率比之前提高了200%以上。真的很专业！"
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">ZY</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">赵女士</h5>
+                            <p class="text-xs text-gray-400">数字营销经理</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "赠送的斗篷服务非常有价值，让我们的推广更加安全。两次免费修改也体现了团队的诚意，最终效果非常满意。"
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">WH</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">王总监</h5>
+                            <p class="text-xs text-gray-400">在线交友平台</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "一站式服务非常省心，从设计到域名和服务器全部搞定。最重要的是设计真的很有创意，不是网上常见的模板。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section id="contact" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <div class="bg-navy p-8 md:p-12 rounded-2xl border border-gold/30 shadow-xl">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">准备提升您的广告转化率？</h2>
+                        <p class="text-gray-300">
+                            联系我们获取专业落地页定制服务，享受特别优惠。从设计到上线，我们一站式解决。
+                        </p>
+                    </div>
+                    
+                    <div class="md:w-1/3">
+                        <button onclick="opensite()" class="w-full btn-contact py-4 px-6 rounded-lg text-lg flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            联系我们获取优惠
+                        </button>
+                        <div class="text-center mt-3 text-gray-400">
+                            <p>Telegram: @snvtr2</p>
+                            <p>微信: tangguo955</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-navy-dark py-8 border-t border-gold/10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center mb-6">
+                <div class="flex items-center space-x-2">
+                    <div class="h-8 w-8 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fas fa-layer-group text-navy-dark text-sm"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">专业<span class="text-gold">落地页</span>制作</h1>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-400 text-sm max-w-2xl mx-auto">
+                我们提供专业的落地页设计服务，帮助品牌提升广告转化率。
+                所有设计均原创定制，符合广告平台政策和当地法律法规。
+            </p>
+            
+            <div class="border-t border-gold/10 mt-6 pt-6 text-center">
+                <p class="text-sm text-gray-500">© 2023 专业落地页制作. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for the scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
