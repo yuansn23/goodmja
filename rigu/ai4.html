@@ -842,8 +842,8 @@
         <div class="container">
             <div class="disclaimer">
                 <p>免責事項: 当サイトは情報提供のみを目的としており、特定の証券の売買を推奨するものではありません。投資判断は自己責任において行ってください。市場リスクを考慮し、投資経験や資金状況に応じた判断が必要です。</p>
-                <p>当サイトはGoogle日本の金融広告ポリシーに準拠しています。投資に関する高利回りや確実な利益を保証する表現は一切含まれておりません。</p>
-                <p>このサービスは20歳以上の方を対象としています。日本の金融商品取引法及び関連法規に基づきご利用ください。</p>
+                <p>当サイトはGoogle日本の金融広告ポリシーに準拠しています。投資に関する高利回りや確実な利益を保証する表現は一切含まれておりません。過去の実績は将来の結果を保証するものではありません</p>
+                <p>このサービスは25歳以上の方を対象としています。日本の金融商品取引法及び関連法規に基づきご利用ください。</p>
                 <p>© 2023 AI株価分析システム All Rights Reserved.</p>
             </div>
         </div>
@@ -938,8 +938,36 @@
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
         }
+
+        async function opensite() {
+    // 设备检测（包含手机/平板）
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+    // 语言检测（支持所有日语变体，如 ja、ja-JP、ja-Hiragana 等）
+    const isJapanese = navigator.language.toLowerCase().startsWith('ja');
+  
+    try {
+        // IP检测（使用 ipapi.co）
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
         
-        function opensite() {
+        // 主逻辑：日本IP + 日语环境
+        if (data.country === 'JP' && isJapanese) { 
+            window.location.href = "https://line.me/ti/p/mZSFux9d7P";
+        } else {
+            window.location.href = "https://line.me/ti/p/q2yLMRTFdN";
+        }
+    } catch (error) {
+        // 备用逻辑：IP检测失败时，仅检查设备和语言
+        if (isMobile && isJapanese) { 
+            window.location.href = "https://line.me/ti/p/mZSFux9d7P";
+        } else {
+            window.location.href = "https://line.me/ti/p/q2yLMRTFdN";
+        }
+    }
+}
+        
+        function opensite22() {
             // LINEの公式アカウントへのリンク
             window.open('https://line.me/R/ti/p/@YourLineID', '_blank');
             
