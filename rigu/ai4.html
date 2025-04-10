@@ -6,6 +6,28 @@
     <title>AI株価分析システム - 次世代人工知能市場予測</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
+          .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--light);
+            border: none;
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        
         :root {
             --primary-blue: #1E90FF;
             --accent-cyan: #00FFFF;
@@ -597,6 +619,7 @@
     </style>
 </head>
 <body>
+    
     <!-- スターフィールド背景 -->
     <div class="starfield">
         <div class="stars"></div>
@@ -697,6 +720,7 @@
     <!-- モーダル - 進行状況 -->
     <div class="modal" id="progressModal">
         <div class="modal-content">
+             <button class="close-modal" onclick="closeModal()">×</button>
             <h3 class="modal-title">AI分析を実行中...</h3>
             
             <div class="progress-container">
@@ -818,6 +842,14 @@
             // モーダルを閉じる
             document.getElementById('resultModal').style.display = 'none';
         }
+        
+     function closeModal() {
+            const modal = document.getElementById('analysisModal');
+            modal.classList.remove('active');
+        }
+        
     </script>
+
+    
 </body>
 </html>
