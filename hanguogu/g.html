@@ -7,17 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #00b150;
-            --secondary-color: #3a1d8a;
-            --accent-color: #ffdc3c;
-            --kakao-color: #fee500;
-            --text-dark: #2b2b2b;
-            --text-light: #ffffff;
-            --background-light: #f9f9f9;
-            --background-dark: #121212;
-            --gradient-blue: linear-gradient(135deg, #2f80ed, #56ccf2);
-            --gradient-purple: linear-gradient(135deg, #6a11cb, #2575fc);
-            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --kakao-yellow: #FEE500;
+            --dark-blue: #1C273A;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --text-gray: #767676;
+            --bg-light: #F7F7F7;
         }
         
         * {
@@ -30,8 +25,7 @@
             font-family: 'Noto Sans KR', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background-color: var(--background-light);
-            position: relative;
+            background-color: var(--bg-light);
             overflow-x: hidden;
         }
         
@@ -39,58 +33,64 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 30px;
         }
         
-        /* Header styles */
+        /* 헤더 */
         header {
-            background: var(--gradient-blue);
-            color: var(--text-light);
-            padding: 20px 0;
+            background-color: var(--dark-blue);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
         
-        .header-content {
+        .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
-            font-size: 28px;
+            color: var(--text-light);
+            font-size: 1.5rem;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
-        .kakao-btn {
-            background-color: var(--kakao-color);
-            color: var(--text-dark);
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 700;
+        .nav-kakao {
             display: flex;
             align-items: center;
-            gap: 8px;
+            background-color: var(--kakao-yellow);
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 24px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 16px;
         }
         
-        .kakao-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .nav-kakao img {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
         }
         
-        .kakao-btn i {
-            font-size: 20px;
+        .nav-kakao:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(254, 229, 0, 0.3);
         }
         
-        /* Hero section */
+        /* 첫 화면 */
         .hero {
-            background: url('http://goodmja.online/hanguogu/img/a3.png') center/cover no-repeat;
-            height: 600px;
-            display: flex;
-            align-items: center;
+            background: var(--dark-blue);
+            padding: 160px 0 100px;
             position: relative;
+            overflow: hidden;
         }
         
         .hero::before {
@@ -100,129 +100,241 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
+            z-index: 1;
+        }
+        
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
         
         .hero-content {
-            width: 50%;
-            position: relative;
-            z-index: 1;
             color: var(--text-light);
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
+        }
+        
+        .hero-eyebrow {
+            display: inline-block;
+            background-color: rgba(254, 229, 0, 0.2);
+            color: var(--kakao-yellow);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
         
         .hero-title {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            line-height: 1.2;
             font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        
+        .hero-title span {
+            color: var(--kakao-yellow);
         }
         
         .hero-description {
             font-size: 1.1rem;
-            margin-bottom: 30px;
             line-height: 1.7;
-        }
-        
-        .counter-box {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .counter-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .counter-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-        
-        .counter-label {
-            font-size: 0.8rem;
+            margin-bottom: 30px;
             color: rgba(255, 255, 255, 0.8);
         }
         
-        /* Activity section */
-        .activity {
-            padding: 80px 0;
-            background-color: var(--background-light);
+        .hero-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--kakao-yellow);
+            margin-bottom: 5px;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        /* CTA 버튼 */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--kakao-yellow);
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 30px;
+            padding: 14px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(254, 229, 0, 0.3);
+        }
+        
+        .btn-primary img {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(254, 229, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 14px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 섹션 공통 스타일 */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-light {
+            background-color: var(--bg-light);
+        }
+        
+        .section-dark {
+            background-color: var(--dark-blue);
+            color: var(--text-light);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
         }
         
         .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-blue);
-            border-radius: 2px;
+        .section-title span {
+            color: var(--kakao-yellow);
         }
         
-        .activity-container {
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+        
+        /* 활동 섹션 */
+        .activity-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
         }
         
-        .activity-content {
-            padding: 0 20px;
-        }
-        
-        .activity-title {
+        .activity-content h3 {
             font-size: 1.8rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: var(--secondary-color);
+            color: var(--dark-blue);
         }
         
-        .activity-description {
-            margin-bottom: 30px;
-            line-height: 1.8;
+        .activity-content p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
         
-        .activity-progress {
-            margin-top: 30px;
+        .progress-container {
+            margin: 30px 0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+        }
+        
+        .progress-value {
+            color: var(--dark-blue);
+            font-weight: 700;
         }
         
         .progress-bar {
             width: 100%;
             height: 10px;
-            background-color: #e0e0e0;
+            background-color: rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             overflow: hidden;
-            margin-bottom: 10px;
         }
         
         .progress-fill {
             height: 100%;
             width: 90%;
-            background: var(--gradient-purple);
+            background: var(--kakao-yellow);
+            border-radius: 5px;
             animation: progressAnimation 2s ease-in-out;
-        }
-        
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: var(--text-dark);
         }
         
         @keyframes progressAnimation {
@@ -232,59 +344,87 @@
         
         .activity-image img {
             width: 100%;
-            border-radius: 15px;
-            box-shadow: var(--box-shadow);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
-        /* Core sections */
-        .core-sections {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa, #e5e9f2);
+        /* 핵심 섹션 - 새로운 디자인 */
+        .core-section {
+            background-color: var(--bg-light);
+            padding: 100px 0;
         }
         
-        .core-grid {
+        .core-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+        
+        .core-item {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
         }
         
-        .core-card {
-            background: var(--text-light);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            transition: transform 0.3s ease;
-        }
-        
-        .core-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .core-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .core-item:nth-child(even) .core-image {
+            order: -1;
         }
         
         .core-content {
-            padding: 25px;
+            padding: 30px;
+        }
+        
+        .core-number {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(254, 229, 0, 0.2);
+            line-height: 1;
+            z-index: 0;
         }
         
         .core-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+            position: relative;
+            z-index: 1;
         }
         
         .core-description {
-            color: #666;
-            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
         
-        /* Benefits section */
-        .benefits {
-            padding: 80px 0;
-            background-color: #f3f6fa;
+        .core-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .core-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 혜택 섹션 - 새로운 디자인 */
+        .benefits-section {
+            background-color: var(--dark-blue);
+            padding: 100px 0;
+            color: var(--text-light);
+        }
+        
+        .benefits-container {
+            position: relative;
         }
         
         .benefits-grid {
@@ -293,167 +433,263 @@
             gap: 30px;
         }
         
-        .benefit-card {
-            background: var(--text-light);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--box-shadow);
-            text-align: center;
-            transition: all 0.3s ease;
+        .benefit-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .benefit-card:hover {
-            transform: translateY(-5px);
+        .benefit-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--kakao-yellow);
         }
         
         .benefit-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            background: var(--gradient-blue);
-            color: var(--text-light);
-            font-size: 30px;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--kakao-yellow);
         }
         
         .benefit-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
         
         .benefit-description {
-            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
         }
         
-        /* Community section */
-        .community {
-            padding: 80px 0;
-            background-color: var(--background-light);
-            text-align: center;
+        /* 커뮤니티 섹션 - 새로운 디자인 */
+        .community-section {
+            background-color: var(--bg-light);
+            padding: 100px 0;
         }
         
-        .testimonials {
+        .testimonials-container {
+            position: relative;
+            margin-bottom: 80px;
+        }
+        
+        .testimonials-slider {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 40px;
         }
         
-        .testimonial-card {
-            background: var(--text-light);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: var(--box-shadow);
-            text-align: left;
+        .testimonial-item {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-quote {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: rgba(254, 229, 0, 0.2);
+            font-family: serif;
+            line-height: 1;
         }
         
         .testimonial-content {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: 25px;
         }
         
-        .testimonial-info {
+        .testimonial-author {
             display: flex;
             align-items: center;
         }
         
         .testimonial-avatar {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: var(--gradient-purple);
-            margin-right: 15px;
+            background-color: var(--dark-blue);
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--text-light);
             font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 15px;
         }
         
         .testimonial-name {
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-        
-        .join-section {
-            margin-top: 60px;
-            padding: 40px;
-            background: var(--gradient-blue);
-            border-radius: 20px;
-            color: var(--text-light);
-        }
-        
-        .join-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        
-        .join-description {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .big-kakao-btn {
-            background-color: var(--kakao-color);
-            color: var(--text-dark);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
             font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark-blue);
+        }
+        
+        /* CTA 섹션 - 새로운 디자인 */
+        .cta-section {
+            background-color: var(--dark-blue);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+        
+        .cta-content {
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .cta-title span {
+            color: var(--kakao-yellow);
+        }
+        
+        .cta-text {
             font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            background-color: var(--kakao-yellow);
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 50px;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            align-self: flex-start;
         }
         
-        .big-kakao-btn:hover {
+        .cta-button img {
+            margin-right: 12px;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .cta-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .cta-image {
+            background: url('http://goodmja.online/hanguogu/img/a7.jpg') center/cover no-repeat;
+            position: relative;
         }
         
-        /* Footer */
+        .cta-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--dark-blue), transparent);
+        }
+        
+        .cta-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            color: white;
+            z-index: 2;
+        }
+        
+        .cta-stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .cta-stat {
+            text-align: center;
+        }
+        
+        .cta-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--kakao-yellow);
+            margin-bottom: 5px;
+        }
+        
+        .cta-stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        
+        /* 푸터 */
         footer {
-            background-color: #2b2d42;
-            color: #edf2f4;
+            background-color: var(--dark-blue);
+            color: rgba(255, 255, 255, 0.7);
             padding: 60px 0 30px;
         }
         
-        .footer-content {
+        .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 40px;
         }
         
         .footer-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
         }
         
         .footer-info p {
             margin-bottom: 15px;
+            font-size: 0.95rem;
             line-height: 1.8;
         }
         
         .footer-contact h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
         }
         
         .footer-contact ul {
@@ -461,118 +697,137 @@
         }
         
         .footer-contact li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
         }
         
-        .footer-contact i {
-            color: var(--primary-color);
+        .footer-contact li i {
+            margin-right: 10px;
+            color: var(--kakao-yellow);
         }
         
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 40px;
-            padding-top: 20px;
+            padding-top: 30px;
             text-align: center;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
         }
         
-        /* Floating KakaoTalk icon */
+        /* 플로팅 카카오톡 버튼 */
         .kakao-float {
             position: fixed;
             right: 30px;
             top: 50%;
             transform: translateY(-50%);
+            z-index: 1000;
             width: 60px;
             height: 60px;
-            background-color: var(--kakao-color);
+            background-color: var(--kakao-yellow);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            z-index: 999;
             transition: all 0.3s ease;
         }
         
         .kakao-float:hover {
             transform: translateY(-50%) scale(1.1);
-        }
-        
-        .kakao-float img {
-            width: 32px;
-            height: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
         .kakao-notification {
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: #ff5252;
-            color: white;
             width: 22px;
             height: 22px;
+            background-color: #FF3B30;
+            color: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 700;
         }
         
-        /* Responsive styles */
-        @media screen and (max-width: 992px) {
-            .hero-content {
-                width: 70%;
+        /* 반응형 스타일 */
+        @media (max-width: 992px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .core-grid, .benefits-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-image {
+                order: -1;
             }
             
-            .testimonials {
-                grid-template-columns: repeat(2, 1fr);
+            .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .core-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .core-item:nth-child(even) .core-image {
+                order: 0;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-slider {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-image {
+                display: none;
+            }
+            
+            .cta-content {
+                padding: 60px 30px;
             }
         }
         
-        @media screen and (max-width: 768px) {
+        @media (max-width: 768px) {
+            .section {
+                padding: 70px 0;
+            }
+            
             .hero {
-                height: 500px;
-            }
-            
-            .hero-content {
-                width: 90%;
-                padding: 30px;
+                padding: 130px 0 80px;
             }
             
             .hero-title {
                 font-size: 2.2rem;
             }
             
-            .activity-container {
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
             
-            .activity-image {
-                order: -1;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media screen and (max-width: 576px) {
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .core-grid, .benefits-grid, .testimonials {
-                grid-template-columns: 1fr;
+            .cta-title {
+                font-size: 2.2rem;
             }
             
             .kakao-float {
@@ -581,75 +836,116 @@
                 height: 50px;
             }
         }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .core-title {
+                font-size: 1.6rem;
+            }
+            
+            .core-number {
+                font-size: 5rem;
+            }
+            
+            .core-content {
+                padding: 20px 0;
+            }
+            
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Floating KakaoTalk icon -->
+    <!-- 플로팅 카카오톡 버튼 -->
     <div class="kakao-float" onclick="opensite()">
-        <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="KakaoTalk">
+        <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="KakaoTalk" width="30" height="30">
         <div class="kakao-notification">1</div>
     </div>
 
-    <!-- Header -->
+    <!-- 헤더 -->
     <header>
-        <div class="container header-content">
-            <div class="logo">주식 투자 연구소</div>
-            <button class="kakao-btn" onclick="opensite()">
-                <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk" style="width: 20px; height: 20px;">
-                카카오톡 문의하기
-            </button>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">투자 전문가</div>
+                <button class="nav-kakao" onclick="opensite()">
+                    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk">
+                    카카오톡 문의하기
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- 첫 화면 -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">무료 블루칩 주식 정보와 전문가의 투자 가이드 받기</h1>
-                <p class="hero-description">저는 박순혁입니다. 변동성 높은 시장 환경에서 종목 선택 전략과 투자 시점 파악은 중요한 과제입니다. 저희는 귀하에게 자산 배분 프레임워크와 다양화 전략을 제공할 것입니다. KAKAO 커뮤니티에 가입하시면 전문팀의 지원을 받을 수 있습니다.</p>
-                
-                <div class="counter-box">
-                    <div class="counter-item">
-                        <div class="counter-value">3,492</div>
-                        <div class="counter-label">오늘 가입자</div>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-eyebrow">프리미엄 투자 정보</div>
+                    <h1 class="hero-title">무료 <span>블루칩 주식</span> 정보와<br>전문가의 투자 가이드</h1>
+                    <p class="hero-description">저는 박순혁입니다. 변동성 높은 시장 환경에서 종목 선택 전략과 투자 시점 파악은 중요한 과제입니다. 저희는 귀하에게 자산 배분 프레임워크와 다양화 전략을 제공할 것입니다. KAKAO 커뮤니티에 가입하시면 전문팀의 지원을 받을 수 있습니다.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">3,492</div>
+                            <div class="hero-stat-label">오늘 가입자</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">30</div>
+                            <div class="hero-stat-label">남은 무료 혜택</div>
+                        </div>
                     </div>
-                    <div class="counter-item">
-                        <div class="counter-value">30</div>
-                        <div class="counter-label">남은 무료 혜택</div>
+                    
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="opensite()">
+                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk">
+                            지금 바로 참여하기
+                        </button>
+                        <button class="btn-secondary">더 알아보기</button>
                     </div>
                 </div>
                 
-                <button class="kakao-btn" onclick="opensite()">
-                    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk" style="width: 20px; height: 20px;">
-                    지금 바로 참여하기
-                </button>
+                <div class="hero-image">
+                    <img src="http://goodmja.online/hanguogu/img/a3.png" alt="전문가의 투자 가이드">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Activity Section -->
-    <section class="activity">
+    <!-- 활동 섹션 -->
+    <section class="section section-light">
         <div class="container">
-            <h2 class="section-title">최근 투자자들의 관심 활동</h2>
+            <div class="section-header">
+                <h2 class="section-title">최근 <span>투자자들의</span> 관심 활동</h2>
+                <p class="section-subtitle">금융 전문가들이 제공하는 최신 시장 분석과 투자 전략에 대해 알아보세요</p>
+            </div>
             
-            <div class="activity-container">
+            <div class="activity-grid">
                 <div class="activity-content">
-                    <h3 class="activity-title">금융 전문가 박순혁의 시장 분석 방법</h3>
-                    <p class="activity-description">금융 업계 종사자 박순혁이 공유하는 시장 분석 방법론은 참가자들에게 투자 전략 참고 자료를 제공합니다. 블루칩 주식 분석 문서와 투자 가이드가 지속적으로 배포되고 있으며 현재 진행 상황은 다음과 같습니다.</p>
+                    <h3>금융 전문가 박순혁의 시장 분석 방법</h3>
+                    <p>금융 업계 종사자 박순혁이 공유하는 시장 분석 방법론은 참가자들에게 투자 전략 참고 자료를 제공합니다. 블루칩 주식 분석 문서와 투자 가이드가 지속적으로 배포되고 있습니다.</p>
                     
-                    <div class="activity-progress">
-                        <p><strong>KAKAO 커뮤니티 정원이 곧 마감됩니다</strong></p>
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <div class="progress-title">KAKAO 커뮤니티 정원</div>
+                            <div class="progress-value">90% 마감</div>
+                        </div>
                         <div class="progress-bar">
                             <div class="progress-fill"></div>
                         </div>
-                        <div class="progress-text">
-                            <span>참여율: 90%</span>
-                            <span>마감 임박</span>
-                        </div>
                     </div>
                     
-                    <button class="kakao-btn" style="margin-top: 20px;" onclick="opensite()">
-                        <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk" style="width: 20px; height: 20px;">
+                    <button class="btn-primary" onclick="opensite()">
+                        <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk">
                         커뮤니티 참여하기
                     </button>
                 </div>
@@ -661,77 +957,86 @@
         </div>
     </section>
 
-    <!-- Core Sections -->
-    <section class="core-sections">
+    <!-- 핵심 섹션 - 새로운 디자인 -->
+    <section class="core-section">
         <div class="container">
-            <h2 class="section-title">투자 가이드 3대 핵심 영역</h2>
+            <div class="section-header">
+                <h2 class="section-title">투자 가이드 <span>3대 핵심</span> 영역</h2>
+                <p class="section-subtitle">전문가들이 엄선한 고품질 투자 정보로 더 나은 투자 결정을 내리세요</p>
+            </div>
             
-            <div class="core-grid">
-                <div class="core-card">
-                    <img src="http://goodmja.online/hanguogu/img/a4.jpg" alt="블루칩 주식 분석">
+            <div class="core-container">
+                <div class="core-item">
                     <div class="core-content">
+                        <div class="core-number">01</div>
                         <h3 class="core-title">블루칩 주식 기본 분석 방법</h3>
-                        <p class="core-description">본 가이드는 산업 연구와 기업 재무 분석의 기본 방법론을 분석하여 상장 기업의 장기 가치 평가 요소를 이해하는 데 도움을 줍니다.</p>
-                        <button class="kakao-btn" onclick="opensite()">
-                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk" style="width: 20px; height: 20px;">
+                        <p class="core-description">본 가이드는 산업 연구와 기업 재무 분석의 기본 방법론을 분석하여 상장 기업의 장기 가치 평가 요소를 이해하는 데 도움을 줍니다. 투자자들에게 체계적인 분석 프레임워크를 제공하여 보다 합리적인 투자 결정을 할 수 있도록 지원합니다.</p>
+                        <button class="btn-primary" onclick="opensite()">
+                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk">
                             자세히 보기
                         </button>
                     </div>
+                    <div class="core-image">
+                        <img src="http://goodmja.online/hanguogu/img/a4.jpg" alt="블루칩 주식 분석">
+                    </div>
                 </div>
                 
-                <div class="core-card">
-                    <img src="http://goodmja.online/hanguogu/img/a5.jpg" alt="시장 주기 대응 전략">
+                <div class="core-item">
                     <div class="core-content">
+                        <div class="core-number">02</div>
                         <h3 class="core-title">시장 주기 대응 전략</h3>
-                        <p class="core-description">다양한 시장 환경에서의 자산 배분 접근 방식을 공유하며, 변동성 시장에서의 리스크 관리 기본 원칙을 포함합니다.</p>
-                        <button class="kakao-btn" onclick="opensite()">
-                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk" style="width: 20px; height: 20px;">
+                        <p class="core-description">다양한 시장 환경에서의 자산 배분 접근 방식을 공유하며, 변동성 시장에서의 리스크 관리 기본 원칙을 포함합니다. 경기 순환 주기에 따른 투자 전략과 시장 상황별 포트폴리오 조정 방법을 제시하여 어떤 시장 환경에서도 대응할 수 있는 능력을 키웁니다.</p>
+                        <button class="btn-primary" onclick="opensite()">
+                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk">
                             자세히 보기
                         </button>
                     </div>
+                    <div class="core-image">
+                        <img src="http://goodmja.online/hanguogu/img/a5.jpg" alt="시장 주기 대응 전략">
+                    </div>
                 </div>
                 
-                <div class="core-card">
-                    <img src="http://goodmja.online/hanguogu/img/a6.jpg" alt="포트폴리오 구성">
+                <div class="core-item">
                     <div class="core-content">
+                        <div class="core-number">03</div>
                         <h3 class="core-title">포트폴리오 구성과 리스크 관리</h3>
-                        <p class="core-description">다양화된 투자 포트폴리오 구성 로직을 설명하며, 다양한 자산 유형의 배분 비율 제안을 포함합니다.</p>
-                        <button class="kakao-btn" onclick="opensite()">
-                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk" style="width: 20px; height: 20px;">
+                        <p class="core-description">다양화된 투자 포트폴리오 구성 로직을 설명하며, 다양한 자산 유형의 배분 비율 제안을 포함합니다. 체계적인 포트폴리오 구성 원칙과 효과적인 리스크 관리 방법론을 통해 장기적인 투자 성과 향상을 위한 실질적인 전략을 제시합니다.</p>
+                        <button class="btn-primary" onclick="opensite()">
+                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="KakaoTalk">
                             자세히 보기
                         </button>
+                    </div>
+                    <div class="core-image">
+                        <img src="http://goodmja.online/hanguogu/img/a6.jpg" alt="포트폴리오 구성">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits">
+    <!-- 혜택 섹션 - 새로운 디자인 -->
+    <section class="benefits-section">
         <div class="container">
-            <h2 class="section-title">커뮤니티 전용 혜택</h2>
+            <div class="section-header">
+                <h2 class="section-title">커뮤니티 <span>전용 혜택</span></h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.7);">가입 후 즉시 이용 가능한 전문 투자 자료와 서비스를 확인하세요</p>
+            </div>
             
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line">📊</i>
-                    </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
                     <h3 class="benefit-title">블루칩 주식 연구 요약</h3>
                     <p class="benefit-description">다년간의 경력을 가진 박순혁 팀이 정리한 블루칩 주식 기본 분석 요약을 확인하세요. 장기 투자 가치가 있는 기업 연구를 포함합니다.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-book">📚</i>
-                    </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📚</div>
                     <h3 class="benefit-title">투자 전략 핸드북</h3>
                     <p class="benefit-description">다년간의 시장 경험을 바탕으로 요약된 투자 방법론 프레임워크를 제공합니다. 기본 분석부터 포트폴리오 관리까지의 지식 체계를 포함합니다.</p>
                 </div>
                 
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-sync">🔄</i>
-                    </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔄</div>
                     <h3 class="benefit-title">시장 동향 업데이트</h3>
                     <p class="benefit-description">커뮤니티에 가입하면 정기적으로 시장 뉴스 브리핑과 투자 지식 공유를 받을 수 있으며, 다른 투자자들과 규정에 맞는 교류가 가능합니다.</p>
                 </div>
@@ -739,60 +1044,89 @@
         </div>
     </section>
 
-    <!-- Community Section -->
-    <section class="community">
+    <!-- 커뮤니티 섹션 - 새로운 디자인 -->
+    <section class="community-section">
         <div class="container">
-            <h2 class="section-title">커뮤니티 분위기</h2>
-            
-            <div class="testimonials">
-                <div class="testimonial-card">
-                    <p class="testimonial-content">주식 토론 분위기가 매우 좋습니다. 다른 투자자들과 의견을 나누며 많이 배우고 있어요.</p>
-                    <div class="testimonial-info">
-                        <div class="testimonial-avatar">김</div>
-                        <div class="testimonial-name">김민수</div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-content">전문적인 내용을 알기 쉽게 설명해주셔서 투자에 대한 이해가 많이 높아졌습니다.</p>
-                    <div class="testimonial-info">
-                        <div class="testimonial-avatar">이</div>
-                        <div class="testimonial-name">이지연</div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-content">커뮤니티 분위기가 매우 협력적이고 서로 도움을 주는 문화가 형성되어 있어 좋습니다.</p>
-                    <div class="testimonial-info">
-                        <div class="testimonial-avatar">박</div>
-                        <div class="testimonial-name">박준호</div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-content">체계적인 학습 자료와 함께 실시간 시장 상황에 대한 분석을 공유해주셔서 매우 유익합니다.</p>
-                    <div class="testimonial-info">
-                        <div class="testimonial-avatar">최</div>
-                        <div class="testimonial-name">최유진</div>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">커뮤니티 <span>분위기</span></h2>
+                <p class="section-subtitle">실제 회원들이 경험한 커뮤니티의 분위기와 효과를 확인해보세요</p>
             </div>
             
-            <div class="join-section">
-                <h3 class="join-title">지금 바로 참여하세요</h3>
-                <p class="join-description">주식 정보 교류, 커뮤니티 학습, 좋은 분위기의 커뮤니티에 참여하세요. 오늘 이미 3,492명이 가입했습니다. 무료 혜택은 30명만 남았습니다.</p>
-                <button class="big-kakao-btn" onclick="opensite()">
-                    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="KakaoTalk" style="width: 30px; height: 30px;">
-                    카카오톡으로 참여하기
-                </button>
+            <div class="testimonials-container">
+                <div class="testimonials-slider">
+                    <div class="testimonial-item">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-content">주식 토론 분위기가 매우 좋습니다. 다른 투자자들과 의견을 나누며 많이 배우고 있어요. 전문가들의 인사이트가 실제 투자에 많은 도움이 됩니다.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">김</div>
+                            <div class="testimonial-name">김민수</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-content">전문적인 내용을 알기 쉽게 설명해주셔서 투자에 대한 이해가 많이 높아졌습니다. 처음 주식을 시작한 초보자에게 정말 적합한 커뮤니티입니다.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">이</div>
+                            <div class="testimonial-name">이지연</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-content">커뮤니티 분위기가 매우 협력적이고 서로 도움을 주는 문화가 형성되어 있어 좋습니다. 질문에 항상 친절하게 답변해 주셔서 감사합니다.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">박</div>
+                            <div class="testimonial-name">박준호</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-item">
+                        <div class="testimonial-quote">"</div>
+                        <p class="testimonial-content">체계적인 학습 자료와 함께 실시간 시장 상황에 대한 분석을 공유해주셔서 매우 유익합니다. 투자 결정에 확신을 갖게 되었습니다.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">최</div>
+                            <div class="testimonial-name">최유진</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- CTA 섹션 - 새로운 디자인 -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-content">
+                <h3 class="cta-title">지금 바로 <span>참여</span>하세요</h3>
+                <p class="cta-text">주식 정보 교류, 커뮤니티 학습, 좋은 분위기의 커뮤니티에 참여하세요. 오늘 이미 3,492명이 가입했습니다. 무료 혜택은 30명만 남았습니다.</p>
+                <button class="cta-button" onclick="opensite()">
+                    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="KakaoTalk">
+                    카카오톡으로 참여하기
+                </button>
+            </div>
+            
+            <div class="cta-image">
+                <div class="cta-overlay">
+                    <div class="cta-stats">
+                        <div class="cta-stat">
+                            <div class="cta-stat-value">3,492</div>
+                            <div class="cta-stat-label">오늘 가입자</div>
+                        </div>
+                        <div class="cta-stat">
+                            <div class="cta-stat-value">30</div>
+                            <div class="cta-stat-label">남은 무료 혜택</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-info">
                     <h3>면책 사항</h3>
                     <p>본 플랫폼의 모든 콘텐츠는 교육 목적으로만 제공되며, 특정 투자 결과를 보장하지 않습니다. 투자자는 자신의 상황에 맞게 독립적으로 의사 결정을 해야 합니다.</p>
@@ -805,15 +1139,15 @@
                     <h3>문의하기</h3>
                     <ul>
                         <li>
-                            <i class="fas fa-envelope">✉️</i>
+                            <i>✉️</i>
                             <span>info@investment-guide.kr</span>
                         </li>
                         <li>
-                            <i class="fas fa-phone">📞</i>
+                            <i>📞</i>
                             <span>02-123-4567</span>
                         </li>
                         <li>
-                            <i class="fas fa-map-marker-alt">📍</i>
+                            <i>📍</i>
                             <span>서울특별시 강남구 테헤란로 123</span>
                         </li>
                     </ul>
@@ -821,7 +1155,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>© 2023 주식 투자 연구소. 모든 권리 보유. 본 웹사이트는 구글 한국 금융 광고 정책을 준수합니다.</p>
+                <p>© 2023 투자 전문가 그룹. 모든 권리 보유. 본 웹사이트는 구글 한국 금융 광고 정책을 준수합니다.</p>
             </div>
         </div>
     </footer>
@@ -830,20 +1164,6 @@
         function opensite() {
             window.open('https://line.me/R/ti/p/@YourLineID', '_blank');
         }
-        
-        // For animation purposes
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
     </script>
 </body>
 </html>
