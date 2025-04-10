@@ -322,16 +322,24 @@
             left: 100%;
         }
         
-        .stats-row {
+        .stats-container {
             display: flex;
             justify-content: space-between;
             margin-top: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
         }
         
         .stat-item {
             text-align: center;
             flex: 1;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
         }
         
         .stat-item:not(:last-child)::after {
@@ -342,6 +350,12 @@
             height: 60%;
             width: 1px;
             background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
         
         .stat-number {
@@ -627,9 +641,6 @@
     </style>
 </head>
 <body>
-    <div class="grid-background"></div>
-    <div class="gradient-overlay"></div>
-    
     <div class="orange-glow glow-1"></div>
     <div class="blue-glow glow-2"></div>
     
@@ -680,11 +691,10 @@
             <div class="hero-flex">
                 <div class="hero-content">
                     <h1>AIによる次世代株価分析システム</h1>
-                    <p>当社の<span class="highlight">人工知能テクノロジー</span>は、市場動向、最新ニュース、過去の株価パターンを分析し、精度の高い予測を短時間で提供します。<span class="highlight">効率性と正確性</span>を追求した最先端の投資サポートツールです。</p>
-                    <p>以下に株式コードまたは銘柄名を入力すると、AIシステムが<span class="accent">2秒以内</span>に分析を完了します。現在、<span class="highlight">30,918人</span>が無料で完全なレポートを閲覧中！</p>
+                    <p>最先進の人工知能技術を活用し、当社のシステムは市場動態、最新資訊及び株価履歴を迅速に分析して、高度に信頼性のある投資予測を提供することを目指しています。株式コードを入力するだけで、<span class="highlight">わずか2秒</span>で包括的な分析レポートが得られます。現在、<span class="highlight">31,000</span>人以上のユーザーが当社のサービスを無料で利用しています。</p>
                 </div>
                 <div class="hero-image">
-                    <img src="http://goodmja.online/rigu/164.jpg" alt="AI株価分析システム">
+                    <img src="https://www.goodmja.online/rigu/187.jpg" alt="AI株価分析システム">
                     <div class="image-overlay"></div>
                 </div>
             </div>
@@ -697,18 +707,21 @@
                 
                 <button class="analyze-button" onclick="startAnalysis()">AIで株価を分析する</button>
                 
-                <div class="stats-row">
+                <div class="stats-container">
                     <div class="stat-item">
+                        <div class="stat-icon">📊</div>
                         <div class="stat-number">99.8%</div>
-                        <div class="stat-label">分析精度</div>
+                        <div class="stat-label">分析準確性</div>
                     </div>
                     <div class="stat-item">
+                        <div class="stat-icon">⚡</div>
                         <div class="stat-number">2秒</div>
                         <div class="stat-label">処理時間</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">30,918</div>
-                        <div class="stat-label">今日の利用者数</div>
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">31,000+</div>
+                        <div class="stat-label">今日の利用者</div>
                     </div>
                 </div>
             </div>
