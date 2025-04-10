@@ -6,34 +6,6 @@
     <title>AI株価分析システム - 次世代人工知能市場予測</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        
-        .analysis-step.active {
-            opacity: 1;
-            background-color: rgba(242, 202, 39, 0.1);
-        }
-        
-          .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            color: var(--light);
-            border: none;
-        }
-        
-        .close-modal:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        
         :root {
             --primary-blue: #1E90FF;
             --accent-cyan: #00FFFF;
@@ -457,6 +429,29 @@
             color: var(--text-light);
         }
 
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--text-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-button:hover {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         /* アニメーション円形プログレスバー */
         .progress-container {
             width: 150px;
@@ -621,11 +616,67 @@
                 width: 120px;
                 height: 120px;
             }
+            
+            .ai-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 30px 0;
+            }
+            
+            .form-input {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .form-button {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-subtext {
+                font-size: 0.7rem;
+            }
+            
+            .hero-title {
+                font-size: 1.7rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .ai-feature-card {
+                padding: 12px;
+            }
+            
+            .ai-feature-content h4 {
+                font-size: 0.9rem;
+            }
+            
+            .ai-feature-content p {
+                font-size: 0.8rem;
+            }
+            
+            .current-users {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
-    
     <!-- スターフィールド背景 -->
     <div class="starfield">
         <div class="stars"></div>
@@ -726,7 +777,12 @@
     <!-- モーダル - 進行状況 -->
     <div class="modal" id="progressModal">
         <div class="modal-content">
-             <button class="close-modal" onclick="closeModal()">×</button>
+            <button class="close-button" onclick="closeModal('progressModal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
+                </svg>
+            </button>
+            
             <h3 class="modal-title">AI分析を実行中...</h3>
             
             <div class="progress-container">
@@ -760,7 +816,12 @@
     <!-- モーダル - 結果 -->
     <div class="modal" id="resultModal">
         <div class="modal-content">
-             <button class="close-modal" onclick="closeModal()">×</button>
+            <button class="close-button" onclick="closeModal('resultModal')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
+                </svg>
+            </button>
+            
             <h3 class="modal-title">分析完了</h3>
             
             <p class="result-text">株価分析レポートが完成しました</p>
@@ -789,6 +850,38 @@
     </footer>
 
     <script>
+        // モバイルデバイスの検出
+        function isMobileDevice() {
+            return (window.innerWidth <= 768);
+        }
+        
+        // ページの読み込み完了時に実行
+        window.addEventListener('load', function() {
+            // レスポンシブ対応のための調整
+            if (isMobileDevice()) {
+                // モバイルデバイス向けの調整
+                document.querySelectorAll('.ai-features').forEach(function(element) {
+                    element.style.gridTemplateColumns = '1fr';
+                });
+            }
+        });
+        
+        // ウィンドウのリサイズ時に実行
+        window.addEventListener('resize', function() {
+            // レスポンシブ対応のための調整
+            if (isMobileDevice()) {
+                // モバイルデバイス向けの調整
+                document.querySelectorAll('.ai-features').forEach(function(element) {
+                    element.style.gridTemplateColumns = '1fr';
+                });
+            } else {
+                // デスクトップ向けの調整
+                document.querySelectorAll('.ai-features').forEach(function(element) {
+                    element.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                });
+            }
+        });
+        
         function showProgressModal() {
             const progressModal = document.getElementById('progressModal');
             const progressText = document.querySelector('.progress-text');
@@ -842,6 +935,10 @@
             resultModal.style.display = 'flex';
         }
         
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
         function opensite() {
             // LINEの公式アカウントへのリンク
             window.open('https://line.me/R/ti/p/@YourLineID', '_blank');
@@ -849,63 +946,13 @@
             // モーダルを閉じる
             document.getElementById('resultModal').style.display = 'none';
         }
-
-          modal.classList.add('active');
-            
-            // Reset progress elements
-            const progressRing = document.getElementById('progressRing');
-            const progressText = document.getElementById('progressText');
-            const completeMessage = document.getElementById('completeMessage');
-            const step1 = document.getElementById('step1');
-            const step2 = document.getElementById('step2');
-            const step3 = document.getElementById('step3');
-            
-            progressRing.style.strokeDashoffset = '283';
-            progressText.textContent = '0%';
-            completeMessage.style.display = 'none';
-            step1.classList.remove('active');
-            step2.classList.remove('active');
-            step3.classList.remove('active');
-            
-            // Stage 1: 30%
-            setTimeout(() => {
-                progressRing.style.strokeDashoffset = '198';
-                progressText.textContent = '30%';
-                step1.classList.add('active');
-            }, 100);
-            
-            // Stage 2: 60%
-            setTimeout(() => {
-                progressRing.style.strokeDashoffset = '113';
-                progressText.textContent = '60%';
-                step2.classList.add('active');
-            }, 600);
-            
-            // Stage 3: 90%
-            setTimeout(() => {
-                progressRing.style.strokeDashoffset = '28';
-                progressText.textContent = '90%';
-                step3.classList.add('active');
-            }, 1100);
-            
-            // Complete: 100%
-            setTimeout(() => {
-                progressRing.style.strokeDashoffset = '0';
-                progressText.textContent = '100%';
-                
-                setTimeout(() => {
-                    completeMessage.style.display = 'block';
-                }, 300);
-            }, 1600);
-        }
         
-     function closeModal() {
-            const modal = document.getElementById('analysisModal');
-            modal.classList.remove('active');
+        // モーダル外をクリックした時の処理 (オプション)
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
         }
-        
     </script>
-
-    
 </body>
 </html>
