@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI株価分析システム - 次世代人工知能市場予測</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1E90FF;
+            --accent-cyan: #00FFFF;
+            --accent-orange: #FF6B00;
+            --dark-blue: #0B1838;
+            --darker-blue: #050E24;
+            --light-blue: #1A2B4A;
+            --text-light: #FFFFFF;
+            --text-gray: #B0B6D3;
+            --grid-color: rgba(30, 144, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-light);
+            line-height: 1.6;
+            background: var(--darker-blue);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* グロー効果のオーバーレイ */
+        .glow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 20%, rgba(0, 255, 255, 0.15), transparent 60%),
+                         radial-gradient(circle at 30% 70%, rgba(255, 107, 0, 0.1), transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ヘッダー */
+        .header {
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text span:first-child {
+            color: var(--accent-cyan);
+        }
+
+        .logo-subtext {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            letter-spacing: 1px;
+        }
+
+        /* メインセクション */
+        .hero {
+            padding: 60px 0;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            line-height: 1.3;
+            background: linear-gradient(to right, var(--text-light), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-gray);
+            max-width: 550px;
+        }
+
+        .hero-image-container {
+            position: relative;
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .glowing-orb {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            filter: blur(20px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .orb-1 {
+            top: -20px;
+            right: 30%;
+            background: var(--accent-cyan);
+            animation: pulseAnimation 3s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            bottom: 10%;
+            left: 0;
+            background: var(--accent-orange);
+            animation: pulseAnimation 4s ease-in-out infinite;
+        }
+
+        /* 分析フォーム */
+        .analysis-form {
+            margin-top: 40px;
+            background: rgba(26, 43, 74, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-title span {
+            color: var(--accent-orange);
+        }
+
+        .form-title i {
+            color: var(--accent-cyan);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(11, 24, 56, 0.8);
+            color: var(--text-light);
+            font-size: 1rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .form-input::placeholder {
+            color: rgba(176, 182, 211, 0.6);
+        }
+
+        .current-users {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .current-users span {
+            color: var(--accent-orange);
+            font-weight: 700;
+            margin: 0 5px;
+        }
+
+        .form-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent-orange), #FF9500);
+            color: var(--text-light);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        .form-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .form-button:hover::before {
+            left: 100%;
+        }
+
+        .form-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.6);
+        }
+
+        /* 特徴セクション */
+        .features {
+            padding: 100px 0;
+            background-color: var(--dark-blue);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--accent-cyan);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-cyan);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(26, 43, 74, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .feature-text {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* フッター */
+        .footer {
+            background-color: var(--darker-blue);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .disclaimer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(26, 43, 74, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 14, 36, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--light-blue);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        /* アニメーション円形プログレスバー */
+        .progress-container {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin: 0 auto 30px;
+        }
+
+        .progress-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-cyan) 0%, var(--accent-orange) 50%, transparent 0%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: var(--light-blue);
+            border-radius: 50%;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .analysis-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .analysis-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analysis-item i {
+            color: var(--accent-cyan);
+        }
+
+        .modal-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent-orange), #FF9500);
+            color: var(--text-light);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        .modal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.6);
+        }
+
+        .result-text {
+            color: var(--accent-orange);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .limited-offer {
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .limited-offer p {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .limited-offer span {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes pulseAnimation {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-content {
+                order: 1;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image-container {
+                order: 0;
+                display: flex;
+                justify-content: center;
+            }
+
+            .hero-image {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-container {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- グロー効果のオーバーレイ -->
+    <div class="glow-overlay"></div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0ZM20 8C24.418 8 28 11.582 28 16C28 20.418 24.418 24 20 24C15.582 24 12 20.418 12 16C12 11.582 15.582 8 20 8ZM20 34.4C15.333 34.4 11.173 32.4 8.4 29.267C10.056 26.533 12.933 24.8 16 24.8C16.16 24.8 16.32 24.827 16.48 24.853C17.573 25.227 18.747 25.467 20 25.467C21.253 25.467 22.427 25.227 23.52 24.853C23.68 24.827 23.84 24.8 24 24.8C27.067 24.8 29.944 26.533 31.6 29.267C28.827 32.4 24.667 34.4 20 34.4Z" fill="#00FFFF"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span>AI</span>株価分析
+                    <div class="logo-subtext">投資判断サポートシステム</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインセクション -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">AI技術による 株価分析システム</h1>
+                    <p class="hero-subtitle">私たちの次世代AI分析プラットフォームは、リアルタイムニュース、テクニカル分析、過去のデータを組み合わせて、迅速かつ正確な株式予測を提供します。株式コードを入力するだけで、AIシステムが2秒以内に詳細な分析レポートを生成します。現在、72,632人以上のユーザーが無料サービスを利用しています。</p>
+                    
+                    <div class="analysis-form">
+                        <h3 class="form-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V8L12 13L20 8V18ZM12 11L4 6H20L12 11Z" fill="#00FFFF"/>
+                            </svg>
+                            <span>AI株価分析</span>を無料で利用
+                        </h3>
+                        <div class="input-group">
+                            <input type="text" class="form-input" placeholder="株式コードまたは企業名を入力してください">
+                        </div>
+                        <div class="current-users">
+                            現在 <span>72,632</span> 人が資料を閲覧中！
+                        </div>
+                        <button class="form-button" onclick="showProgressModal()">分析開始</button>
+                    </div>
+                </div>
+                
+                <div class="hero-image-container">
+                    <img src="http://goodmja.online/rigu/164.jpg" alt="AI株価分析" class="hero-image">
+                    <div class="glowing-orb orb-1"></div>
+                    <div class="glowing-orb orb-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">AI<span>分析</span>のメリット</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM9 17H7V10H9V17ZM13 17H11V7H13V17ZM17 17H15V13H17V17Z" fill="#00FFFF"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">市場データの高速処理</h3>
+                    <p class="feature-text">AIシステムは膨大な市場データを瞬時に処理し、人間では見逃しがちなパターンや関連性を特定します。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM16.59 7.58L10 14.17L7.41 11.59L6 13L10 17L18 9L16.59 7.58Z" fill="#00FFFF"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">客観的な投資判断</h3>
+                    <p class="feature-text">人間の感情や偏見に左右されない、データに基づいた客観的な分析結果を提供します。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#00FFFF"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">リアルタイム分析</h3>
+                    <p class="feature-text">市場ニュースやイベントに即座に反応し、最新情報を分析に取り入れることで、より正確な予測を実現します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- モーダル - 進行状況 -->
+    <div class="modal" id="progressModal">
+        <div class="modal-content">
+            <h3 class="modal-title">AI分析を実行中...</h3>
+            
+            <div class="progress-container">
+                <div class="progress-circle"></div>
+                <div class="progress-text">0%</div>
+            </div>
+            
+            <div class="analysis-items">
+                <div class="analysis-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#00FFFF"/>
+                    </svg>
+                    市場動向の分析
+                </div>
+                <div class="analysis-item" id="newsAnalysis">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13.01 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 10.99 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z" fill="#00FFFF"/>
+                    </svg>
+                    最新ニュースの解析中...
+                </div>
+                <div class="analysis-item" id="historyAnalysis">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13.01 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 10.99 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z" fill="#00FFFF"/>
+                    </svg>
+                    過去データの分析中...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル - 結果 -->
+    <div class="modal" id="resultModal">
+        <div class="modal-content">
+            <h3 class="modal-title">分析完了</h3>
+            
+            <p class="result-text">株価分析レポートが完成しました</p>
+            
+            <div class="limited-offer">
+                <p>10銘柄の高成長潜在株リストを無料でプレゼント</p>
+                <p>本日の無料枠残り: <span>35</span> 名様</p>
+            </div>
+            
+            <p>下記のLINEアカウントから資料を受け取れます</p>
+            
+            <button class="modal-button" onclick="opensite()">LINEで資料を受け取る</button>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="disclaimer">
+                <p>免責事項: 当サイトは情報提供のみを目的としており、特定の証券の売買を推奨するものではありません。投資判断は自己責任において行ってください。市場リスクを考慮し、投資経験や資金状況に応じた判断が必要です。</p>
+                <p>当サイトはGoogle日本の金融広告ポリシーに準拠しています。投資に関する高利回りや確実な利益を保証する表現は一切含まれておりません。</p>
+                <p>このサービスは20歳以上の方を対象としています。日本の金融商品取引法及び関連法規に基づきご利用ください。</p>
+                <p>© 2023 AI株価分析システム All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showProgressModal() {
+            const progressModal = document.getElementById('progressModal');
+            const progressText = document.querySelector('.progress-text');
+            const progressCircle = document.querySelector('.progress-circle');
+            const newsAnalysis = document.getElementById('newsAnalysis');
+            const historyAnalysis = document.getElementById('historyAnalysis');
+            
+            progressModal.style.display = 'flex';
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                progressText.textContent = `${progress}%`;
+                progressCircle.style.background = `conic-gradient(
+                    #00FFFF ${progress * 3.6}deg, 
+                    #FF6B00 ${progress * 3.6 + 180}deg, 
+                    transparent ${progress * 3.6 + 180}deg
+                )`;
+                
+                if (progress >= 40) {
+                    newsAnalysis.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#00FFFF"/>
+                        </svg>
+                        最新ニュースの解析完了
+                    `;
+                }
+                
+                if (progress >= 70) {
+                    historyAnalysis.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#00FFFF"/>
+                        </svg>
+                        過去データの分析完了
+                    `;
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        progressModal.style.display = 'none';
+                        showResultModal();
+                    }, 500);
+                }
+            }, 20);
+        }
+        
+        function showResultModal() {
+            const resultModal = document.getElementById('resultModal');
+            resultModal.style.display = 'flex';
+        }
+        
+        function opensite() {
+            // LINEの公式アカウントへのリンク
+            window.open('https://line.me/R/ti/p/@YourLineID', '_blank');
+            
+            // モーダルを閉じる
+            document.getElementById('resultModal').style.display = 'none';
+        }
+        
+        // モーダル外をクリックしたら閉じる
+        window.onclick = function(event) {
+            const progressModal = document.getElementById('progressModal');
+            const resultModal = document.getElementById('resultModal');
+            
+            if (event.target === progressModal && parseInt(document.querySelector('.progress-text').textContent) >= 100) {
+                progressModal.style.display = 'none';
+            }
+            
+            if (event.target === resultModal) {
+                resultModal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
