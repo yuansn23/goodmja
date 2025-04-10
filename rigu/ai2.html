@@ -12,8 +12,8 @@
             --primary-dark: #E05600;
             --accent-color: #00B8FF;
             --accent-dark: #0095D9;
-            --dark: #1A1A2E;
-            --dark-blue: #16213E;
+            --dark: #0F0F0F;
+            --dark-blue: #121212;
             --light: #FFFFFF;
             --gray: #E0E0E0;
             --text-dark: #333333;
@@ -32,32 +32,10 @@
             overflow-x: hidden;
             line-height: 1.6;
             position: relative;
-        }
-        
-        /* Grid Background */
-        .grid-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            background-image: linear-gradient(rgba(255, 107, 0, 0.3) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255, 107, 0, 0.3) 1px, transparent 1px);
             background-size: 40px 40px;
-            background-image:
-                linear-gradient(to right, rgba(255, 107, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 107, 0, 0.05) 1px, transparent 1px);
-            opacity: 0.6;
-        }
-        
-        .gradient-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 30% 50%, rgba(255, 107, 0, 0.15), transparent 70%),
-                        radial-gradient(circle at 70% 20%, rgba(0, 184, 255, 0.1), transparent 70%);
+            background-position: center;
         }
         
         .container {
@@ -71,6 +49,7 @@
             padding: 20px 0;
             position: relative;
             border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+            background-color: rgba(15, 15, 15, 0.9);
         }
         
         .logo {
@@ -108,6 +87,7 @@
         .hero {
             padding: 50px 0;
             position: relative;
+            background-color: rgba(15, 15, 15, 0.85);
         }
         
         .hero-flex {
@@ -143,36 +123,6 @@
             background: linear-gradient(45deg, rgba(26, 26, 46, 0.7) 0%, rgba(255, 107, 0, 0.3) 100%);
         }
         
-        .orange-glow {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 107, 0, 0.4);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-        }
-        
-        .blue-glow {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: rgba(0, 184, 255, 0.4);
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: -1;
-        }
-        
-        .glow-1 {
-            top: 20%;
-            left: 10%;
-        }
-        
-        .glow-2 {
-            bottom: 10%;
-            right: 20%;
-        }
-        
         h1 {
             font-size: 38px;
             font-weight: 900;
@@ -201,8 +151,7 @@
         }
         
         .input-section {
-            background: rgba(22, 33, 62, 0.7);
-            backdrop-filter: blur(10px);
+            background: rgba(18, 18, 18, 0.95);
             padding: 30px;
             border-radius: 20px;
             margin: 40px 0;
@@ -322,34 +271,26 @@
             left: 100%;
         }
         
-        .stats-container {
-            display: flex;
-            justify-content: space-between;
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
             margin-top: 25px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            padding: 15px;
-            border: 1px solid rgba(255, 107, 0, 0.1);
         }
         
         .stat-item {
             text-align: center;
-            flex: 1;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
+            padding: 20px;
+            background: rgba(255, 107, 0, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 107, 0, 0.2);
+            transition: all 0.3s ease;
         }
         
-        .stat-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 20%;
-            height: 60%;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.1);
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 107, 0, 0.4);
         }
         
         .stat-icon {
@@ -379,8 +320,7 @@
         .feature {
             flex: 1;
             padding: 25px;
-            background-color: rgba(22, 33, 62, 0.7);
-            backdrop-filter: blur(5px);
+            background-color: rgba(18, 18, 18, 0.95);
             border-radius: 15px;
             border: 1px solid rgba(255, 107, 0, 0.1);
             transition: all 0.3s ease;
@@ -583,14 +523,14 @@
             border-top: 1px solid rgba(255, 107, 0, 0.1);
             font-size: 14px;
             color: var(--gray);
+            background-color: rgba(15, 15, 15, 0.9);
         }
         
         .disclaimer {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(5px);
+            background-color: rgba(18, 18, 18, 0.95);
             border-radius: 10px;
             font-size: 12px;
             line-height: 1.6;
@@ -637,13 +577,15 @@
                 width: 120px;
                 height: 120px;
             }
+            
+            .stats-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="orange-glow glow-1"></div>
-    <div class="blue-glow glow-2"></div>
-    
     <div class="modal" id="analysisModal">
         <div class="modal-content">
             <button class="close-button" onclick="closeModal()">×</button>
@@ -707,7 +649,7 @@
                 
                 <button class="analyze-button" onclick="startAnalysis()">AIで株価を分析する</button>
                 
-                <div class="stats-container">
+                <div class="stats-row">
                     <div class="stat-item">
                         <div class="stat-icon">📊</div>
                         <div class="stat-number">99.8%</div>
