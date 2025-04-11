@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI株式分析</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* 漆黒の背景 */
+            color: #fff;
+            overflow-x: hidden;
+            background-image: url("http://goodmja.online/rigu/164.jpg"); /* 星空の背景画像 */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay; /* 画像を重ねる */
+        }
+
+        /* グリッド背景 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 見出し */
+        h1 {
+            font-size: 3em;
+            color: #ffc107; /* 鮮やかな黄色 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        /* 説明文 */
+        p {
+            font-size: 1.2em;
+            color: #eee;
+            margin-bottom: 30px;
+        }
+
+        /* 画像 */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* 入力フォーム */
+        input[type="text"] {
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* ボタン */
+        .cta-button {
+            background-color: #00c300; /* LINEカラー */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #009600;
+            transform: scale(1.05);
+        }
+
+        /* プログレスバー */
+        .progress-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 10px solid #fff;
+            border-top-color: #ffc107; /* 鮮やかな黄色 */
+            animation: rotate 1.5s linear infinite;
+        }
+
+        .progress-text {
+            position: absolute;
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ポップアップ */
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            z-index: 1001;
+        }
+
+        .popup-container h2 {
+            margin-bottom: 20px;
+        }
+
+        /* フッター */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 0.8em;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI株式分析</h1>
+        <p>AIが株式市場を徹底分析。リアルタイムのニュース、テクノロジーのトレンド、過去のデータを組み合わせて、迅速かつ正確な株価予測を提供します。</p>
+        <img src="https://www.goodmja.online/riguai/11.png" alt="AI分析">
+
+        <p>あなたの気になる銘柄は？</p>
+        <input type="text" id="stockCode" placeholder="株式コードまたは銘柄名を入力">
+        <a href="#" class="cta-button" onclick="analyzeStock()">AI分析開始</a>
+
+        <!-- プログレスバー -->
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar"></div>
+            <div class="progress-text">100%</div>
+        </div>
+
+        <!-- ポップアップ -->
+        <div class="popup-container" id="popupContainer">
+            <h2>株式分析レポートが完成しました！</h2>
+            <p>AIシステムが市場分析、最新ニュース分析、歴史データ分析を基にレポートを作成しました。</p>
+            <p>さらに、今後1ヶ月間の高ポテンシャル銘柄10選をプレゼント！</p>
+            <p>今日の無料枠は残り35名です。</p>
+            <a href="#" class="cta-button" onclick="opensite()">LINEでレポートを受け取る</a>
+        </div>
+
+        <!-- フッター -->
+        <div class="footer">
+            <p>
+                <strong>リスクに関する開示：</strong> 金融商品の取引には高いリスクが伴います。損失を被る可能性もございますので、投資を行う際は十分にご注意ください。当サイトは投資助言を提供するものではありません。ご自身の判断と責任において取引を行ってください。
+            </p>
+            <p>
+                <strong>免責事項：</strong> 当サイトの情報は信頼できる情報源に基づいていますが、その正確性、完全性、適時性を保証するものではありません。当サイトの情報を利用した結果について、当社は一切責任を負いません。
+            </p>
+            <p>
+                <strong>広告に関するポリシー：</strong> 当サイトはGoogleの広告ポリシーを遵守しています。不適切な広告が表示された場合は、Googleまでご連絡ください。
+            </p>
+            <p>
+                <strong>年齢制限：</strong> 当サイトのコンテンツは、18歳以上の方を対象としています。
+            </p>
+            <p>
+                <strong>地域規制：</strong> 株式投資に関する規制は地域によって異なります。お住まいの地域の法律法规を確認してください。
+            </p>
+            <p>&copy; 2025 AI株式分析</p>
+        </div>
+    </div>
+
+    <script>
+        function opensite() {
+            window.location.href = 'https://line.me/R/'; // LINEのURLに置き換えてください
+        }
+
+        function analyzeStock() {
+            // プログレスバーを表示
+            document.getElementById("progressContainer").style.display = "flex";
+
+            // 1.5秒後にプログレスバーを非表示にし、ポップアップを表示
+            setTimeout(function() {
+                document.getElementById("progressContainer").style.display = "none";
+                document.getElementById("popupContainer").style.display = "block";
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
